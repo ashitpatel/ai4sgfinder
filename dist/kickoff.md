@@ -22,7 +22,7 @@ Restless bandits need frequent per-recipient data; if Filter 5 rules that out, s
 3. **THE SIMPLIFIED FIELD DEPLOYMENT PATHWAY** — how staff use it via a paper grid or simple Excel sheet.
 4. **REAL-LIFE DEPLOYMENT EVIDENCE & PARALLELS** — documented deployments, mapped to my problem.
 5. **OPERATIONAL REPORT CARD** — successes, field challenges, and unknowns.
-End with two or three next steps for the coming month.
+End with two or three next steps for the coming month, then offer these follow-ups, one at a time, tailored to my answers: 1. Fit the model to your program; 2. Readiness checks; 3. Pilot design; 4. Build options: tools and partners; 5. Reading and people to contact; 6. One-page brief for a technical partner. Remind me to confirm any tool or partner is still active.
 
 **Evidence you may cite** (verified): ARMMAN mMitra RMAB field study (Mate et al., AAAI 2022); TB adherence "Collapsing Bandits" (Mate et al., NeurIPS 2020); leximin citizens' assembly selection (Flanigan et al., Nature 2021); Togo Novissi aid targeting (Aiken et al., Nature 2022); PAWS anti-poaching (Fang et al., IAAI 2016; Xu et al., ICDE 2020); ARMOR at LAX (Pita et al., AAMAS 2008); emergency supply pre-positioning (Rawls & Turnquist, 2010); NYC and Boston school match (Abdulkadiroğlu, Pathak, Roth, 2005); kidney exchange (Roth, Sönmez, Ünver, QJE 2004); food-bank Choice System (Prendergast, JPE 2022).
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the per-platform files in dist/ and .claude-plugin/ from the sources in prompt/.
 
-Edit only the files in prompt/ (system-prompt.md, knowledge/taxonomy.md, kickoff.md) and
+Edit only the files in prompt/ (system-prompt.md, knowledge/*.md, kickoff.md) and
 VERSION, then run:
 
     python3 scripts/build.py          # regenerate dist/ and .claude-plugin/
@@ -19,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PROMPT = ROOT / "prompt" / "system-prompt.md"
 TAXONOMY = ROOT / "prompt" / "knowledge" / "taxonomy.md"
+PLAYBOOK = ROOT / "prompt" / "knowledge" / "playbook.md"
 KICKOFF = ROOT / "prompt" / "kickoff.md"
 VERSION = ROOT / "VERSION"
 
@@ -44,6 +45,8 @@ KICKOFF_LIMIT = 4000
 
 ATTACHED_REF = "The attached reference, **AI4SG Allocation Taxonomy**,"
 SKILL_REF = "The reference file `references/taxonomy.md` (**AI4SG Allocation Taxonomy**)"
+ATTACHED_PLAYBOOK = "The attached **AI4SG Implementation Playbook**"
+SKILL_PLAYBOOK = "The reference file `references/playbook.md` (**AI4SG Implementation Playbook**)"
 
 
 def strip_title(text: str) -> str:
@@ -61,6 +64,8 @@ def check_kickoff(prompt: str, kickoff: str) -> None:
     headings = re.findall(r"\*\*(FILTER \d — [^*]+?|THE [A-Z &]+[A-Z])\*\*", prompt)
     headings += re.findall(r"\*\*(OPERATIONAL REPORT CARD)\*\*", prompt)
     missing = [h for h in headings if f"**{h}**" not in kickoff]
+    follow_ups = prompt.split("## After the recommendation", 1)[1].split("\n## ", 1)[0]
+    missing += [f for f in re.findall(r"^\d\. (.+)$", follow_ups, re.M) if f not in kickoff]
     if missing:
         sys.exit(f"error: {KICKOFF.name} is out of sync with {PROMPT.name}; missing: "
                  + "; ".join(missing))
@@ -80,26 +85,32 @@ def skill_zip(files: dict[str, str]) -> bytes:
 def render() -> dict[str, bytes]:
     prompt = strip_title(PROMPT.read_text())
     taxonomy = TAXONOMY.read_text()
+    playbook = PLAYBOOK.read_text()
 
     if len(prompt) > GPT_INSTRUCTIONS_LIMIT:
         sys.exit(
             f"error: instructions are {len(prompt)} characters; "
             f"Custom GPTs accept at most {GPT_INSTRUCTIONS_LIMIT}."
         )
-    if ATTACHED_REF not in prompt:
-        sys.exit(f"error: expected the phrase {ATTACHED_REF!r} in {PROMPT.name}")
+    for phrase in (ATTACHED_REF, ATTACHED_PLAYBOOK):
+        if phrase not in prompt:
+            sys.exit(f"error: expected the phrase {phrase!r} in {PROMPT.name}")
 
     kickoff = KICKOFF.read_text()
     check_kickoff(prompt, kickoff)
 
-    all_in_one = f"{prompt.rstrip()}\n\n---\n\n{taxonomy}"
+    all_in_one = f"{prompt.rstrip()}\n\n---\n\n{taxonomy.rstrip()}\n\n---\n\n{playbook}"
 
     version = VERSION.read_text().strip()
-    skill_body = prompt.replace(ATTACHED_REF, SKILL_REF)
+    skill_body = prompt.replace(ATTACHED_REF, SKILL_REF).replace(ATTACHED_PLAYBOOK, SKILL_PLAYBOOK)
 
     def skill_files(name: str) -> dict[str, str]:
         front = f"---\nname: {name}\ndescription: {SKILL_DESCRIPTION}\n---\n\n"
-        return {"SKILL.md": front + skill_body, "references/taxonomy.md": taxonomy}
+        return {
+            "SKILL.md": front + skill_body,
+            "references/taxonomy.md": taxonomy,
+            "references/playbook.md": playbook,
+        }
 
     plugin_manifest = {
         "name": SKILL_NAME,
@@ -125,6 +136,7 @@ def render() -> dict[str, bytes]:
     out = {
         "dist/instructions.md": prompt,
         "dist/taxonomy.md": taxonomy,
+        "dist/playbook.md": playbook,
         "dist/all-in-one.md": all_in_one,
         "dist/kickoff.md": kickoff,
         f"dist/{SKILL_NAME}.zip": skill_zip(skill_files(SKILL_NAME)),

@@ -49,6 +49,7 @@ jobs:
             --notes-file notes.md \
             dist/instructions.md \
             dist/taxonomy.md \
+            dist/playbook.md \
             dist/all-in-one.md \
             dist/kickoff.md \
             dist/ai4sg-finder.zip

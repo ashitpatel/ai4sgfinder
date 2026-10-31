@@ -24,6 +24,8 @@ Choosing the wrong class wastes money and can do harm: visits pile up on people 
 
 See the [**worked cases**](docs/cases/) for six examples across health, water, conservation, disaster preparedness, youth employment and food security, one per class plus a "no model" case.
 
+**After you've picked an approach**, the [**implementation playbook**](prompt/knowledge/playbook.md) covers what comes next: fitting the model to your program, readiness checks, pilot design, tools and pro bono partners, further reading, and a one-page brief to send to a technical partner. The assistant offers each of these as a follow-up, tailored to your answers.
+
 ## Quick start
 
 Pick your platform. Every file you need is in [`dist/`](dist/), and each [release](https://github.com/ashitpatel/ai4sgfinder/releases/latest) attaches the same files as downloads, so you don't need to clone the repository.
@@ -33,7 +35,7 @@ Pick your platform. Every file you need is in [`dist/`](dist/), and each [releas
 **Claude Project** (claude.ai, any plan with Projects)
 1. Create a Project named *AI4SG Finder*.
 2. Paste [`dist/instructions.md`](dist/instructions.md) into **Project instructions**.
-3. Upload [`dist/taxonomy.md`](dist/taxonomy.md) to **Project knowledge**.
+3. Upload [`dist/taxonomy.md`](dist/taxonomy.md) and [`dist/playbook.md`](dist/playbook.md) to **Project knowledge**.
 4. Start a chat in the Project and describe your problem.
 
 **Claude Skill** (claude.ai or Claude Desktop)
@@ -55,13 +57,13 @@ Then type `/ai4sg-finder:finder`, or just ask Claude for help choosing an alloca
 ### ChatGPT (Custom GPT)
 1. In ChatGPT, open **Explore GPTs → Create → Configure**.
 2. Paste [`dist/instructions.md`](dist/instructions.md) into **Instructions** (it is kept under the 8,000-character limit).
-3. Under **Knowledge**, upload [`dist/taxonomy.md`](dist/taxonomy.md).
+3. Under **Knowledge**, upload [`dist/taxonomy.md`](dist/taxonomy.md) and [`dist/playbook.md`](dist/playbook.md).
 4. Suggested conversation starter: *"I run a program and need help deciding how to allocate a limited resource."*
 
 ### Gemini (Gem)
 1. In Gemini, open **Gems → New Gem**.
 2. Paste [`dist/instructions.md`](dist/instructions.md) into **Instructions**.
-3. Under **Knowledge**, add [`dist/taxonomy.md`](dist/taxonomy.md).
+3. Under **Knowledge**, add [`dist/taxonomy.md`](dist/taxonomy.md) and [`dist/playbook.md`](dist/playbook.md).
 
 ### Google AI Studio
 1. Open [aistudio.google.com](https://aistudio.google.com) and start a new chat prompt.
@@ -69,12 +71,12 @@ Then type `/ai4sg-finder:finder`, or just ask Claude for help choosing an alloca
 3. Pick a Gemini model, type a first message about your problem, and save the prompt so you can reopen or share it.
 
 ### Browser assistants with a custom-instructions field
-Assistants such as Perplexity Spaces let you save instructions and attach files. Paste [`dist/instructions.md`](dist/instructions.md) as the instructions and upload [`dist/taxonomy.md`](dist/taxonomy.md) as a file. If there is no file upload, paste [`dist/all-in-one.md`](dist/all-in-one.md) as the instructions instead, provided the field accepts it (about 17,000 characters).
+Assistants such as Perplexity Spaces let you save instructions and attach files. Paste [`dist/instructions.md`](dist/instructions.md) as the instructions and upload [`dist/taxonomy.md`](dist/taxonomy.md) and [`dist/playbook.md`](dist/playbook.md) as files. If there is no file upload, paste [`dist/all-in-one.md`](dist/all-in-one.md) as the instructions instead, provided the field accepts it (about 35,000 characters).
 
 ### Any browser assistant, no setup
 For assistants with no place for custom instructions, such as Google AI Mode in Search, Gemini in Chrome, Microsoft Copilot, or a fresh chat in any app, paste [`dist/kickoff.md`](dist/kickoff.md) as your **first message**. It is a condensed version (under 4,000 characters, so it fits most chat boxes) that asks the assistant to take on the role and start the interview.
 
-The kickoff is shorter than the full prompt and carries only the core verified references, so expect less detailed evidence sections. Assistants without saved instructions can also drift out of the role in a long chat; paste it again if that happens.
+The kickoff is shorter than the full prompt and carries only the core verified references, so expect less detailed evidence sections. It still offers the six follow-ups, but without the playbook they rely on the assistant's general knowledge; for tools, partners and reading, check the [playbook](prompt/knowledge/playbook.md) yourself. Assistants without saved instructions can also drift out of the role in a long chat; paste it again if that happens.
 
 ### APIs
 Each script in [`examples/`](examples/) loads `dist/all-in-one.md` as the system prompt and runs a terminal chat.
@@ -99,10 +101,12 @@ python3 examples/claude_chat.py
 prompt/
   system-prompt.md        <- source of truth: the assistant's instructions
   knowledge/taxonomy.md   <- source of truth: archetypes, decision tree, citations
+  knowledge/playbook.md   <- source of truth: follow-up guidance after a recommendation
   kickoff.md              <- hand-condensed paste-in version of the prompt
 dist/                     <- generated, ready to paste or upload (do not edit)
   instructions.md         system prompt for Projects, Custom GPTs, Gems
   taxonomy.md             knowledge file to upload alongside it
+  playbook.md             second knowledge file, for the follow-ups
   all-in-one.md           both in one file, for APIs and Google AI Studio
   kickoff.md              first-message version for browser assistants
   claude-skill/           Claude Skill folder
@@ -142,7 +146,8 @@ The [release workflow](.github/workflows/release.yml) checks that the tag matche
 
 1. **Five diagnostic filters**, asked one per turn: the resource and its intent; who holds choice and preferences; whether the environment is passive or adversarial; tolerance for being wrong; and how often field staff can record data.
 2. **A five-part recommendation**: the recommended class, a counterfactual warning (what fails with a naive ML model or spreadsheet), a field deployment pathway using paper grids or Excel, real deployment evidence, and a report card of successes, challenges, and unknowns, ending with next steps.
-3. **Evidence integrity rules**: the assistant must not invent citations, must prefer the verified references in `taxonomy.md`, and must label anything uncertain as unverified.
+3. **Six optional follow-ups**, drawn from `playbook.md` and tailored to your answers: fit the model to your program, readiness checks, pilot design, build options (tools and partners), reading and people to contact, and a one-page brief for a technical partner.
+4. **Evidence integrity rules**: the assistant must not invent citations, tools or organizations, must prefer the verified references in `taxonomy.md` and `playbook.md`, and must label anything uncertain as unverified.
 
 ## Changes from the original draft
 

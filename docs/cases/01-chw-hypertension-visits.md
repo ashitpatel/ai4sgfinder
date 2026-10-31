@@ -63,3 +63,53 @@ The assistant should select **Class 1 (Dynamic State Evolution)**, solved with r
 
 - Recommend a deep-learning model; the data volume doesn't support it and the problem is sequential decision-making, not prediction.
 - Quote a specific percentage improvement from the mMitra study unless it is certain of the figure.
+
+## Follow-up example: brief for a technical partner
+
+After the recommendation, the assistant offers six follow-ups from the [implementation playbook](../../prompt/knowledge/playbook.md). If the user picks **6. One-page brief for a technical partner**, a good answer fills the template from the interview, like this:
+
+```
+PROJECT BRIEF — County hypertension adherence program (illustrative)
+
+The decision we need help with
+  Each week, choose which 80 of 1,200 enrolled hypertension patients
+  receive a community health worker (CHW) home visit.
+
+Why it matters
+  About 1,200 adults depend on daily blood-pressure medication. Poorly
+  targeted visits mean more uncontrolled blood pressure and strokes.
+
+Current approach
+  CHWs visit by judgment and rotation. Visits go repeatedly to the same
+  patients, and stable adherers get visits they don't need.
+
+Recommended approach
+  Class 1 (Dynamic State Evolution): a restless multi-armed bandit with a
+  Whittle index policy, because a visit is reclaimable weekly, its effect
+  depends on the patient, adherence drifts over time, and we observe it weekly.
+
+Data we have
+  About 9 months of weekly yes/no adherence checks (pill counts) per
+  patient, entered by CHWs on a phone app that syncs when in signal.
+
+Constraints
+  80 visits per week (10 CHWs x 8). Every patient must be visited at least
+  once a quarter. CHWs often work without connectivity.
+
+What success looks like
+  Fewer patients moving from adhering to lapsing, compared with current
+  practice. Harm measure: the number of patients unvisited for 90+ days.
+
+How results must reach staff
+  One printed or SMS list per CHW each Monday ("visit these 8"). The M&E
+  officer reruns the model weekly in Excel or a notebook.
+
+What we are asking for
+  Help building a 3-month pilot in 2 of our 10 CHW areas, with the other
+  areas as comparison.
+
+Contact
+  [Name, role, email]
+```
+
+The other five follow-ups would, for example, map arms to patients and states to adhering / lapsing (Fit the model), flag the 9 months of history as just sufficient if patients are grouped (Readiness checks), and recommend randomizing CHW areas between the model's list and current practice for 8–12 weeks (Pilot design).
