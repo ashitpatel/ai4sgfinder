@@ -169,6 +169,8 @@ authors:
   - family-names: "{family}"
     given-names: "{given}"
 version: "{version}"
+# Zenodo concept DOI: always resolves to the latest archived release.
+doi: 10.5281/zenodo.23840133
 license: Apache-2.0
 repository-code: "{repo}"
 url: "{repo}"

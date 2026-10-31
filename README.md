@@ -1,5 +1,7 @@
 # AI4SG Finder
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23840133.svg)](https://doi.org/10.5281/zenodo.23840133)
+
 An AI assistant that helps NGOs and public agencies choose the right **AI-for-social-good (AI4SG) allocation method** for a field problem. It interviews you one question at a time, classifies your problem into one of five mathematical archetypes, and writes a recommendation covering why the method fits, what goes wrong without it, how to deploy it on paper or in Excel, and what the published evidence says.
 
 It is a system prompt plus a reference file, packaged so it runs in **Claude, ChatGPT, Gemini, Google AI Studio, and other browser-based assistants**, or through the Claude, OpenAI, and Gemini APIs.
