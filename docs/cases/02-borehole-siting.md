@@ -6,6 +6,7 @@
 | **Intervention type** | Irreversible infrastructure investment |
 | **Expected class** | [2 — Static Demographic Targeting (welfare ILP)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) |
 | **Most likely confusion** | A need-score ranking in a spreadsheet |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/02-welfare-optimization-borehole-siting.md) |
 
 ## Scenario
 

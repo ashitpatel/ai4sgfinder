@@ -6,6 +6,7 @@
 | **Intervention type** | Mobile enforcement patrols |
 | **Expected class** | [3 — Spatiotemporal Security & Adaptive Search (security games)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) |
 | **Most likely confusion** | A hotspot map of past arrests |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/03-security-games-marine-patrols.md) |
 
 ## Scenario
 

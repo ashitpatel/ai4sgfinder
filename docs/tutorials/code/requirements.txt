@@ -1,0 +1,5 @@
+# Tutorial code. PuLP is pinned below 4: PuLP 4 replaced the classic modeling API
+# (LpVariable(..., cat=...), prob += ...) that these tutorials and most PuLP guides use.
+# PuLP 3 ships with the free CBC solver, so nothing else needs installing.
+numpy
+pulp>=3,<4

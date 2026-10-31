@@ -6,6 +6,7 @@
 | **Intervention type** | Contingency stockpiling |
 | **Expected class** | [4 — Robust Contingency Planning (DRO), layered over a location model](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) |
 | **Most likely confusion** | Planning for the "average" storm from historical data |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/04-robust-optimization-cyclone-prepositioning.md) |
 
 ## Scenario
 

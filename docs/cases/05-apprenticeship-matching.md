@@ -6,6 +6,7 @@
 | **Intervention type** | Two-sided placement |
 | **Expected class** | [5 — Strategic Matching Markets (stable matching)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) |
 | **Most likely confusion** | Central assignment by an ML "best-fit" score |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/05-stable-matching-apprenticeships.md) |
 
 ## Scenario
 

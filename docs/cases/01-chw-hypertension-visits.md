@@ -6,6 +6,7 @@
 | **Intervention type** | Recurring behavioral nudge (home visits) |
 | **Expected class** | [1 — Dynamic State Evolution (restless bandits)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) |
 | **Most likely confusion** | A standard risk-prediction model ranking "highest-risk" patients |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/01-restless-bandits-chw-visits.md) |
 
 ## Scenario
 

@@ -22,7 +22,7 @@ The right method can do far better with the same budget, but "use AI" is not one
 
 Choosing the wrong class wastes money and can do harm: visits pile up on people who would have done fine anyway, patrols become predictable, or a placement scheme drives away the people it was meant to serve. Sometimes the honest answer is that a simple rule is enough, and the assistant will say that too.
 
-See the [**worked cases**](docs/cases/) for six examples across health, water, conservation, disaster preparedness, youth employment and food security, one per class plus a "no model" case. Each also walks through the follow-ups after the recommendation, from narrowing down tools and partners to designing a pilot.
+See the [**worked cases**](docs/cases/) for six examples across health, water, conservation, disaster preparedness, youth employment and food security, one per class plus a "no model" case. Each also walks through the follow-ups after the recommendation, from narrowing down tools and partners to designing a pilot. To understand how each method works, read the [**tutorials**](docs/tutorials/): one per case, assuming only basic statistics, each with a runnable program.
 
 **After you've picked an approach**, the [**implementation playbook**](prompt/knowledge/playbook.md) covers what comes next: fitting the model to your program, readiness checks, pilot design, tools and pro bono partners, further reading, and a one-page brief to send to a technical partner. The assistant offers each of these as a follow-up, tailored to your answers.
 
@@ -117,6 +117,7 @@ examples/                 API chat scripts for Claude, OpenAI, Gemini
 scripts/build.py          regenerates dist/ and .claude-plugin/ from prompt/ and VERSION
 VERSION, CHANGELOG.md     release version and notes
 docs/cases/               six worked cases, one per outcome; also a manual test set
+docs/tutorials/           in-depth method walkthroughs, one per case, with runnable code
 docs/original-draft.md    the first draft, kept for provenance
 ```
 

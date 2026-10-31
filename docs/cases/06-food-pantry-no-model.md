@@ -6,6 +6,7 @@
 | **Intervention type** | Recurring in-kind distribution |
 | **Expected class** | None — "You don't need an optimization model" |
 | **Most likely confusion** | [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) or [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting), because the setting sounds like an allocation problem |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/06-no-model-food-pantry.md) |
 
 ## Scenario
 

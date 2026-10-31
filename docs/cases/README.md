@@ -17,6 +17,8 @@ All organizations and programs in these cases are fictional. The research they c
 
 Across the six, every filter is the deciding one at least once, and each case names the method it is most likely to be confused with, so the cases also show what separates neighboring classes.
 
+Each case also has an [in-depth tutorial](../tutorials/) that explains its method step by step, assuming only basic statistics.
+
 ## Each case contains
 
 - **Scenario**: the organization and its constraint, in a few sentences.
