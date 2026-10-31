@@ -30,11 +30,13 @@ A youth employment NGO places about 200 graduates of its vocational course into 
 **Filter 5 — Field data and workflow.**
 > Placement happens twice a year. Young people can fill in a paper form; employers use email. Our placement officer uses Excel.
 
-## Why this class
+## Why Class 5: Strategic Matching Markets
 
-- **Both sides hold preferences the planner must respect** (Filter 2), with evidence that ignoring them causes refusals and dropouts. This is the decisive signal for Class 5.
+The assistant should select **Class 5 (Strategic Matching Markets)**, solved with deferred acceptance (stable matching).
+
+- **Both sides hold preferences the planner must respect** (Filter 2), with evidence that ignoring them causes refusals and dropouts. This is the decisive signal for Class 5 (Strategic Matching Markets).
 - The **strategic misreporting** in Filter 3 is exactly what a well-designed matching mechanism removes.
-- No adversary, no catastrophic downside, and no repeated per-person decisions, so Classes 1, 3 and 4 don't apply. Class 2 would impose a central assignment, which is what failed.
+- No adversary, no catastrophic downside, and no repeated per-person decisions, so Class 1 (Dynamic State Evolution), Class 3 (Spatiotemporal Security & Adaptive Search) and Class 4 (Robust Contingency Planning) don't apply. Class 2 (Static Demographic Targeting) would impose a central assignment, which is what failed.
 
 ## What a good recommendation contains
 
@@ -55,5 +57,5 @@ A youth employment NGO places about 200 graduates of its vocational course into 
 
 ## What the assistant should *not* do
 
-- Propose a welfare-maximizing central assignment (Class 2) that ignores stated preferences.
+- Propose a welfare-maximizing central assignment (Class 2 (Static Demographic Targeting)) that ignores stated preferences.
 - Claim that matching guarantees completion; it removes one cause of dropout, not all of them.

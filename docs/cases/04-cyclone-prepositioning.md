@@ -30,11 +30,13 @@ A humanitarian NGO serves a low-lying coastal delta. Before each cyclone season 
 **Filter 5 — Field data and workflow.**
 > Planning happens once a year, before the season. During a response our staff often have no connectivity at all. Logistics uses Excel.
 
-## Why this class
+## Why Class 4: Robust Contingency Planning
 
-- **Catastrophic downside** and **almost no history** (Filter 4) are the two triggers for Class 4. Eight storms are far too few to estimate a reliable probability distribution of landfall and damage.
-- The underlying decision is a **one-off central allocation of supplies to locations** (Filters 1 and 2), which is Class 2 in structure; Class 4 is the robustness layer on top of it.
-- No adversary (Filter 3), no drifting recipients, and no two-sided preferences, so Classes 1, 3 and 5 don't apply.
+The assistant should select **Class 4 (Robust Contingency Planning)**, solved with distributionally robust optimization layered over a location model from Class 2 (Static Demographic Targeting).
+
+- **Catastrophic downside** and **almost no history** (Filter 4) are the two triggers for Class 4 (Robust Contingency Planning). Eight storms are far too few to estimate a reliable probability distribution of landfall and damage.
+- The underlying decision is a **one-off central allocation of supplies to locations** (Filters 1 and 2), which is Class 2 (Static Demographic Targeting) in structure; Class 4 (Robust Contingency Planning) is the robustness layer on top of it.
+- No adversary (Filter 3), no drifting recipients, and no two-sided preferences, so Class 1 (Dynamic State Evolution), Class 3 (Spatiotemporal Security & Adaptive Search) and Class 5 (Strategic Matching Markets) don't apply.
 
 ## What a good recommendation contains
 

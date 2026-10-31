@@ -30,11 +30,13 @@ A coastal conservation trust co-manages a marine protected area divided into 40 
 **Filter 5 — Field data and workflow.**
 > Rangers log patrols and incidents on a handheld in SMART (the Spatial Monitoring and Reporting Tool); the data is uploaded monthly. Boat captains get a paper schedule on Mondays.
 
-## Why this class
+## Why Class 3: Spatiotemporal Security & Adaptive Search
 
-- **Mobile assets over geography** (Filter 1) and, decisively, **an adversary who adapts to your moves** (Filter 3). This is the defining signature of Class 3.
-- Central routing (Filter 2) rules out Class 5; exploration is tolerable (Filter 4), so a Class 4 layer isn't required.
-- Not Class 1: the "state" that matters is the fishers' strategic response to your pattern, not a recipient's independent drift.
+The assistant should select **Class 3 (Spatiotemporal Security & Adaptive Search)**, solved with a Stackelberg security game.
+
+- **Mobile assets over geography** (Filter 1) and, decisively, **an adversary who adapts to your moves** (Filter 3). This is the defining signature of Class 3 (Spatiotemporal Security & Adaptive Search).
+- Central routing (Filter 2) rules out Class 5 (Strategic Matching Markets); exploration is tolerable (Filter 4), so a Class 4 (Robust Contingency Planning) layer isn't required.
+- Not Class 1 (Dynamic State Evolution): the "state" that matters is the fishers' strategic response to your pattern, not a recipient's independent drift.
 
 ## What a good recommendation contains
 

@@ -32,11 +32,13 @@ Paste these one at a time, in order, when testing the assistant.
 **Filter 5 — Field data and workflow.**
 > CHWs record a yes/no adherence check (pill count) at every contact on a phone app that syncs when they reach signal, roughly weekly. The M&E officer uses Excel. CHWs just want a list of who to see.
 
-## Why this class
+## Why Class 1: Dynamic State Evolution
 
-- **Reclaimable, probabilistic resource** (Filter 1): a visit is time, re-routable weekly, and its value depends on the patient's response. That rules out Class 2.
-- **Central assignment** (Filter 2) rules out Class 5. **No adversary** (Filter 3) rules out Class 3.
-- **Exploration is tolerable** and there is history (Filter 4), so Class 4's worst-case protection isn't needed.
+The assistant should select **Class 1 (Dynamic State Evolution)**, solved with restless bandits.
+
+- **Reclaimable, probabilistic resource** (Filter 1): a visit is time, re-routable weekly, and its value depends on the patient's response. That rules out Class 2 (Static Demographic Targeting), which is for permanent transfers.
+- **Central assignment** (Filter 2) rules out Class 5 (Strategic Matching Markets). **No adversary** (Filter 3) rules out Class 3 (Spatiotemporal Security & Adaptive Search).
+- **Exploration is tolerable** and there is history (Filter 4), so the worst-case protection of Class 4 (Robust Contingency Planning) isn't needed.
 - **States drift whether or not you act**, and the visit's effect decays (Filter 3): this is the "restless" structure. Each patient is an arm whose state (adhering / lapsing) moves on its own and moves differently when visited.
 - **Weekly per-patient observations exist** (Filter 5), which restless bandits require.
 

@@ -30,11 +30,13 @@ A rural water NGO has a donor grant for 25 boreholes in a drought-prone region o
 **Filter 5 — Field data and workflow.**
 > This is a one-off decision. Our program team uses Excel and QGIS. The district councils will want to see the reasoning.
 
-## Why this class
+## Why Class 2: Static Demographic Targeting
 
-- **Irreversible capital** (Filter 1) and **central assignment** (Filter 2) point straight to Class 2.
-- **Passive, slow-moving environment** (Filter 3): no adversary, no drift to track, so Classes 1 and 3 don't apply.
-- **Costly but not catastrophic error, with good data** (Filter 4): one-time census data is enough, and there is no unknown shock to hedge against, so Class 4 isn't needed.
+The assistant should select **Class 2 (Static Demographic Targeting)**, solved with a welfare integer linear program.
+
+- **Irreversible capital** (Filter 1) and **central assignment** (Filter 2) point straight to Class 2 (Static Demographic Targeting).
+- **Passive, slow-moving environment** (Filter 3): no adversary, no drift to track, so Class 1 (Dynamic State Evolution) and Class 3 (Spatiotemporal Security & Adaptive Search) don't apply.
+- **Costly but not catastrophic error, with good data** (Filter 4): one-time census data is enough, and there is no unknown shock to hedge against, so Class 4 (Robust Contingency Planning) isn't needed.
 - **Fairness and auditability are explicit requirements**, which is exactly what an integer program with an equity constraint can state and prove.
 
 ## What a good recommendation contains

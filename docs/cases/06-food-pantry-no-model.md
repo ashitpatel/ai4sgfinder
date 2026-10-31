@@ -5,7 +5,7 @@
 | **Domain** | Food security |
 | **Intervention type** | Recurring in-kind distribution |
 | **Expected class** | None — "You don't need an optimization model" |
-| **Most likely confusion** | Class 1 or 2, because the setting sounds like an allocation problem |
+| **Most likely confusion** | Class 1 (Dynamic State Evolution) or Class 2 (Static Demographic Targeting), because the setting sounds like an allocation problem |
 
 ## Scenario
 
@@ -31,6 +31,8 @@ A volunteer-run food pantry serves about 150 registered households. It hands out
 > Volunteers tick names on a paper sign-in sheet. There's one laptop. Volunteers change every few months.
 
 ## Why no model
+
+The assistant should select **none of the five classes** and recommend simple rules instead.
 
 - Supply **meets demand in 94% of weeks** (Filter 4). An optimizer has almost nothing to optimize; the rare shortfall is a supply problem, not an allocation problem.
 - **Low data and high volunteer turnover** (Filter 5) mean any tool must survive with no one who understands it.
