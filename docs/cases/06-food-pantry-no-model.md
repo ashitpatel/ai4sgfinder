@@ -58,3 +58,34 @@ A good answer still uses the five headings, but each is short and honest:
 
 - Recommend a restless bandit or ILP because the foundation asked for "AI."
 - Refuse to engage: it should still explain where optimization *would* help (the regional network).
+
+## After the recommendation
+
+When the answer is "no model," the follow-ups still apply, scaled down. The assistant should offer them, and a good answer keeps each one short.
+
+- **1. Fit the model → write down the rule.** The shortfall rule on one card: in a short week, households with children under 5 or no other support get a full box first, and everyone else gets a smaller box. The shift lead applies it.
+- **2. Readiness checks:** the sign-in sheet holds names, so keep it stored securely and don't add scoring or ranking of households; volunteers change every few months (Filter 5 — Field data and workflow friction), so the rule must fit on the card.
+- **3. Pilot design:** use the rule for 3 months, then ask volunteers and a few households whether it felt fair.
+- **4. Build options:** nothing to build. A tally sheet on the existing laptop is enough.
+- **5. Reading and contacts:** if the pantry joins a regional network, read Prendergast (2022) on Feeding America's Choice System; the regional food bank is the contact.
+
+### What would change the answer
+
+A good answer also says when to revisit, so the "no" isn't permanent. Track two numbers monthly: weeks the pantry ran short, and households turned away (start recording these now). Reconsider if:
+- the pantry runs short in more than one week a month for three months running, or
+- recorded turn-aways show hidden demand, or
+- the pantry starts sharing supply with other pantries, where allocation across sites becomes a real problem (see [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting), or a market mechanism like the Choice System).
+
+### Instead of a technical brief: a note to the foundation
+
+```
+Thank you for offering to fund an AI allocation tool. We looked at this
+carefully: in 49 of the last 52 weeks we had enough food for everyone who
+came, so an allocation model would have little to improve. The 3 short
+weeks were a supply problem at the end of the month.
+
+We'd like to propose using the funds for extra storage and a standing
+end-of-month supplier order instead, and to start recording households we
+turn away so we can check for unmet demand. We'll report both numbers to
+you quarterly.
+```

@@ -59,3 +59,33 @@ The assistant should select **[Class 3 (Spatiotemporal Security & Adaptive Searc
 
 - Recommend "predictive policing"-style hotspot targeting alone.
 - Ignore the fishing community: note that enforcement works best alongside community engagement and livelihood alternatives.
+
+## After the recommendation
+
+The assistant then offers the six follow-ups from the [implementation playbook](../../prompt/knowledge/playbook.md), tailored to these answers. This case shows **Follow-up 2** in full, because this program's biggest risks are in its data and its people, not its math.
+
+### Follow-up 2: Readiness checks
+
+A good answer goes through the playbook checklist using this program's answers, marks each item, and says what to do:
+
+| Check | Status | Why, and what to do |
+|---|---|---|
+| Decision owner | Partly ready | Captains get a schedule each Monday, but nobody is named as owning it. Name the person who signs off the weekly plan and handles captains' questions. |
+| Patrol data | Ready | 3 years of SMART logs with GPS tracks and about 400 incidents (Filter 5 — Field data and workflow friction) is a strong base. |
+| Detection bias | Not ready | Incidents were only recorded where boats went. Feed patrol *effort* into the risk model, and reserve some patrols for rarely visited zones so the data stops confirming old hotspots. |
+| Randomized schedules accepted | Not ready | Captains will ask why they're sent to zone 12 again. Brief them on why predictability failed on the northern reef (Filter 3 — Environment dynamics) before the pilot starts. |
+| Schedule confidentiality | Not ready | Fishers watch the jetty, so a weekly paper calendar that circulates can leak. Give each captain only that day's zones, on the day. |
+| Privacy | Partly ready | Incident records may name fishers or boats. Keep identities out of the model; it needs locations and times only. |
+| Do-no-harm and community voice | Partly ready | The trust co-manages the area with the community. Check that enforcement doesn't fall mainly on one community's fishing grounds, and discuss the approach with the fishing committees. |
+| Maintenance | Partly ready | SMART data arrives monthly. Decide who refits the model each month and who covers when they're away. |
+| Exit plan | Ready | The current schedule remains the fallback. |
+
+Fix the four "not ready" items before the pilot; the "partly ready" items can be resolved during it.
+
+### The other follow-ups, in brief
+
+- **1. Fit the model:** targets = the 40 zones; defender = 2 boats covering about 3 zones each per day; adversary = net fishers who shift within days; inputs = SMART patrol tracks and incidents; limits = fuel, distance and weather.
+- **3. Pilot design:** alternate model-generated and usual schedules by fortnight for one season; compare nets found per patrol hour, remembering that deterrence eventually shows up as *fewer* finds.
+- **4. Build options:** the risk model and planner exist only as research code ([PAWS-public](https://github.com/lily-x/PAWS-public)), so this needs a data scientist with GIS skills; SMART, already in use, stays the data system.
+- **5. Reading and contacts:** Fang, Stone and Tambe (2015), *When Security Games Go Green*, covers illegal fishing directly. Fei Fang (Carnegie Mellon) and Lily Xu (Columbia) work on green security.
+- **6. Brief for a technical partner:** lead with the 3 years of SMART data and the displacement seen on the northern reef.

@@ -59,3 +59,38 @@ The assistant should select **[Class 5 (Strategic Matching Markets)](../../promp
 
 - Propose a welfare-maximizing central assignment (Class 2 (Static Demographic Targeting)) that ignores stated preferences.
 - Claim that matching guarantees completion; it removes one cause of dropout, not all of them.
+
+## After the recommendation
+
+The assistant then offers the six follow-ups from the [implementation playbook](../../prompt/knowledge/playbook.md), tailored to these answers. This case shows **Follow-up 1** and **Follow-up 5** in full: how deferred acceptance is set up for this program, and what to read before building it.
+
+### Follow-up 1: Fit the model to your program
+
+| Element | For this program | From |
+|---|---|---|
+| Two sides | About 200 graduates and 60 employers | Filter 2 — Choice and preferences |
+| Capacities | 1–8 places per employer, about 220 in total | Filter 1 — The resource and its intent |
+| Young people's preferences | Each ranks up to 5 employers on a paper form | Filter 5 — Field data and workflow friction |
+| Employers' preferences | Each ranks only the applicants who listed it, or gives a scoring rule the placement officer applies | Filter 2 — Choice and preferences |
+| Proposing side | **The young people.** With applicants proposing, ranking honestly is their best strategy, which removes the gaming described in Filter 3 — Environment dynamics | Filters 2 and 3 |
+| Tie-breaking | One lottery number per young person, drawn in public | Filter 4 — Tolerance for being wrong |
+| Special constraints | Ask: do any young people need placements in the same town (siblings), or near transport or accessible sites? | Filter 4 — Tolerance for being wrong |
+| Rules to publish | "Rank employers in your true order of preference. Listing a popular employer first never hurts your chances." | Filter 4 — Tolerance for being wrong |
+
+It should also flag a gap: there are more places (about 220) than young people (about 200), but anyone whose 5 choices all fill up stays unmatched. Plan a short second round in which unmatched young people rank the employers that still have places.
+
+### Follow-up 5: Reading and people to contact
+
+1. **Start with** Roth, *Who Gets What — and Why* (2015), a book for general readers by one of the designers of these matches. It explains stability and why honest ranking matters.
+2. **Closest parallel:** Roth & Peranson (1999) on the redesign of the US medical residency match. Like apprenticeships, it matches workers to employers that have several places each.
+3. **Switching from a gameable system:** Abdulkadiroğlu, Pathak & Roth (2005) on the New York City high-school match.
+4. **For whoever builds it:** the documentation for the Python [matching](https://github.com/daffidwilde/matching) library, specifically its hospital–resident problem, which is this setup with employers as "hospitals."
+
+**People to contact:** market-design economists publish widely on school choice and residency matching, and their papers name the organizations that ran each match. An economics department at a local university is the most practical first contact.
+
+### The other follow-ups, in brief
+
+- **2. Readiness checks:** confirm employers are willing to rank applicants; agree in writing that staff won't adjust results by hand after the match; check whether any placement involves a legal entitlement.
+- **3. Pilot design:** run the match in shadow alongside staff assignment for one cohort, then compare refusals and first-month dropouts against last cohort's 30.
+- **4. Build options:** the `matching` library's hospital–resident solver, or a short script; the placement officer keeps the lists in Excel. This class needs the least technical help of the five.
+- **6. Brief for a technical partner:** usually unnecessary here; a volunteer with basic Python can set it up from the table above.

@@ -59,3 +59,27 @@ The assistant should select **[Class 4 (Robust Contingency Planning)](../../prom
 
 - Name a specific humanitarian agency as running DRO operationally unless it is sure; this is an area where real deployments are thinner than the modeling literature.
 - Recommend learning by trial and error, as it might for Case 1.
+
+## After the recommendation
+
+The assistant then offers the six follow-ups from the [implementation playbook](../../prompt/knowledge/playbook.md), tailored to these answers. This case shows **Follow-up 3** in full, because a live trial is impossible here and the assistant has to explain how to test the plan anyway.
+
+### Follow-up 3: Pilot design
+
+A good answer starts by saying why the usual pilot doesn't work: you can't wait for, or schedule, a cyclone, and testing a plan in a real storm is exactly the risk you're trying to avoid (Filter 4 — Tolerance for being wrong). Instead, it tests the plan three ways before the season, each comparing the model's stock layout against the current one:
+
+1. **Replay the 8 recorded cyclones.** For each storm, using its known landfall and road damage, compute how many families each plan could reach with a kit within 2 days.
+2. **Stress-test with storms that haven't happened.** In a workshop, the district disaster office and local engineers design about 10 plausible scenarios that are worse than the record: landfall at each end of the coast, two bridges out at once, a stronger storm than any on file. Keep these out of the model's inputs so they are a fair test.
+3. **Run a tabletop exercise.** Warehouse managers respond to a simulated landfall with the dispatch cards and no phones (Filter 5 — Field data and workflow friction). Measure time to first dispatch and the number of wrong shipments.
+
+**Success measure:** the share of affected families reached with a kit within 2 days, in the *worst* scenario and on average.
+**Harm measure:** the cost of extra stock and the number of kits that would expire unused.
+**Decision rule, set in advance:** adopt the model's plan if it improves worst-case reach and the extra stock fits the budget. Move part of the stock first if funders are cautious; the change is reversible between seasons.
+
+### The other follow-ups, in brief
+
+- **1. Fit the model:** first stage = how many of the 30,000 kits go to each of the 6 warehouses; second stage = dispatch over the roads that survive; uncertainty = landfall, severity and road failures; scenarios = the 8 storms plus the workshop set; robustness level = chosen with funders, since more protection costs more stock.
+- **2. Readiness checks:** a road map with known failure points, reviewed by local engineers; funders' agreement that robust plans hold extra stock; a named owner for the dispatch cards.
+- **4. Build options:** [RSOME](https://xiongpengnus.github.io/rsome/) or Pyomo with the free HiGHS solver; this is the hardest class to model well, so look for an operations-research specialist, for example through INFORMS Pro Bono Analytics.
+- **5. Reading and contacts:** Rawls & Turnquist (2010) on hurricane pre-positioning first, then Rahimian & Mehrotra's open-access review of distributionally robust optimization.
+- **6. Brief for a technical partner:** stress the 8-storm history and the no-connectivity constraint; both shape the model.

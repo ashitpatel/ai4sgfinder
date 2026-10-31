@@ -64,9 +64,30 @@ The assistant should select **[Class 1 (Dynamic State Evolution)](../../prompt/k
 - Recommend a deep-learning model; the data volume doesn't support it and the problem is sequential decision-making, not prediction.
 - Quote a specific percentage improvement from the mMitra study unless it is certain of the figure.
 
-## Follow-up example: brief for a technical partner
+## After the recommendation
 
-After the recommendation, the assistant offers six follow-ups from the [implementation playbook](../../prompt/knowledge/playbook.md). If the user picks **6. One-page brief for a technical partner**, a good answer fills the template from the interview, like this:
+The assistant then offers the six follow-ups from the [implementation playbook](../../prompt/knowledge/playbook.md), tailored to these answers. This case shows **Follow-up 1** and **Follow-up 6** in full; the others are summarized at the end.
+
+### Follow-up 1: Fit the model to your program
+
+A good answer maps every element of a restless bandit to this program, citing the interview answer it came from:
+
+| Element | For this program | From |
+|---|---|---|
+| Arms | The 1,200 enrolled patients | Filter 1 — The resource and its intent |
+| Action | One CHW home visit; at most one per patient per week | Filter 1 — The resource and its intent |
+| Budget per round | 80 visits a week (10 CHWs × 8) | Filter 1 — The resource and its intent |
+| States | *Adhering* or *lapsing*, read directly from the weekly yes/no pill count | Filter 1; Filter 5 — Field data and workflow friction |
+| Round length | One week, matching how often the app syncs | Filter 5 — Field data and workflow friction |
+| Reward | Number of patients adhering each week | Filter 1 — The resource and its intent |
+| Transition estimates | From the 9 months (about 39 weeks) of records. That is too few per patient, so group patients with similar adherence histories and estimate per group | Filter 4 — Tolerance for being wrong |
+| Fairness guard | Every patient visited at least once a quarter, agreed with the medical lead | Ethics |
+
+It should also flag the one gap that matters most: **the model needs to know which weeks each patient was visited.** Without past visit records it can only learn how adherence drifts *without* a visit, not how a visit changes it. If visits weren't logged, start logging them now; the pilot will then supply the missing estimates.
+
+### Follow-up 6: One-page brief for a technical partner
+
+If the user picks **6**, a good answer fills the playbook template from the interview:
 
 ```
 PROJECT BRIEF — County hypertension adherence program (illustrative)
@@ -112,4 +133,9 @@ Contact
   [Name, role, email]
 ```
 
-The other five follow-ups would, for example, map arms to patients and states to adhering / lapsing (Fit the model), flag the 9 months of history as just sufficient if patients are grouped (Readiness checks), and recommend randomizing CHW areas between the model's list and current practice for 8–12 weeks (Pilot design).
+### The other follow-ups, in brief
+
+- **2. Readiness checks:** 9 months of history is just enough if patients are grouped; check that all CHWs record pill counts the same way; confirm patients' consent covers using adherence data to plan visits; name who reruns the list each Monday.
+- **3. Pilot design:** randomly split the 10 CHW areas between the model's list and current practice for 8–12 weeks; compare how many patients move from adhering to lapsing; watch the number unvisited for 90+ days as the harm measure.
+- **4. Build options:** there is no ready-made package for restless bandits, only research code (such as `online-rmab` from the playbook), so this needs a data scientist. DataKind, the Data Science for Social Good Fellowship, or a university computer-science or operations-research department are the realistic partners.
+- **5. Reading and contacts:** start with Google Research's blog post on ARMMAN, then the AAAI 2022 field study (Mate et al.). Milind Tambe's Teamcore group at Harvard and Lily Xu at Columbia work on exactly this problem.

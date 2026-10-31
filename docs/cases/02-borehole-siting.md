@@ -60,3 +60,40 @@ The assistant should select **[Class 2 (Static Demographic Targeting)](../../pro
 
 - Recommend a restless bandit or any adaptive method; there is no repeated decision.
 - Treat a poverty-prediction model as the answer; at most it feeds the need weights.
+
+## After the recommendation
+
+The assistant then offers the six follow-ups from the [implementation playbook](../../prompt/knowledge/playbook.md), tailored to these answers. This case shows **Follow-up 4** in full, because it shows how the assistant narrows a list of tools and partners down to one choice for this program.
+
+### Follow-up 4: Build options — tools and partners
+
+A good answer starts from what this program needs, then narrows down:
+
+**What the build has to do** (from the interview): a one-off decision; about 300 villages and the drillable candidate sites; 25 picks; a fairness rule across 4 districts; results that district councils can audit; a team that uses Excel and QGIS (Filter 5 — Field data and workflow friction).
+
+**Software, narrowed:**
+
+| Option | Verdict for this program |
+|---|---|
+| [PuLP](https://coin-or.github.io/pulp/) with the free [HiGHS](https://highs.dev) solver | **Recommended.** A covering model of this size typically solves in seconds. The result is a short Python script an analyst can rerun when the fairness rule changes, and it can write a CSV that QGIS maps directly. |
+| [Google OR-Tools](https://developers.google.com/optimization) | Equally capable. Choose it only if your technical partner already uses it. |
+| [Pyomo](https://www.pyomo.org) | More than this problem needs; worth it only if the model later grows into a multi-year investment plan. |
+| Excel's built-in Solver | **Not suitable.** The standard Solver handles at most 200 decision variables, and this model needs one per candidate site and one per village. |
+
+**Partner, narrowed:**
+
+- **[INFORMS Pro Bono Analytics](https://connect.informs.org/probonoanalytics/nonprofits)** is the best fit: its volunteers are operations-research specialists, and facility siting is a textbook operations-research problem. It is free; the NGO commits staff time.
+- **A university operations-research or industrial-engineering department** is the alternative, as a student capstone with faculty supervision. Slower, but often free.
+- **General data-science volunteers** (for example DataKind) are a weaker fit: the hard part here is the optimization model, not machine learning.
+
+**What to hand over:** a village table (ID, population, GPS point, district), a candidate-site table (ID, GPS point, drillable yes/no from the hydrogeology survey), the 30-minute walking threshold, and the fairness options for the councils to choose from.
+
+**What to ask for back:** the script, a map, a table of chosen sites with the villages and population each covers, each district's coverage, a comparison against the need-score ranking, and a few runs with different fairness rules.
+
+### The other follow-ups, in brief
+
+- **1. Fit the model:** decision = which 25 drillable sites; objective = population within a 30-minute walk; constraints = budget of 25, one borehole per site, a minimum coverage share per district (or maximize the worst-off district).
+- **2. Readiness checks:** agree the fairness rule with district officers *before* seeing results; replace straight-line distances with walking times checked by local staff; keep ranked backup sites in case boreholes come up dry.
+- **3. Pilot design:** this is a one-off decision, so compare plans rather than run a trial: the model's plan against the need-score ranking, on coverage and district equity, reviewed with the councils.
+- **5. Reading and contacts:** the integer-programming chapters of *Applied Mathematical Programming* (free from MIT), then Church & ReVelle (1974) on covering location.
+- **6. Brief for a technical partner:** the "what to hand over" list above, plus the councils' complaint from last time, makes most of the brief.
