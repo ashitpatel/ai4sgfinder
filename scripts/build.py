@@ -196,6 +196,7 @@ TRY_END = "<!-- try-links:end -->"
 TRY_LINK_BASES = {
     "ChatGPT": "https://chatgpt.com/?q=",
     "Claude": "https://claude.ai/new?q=",
+    "Google AI Mode": "https://www.google.com/search?udm=50&q=",
 }
 
 
