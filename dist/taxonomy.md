@@ -44,6 +44,7 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 - Killian, J., et al. (2019). *Learning to Prescribe Interventions for Tuberculosis Patients Using Digital Adherence Data.* KDD. — Predictive work on 99DOTS adherence data in India.
 
 **Class 2 — Convex welfare / fairness**
+- Church, R., ReVelle, C. (1974). *The maximal covering location problem.* Papers of the Regional Science Association. — The standard integer-programming model for siting facilities (clinics, schools, water points) to maximize population covered.
 - Flanigan, B., Gölz, P., Gupta, A., Hennig, B., Procaccia, A. (2021). *Fair algorithms for selecting citizens' assemblies.* Nature. — Leximin-fair selection, adopted by the Sortition Foundation and other practitioners.
 - Aiken, E., Bellue, S., Karlan, D., Udry, C., Blumenstock, J. (2022). *Machine learning and phone data can improve targeting of humanitarian aid.* Nature. — Togo's Novissi cash-transfer program with GiveDirectly. Note: this is ML-based *targeting* (predict poverty, then apply an eligibility rule), a useful contrast and complement to explicit welfare optimization.
 

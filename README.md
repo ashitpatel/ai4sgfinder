@@ -14,6 +14,8 @@ It is a system prompt plus a reference file, packaged so it runs in **Claude, Ch
 
 The assistant may also conclude that you don't need an optimization model at all.
 
+See [**worked cases**](docs/cases/) for six examples across health, water, conservation, disaster preparedness, youth employment and food security, one per class plus a "no model" case.
+
 ## Quick start
 
 Pick your platform. Every file you need is in [`dist/`](dist/).
@@ -91,6 +93,7 @@ dist/                     <- generated, ready to paste or upload (do not edit)
   ai4sg-finder.zip        the same Skill, zipped for upload
 examples/                 API chat scripts for Claude, OpenAI, Gemini
 scripts/build.py          regenerates dist/ from prompt/
+docs/cases/               six worked cases, one per outcome; also a manual test set
 docs/original-draft.md    the first draft, kept for provenance
 ```
 
@@ -102,7 +105,7 @@ Edit only the files under `prompt/`, then regenerate:
 python3 scripts/build.py
 ```
 
-`kickoff.md` is condensed by hand, so when you change the full prompt, update it to match. The build fails if the kickoff is missing any filter or recommendation heading from `system-prompt.md`, if it exceeds 4,000 characters, or if the instructions exceed the 8,000-character Custom GPT limit. CI runs `python3 scripts/build.py --check` and fails when `dist/` was not regenerated after an edit.
+`kickoff.md` is condensed by hand, so when you change the full prompt, update it to match. The build fails if the kickoff is missing any filter or recommendation heading from `system-prompt.md`, if it exceeds 4,000 characters, or if the instructions exceed the 8,000-character Custom GPT limit. After a substantive prompt change, run the [worked cases](docs/cases/README.md#using-the-cases) and check the results. CI runs `python3 scripts/build.py --check` and fails when `dist/` was not regenerated after an edit.
 
 ## How the assistant works
 
