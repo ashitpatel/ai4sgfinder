@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the per-platform files in dist/ from the canonical sources in prompt/.
 
-Edit only prompt/system-prompt.md and prompt/knowledge/taxonomy.md, then run:
+Edit only the files in prompt/ (system-prompt.md, knowledge/taxonomy.md, kickoff.md), then run:
 
     python3 scripts/build.py          # regenerate dist/
     python3 scripts/build.py --check  # fail if dist/ is stale (used in CI)
@@ -9,6 +9,7 @@ Edit only prompt/system-prompt.md and prompt/knowledge/taxonomy.md, then run:
 
 import argparse
 import io
+import re
 import sys
 import zipfile
 from pathlib import Path
@@ -16,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PROMPT = ROOT / "prompt" / "system-prompt.md"
 TAXONOMY = ROOT / "prompt" / "knowledge" / "taxonomy.md"
+KICKOFF = ROOT / "prompt" / "kickoff.md"
 DIST = ROOT / "dist"
 
 SKILL_NAME = "ai4sg-finder"
@@ -29,6 +31,8 @@ SKILL_DESCRIPTION = (
 
 # Custom GPT instructions are capped at 8,000 characters.
 GPT_INSTRUCTIONS_LIMIT = 8000
+# The kickoff is pasted as a chat message; stay under the tightest common input box.
+KICKOFF_LIMIT = 4000
 
 ATTACHED_REF = "The attached reference, **AI4SG Allocation Taxonomy**,"
 SKILL_REF = "The reference file `references/taxonomy.md` (**AI4SG Allocation Taxonomy**)"
@@ -40,6 +44,18 @@ def strip_title(text: str) -> str:
     if lines and lines[0].startswith("# "):
         lines = lines[1:]
     return "".join(lines).lstrip("\n")
+
+
+def check_kickoff(prompt: str, kickoff: str) -> None:
+    """Fail if the kickoff is too long or has lost a filter or section of the full prompt."""
+    if len(kickoff) > KICKOFF_LIMIT:
+        sys.exit(f"error: kickoff is {len(kickoff)} characters; keep it under {KICKOFF_LIMIT}.")
+    headings = re.findall(r"\*\*(FILTER \d — [^*]+?|THE [A-Z &]+[A-Z])\*\*", prompt)
+    headings += re.findall(r"\*\*(OPERATIONAL REPORT CARD)\*\*", prompt)
+    missing = [h for h in headings if f"**{h}**" not in kickoff]
+    if missing:
+        sys.exit(f"error: {KICKOFF.name} is out of sync with {PROMPT.name}; missing: "
+                 + "; ".join(missing))
 
 
 def skill_zip(files: dict[str, str]) -> bytes:
@@ -65,6 +81,9 @@ def render() -> dict[str, bytes]:
     if ATTACHED_REF not in prompt:
         sys.exit(f"error: expected the phrase {ATTACHED_REF!r} in {PROMPT.name}")
 
+    kickoff = KICKOFF.read_text()
+    check_kickoff(prompt, kickoff)
+
     all_in_one = f"{prompt.rstrip()}\n\n---\n\n{taxonomy}"
 
     skill_md = (
@@ -77,6 +96,7 @@ def render() -> dict[str, bytes]:
         "instructions.md": prompt,
         "taxonomy.md": taxonomy,
         "all-in-one.md": all_in_one,
+        "kickoff.md": kickoff,
         f"{SKILL_NAME}.zip": skill_zip(skill_files),
     }
     for name, content in skill_files.items():
@@ -108,6 +128,7 @@ def main() -> None:
         print(f"wrote dist/{path}")
     print(f"instructions: {len(outputs['instructions.md'].decode())} / "
           f"{GPT_INSTRUCTIONS_LIMIT} characters")
+    print(f"kickoff: {len(outputs['kickoff.md'].decode())} / {KICKOFF_LIMIT} characters")
 
 
 if __name__ == "__main__":

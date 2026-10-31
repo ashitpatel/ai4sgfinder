@@ -2,7 +2,7 @@
 
 An AI assistant that helps NGOs and public agencies choose the right **AI-for-social-good (AI4SG) allocation method** for a field problem. It interviews you one question at a time, classifies your problem into one of five mathematical archetypes, and writes a recommendation covering why the method fits, what goes wrong without it, how to deploy it on paper or in Excel, and what the published evidence says.
 
-It is a system prompt plus a reference file, packaged so it runs in **Claude, ChatGPT, and Gemini**, either in their apps or through their APIs.
+It is a system prompt plus a reference file, packaged so it runs in **Claude, ChatGPT, Gemini, Google AI Studio, and other browser-based assistants**, or through the Claude, OpenAI, and Gemini APIs.
 
 | # | Archetype | Typical problem |
 |---|-----------|-----------------|
@@ -45,8 +45,18 @@ Pick your platform. Every file you need is in [`dist/`](dist/).
 2. Paste [`dist/instructions.md`](dist/instructions.md) into **Instructions**.
 3. Under **Knowledge**, add [`dist/taxonomy.md`](dist/taxonomy.md).
 
-### Any other chat app
-Paste [`dist/all-in-one.md`](dist/all-in-one.md), which contains the instructions and the reference in a single file, as the first message or as the system / custom instructions.
+### Google AI Studio
+1. Open [aistudio.google.com](https://aistudio.google.com) and start a new chat prompt.
+2. Paste [`dist/all-in-one.md`](dist/all-in-one.md) into **System instructions**. It contains the instructions and the reference together, so nothing needs uploading.
+3. Pick a Gemini model, type a first message about your problem, and save the prompt so you can reopen or share it.
+
+### Browser assistants with a custom-instructions field
+Assistants such as Perplexity Spaces let you save instructions and attach files. Paste [`dist/instructions.md`](dist/instructions.md) as the instructions and upload [`dist/taxonomy.md`](dist/taxonomy.md) as a file. If there is no file upload, paste [`dist/all-in-one.md`](dist/all-in-one.md) as the instructions instead, provided the field accepts it (about 17,000 characters).
+
+### Any browser assistant, no setup
+For assistants with no place for custom instructions, such as Google AI Mode in Search, Gemini in Chrome, Microsoft Copilot, or a fresh chat in any app, paste [`dist/kickoff.md`](dist/kickoff.md) as your **first message**. It is a condensed version (under 4,000 characters, so it fits most chat boxes) that asks the assistant to take on the role and start the interview.
+
+The kickoff is shorter than the full prompt and carries only the core verified references, so expect less detailed evidence sections. Assistants without saved instructions can also drift out of the role in a long chat; paste it again if that happens.
 
 ### APIs
 Each script in [`examples/`](examples/) loads `dist/all-in-one.md` as the system prompt and runs a terminal chat.
@@ -71,10 +81,12 @@ python3 examples/claude_chat.py
 prompt/
   system-prompt.md        <- source of truth: the assistant's instructions
   knowledge/taxonomy.md   <- source of truth: archetypes, decision tree, citations
+  kickoff.md              <- hand-condensed paste-in version of the prompt
 dist/                     <- generated, ready to paste or upload (do not edit)
   instructions.md         system prompt for Projects, Custom GPTs, Gems
   taxonomy.md             knowledge file to upload alongside it
-  all-in-one.md           both in one file, for APIs and plain chat
+  all-in-one.md           both in one file, for APIs and Google AI Studio
+  kickoff.md              first-message version for browser assistants
   claude-skill/           Claude Skill folder
   ai4sg-finder.zip        the same Skill, zipped for upload
 examples/                 API chat scripts for Claude, OpenAI, Gemini
@@ -84,13 +96,13 @@ docs/original-draft.md    the first draft, kept for provenance
 
 ## Editing the prompt
 
-Edit only the two files under `prompt/`, then regenerate:
+Edit only the files under `prompt/`, then regenerate:
 
 ```bash
 python3 scripts/build.py
 ```
 
-The build fails if the instructions exceed the 8,000-character Custom GPT limit. CI runs `python3 scripts/build.py --check` and fails when `dist/` was not regenerated after an edit.
+`kickoff.md` is condensed by hand, so when you change the full prompt, update it to match. The build fails if the kickoff is missing any filter or recommendation heading from `system-prompt.md`, if it exceeds 4,000 characters, or if the instructions exceed the 8,000-character Custom GPT limit. CI runs `python3 scripts/build.py --check` and fails when `dist/` was not regenerated after an edit.
 
 ## How the assistant works
 
