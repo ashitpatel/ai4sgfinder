@@ -4,6 +4,20 @@ An AI assistant that helps NGOs and public agencies choose the right **AI-for-so
 
 It is a system prompt plus a reference file, packaged so it runs in **Claude, ChatGPT, Gemini, Google AI Studio, and other browser-based assistants**, or through the Claude, OpenAI, and Gemini APIs.
 
+## What a session looks like
+
+An abridged exchange, based on [worked case 1](docs/cases/01-chw-hypertension-visits.md):
+
+> **You:** Our 10 health workers can make about 80 home visits a week across 1,200 hypertension patients. How do we decide who gets visited?
+>
+> **Finder:** Is a visit used up once given, or is the slot free again next week? And does a visit help everyone equally?
+>
+> **You:** It's free again next week. Some patients respond to a visit, some take their pills anyway, and some won't change no matter what. Adherence also slips on its own after a few weeks.
+>
+> *… three more questions: who chooses, how costly a wrong week is, and what data the workers record …*
+>
+> **Finder:** This is **Class 1: Dynamic State Evolution**, solved with a restless bandit. Each week, score every patient by how much a visit *now* improves their adherence over the coming weeks, and visit the top 80. A risk score would send visits to people who lapse whether visited or not. The health workers never see a score: the M&E officer exports one list per worker, "visit these 8 patients this week" …
+
 ## Why the method matters
 
 Social-sector budgets almost never cover the need. In 2025, humanitarian appeals met only 35% of their funding target, the biggest funding gap in appeal history ([ALNAP, 2026](https://alnap.org/help-library/resources/sohs-2026/chapter-1-prioritisation-under-pressure/1-1-the-reality-of-funding-gaps/)). Every program is deciding who gets the call, the well, the patrol or the place, and those decisions are usually made with a ranked spreadsheet or a risk score.
