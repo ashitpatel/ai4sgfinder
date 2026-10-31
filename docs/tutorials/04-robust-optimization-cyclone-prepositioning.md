@@ -16,13 +16,13 @@ The usual answer is to plan for the average storm: look at where past storms hit
 
 This tutorial builds the alternative step by step:
 
-1. **Chapter 1** splits the decision in two: what to commit before the season (stock per warehouse) and what to decide after landfall (where to send the kits). This is a **two-stage** plan.
-2. **Chapter 2** names what we can't know: with 8 storms, the probabilities of where the next one lands are barely measured, and the cost of guessing wrong is counted in sick children.
-3. **Chapter 3** turns the 8-storm record into estimates, shows how wide their margins of error really are, and builds a **plausible set** of probability patterns around them.
-4. **Chapter 4** compares four ways to stock three warehouses, by hand: plan for the average storm, plan for the average outcome, plan for the worst storm, and plan for the worst plausible pattern of storms.
-5. **Chapter 4.5** scales up to 6 warehouses, 30,000 kits and broken roads, and turns the plan into **dispatch cards** that work with no connectivity.
-6. **Chapter 5** runs it all in code and tests every plan on storms it never saw.
-7. **Chapter 6** summarizes every piece on one page.
+1. **[The Two-Stage Leap](#the-two-stage-leap--from-the-average-storm-to-a-plan-that-adapts)** splits the decision in two: what to commit before the season (stock per warehouse) and what to decide after landfall (where to send the kits). This is a **two-stage** plan.
+2. **[The Core Bottleneck](#the-core-bottleneck--eight-storms-and-a-catastrophic-downside)** names what we can't know: with 8 storms, the probabilities of where the next one lands are barely measured, and the cost of guessing wrong is counted in sick children.
+3. **[From Eight Storms to Estimates](#from-eight-storms-to-estimates--wide-intervals-and-a-plausible-set)** turns the 8-storm record into estimates, shows how wide their margins of error really are, and builds a **plausible set** of probability patterns around them.
+4. **[The Decision Engine](#the-decision-engine--four-ways-to-stock-three-warehouses)** compares four ways to stock three warehouses, by hand: plan for the average storm, plan for the average outcome, plan for the worst storm, and plan for the worst plausible pattern of storms.
+5. **[Scaling Up](#scaling-up--six-warehouses-broken-roads-and-dispatch-cards)** scales up to 6 warehouses, 30,000 kits and broken roads, and turns the plan into **dispatch cards** that work with no connectivity.
+6. **[Code Implementation & Simulation](#code-implementation--simulation)** runs it all in code and tests every plan on storms it never saw.
+7. **[Core Architectural Summary](#core-architectural-summary)** summarizes every piece on one page.
 
 The idea that ties it together: **don't plan for the storm you expect; plan so that no plausible storm finds you badly short.**
 
@@ -30,7 +30,7 @@ A word of honesty before we start. Of the five approaches in this project, this 
 
 ---
 
-## Chapter 1: The Two-Stage Leap – From the Average Storm to a Plan That Adapts
+## The Two-Stage Leap – From the Average Storm to a Plan That Adapts
 
 ### Two decisions, made at different times
 
@@ -68,11 +68,11 @@ The success measure, as in the [case's pilot design](../cases/04-cyclone-preposi
 
 ---
 
-## Chapter 2: The Core Bottleneck – Eight Storms and a Catastrophic Downside
+## The Core Bottleneck – Eight Storms and a Catastrophic Downside
 
 ### Problem 1: Eight storms can't tell you the odds
 
-To plan for the average outcome, you need the probability of each kind of storm: landfall in each zone, at each severity, with each pattern of road damage. Eight storms can't supply that. With five coastal zones, three severities and several bridges that can fail, there are dozens of storm types and only 8 observations. Most types have never been seen. Chapter 3 puts numbers on how little 8 storms tell us.
+To plan for the average outcome, you need the probability of each kind of storm: landfall in each zone, at each severity, with each pattern of road damage. Eight storms can't supply that. With five coastal zones, three severities and several bridges that can fail, there are dozens of storm types and only 8 observations. Most types have never been seen. [From Eight Storms to Estimates](#from-eight-storms-to-estimates--wide-intervals-and-a-plausible-set) puts numbers on how little 8 storms tell us.
 
 ### Problem 2: The downside is catastrophic
 
@@ -93,7 +93,7 @@ Put together, the method must:
 
 ---
 
-## Chapter 3: From Eight Storms to Estimates – Wide Intervals and a Plausible Set
+## From Eight Storms to Estimates – Wide Intervals and a Plausible Set
 
 ### Step 1: Count landfalls
 
@@ -137,7 +137,7 @@ $$
 
 A simpler check gives the same message. The **rule of three** says that if an event happened 0 times in $n$ tries, a rough 95% upper bound on its probability is $3/n$. Here $3/8 = 0.375$. **A zone that has never been hit could still take more than a third of future storms**, as far as 8 storms can tell.
 
-The centre's share is somewhere between about 0.2 and 0.8. The record can't even tell us whether the centre takes most storms or a minority of them. This is the bottleneck of Chapter 2 in numbers.
+The centre's share is somewhere between about 0.2 and 0.8. The record can't even tell us whether the centre takes most storms or a minority of them. This is [The Core Bottleneck](#the-core-bottleneck--eight-storms-and-a-catastrophic-downside) in numbers.
 
 ### Step 3: Build a plausible set of probability patterns
 
@@ -154,11 +154,11 @@ Mohajerin Esfahani & Kuhn's construction isn't the only one. Delage & Ye (2010) 
 
 ### Step 4: Add what the record doesn't contain
 
-Moving recorded storms along the coast can't produce a storm **stronger** than any on file, or a failure the record never showed, such as the inland road washing out. No reweighting of history creates those. They have to come from people who know the delta: the district disaster office and local engineers, in a workshop. The case keeps those workshop scenarios **out of the model** and uses them only to test it. Chapter 5 does exactly that.
+Moving recorded storms along the coast can't produce a storm **stronger** than any on file, or a failure the record never showed, such as the inland road washing out. No reweighting of history creates those. They have to come from people who know the delta: the district disaster office and local engineers, in a workshop. The case keeps those workshop scenarios **out of the model** and uses them only to test it. [Code Implementation & Simulation](#code-implementation--simulation) does exactly that.
 
 ---
 
-## Chapter 4: The Decision Engine – Four Ways to Stock Three Warehouses
+## The Decision Engine – Four Ways to Stock Three Warehouses
 
 ### The four decision rules
 
@@ -171,7 +171,7 @@ Write $x$ for the stock plan (kits per warehouse) and $U_k(x)$ for the **unmet n
 | **C. Robust** | $\max_k U_k(x)$ | Best in the single worst storm considered possible |
 | **D. Distributionally robust (DRO)** | $\max_{q \in \text{plausible set}} \sum_k q_k\, U_k(x)$ | Best on average under the least favourable plausible pattern of storms |
 
-Plan B is called **two-stage stochastic programming**: Rawls & Turnquist (2010) used this form for hurricane pre-positioning. Plan C is **robust optimization**: it plays a game against nature, where you choose the stock first and nature then picks the storm that hurts you most. Choosing the plan whose worst case is least bad is called **minimax** (minimize the maximum). Plan D is **distributionally robust optimization**: nature picks not a single storm but the worst plausible *probability pattern* from Chapter 3. It sits between B (nature has no freedom) and C (nature has total freedom).
+Plan B is called **two-stage stochastic programming**: Rawls & Turnquist (2010) used this form for hurricane pre-positioning. Plan C is **robust optimization**: it plays a game against nature, where you choose the stock first and nature then picks the storm that hurts you most. Choosing the plan whose worst case is least bad is called **minimax** (minimize the maximum). Plan D is **distributionally robust optimization**: nature picks not a single storm but the worst plausible *probability pattern* from [From Eight Storms to Estimates](#from-eight-storms-to-estimates--wide-intervals-and-a-plausible-set). It sits between B (nature has no freedom) and C (nature has total freedom).
 
 ### Step-by-step concrete example: three warehouses, 120 kits
 
@@ -214,7 +214,7 @@ For plan D: $(60 + 0 + 120)/8 = 22.5$. For B: $(80 + 0 + 80)/8 = 20$. For C: 40.
 
 Plan A loses to plan D on **both** measures. Planning for the average storm isn't a cautious compromise; it is simply worse.
 
-**Step C: The worst plausible pattern.** Use the plausible set from Chapter 3 with $\varepsilon = 0.25$: nature may move two of the eight storms one zone each. Centre is next to both ends, so nature's best move is to take two Centre storms and land them at whichever end the plan has left weakest. The odds become $3/8, 3/8, 2/8$ (or $1/8, 3/8, 4/8$ if South is weaker). For plan D:
+**Step C: The worst plausible pattern.** Use the plausible set from [From Eight Storms to Estimates](#from-eight-storms-to-estimates--wide-intervals-and-a-plausible-set) with $\varepsilon = 0.25$: nature may move two of the eight storms one zone each. Centre is next to both ends, so nature's best move is to take two Centre storms and land them at whichever end the plan has left weakest. The odds become $3/8, 3/8, 2/8$ (or $1/8, 3/8, 4/8$ if South is weaker). For plan D:
 
 $$
 \tfrac38(60) + \tfrac38(0) + \tfrac28(60) = \frac{180 + 0 + 120}{8} = 37.5
@@ -262,7 +262,7 @@ The extra unmet need on average (or, with a flexible budget, the extra stock) th
 
 ---
 
-## Chapter 4.5: Scaling Up – Six Warehouses, Broken Roads and Dispatch Cards
+## Scaling Up – Six Warehouses, Broken Roads and Dispatch Cards
 
 The toy has one warehouse per zone and a single road rule. The full model in the code keeps the same logic with more realistic pieces.
 
@@ -292,7 +292,7 @@ The share reached is $\sum f_{wa} / \sum_a d_a$, and $U_k(x)$ is one minus that.
 
 ---
 
-## Chapter 5: Code Implementation & Simulation
+## Code Implementation & Simulation
 
 The full program is [`code/case4_robust_prepositioning.py`](code/case4_robust_prepositioning.py). It needs `numpy` and `pulp` (PuLP 3, which ships with the free CBC solver) and runs in a few seconds:
 
@@ -335,12 +335,12 @@ Only the roads that survive the storm (`sc["links"]`) get a shipment variable, s
         prob += lam * eps + pulp.lpSum(s) / len(HISTORY) + tie * (avg_hist + worst)
 ```
 
-`avg_hist` is the average unmet share over the 8 recorded storms, and `worst` the largest unmet share over the 15 planning storms. The DRO lines are the formula from Chapter 4, with `lam` as nature's moving price. Several stock layouts often score exactly the same, so a tiny weight (`tie = 0.01`) on the average and the worst case picks among them.
+`avg_hist` is the average unmet share over the 8 recorded storms, and `worst` the largest unmet share over the 15 planning storms. The DRO lines are the formula from [The Decision Engine](#the-decision-engine--four-ways-to-stock-three-warehouses), with `lam` as nature's moving price. Several stock layouts often score exactly the same, so a tiny weight (`tie = 0.01`) on the average and the worst case picks among them.
 
 ### Results
 
 ```
-Chapter 5 - full model: 6 warehouses, 30,000 kits, 10 shelter areas
+Simulation - full model: 6 warehouses, 30,000 kits, 10 shelter areas
   families needing a kit per recorded storm, by severity: [12000, 24000, 36000]
   planning storms for robust/DRO (zone, severity): 15
 
@@ -388,7 +388,7 @@ Chapter 5 - full model: 6 warehouses, 30,000 kits, 10 shelter areas
     share reached within 2 days = 0.512
 ```
 
-The same run first prints the Chapter 3 intervals and the Chapter 4 toy tables, matching the numbers above.
+The same run first prints the intervals from [From Eight Storms to Estimates](#from-eight-storms-to-estimates--wide-intervals-and-a-plausible-set) and the toy tables from [The Decision Engine](#the-decision-engine--four-ways-to-stock-three-warehouses), matching the numbers above.
 
 ### Reading the results
 
@@ -413,7 +413,7 @@ Four things the numbers do **not** show.
 
 ---
 
-## Chapter 6: Core Architectural Summary
+## Core Architectural Summary
 
 | Module | Core formula | What it does in practice |
 |---|---|---|

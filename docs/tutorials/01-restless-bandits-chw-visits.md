@@ -16,19 +16,19 @@ The usual answers fail in instructive ways. A rotation visits everyone in turn, 
 
 This tutorial builds the alternative step by step:
 
-1. **Chapter 1** describes each patient as a small chance process that keeps moving whether or not you visit: a *restless bandit*.
-2. **Chapter 2** names what we don't know: how much a visit changes each patient's chances.
-3. **Chapter 3** turns the CHWs' weekly records into estimates, with honest margins of error, and shows how to be *optimistic* about what we haven't tested.
-4. **Chapter 4** computes a single priority score per patient, the **Whittle index**, and works one through by hand.
-5. **Chapter 4.5** handles the real-world limits: 80 visits in total, 8 per CHW, and a promise that nobody is ignored.
-6. **Chapter 5** runs it all in code and compares it with rotation and a risk score.
-7. **Chapter 6** summarizes every piece on one page.
+1. **[The Restless Leap](#the-restless-leap--from-a-ranked-list-to-a-moving-system)** describes each patient as a small chance process that keeps moving whether or not you visit: a *restless bandit*.
+2. **[The Core Bottleneck](#the-core-bottleneck--unknown-patient-specific-odds)** names what we don't know: how much a visit changes each patient's chances.
+3. **[From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism)** turns the CHWs' weekly records into estimates, with honest margins of error, and shows how to be *optimistic* about what we haven't tested.
+4. **[The Decision Engine](#the-decision-engine--the-whittle-index)** computes a single priority score per patient, the **Whittle index**, and works one through by hand.
+5. **[Scaling Up](#scaling-up--real-limits-on-who-can-be-visited)** handles the real-world limits: 80 visits in total, 8 per CHW, and a promise that nobody is ignored.
+6. **[Code Implementation & Simulation](#code-implementation--simulation)** runs it all in code and compares it with rotation and a risk score.
+7. **[Core Architectural Summary](#core-architectural-summary)** summarizes every piece on one page.
 
 The idea that ties it together: **visit where a visit changes the most, now and in the weeks that follow.**
 
 ---
 
-## Chapter 1: The Restless Leap – From a Ranked List to a Moving System
+## The Restless Leap – From a Ranked List to a Moving System
 
 ### What a bandit is
 
@@ -61,7 +61,7 @@ The goal is to collect as many reward points as possible over the coming weeks: 
 
 ---
 
-## Chapter 2: The Core Bottleneck – Unknown, Patient-Specific Odds
+## The Core Bottleneck – Unknown, Patient-Specific Odds
 
 Each patient's behavior is described by four probabilities: the chance of **adhering next week**, for each combination of this week's state and this week's action.
 
@@ -87,12 +87,12 @@ Look at the hard-to-move group. Its lapsing patients have the **worst** odds of 
 
 ### Two complications
 
-1. **We don't know these probabilities.** They have to be estimated from the CHWs' records, and for some combinations, especially "lapsing and visited," there may be very little data. Chapter 3 deals with this.
-2. **They drift.** The tutorial this one is modeled on calls it the *novelty decay effect*: a patient visited week after week may stop responding to the visits. Chapter 3 also shows how to let old records fade.
+1. **We don't know these probabilities.** They have to be estimated from the CHWs' records, and for some combinations, especially "lapsing and visited," there may be very little data. [From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism) deals with this.
+2. **They drift.** The tutorial this one is modeled on calls it the *novelty decay effect*: a patient visited week after week may stop responding to the visits. [From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism) also shows how to let old records fade.
 
 ---
 
-## Chapter 3: From Records to Estimates – Plausible Ranges, Then Optimism
+## From Records to Estimates – Plausible Ranges, Then Optimism
 
 ### Step 1: Count transitions in a ledger
 
@@ -163,7 +163,7 @@ The same idea handles *visit fatigue*: track how many weeks in a row a patient h
 
 ---
 
-## Chapter 4: The Decision Engine – The Whittle Index
+## The Decision Engine – The Whittle Index
 
 ### The question it answers
 
@@ -235,9 +235,9 @@ Read down the list and the policy writes itself: lapsing responsive patients fir
 
 The hand calculation is close but not identical in some rows. For an adhering responsive patient it says 0.489, but the exact index is 0.328. The difference: the hand calculation assumes the patient is never visited again, while the exact index knows that if they lapse later you can still visit then. That lowers the urgency of visiting today. This is why the method searches for the break-even subsidy rather than stopping at the one-step formula.
 
-### Putting Chapters 3 and 4 together
+### Putting the estimates and the index together
 
-In practice the probabilities come from Chapter 3, using the **optimistic** values for anything poorly measured. So each week:
+In practice the probabilities come from [From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism), using the **optimistic** values for anything poorly measured. So each week:
 
 1. Update the ledger with last week's records, with old records fading.
 2. For each group, compute optimistic probabilities.
@@ -248,7 +248,7 @@ Repeat every Monday. As evidence builds up, the optimism fades and the index con
 
 ---
 
-## Chapter 4.5: Scaling Up – Real Limits on Who Can Be Visited
+## Scaling Up – Real Limits on Who Can Be Visited
 
 The plain rule, "top 80 by index," needs three adjustments in the field.
 
@@ -260,7 +260,7 @@ The plain rule, "top 80 by index," needs three adjustments in the field.
 
 ---
 
-## Chapter 5: Code Implementation & Simulation
+## Code Implementation & Simulation
 
 The full program is [`code/case1_restless_bandits.py`](code/case1_restless_bandits.py). It needs only `numpy`:
 
@@ -305,7 +305,7 @@ The code simulates 1,200 patients, 400 in each group, starting with 60% adhering
 - **Whittle:** visit the 80 highest Whittle indices.
 
 ```
-Chapter 5 - 12-week simulation, average share adhering (1,200 patients, 80 visits/week)
+Simulation - 12-week simulation, average share adhering (1,200 patients, 80 visits/week)
   rotation   0.451
   risk score 0.422
   whittle    0.490
@@ -313,11 +313,11 @@ Chapter 5 - 12-week simulation, average share adhering (1,200 patients, 80 visit
 
 The **risk score does worse than simple rotation**: it pours visits into hard-to-move patients where they change little. The Whittle policy keeps about 4 more patients in every 100 adhering than rotation, with the same 80 visits. With 1,200 patients, that is roughly 47 more people taking their medication in an average week.
 
-Two cautions. These groups and probabilities are invented to teach the method; real gains depend on real data. And this simulation gives the Whittle policy the true probabilities. In the field it would start from Chapter 3's estimates and learn, so early weeks would do somewhat worse, which is exactly what a pilot measures.
+Two cautions. These groups and probabilities are invented to teach the method; real gains depend on real data. And this simulation gives the Whittle policy the true probabilities. In the field it would start from the estimates in [From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism) and learn, so early weeks would do somewhat worse, which is exactly what a pilot measures.
 
 ---
 
-## Chapter 6: Core Architectural Summary
+## Core Architectural Summary
 
 | Module | Core formula | What it does in practice |
 |---|---|---|

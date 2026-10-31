@@ -16,7 +16,7 @@ import math
 
 import numpy as np
 
-# ------------------------------------------------------------ the pantry's record ---
+# ------------------------------------------------------ the pantry's record ---
 HOUSEHOLDS = 150          # registered households (case file)
 WEEKS = 52                # weeks of records
 SHORT_WEEKS = 3           # weeks the pantry ran short (case file)
@@ -35,7 +35,7 @@ MONTH_LENGTHS = [4, 4, 5] * 4             # a 4-4-5 calendar: 12 months, 52 week
 Z = 1.96                  # 95% two-sided normal multiplier
 
 
-# ---------------------------------------------------------------- Chapter 3 ---
+# ---------------------------------------------------------------- Estimates ---
 
 def wald_interval(k, n, z=Z):
     """Textbook normal-approximation interval: p_hat +/- z * sqrt(p_hat(1-p_hat)/n)."""
@@ -92,7 +92,7 @@ def poisson_interval(count, weeks, alpha=0.05):
     return lower / weeks, upper / weeks
 
 
-# ------------------------------------------------------------- Chapter 4.5 ---
+# --------------------------------------------------------------- Scaling up ---
 
 def p_month_flag(p, weeks=4):
     """Chance a month has MORE THAN ONE short week, if each week is short with chance p."""
@@ -122,7 +122,7 @@ def p_quarter_count(p, weeks=13, at_least=3):
     return 1 - binom_cdf(at_least - 1, weeks, p)
 
 
-# ---------------------------------------------------------------- Chapter 5 ---
+# --------------------------------------------------------------- Simulation ---
 
 def simulate(years, households=HOUSEHOLDS, seed=6):
     """Simulate `years` years of weekly turnout and supply. Returns per-week arrays."""
@@ -187,7 +187,7 @@ def allocation_outcomes(demand, priority_come, supply, rng):
 
 def main():
     p_hat = SHORT_WEEKS / WEEKS
-    print("Chapter 3 - how often is the pantry short? (3 short weeks out of 52)")
+    print("Estimates - how often is the pantry short? (3 short weeks out of 52)")
     print(f"  estimate p_hat = {SHORT_WEEKS}/{WEEKS} = {p_hat:.4f} "
           f"(standard error {math.sqrt(p_hat * (1 - p_hat) / WEEKS):.4f})")
     for name, fn in (("normal approx (Wald)", wald_interval),
@@ -196,7 +196,7 @@ def main():
         lo, hi = fn(SHORT_WEEKS, WEEKS)
         print(f"  {name:24s} 95% CI = ({lo:+.4f}, {hi:.4f})  -> {lo * 52:+.1f} to {hi * 52:.1f} short weeks/year")
 
-    print("\nChapter 3 - how big is the shortfall?")
+    print("\nEstimates - how big is the shortfall?")
     total = HOUSEHOLDS * WEEKS
     mid = (SHORT_LOW + SHORT_HIGH) / 2
     for size in (SHORT_LOW, mid, SHORT_HIGH):
@@ -207,7 +207,7 @@ def main():
     print(f"  pessimistic: Wilson upper rate {wilson_hi:.4f} x 52 x {SHORT_HIGH} boxes "
           f"= {worst:.0f} boxes/year = {100 * worst / total:.2f}%")
 
-    print("\nChapter 3 - is it an end-of-month problem?")
+    print("\nEstimates - is it an end-of-month problem?")
     chance = math.comb(END_OF_MONTH_WEEKS, 3) / math.comb(WEEKS, 3)
     print(f"  P(all 3 short weeks fall in the 12 end-of-month weeks by chance) = "
           f"C(12,3)/C(52,3) = {math.comb(12, 3)}/{math.comb(52, 3)} = {chance:.4f}")
@@ -216,13 +216,13 @@ def main():
         lo = max(0.0, lo)  # exactly 0 when k = 0; avoid printing -0.000
         print(f"  {label:18s} {k}/{n} = {k / n:.3f}, Wilson 95% CI ({lo:.3f}, {hi:.3f})")
 
-    print("\nChapter 3 - hidden demand: recording turn-aways for 3 months (13 weeks)")
+    print("\nEstimates - hidden demand: recording turn-aways for 3 months (13 weeks)")
     for count in (0, 13):
         lo, hi = poisson_interval(count, 13)
         print(f"  {count:2d} turn-aways recorded: rate {count / 13:.2f}/week, 95% CI ({lo:.2f}, {hi:.2f}) "
               f"-> up to {hi * 52:.0f} households/year")
 
-    print("\nChapter 4 - step-by-step example of one short week (illustrative)")
+    print("\nDecision engine - step-by-step example of one short week (illustrative)")
     demand, supply = 140, 125
     priority = round(PRIORITY_SHARE * demand)
     others = demand - priority
@@ -239,7 +239,7 @@ def main():
     print(f"  illustrative buffer: {SHORT_HIGH} extra boxes x {END_OF_MONTH_WEEKS} end-of-month weeks "
           f"= {SHORT_HIGH * END_OF_MONTH_WEEKS} boxes/year")
 
-    print("\nChapter 4.5 - how unusual is the revisit trigger at today's rate?")
+    print("\nScaling up - how unusual is the revisit trigger at today's rate?")
     p = p_hat
     q4 = (1 - p)**4
     one = 4 * p * (1 - p)**3
@@ -254,7 +254,7 @@ def main():
         print(f"  {rate:17.4f} | {p_month_flag(rate):16.4f} | {p_month_flag(rate)**3:19.4f} | "
               f"{p_fires_in_year(rate):18.4f} | {fq:25.4f} | {1 - (1 - fq)**4:.4f}")
 
-    print("\nChapter 5 - simulated pantry (illustrative), 10,000 years each")
+    print("\nSimulation - simulated pantry (illustrative), 10,000 years each")
     for label, households in (("today (150 households)", 150),
                               ("demand +10% (165 households)", 165),
                               ("demand +20% (180 households)", 180)):
@@ -267,7 +267,7 @@ def main():
               f"case trigger fires {trigger_fires(short).mean():.4f}  "
               f"quarter check fires {quarter_check_fires(short).mean():.4f}")
 
-    print("\nChapter 5 - who bears a short week? (today, per year, illustrative)")
+    print("\nSimulation - who bears a short week? (today, per year, illustrative)")
     demand_w, prio_w, supply_w, _, rng = simulate(10_000, 150)
     out = allocation_outcomes(demand_w, prio_w, supply_w, rng)
     print(f"  short weeks {out['short weeks']:.2f}, boxes short {out['boxes short']:.1f}")

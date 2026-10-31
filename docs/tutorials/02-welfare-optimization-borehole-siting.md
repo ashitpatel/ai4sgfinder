@@ -16,19 +16,19 @@ The usual answer is a spreadsheet: give each village a need score, sort, and dri
 
 This tutorial builds the alternative step by step:
 
-1. **Chapter 1** turns the question into a *covering model*: yes/no choices, a goal, and rules.
-2. **Chapter 2** names what makes this hard: overlapping catchments, fairness between districts, and no second chances.
-3. **Chapter 3** turns the census and GPS points into a table of who can reach which site, and checks how much the answer depends on the inputs.
-4. **Chapter 4** solves a small example by hand, adds a fairness rule, and shows how a solver searches.
-5. **Chapter 4.5** scales up to 300 villages, with backup sites for dry boreholes and fairness options for the councils.
-6. **Chapter 5** runs it all in code and compares the plans.
-7. **Chapter 6** summarizes every piece on one page.
+1. **[The Covering Leap](#the-covering-leap--from-a-ranked-list-to-a-covering-model)** turns the question into a *covering model*: yes/no choices, a goal, and rules.
+2. **[The Core Bottleneck](#the-core-bottleneck--overlap-fairness-and-no-second-chances)** names what makes this hard: overlapping catchments, fairness between districts, and no second chances.
+3. **[From Census and GPS to Estimates](#from-census-and-gps-to-estimates--the-coverage-table)** turns the census and GPS points into a table of who can reach which site, and checks how much the answer depends on the inputs.
+4. **[The Decision Engine](#the-decision-engine--integer-programming-with-a-fairness-rule)** solves a small example by hand, adds a fairness rule, and shows how a solver searches.
+5. **[Scaling Up](#scaling-up--300-villages-25-boreholes-four-councils)** scales up to 300 villages, with backup sites for dry boreholes and fairness options for the councils.
+6. **[Code Implementation & Simulation](#code-implementation--simulation)** runs it all in code and compares the plans.
+7. **[Core Architectural Summary](#core-architectural-summary)** summarizes every piece on one page.
 
 The idea that ties it together: **a site's value depends on which other sites you pick, so choose the 25 together, not one at a time.**
 
 ---
 
-## Chapter 1: The Covering Leap – From a Ranked List to a Covering Model
+## The Covering Leap – From a Ranked List to a Covering Model
 
 ### Why a ranked list is the wrong shape
 
@@ -64,24 +64,24 @@ This is the **maximal covering location problem** of Church and ReVelle (1974), 
 | Decision variable $x_j$ | Drill (1) or don't drill (0) at each drillable site from the hydrogeology survey |
 | Coverage variable $y_i$ | Village $i$ is within a 30-minute walk of a chosen borehole (1) or not (0) |
 | Data $p_i$ | Village population, from the 2023 census |
-| Data $N_i$ | Which drillable sites are within a 30-minute walk of village $i$ (Chapter 3 builds this) |
+| Data $N_i$ | Which drillable sites are within a 30-minute walk of village $i$ ([From Census and GPS to Estimates](#from-census-and-gps-to-estimates--the-coverage-table) builds this) |
 | Objective | People within a 30-minute walk of a borehole |
 | Budget constraint | Exactly 25 boreholes |
-| Fairness constraint | Every district reaches some share of its people covered (Chapter 4 adds this) |
+| Fairness constraint | Every district reaches some share of its people covered ([The Decision Engine](#the-decision-engine--integer-programming-with-a-fairness-rule) adds this) |
 
 The model is **static**: it is solved once, not every week. Nothing in the region reacts to the plan, and population shifts over years, not weeks. That is what places it in Class 2 rather than the restless bandits of the [Case 1 tutorial](01-restless-bandits-chw-visits.md).
 
 ---
 
-## Chapter 2: The Core Bottleneck – Overlap, Fairness and No Second Chances
+## The Core Bottleneck – Overlap, Fairness and No Second Chances
 
 ### Overlapping catchments
 
-A site's **catchment** is the set of villages it can reach. Catchments overlap: two sites 1 km apart reach mostly the same villages. A spreadsheet that adds up each chosen site's catchment counts the shared villages twice. In the full-size example of Chapter 5, the need-ranking plan's 25 catchments add up to 98,600 people, but only 90,013 different people are actually covered: **8,587 people counted twice.**
+A site's **catchment** is the set of villages it can reach. Catchments overlap: two sites 1 km apart reach mostly the same villages. A spreadsheet that adds up each chosen site's catchment counts the shared villages twice. In the full-size example of [Code Implementation & Simulation](#code-implementation--simulation), the need-ranking plan's 25 catchments add up to 98,600 people, but only 90,013 different people are actually covered: **8,587 people counted twice.**
 
 ### Clustering
 
-The biggest, neediest-looking villages tend to sit together, in the river valley or near market towns. A ranking sends the boreholes there. In Chapter 5's illustrative region, the need ranking puts 15 of 25 boreholes in District A and none in hilly District D. That is the complaint from last time, reproduced by the method.
+The biggest, neediest-looking villages tend to sit together, in the river valley or near market towns. A ranking sends the boreholes there. In the illustrative region of [Code Implementation & Simulation](#code-implementation--simulation), the need ranking puts 15 of 25 boreholes in District A and none in hilly District D. That is the complaint from last time, reproduced by the method.
 
 ### Fairness has to be written down
 
@@ -94,11 +94,11 @@ Both are constraints or objectives the model can obey exactly. The hard part is 
 
 ### No second chances
 
-A borehole stays put for 20 years. There is no pilot week, no learning from feedback, no correcting next month. That changes what "good" means: the plan must be checked against its inputs *before* drilling (Chapter 3), and it must come with backups for the sites that turn out dry (Chapter 4.5).
+A borehole stays put for 20 years. There is no pilot week, no learning from feedback, no correcting next month. That changes what "good" means: the plan must be checked against its inputs *before* drilling ([From Census and GPS to Estimates](#from-census-and-gps-to-estimates--the-coverage-table)), and it must come with backups for the sites that turn out dry ([Scaling Up](#scaling-up--300-villages-25-boreholes-four-councils)).
 
 ---
 
-## Chapter 3: From Census and GPS to Estimates – The Coverage Table
+## From Census and GPS to Estimates – The Coverage Table
 
 The model needs one table: for every village and every drillable site, **can people walk there in 30 minutes?** Building it is a statistics exercise.
 
@@ -112,7 +112,7 @@ $$
 
 With a detour factor of 1.3 and a walking speed of 4 km/h, a village 1.2 km from a site in a straight line is 1.56 km away on foot: **23.4 minutes**, inside the limit. In hilly District D, where the code uses a factor of 1.6, the same straight-line distance takes **28.8 minutes**, just inside. Turned around: 30 minutes reaches 1.54 km in a straight line on ordinary ground, but only 1.25 km in the hills.
 
-Every village–site pair below the 30-minute line gets a "yes" in the coverage table. That table is the $N_i$ lists of Chapter 1.
+Every village–site pair below the 30-minute line gets a "yes" in the coverage table. That table is the $N_i$ lists of [The Covering Leap](#the-covering-leap--from-a-ranked-list-to-a-covering-model).
 
 ### Step 2: Check the detour factor with a sample
 
@@ -136,13 +136,13 @@ $$
 \text{sd of total} = \sqrt{\sum_{\text{covered } i} (0.05\, p_i)^2}
 $$
 
-For the fair plan of Chapter 5, which covers 86,767 people, that gives a standard deviation of 513 and a 95% interval of **85,761 to 87,773**: about ±1.2%, much tighter than ±10% per village. One caution: this cancelling only happens if errors are independent. If the census undercounted a whole district, every village there is off in the same direction, and the error doesn't shrink.
+For the fair plan of [Code Implementation & Simulation](#code-implementation--simulation), which covers 86,767 people, that gives a standard deviation of 513 and a 95% interval of **85,761 to 87,773**: about ±1.2%, much tighter than ±10% per village. One caution: this cancelling only happens if errors are independent. If the census undercounted a whole district, every village there is off in the same direction, and the error doesn't shrink.
 
 ### Step 4: Sensitivity analysis: does the plan change?
 
 The real question isn't "how precise is the total?" but "**would we drill in different places** if the inputs were a bit different?" A **sensitivity analysis** answers it: change one input, solve the model again, and compare.
 
-The code does this for the two main plans of Chapter 5 (pure coverage and maximin-fair). For each change, it reports how many of the original 25 sites the new best plan keeps, and how much worse the original plan is than re-planning:
+The code does this for the two main plans of [Code Implementation & Simulation](#code-implementation--simulation) (pure coverage and maximin-fair). For each change, it reports how many of the original 25 sites the new best plan keeps, and how much worse the original plan is than re-planning:
 
 | Change | Max-coverage plan: sites kept | People missed by not re-planning | Fair plan: sites kept |
 |---|---|---|---|
@@ -156,7 +156,7 @@ The lesson is about where to spend effort. **Population errors of this size bare
 
 ---
 
-## Chapter 4: The Decision Engine – Integer Programming with a Fairness Rule
+## The Decision Engine – Integer Programming with a Fairness Rule
 
 ### Step-by-step concrete example: 6 villages, 4 sites, 2 boreholes
 
@@ -242,7 +242,7 @@ That is **branch and bound**: relax, split on a fractional choice, and discard a
 
 ---
 
-## Chapter 4.5: Scaling Up – 300 Villages, 25 Boreholes, Four Councils
+## Scaling Up – 300 Villages, 25 Boreholes, Four Councils
 
 ### The full-size problem
 
@@ -296,7 +296,7 @@ Publish the backup list with the plan, so a dry hole means drilling the next sit
 
 ---
 
-## Chapter 5: Code Implementation & Simulation
+## Code Implementation & Simulation
 
 The full program is [`code/case2_welfare_ilp.py`](code/case2_welfare_ilp.py). It needs `numpy` and PuLP 3, which includes the free CBC solver:
 
@@ -318,7 +318,7 @@ for i in range(n_v):                                                     # cover
 prob.solve(pulp.PULP_CBC_CMD(msg=False))
 ```
 
-Each line matches a line of the formula in Chapter 1. `reach` is the coverage table from Chapter 3: `reach[i, j]` is `True` when site `j` is within a 30-minute walk of village `i`.
+Each line matches a line of the formula in [The Covering Leap](#the-covering-leap--from-a-ranked-list-to-a-covering-model). `reach` is the coverage table from [From Census and GPS to Estimates](#from-census-and-gps-to-estimates--the-coverage-table): `reach[i, j]` is `True` when site `j` is within a 30-minute walk of village `i`.
 
 ### The fairness rule
 
@@ -344,7 +344,7 @@ The code compares five ways of choosing 25 sites in the illustrative region:
 - **Middle ground:** the covering model with a 20% floor for every district.
 
 ```
-Chapter 5 - five plans for 25 boreholes
+Simulation - five plans for 25 boreholes
   need ranking                     covered= 90,013 (39.8%)  A=52%  B=48%  C=26%  D=0%  worst=0.0%  sites/district=[15, 7, 3, 0]
   greedy (most new people)         covered=108,488 (48.0%)  A=52%  B=60%  C=51%  D=0%  worst=0.0%  sites/district=[10, 9, 6, 0]
   max coverage (ILP)               covered=108,488 (48.0%)  A=52%  B=60%  C=51%  D=0%  worst=0.0%  sites/district=[10, 9, 6, 0]  0.03s
@@ -362,11 +362,11 @@ The times at the end of each line are seconds on one laptop; they will differ sl
 - **Maximin is the most equal, at a real cost.** All four districts land between 37% and 39%, but it covers 21,721 fewer people than max coverage (20.0%) and even 3,246 fewer than the spreadsheet.
 - **Greedy matched the optimum here.** That happens when catchments are fairly separate, as in this region. It isn't guaranteed: greedy can lock in an early choice it would later regret, and it has no way to tell you whether it found the best plan or to add a fairness rule. The covering model does both, in a fraction of a second.
 
-Two cautions. The region, populations and sites are invented to teach the method; real gains depend on the real coverage table, especially the walking times near the 30-minute line (Chapter 3). And "covered" means *within a 30-minute walk as modeled*, not "uses the borehole": that is worth checking after drilling.
+Two cautions. The region, populations and sites are invented to teach the method; real gains depend on the real coverage table, especially the walking times near the 30-minute line ([From Census and GPS to Estimates](#from-census-and-gps-to-estimates--the-coverage-table)). And "covered" means *within a 30-minute walk as modeled*, not "uses the borehole": that is worth checking after drilling.
 
 ---
 
-## Chapter 6: Core Architectural Summary
+## Core Architectural Summary
 
 | Module | Core formula | What it does in practice |
 |---|---|---|

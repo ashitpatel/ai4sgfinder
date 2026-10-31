@@ -16,19 +16,19 @@ The usual answers fail in instructive ways. A fixed rotation is fair to every zo
 
 This tutorial builds the alternative step by step:
 
-1. **Chapter 1** treats patrolling as a *game*: the trust commits to a plan, the fishers watch and respond. The answer is a **randomized** plan.
-2. **Chapter 2** names what we don't know: what each zone is worth to the fishers, how carefully they choose, and how biased the patrol records are.
-3. **Chapter 3** turns three years of patrol logs into estimates of where fishing happens, correcting for where the boats went, with honest margins of error.
-4. **Chapter 4** computes the best randomized plan for a 3-zone toy example by hand, then confirms it with a solver.
-5. **Chapter 4.5** scales up to 40 zones and 2 boats and turns probabilities into a daily list a captain can follow.
-6. **Chapter 5** runs it all in code against fishers who learn from what they see, and compares it with rotation and hotspot patrols.
-7. **Chapter 6** summarizes every piece on one page.
+1. **[The Strategic Leap](#the-strategic-leap--from-a-patrol-map-to-a-game)** treats patrolling as a *game*: the trust commits to a plan, the fishers watch and respond. The answer is a **randomized** plan.
+2. **[The Core Bottleneck](#the-core-bottleneck--unknown-payoffs-unknown-rationality-biased-data)** names what we don't know: what each zone is worth to the fishers, how carefully they choose, and how biased the patrol records are.
+3. **[From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went)** turns three years of patrol logs into estimates of where fishing happens, correcting for where the boats went, with honest margins of error.
+4. **[The Decision Engine](#the-decision-engine--the-stackelberg-equilibrium)** computes the best randomized plan for a 3-zone toy example by hand, then confirms it with a solver.
+5. **[Scaling Up](#scaling-up--40-zones-2-boats-one-paper-schedule)** scales up to 40 zones and 2 boats and turns probabilities into a daily list a captain can follow.
+6. **[Code Implementation & Simulation](#code-implementation--simulation)** runs it all in code against fishers who learn from what they see, and compares it with rotation and hotspot patrols.
+7. **[Core Architectural Summary](#core-architectural-summary)** summarizes every piece on one page.
 
 The idea that ties it together: **be unpredictable on purpose, and put the unpredictability where it hurts the fishers most.**
 
 ---
 
-## Chapter 1: The Strategic Leap – From a Patrol Map to a Game
+## The Strategic Leap – From a Patrol Map to a Game
 
 ### Why a map isn't enough
 
@@ -74,19 +74,19 @@ The key assumption, and the reason the leader commits first: **assume the fisher
 
 ---
 
-## Chapter 2: The Core Bottleneck – Unknown Payoffs, Unknown Rationality, Biased Data
+## The Core Bottleneck – Unknown Payoffs, Unknown Rationality, Biased Data
 
-The math of Chapter 4 is exact once you know the payoffs. Three things make knowing them hard.
+The math of [The Decision Engine](#the-decision-engine--the-stackelberg-equilibrium) is exact once you know the payoffs. Three things make knowing them hard.
 
-**1. What each zone is worth to the fishers.** $G_i$ depends on fish density, distance from the landing sites, sea conditions and market prices. None of it is written down. It has to be estimated from where fishing actually happens, which is Chapter 3's job, together with local knowledge from rangers and the fishing committees.
+**1. What each zone is worth to the fishers.** $G_i$ depends on fish density, distance from the landing sites, sea conditions and market prices. None of it is written down. It has to be estimated from where fishing actually happens, which is [From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went)'s job, together with local knowledge from rangers and the fishing committees.
 
-**2. How carefully the fishers choose.** The textbook game assumes a perfectly **rational** adversary: one who always picks the zone with the highest expected payoff. Real crews make mistakes, have favorite spots and share rumors. Researchers call this **bounded rationality** and model it by letting crews pick better zones *more often*, not always. The simulation in Chapter 5 uses fishers like this.
+**2. How carefully the fishers choose.** The textbook game assumes a perfectly **rational** adversary: one who always picks the zone with the highest expected payoff. Real crews make mistakes, have favorite spots and share rumors. Researchers call this **bounded rationality** and model it by letting crews pick better zones *more often*, not always. The simulation in [Code Implementation & Simulation](#code-implementation--simulation) uses fishers like this.
 
-**3. Detection bias.** The trust's evidence comes from SMART (the Spatial Monitoring and Reporting Tool), where rangers log GPS tracks and incidents. An incident can only be recorded where a boat goes, and even there a net can be missed. So the records show **where the boats went at least as much as where the fishing is.** The [case's readiness check](../cases/03-marine-patrols.md#follow-up-2-readiness-checks) flags this as "not ready." Chapter 3 is about fixing it.
+**3. Detection bias.** The trust's evidence comes from SMART (the Spatial Monitoring and Reporting Tool), where rangers log GPS tracks and incidents. An incident can only be recorded where a boat goes, and even there a net can be missed. So the records show **where the boats went at least as much as where the fishing is.** The [case's readiness check](../cases/03-marine-patrols.md#follow-up-2-readiness-checks) flags this as "not ready." [From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went) is about fixing it.
 
 ---
 
-## Chapter 3: From Patrol Logs to Estimates – Correcting for Where the Boats Went
+## From Patrol Logs to Estimates – Correcting for Where the Boats Went
 
 The code generates three years of made-up SMART logs for the 40 zones, built to resemble the case: the northern reef (zones 0–7) was patrolled heavily; five far zones (22, 27, 31, 35, 38) were rarely visited because of fuel; and the fishers have since moved toward the south and the far zones.
 
@@ -161,13 +161,13 @@ Raw counts point entirely at the northern reef, where the fishing is now *lowest
 Two practical conclusions, both from the [case's readiness checks](../cases/03-marine-patrols.md#follow-up-2-readiness-checks):
 
 1. **Feed patrol effort into the risk model, not just incidents.** SMART already records GPS tracks, so hours per zone per month can be computed from the export.
-2. **Send some patrols to low-information zones on purpose.** Without them, the margins there never narrow and the data keeps confirming old hotspots. Chapter 4.5 shows what this costs.
+2. **Send some patrols to low-information zones on purpose.** Without them, the margins there never narrow and the data keeps confirming old hotspots. [Scaling Up](#scaling-up--40-zones-2-boats-one-paper-schedule) shows what this costs.
 
 Real systems such as PAWS go further: they predict risk from past patrol effort *and* features of each place (terrain, distance to roads or villages) with machine-learning models, then plan patrols that allow for the uncertainty in those predictions (Xu et al., ICDE 2020). The rate-per-hour table is the hand-sized version of the same idea.
 
 ---
 
-## Chapter 4: The Decision Engine – The Stackelberg Equilibrium
+## The Decision Engine – The Stackelberg Equilibrium
 
 ### The question it answers
 
@@ -273,7 +273,7 @@ The multiple-LPs method is the one to keep when the trust's payoffs are **not** 
 
 ---
 
-## Chapter 4.5: Scaling Up – 40 Zones, 2 Boats, One Paper Schedule
+## Scaling Up – 40 Zones, 2 Boats, One Paper Schedule
 
 ### Coverage for the whole area
 
@@ -298,7 +298,7 @@ Real limits enter the LP as extra rules on $c_i$:
 
 - **Fuel and distance.** If the boats can reach the five far zones at most 15% of days, set $c_i \le 0.15$ there. Those zones are worth 6.0 to 8.8, so the fishers' best payoff rises from **4.207 to 6.880**, and only 17 zones get coverage. The far zones become safe havens, and the LP puts a number on what a fuel budget increase would buy.
 - **Weather.** On days when some zones are unsafe, re-solve with those zones fixed at 0 and the day's zone-visits reduced. The LP takes milliseconds.
-- **Learning.** Chapter 3 said to keep some patrols in low-information zones. Requiring $c_i \ge 0.03$ everywhere raises the fishers' best payoff from **4.207 to 4.396**: a modest price for data that stops the risk model from going blind.
+- **Learning.** [From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went) said to keep some patrols in low-information zones. Requiring $c_i \ge 0.03$ everywhere raises the fishers' best payoff from **4.207 to 4.396**: a modest price for data that stops the risk model from going blind.
 
 Operational limits like these, especially boats needing connected routes rather than any 3 zones, are why deployed systems such as PROTECT and PAWS plan over whole patrol routes instead of single zones. The idea is the same; the LP gets bigger.
 
@@ -328,11 +328,11 @@ This is the "spreadsheet with random draws" from the [case's field pathway](../c
 
 - **Issue only the day's zones, on the day.** The equilibrium assumes the fishers know the *probabilities*, not the draws. A weekly paper calendar that circulates hands them the draws, which turns the mixed strategy back into a pure one. Generate a month of days in advance if needed, but give each captain only that morning's zones.
 - **Keep the probabilities confidential** and publish only that patrols are risk-based and randomized, as the case recommends.
-- **Refit monthly.** When the SMART export arrives, recompute rates per hour (Chapter 3), update the zone values, and re-solve. Fishers adapt in days; the plan must keep up.
+- **Refit monthly.** When the SMART export arrives, recompute rates per hour ([From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went)), update the zone values, and re-solve. Fishers adapt in days; the plan must keep up.
 
 ---
 
-## Chapter 5: Code Implementation & Simulation
+## Code Implementation & Simulation
 
 The full program is [`code/case3_security_game.py`](code/case3_security_game.py). It needs `numpy` and PuLP 3, which includes the free CBC solver:
 
@@ -358,7 +358,7 @@ for t in range(n):
     status = prob.solve(pulp.PULP_CBC_CMD(msg=False))
 ```
 
-The first `prob +=` line sets what to maximize; the later ones add rules. Each line reads like the formulas in Chapter 4.
+The first `prob +=` line sets what to maximize; the later ones add rules. Each line reads like the formulas in [The Decision Engine](#the-decision-engine--the-stackelberg-equilibrium).
 
 ### The comb
 
@@ -378,12 +378,12 @@ The code simulates 364 days. Each day 5 crews choose a zone, or to stay home. Ea
 
 - **No patrols:** a reference point.
 - **Fixed rotation:** the same weekly schedule every week, 6 zones a day, every zone covered at least once a week.
-- **Hotspot:** the 6 zones with the most recorded incidents (starting from Chapter 3's three-year logs), refreshed every 30 days with new incidents.
+- **Hotspot:** the 6 zones with the most recorded incidents (starting from the three-year logs in [From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went)), refreshed every 30 days with new incidents.
 - **Uniform random:** 6 zones drawn at random each day, all zones equally likely.
-- **Game (randomized):** the Chapter 4.5 coverage, drawn each day with the comb.
+- **Game (randomized):** the coverage from [Scaling Up](#scaling-up--40-zones-2-boats-one-paper-schedule), drawn each day with the comb.
 
 ```
-Chapter 5 - one-year simulation, 5 crews a day, fishers who watch and adapt
+Simulation - one-year simulation, 5 crews a day, fishers who watch and adapt
   policy             fish taken  vs no patrols  crews caught  stayed home
   no patrols              16084          +0.0%             0            0
   fixed rotation          15756          -2.0%             0            0
@@ -396,20 +396,20 @@ Chapter 5 - one-year simulation, 5 crews a day, fishers who watch and adapt
 **Reading the results:**
 
 - **Fixed rotation and hotspot patrols catch nobody.** The fishers learn the weekly pattern, or the fixed hotspot list, and fish elsewhere. Fish taken falls only 2% and 6%, because the patrols merely push the nets into the next-best zones.
-- **The hotspot policy traps itself.** It never records an incident outside its 6 zones, because it never goes there, so its monthly refresh keeps choosing the same northern zones. This is the detection-bias loop from Chapter 3, running live.
+- **The hotspot policy traps itself.** It never records an incident outside its 6 zones, because it never goes there, so its monthly refresh keeps choosing the same northern zones. This is the detection-bias loop from [From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went), running live.
 - **Randomizing alone helps.** Uniform random patrols catch 268 crews and cut fish taken by 16%.
 - **Randomizing in the right proportions helps much more.** The game strategy catches 509 crews and cuts fish taken by 40%, with the same 6 zone-visits a day.
 - **Nobody stays home.** With a penalty of 4 against zones worth up to 9.4, fishing pays somewhere under every policy. The equilibrium payoff of 4.207 is still positive. The game strategy changes *where* and *how profitably* crews fish, not *whether* they do. A real deterrent would need a larger penalty or more boats, which is a policy conversation, not a modeling one.
 
-A consistency check you can do by hand: under the game strategy the crews' average payoff per trip is $(9608 - 4 \times 509) / 1820 = 4.160$, close to the equilibrium value $U = 4.207$ from Chapter 4.5. The theory predicted what the simulated fishers would get.
+A consistency check you can do by hand: under the game strategy the crews' average payoff per trip is $(9608 - 4 \times 509) / 1820 = 4.160$, close to the equilibrium value $U = 4.207$ from [Scaling Up](#scaling-up--40-zones-2-boats-one-paper-schedule). The theory predicted what the simulated fishers would get.
 
-Three cautions. First, everything here is invented to teach the method: zone values, patrol logs and fisher behavior are illustrative, and real gains depend on real data. Second, the game strategy is given the true zone values; in the field they come from Chapter 3's estimates, with their margins of error. Third, the simulated fishers only see the jetty. If schedules leak, or crews can track boats at sea, the advantage shrinks, which is why issuing only the day's zones matters.
+Three cautions. First, everything here is invented to teach the method: zone values, patrol logs and fisher behavior are illustrative, and real gains depend on real data. Second, the game strategy is given the true zone values; in the field they come from the estimates in [From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went), with their margins of error. Third, the simulated fishers only see the jetty. If schedules leak, or crews can track boats at sea, the advantage shrinks, which is why issuing only the day's zones matters.
 
 For the pilot, the [playbook](../../prompt/knowledge/playbook.md#follow-up-3-pilot-design) suggests alternating model-generated and usual schedules and comparing **nets found per patrol hour**. Expect that number to rise at first and then fall: as deterrence works, there is less to find.
 
 ---
 
-## Chapter 6: Core Architectural Summary
+## Core Architectural Summary
 
 | Module | Core formula | What it does in practice |
 |---|---|---|

@@ -16,19 +16,19 @@ The usual fixes fail in instructive ways. A better "fit score" still ignores wha
 
 This tutorial builds the alternative step by step:
 
-1. **Chapter 1** describes placement as a *two-sided matching market*: two groups, each with preferences about the other, and limited places.
-2. **Chapter 2** names the problem: *blocking pairs*, a young person and an employer who would both rather be together than with what they were given, and the gaming that some systems reward.
-3. **Chapter 3** covers the data: ranked lists, scoring rules, a public lottery for ties, and a simulation (with a confidence interval) of how many people end up unmatched when they may list only 5 employers.
-4. **Chapter 4** runs **deferred acceptance** by hand on a six-person market, round by round, checks that the result has no blocking pairs, and shows why honest ranking is safe.
-5. **Chapter 4.5** scales up to the full cohort: scoring rules, a second round, special constraints, and rules the program must publish and keep.
-6. **Chapter 5** implements it from scratch in code and compares it with staff assignment and "first choices first."
-7. **Chapter 6** summarizes every piece on one page.
+1. **[The Matching Leap](#the-matching-leap--from-assigning-people-to-a-market-where-both-sides-choose)** describes placement as a *two-sided matching market*: two groups, each with preferences about the other, and limited places.
+2. **[The Core Bottleneck](#the-core-bottleneck--blocking-pairs-and-the-incentive-to-game)** names the problem: *blocking pairs*, a young person and an employer who would both rather be together than with what they were given, and the gaming that some systems reward.
+3. **[From Forms to Estimates](#from-forms-to-estimates--lists-lotteries-and-the-risk-of-going-unmatched)** covers the data: ranked lists, scoring rules, a public lottery for ties, and a simulation (with a confidence interval) of how many people end up unmatched when they may list only 5 employers.
+4. **[The Decision Engine](#the-decision-engine--deferred-acceptance)** runs **deferred acceptance** by hand on a six-person market, round by round, checks that the result has no blocking pairs, and shows why honest ranking is safe.
+5. **[Scaling Up](#scaling-up--the-full-cohort-and-the-rules-around-it)** scales up to the full cohort: scoring rules, a second round, special constraints, and rules the program must publish and keep.
+6. **[Code Implementation & Simulation](#code-implementation--simulation)** implements it from scratch in code and compares it with staff assignment and "first choices first."
+7. **[Core Architectural Summary](#core-architectural-summary)** summarizes every piece on one page.
 
 The idea that ties it together: **a placement sticks when no one has a better option that also wants them.**
 
 ---
 
-## Chapter 1: The Matching Leap – From Assigning People to a Market Where Both Sides Choose
+## The Matching Leap – From Assigning People to a Market Where Both Sides Choose
 
 ### Why assignment by fit score breaks down
 
@@ -58,13 +58,13 @@ A **matching** is the list of who goes where, respecting capacities. The questio
 | Employers' preferences | A ranking of the applicants who listed them, or a scoring rule the placement officer applies |
 | Tie-break | One lottery number per young person, drawn in public |
 | Mechanism | The procedure that turns everyone's lists into a matching: here, deferred acceptance |
-| Goal | A **stable** matching (defined in Chapter 2) reached by a procedure in which ranking honestly is safe |
+| Goal | A **stable** matching (defined in [The Core Bottleneck](#the-core-bottleneck--blocking-pairs-and-the-incentive-to-game)) reached by a procedure in which ranking honestly is safe |
 
 These rows are the same as the [case's "Fit the model to your program" table](../cases/05-apprenticeship-matching.md#follow-up-1-fit-the-model-to-your-program) and the general Class 5 checklist in the [implementation playbook](../../prompt/knowledge/playbook.md#follow-up-1-fit-the-model-to-your-program).
 
 ---
 
-## Chapter 2: The Core Bottleneck – Blocking Pairs and the Incentive to Game
+## The Core Bottleneck – Blocking Pairs and the Incentive to Game
 
 ### A toy market to keep in mind
 
@@ -122,9 +122,9 @@ So under "first choices first," lying pays, and it pays at someone else's expens
 
 ---
 
-## Chapter 3: From Forms to Estimates – Lists, Lotteries and the Risk of Going Unmatched
+## From Forms to Estimates – Lists, Lotteries and the Risk of Going Unmatched
 
-This chapter is about the inputs and about one number the program will be asked: *how many people might be left without a place?*
+This section is about the inputs and about one number the program will be asked: *how many people might be left without a place?*
 
 ### Step 1: The data the match needs
 
@@ -136,7 +136,7 @@ Matching needs far less data than a prediction model. Three inputs:
 | Employers' rankings | Each employer ranks the applicants who listed it, **or** gives a scoring rule | One ranked list per employer, or a rule like "course grade, plus 1 if you live in our town" |
 | Capacities | Each employer's number of places | One number per employer |
 
-Historical data (past placements, completions) is not needed to *run* the match. It is needed to *judge* it afterwards: refusals and first-month quits compared with last cohort's 30 (Chapter 4.5).
+Historical data (past placements, completions) is not needed to *run* the match. It is needed to *judge* it afterwards: refusals and first-month quits compared with last cohort's 30 ([Scaling Up](#scaling-up--the-full-cohort-and-the-rules-around-it)).
 
 ### Step 2: Breaking ties with a lottery
 
@@ -159,7 +159,7 @@ Two details matter in practice:
 
 There are about 220 places for about 200 people, so you might expect everyone to be placed. But each person lists only 5 employers. If all 5 are popular and fill up with higher-ranked applicants, that person is **unmatched** even though places remain elsewhere.
 
-We can't work this probability out with a formula, because it depends on everybody's lists at once. Instead we **simulate**: invent many cohorts that look like the program's, run the match on each, and count. Each synthetic cohort (details in Chapter 5) has 200 young people and 60 employers with 1–8 places adding to 220. Tastes are **correlated**: every employer has a popularity level that everyone sees, plus each person's own taste and a bonus for employers in their own town. So some employers are on many lists.
+We can't work this probability out with a formula, because it depends on everybody's lists at once. Instead we **simulate**: invent many cohorts that look like the program's, run the match on each, and count. Each synthetic cohort (details in [Code Implementation & Simulation](#code-implementation--simulation)) has 200 young people and 60 employers with 1–8 places adding to 220. Tastes are **correlated**: every employer has a popularity level that everyone sees, plus each person's own taste and a bonus for employers in their own town. So some employers are on many lists.
 
 For each cohort we record the share of young people left unmatched. Over $R = 300$ cohorts we get 300 shares $x_1, \dots, x_{300}$. Their average estimates the expected share, and its **95% confidence interval** comes from the familiar formula for a mean:
 
@@ -181,12 +181,12 @@ The intervals are narrow because 300 cohorts is plenty; the uncertainty that rea
 How to read this:
 
 - **These percentages are illustrative.** They depend on how strongly tastes agree. If everyone wants the same three employers, many more people go unmatched; if tastes are spread out, fewer do. The *pattern* is the lesson.
-- **Longer lists help a lot.** In this synthetic market, going from 5 to 8 choices roughly halves the number left out. Under deferred acceptance, adding employers to the **end** of your list can never hurt you: you only reach them after everything above has turned you down (Chapter 4 explains why).
-- **Some unmatched people are likely**, so plan a **second round** from the start (Chapter 4.5). With the paper form limited to 5 choices, the second round is not optional.
+- **Longer lists help a lot.** In this synthetic market, going from 5 to 8 choices roughly halves the number left out. Under deferred acceptance, adding employers to the **end** of your list can never hurt you: you only reach them after everything above has turned you down ([The Decision Engine](#the-decision-engine--deferred-acceptance) explains why).
+- **Some unmatched people are likely**, so plan a **second round** from the start ([Scaling Up](#scaling-up--the-full-cohort-and-the-rules-around-it)). With the paper form limited to 5 choices, the second round is not optional.
 
 ---
 
-## Chapter 4: The Decision Engine – Deferred Acceptance
+## The Decision Engine – Deferred Acceptance
 
 ### The idea
 
@@ -201,7 +201,7 @@ A person who is rejected only loses a "maybe," and moves down their own list. A 
 
 ### Step-by-step concrete example: the toy market
 
-Here is the code's printout of every round on the Chapter 2 market. Read "Garage ← Ana, Ben, Dan" as "Ana, Ben and Dan apply to Garage this round."
+Here is the code's printout of every round on the toy market from [The Core Bottleneck](#the-core-bottleneck--blocking-pairs-and-the-incentive-to-game). Read "Garage ← Ana, Ben, Dan" as "Ana, Ben and Dan apply to Garage this round."
 
 **Round 1.** Everyone applies to their first choice.
 - Garage ← Ana, Ben, Dan. Garage has 1 place and ranks Ben highest of the three: **holds Ben**, rejects Ana and Dan.
@@ -262,7 +262,7 @@ Under deferred acceptance with young people proposing, **no young person can get
 - If an employer turns you down, it is because it is holding enough people it prefers to you. Applying to it earlier or later doesn't change that.
 - Trying a popular employer first costs you nothing: unlike "first choices first," the places at your second choice are not given away permanently while you wait. If your second choice wants you, it will still bump someone it likes less.
 
-The code tests this exhaustively on the toy market: for each of the six people, it tries **all 15 possible lists** (every ordering of 1, 2 or 3 of the employers) while everyone else stays honest. Nobody does better than with their honest list. Dan's trick from Chapter 2, listing Bakery first, still gets him Bakery, exactly what honesty already gave him. Fin, who is unmatched, stays unmatched whether he lists Garage–Bakery–Clinic, Clinic–Bakery–Garage, only Clinic, or anything else.
+The code tests this exhaustively on the toy market: for each of the six people, it tries **all 15 possible lists** (every ordering of 1, 2 or 3 of the employers) while everyone else stays honest. Nobody does better than with their honest list. Dan's trick from [The Core Bottleneck](#the-core-bottleneck--blocking-pairs-and-the-incentive-to-game), listing Bakery first, still gets him Bakery, exactly what honesty already gave him. Fin, who is unmatched, stays unmatched whether he lists Garage–Bakery–Clinic, Clinic–Bakery–Garage, only Clinic, or anything else.
 
 So the program can publish, truthfully: *"Rank employers in your true order of preference. Listing a popular employer first never hurts your chances."*
 
@@ -281,17 +281,17 @@ In real markets the difference between the two versions is usually small; the to
 
 ---
 
-## Chapter 4.5: Scaling Up – The Full Cohort and the Rules Around It
+## Scaling Up – The Full Cohort and the Rules Around It
 
-**1. Full size is not a problem.** The algorithm is the same for 200 young people and 60 employers as for six and three. In the code's sample cohort it finishes in 15 rounds. The placement officer can keep the lists in Excel and run the match with a short script or the free `matching` library (Chapter 5).
+**1. Full size is not a problem.** The algorithm is the same for 200 young people and 60 employers as for six and three. In the code's sample cohort it finishes in 15 rounds. The placement officer can keep the lists in Excel and run the match with a short script or the free `matching` library ([Code Implementation & Simulation](#code-implementation--simulation)).
 
 **2. Employers that rank vs. employers that use a rule.** Some employers will rank applicants themselves; others will prefer to give a rule ("course grade, plus 1 if local") that the officer applies, with the public lottery for ties. Both produce a ranked list, and that's all the algorithm needs. Employers should rank only applicants they would genuinely take; anyone left off is treated as unacceptable to that employer.
 
-**3. A second round for the unmatched.** Chapter 3 showed that with 5-choice lists some people will be left out while places remain. After the main match, give the unmatched a short second form listing only employers with places left, and run deferred acceptance again on those places. In the code's sample cohort, 35 people were unmatched after the main round while 18 employers still had 55 places; the second round placed **34 of the 35**. Averaged over 100 synthetic cohorts, the second round left 0.14 people unmatched. The main round's results are not reopened, so nobody placed in round 1 can be bumped.
+**3. A second round for the unmatched.** [From Forms to Estimates](#from-forms-to-estimates--lists-lotteries-and-the-risk-of-going-unmatched) showed that with 5-choice lists some people will be left out while places remain. After the main match, give the unmatched a short second form listing only employers with places left, and run deferred acceptance again on those places. In the code's sample cohort, 35 people were unmatched after the main round while 18 employers still had 55 places; the second round placed **34 of the 35**. Averaged over 100 synthetic cohorts, the second round left 0.14 people unmatched. The main round's results are not reopened, so nobody placed in round 1 can be bumped.
 
 **4. Special constraints.** The case asks whether any young people need placements in the same town (siblings) or near transport or accessible sites. Constraints on a *single* person ("only employers on a bus route") are easy: they just shorten that person's list. Constraints that **link two people**, such as two siblings who must be placed in the same town, are harder. Couples and linked applications can make a stable matching **fail to exist** at all; the redesigned US medical residency match had to handle couples for this reason (Roth & Peranson, 1999). If there are only a handful of such cases, handle them openly before the match (for example, by agreeing their placements with the employers concerned) and record that you did.
 
-**5. Publish the rules in plain language, before anyone fills in a form.** At minimum: how many employers can be listed; that young people propose; how employers rank; how the lottery is drawn; that there is a second round; and the honesty statement from Chapter 4.
+**5. Publish the rules in plain language, before anyone fills in a form.** At minimum: how many employers can be listed; that young people propose; how employers rank; how the lottery is drawn; that there is a second round; and the honesty statement from [The Decision Engine](#the-decision-engine--deferred-acceptance).
 
 **6. No manual overrides.** If staff "fix" individual results after the match, two promises break at once: the result may no longer be stable, and honest ranking is no longer safe, because people will learn that lobbying staff works. Agree in writing, before the match, that results stand. This is one of the readiness checks in the [playbook](../../prompt/knowledge/playbook.md#follow-up-2-readiness-checks).
 
@@ -299,7 +299,7 @@ In real markets the difference between the two versions is usually small; the to
 
 ---
 
-## Chapter 5: Code Implementation & Simulation
+## Code Implementation & Simulation
 
 The full program is [`code/case5_deferred_acceptance.py`](code/case5_deferred_acceptance.py). It needs only `numpy` and the Python standard library, and runs in seconds:
 
@@ -332,7 +332,7 @@ while True:
     free = new_free
 ```
 
-(The file's version also keeps a log of each round, which is how the Chapter 4 walkthrough was printed.)
+(The file's version also keeps a log of each round, which is how the walkthrough in [The Decision Engine](#the-decision-engine--deferred-acceptance) was printed.)
 
 ### The stability check
 
@@ -357,11 +357,11 @@ Each simulated cohort follows the case: 200 young people, 60 employers with 1–
 Three ways of placing people are compared on the same cohort:
 
 - **Staff fit score:** assign the highest fit score anywhere first, then the next, until places run out. The fit score combines the employer's score, a partial reading of the young person's interests, and the officer's judgment; it does not use the ranked lists.
-- **First choices first:** the Boston-style rule from Chapter 2, with everyone ranking honestly.
+- **First choices first:** the Boston-style rule from [The Core Bottleneck](#the-core-bottleneck--blocking-pairs-and-the-incentive-to-game), with everyone ranking honestly.
 - **Deferred acceptance:** young people propose.
 
 ```
-Chapter 5 - one synthetic cohort (seed 2026): 200 young people, 60 employers
+Simulation - one synthetic cohort (seed 2026): 200 young people, 60 employers
   places: 220  capacities range 1-8
   most popular employer is the first choice of 16 people and has 7 places
   deferred acceptance took 15 rounds
@@ -372,7 +372,7 @@ Chapter 5 - one synthetic cohort (seed 2026): 200 young people, 60 employers
   deferred acceptance                     0       0.405       0.825           0         35
   second round: 35 unmatched people, 18 employers with 55 places left; placed 34, still unmatched 1
 
-Chapter 5 - the same comparison averaged over 100 cohorts (seeds 0-99)
+Simulation - the same comparison averaged over 100 cohorts (seeds 0-99)
   method                     blocking pairs  top choice  any listed  not listed  unmatched
   staff fit score                     382.3       0.104       0.338       132.5        0.0
   first choices first                  56.1       0.574       0.852         0.0       29.7
@@ -388,7 +388,7 @@ Column guide: *top choice* and *any listed* are shares of the 200 young people; 
 
 **Deferred acceptance has zero blocking pairs, every time.** In the sample cohort it placed 165 people (82.5%) with an employer on their list, 81 of them (40.5%) at their first choice, and left 35 unmatched before the second round. After the second round, only 1 person was without a place.
 
-**"First choices first" looks better on top choices, and that is the trap.** With everyone honest it gives 56.0% their first choice against 40.5% for deferred acceptance, because it locks in first choices before anything else. But it pays for that with 76 blocking pairs and 5 more people unmatched (40 against 35) in the sample cohort, and its numbers assume people rank honestly, which Chapter 2 showed they have every reason not to. Once people game it, its "first choice" figures describe the lists people were coached to write, not what they want. Across 100 cohorts the picture is the same: about 56 blocking pairs on average, and more people unmatched (29.7 against 25.2).
+**"First choices first" looks better on top choices, and that is the trap.** With everyone honest it gives 56.0% their first choice against 40.5% for deferred acceptance, because it locks in first choices before anything else. But it pays for that with 76 blocking pairs and 5 more people unmatched (40 against 35) in the sample cohort, and its numbers assume people rank honestly, which [The Core Bottleneck](#the-core-bottleneck--blocking-pairs-and-the-incentive-to-game) showed they have every reason not to. Once people game it, its "first choice" figures describe the lists people were coached to write, not what they want. Across 100 cohorts the picture is the same: about 56 blocking pairs on average, and more people unmatched (29.7 against 25.2).
 
 **The second round matters.** Averaged over 100 cohorts, deferred acceptance left 25.2 people unmatched after the main round, and the second round placed 25.0 of them on average.
 
@@ -400,7 +400,7 @@ Cautions:
 
 ---
 
-## Chapter 6: Core Architectural Summary
+## Core Architectural Summary
 
 | Module | Core formula | What it does in practice |
 |---|---|---|

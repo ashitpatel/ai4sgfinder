@@ -24,7 +24,7 @@ GROUPS = {
 }
 
 
-# ---------------------------------------------------------------- Chapter 4 ---
+# ---------------------------------------------------------- Decision engine ---
 
 def values_with_subsidy(p_passive, p_active, subsidy, beta=BETA, iters=2000):
     """Long-run value of each state when the passive choice earns an extra `subsidy`.
@@ -80,7 +80,7 @@ def one_step_benefit(p_passive, p_active, state, beta=BETA):
     return beta * (p_active[state] - p_passive[state]) * (V[ADHERING] - V[LAPSING]), V
 
 
-# ---------------------------------------------------------------- Chapter 3 ---
+# ---------------------------------------------------------------- Estimates ---
 
 def estimate(successes, trials, prior=0.5):
     """Point estimate with half a success and half a failure added (avoids 0/0)."""
@@ -94,7 +94,7 @@ def optimistic(successes, trials, week, prior=0.5):
     return min(1.0, p_hat + radius), p_hat, radius
 
 
-# ---------------------------------------------------------------- Chapter 5 ---
+# --------------------------------------------------------------- Simulation ---
 
 def simulate(policy, weeks=12, n_per_group=400, budget=80, seed=7):
     """Run 1,200 patients (400 per group) for `weeks` weeks under a visit policy.
@@ -128,7 +128,7 @@ def simulate(policy, weeks=12, n_per_group=400, budget=80, seed=7):
 
 def main():
     np.set_printoptions(precision=3, suppress=True)
-    print("Chapter 4 - Whittle index and one-step benefit, by group and state")
+    print("Decision engine - Whittle index and one-step benefit, by group and state")
     for name, g in GROUPS.items():
         for s, label in ((LAPSING, "lapsing"), (ADHERING, "adhering")):
             w = whittle_index(g["passive"], g["active"], s)
@@ -136,7 +136,7 @@ def main():
             print(f"  {name:13s} {label:9s} index={w:6.3f}  one-step={b:6.3f}  "
                   f"left-alone V(lapsing)={V[0]:.2f} V(adhering)={V[1]:.2f}")
 
-    print("\nChapter 4 - worked example (responsive, lapsing), step by step")
+    print("\nDecision engine - worked example (responsive, lapsing), step by step")
     g = GROUPS["responsive"]
     V = passive_values(g["passive"])
     no_visit = 0 + BETA * (0.10 * V[1] + 0.90 * V[0])
@@ -146,7 +146,7 @@ def main():
     print(f"  Whittle index (accounts for future visits too) = "
           f"{whittle_index(g['passive'], g['active'], LAPSING):.3f}")
 
-    print("\nChapter 3 - estimates from the ledger (responsive group, lapsing state)")
+    print("\nEstimates - estimates from the ledger (responsive group, lapsing state)")
     # Passive: 1,500 lapsing patient-weeks without a visit, 150 recovered.
     # Active: only 20 lapsing patient-weeks with a visit, 12 recovered.
     for label, k, n in (("no visit", 150, 1500), ("visit", 12, 20)):
@@ -156,12 +156,12 @@ def main():
         print(f"  {label:8s} k={k:4d} n={n:5d} p_hat={p_hat:.3f}  95% CI=({lo_wald:.3f}, {hi_wald:.3f})"
               f"  radius={r:.3f}  optimistic={up:.3f}")
 
-    print("\nChapter 3 - forgetting old data (alpha = 0.9 per week)")
+    print("\nEstimates - forgetting old data (alpha = 0.9 per week)")
     weights = 0.9 ** np.arange(39)[::-1]
     print(f"  weight of a 1-week-old record={weights[-2]:.2f}, 10 weeks={0.9**10:.2f}, "
           f"26 weeks={0.9**26:.3f}; effective sample size of 39 weeks={weights.sum():.1f}")
 
-    print("\nChapter 5 - 12-week simulation, average share adhering (1,200 patients, 80 visits/week)")
+    print("\nSimulation - 12-week simulation, average share adhering (1,200 patients, 80 visits/week)")
     for policy in ("rotation", "risk score", "whittle"):
         print(f"  {policy:10s} {simulate(policy):.3f}")
 

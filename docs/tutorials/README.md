@@ -15,14 +15,14 @@ In-depth walkthroughs of the method behind each [worked case](../cases/). Each o
 
 Every tutorial follows the same arc, so once you've read one the others are easy to navigate:
 
-1. **Executive Overview:** the decision, why the usual approach fails, and a chapter roadmap.
-2. **Chapter 1 – The leap:** from the simple approach to the model, with a table mapping the model's terms to the program.
-3. **Chapter 2 – The core bottleneck:** what is unknown or hard.
-4. **Chapter 3 – From data to estimates:** the statistics: estimates, margins of error, and what to do when data are thin.
-5. **Chapter 4 – The decision engine:** the method itself, with a small example you can check by hand.
-6. **Chapter 4.5 – Scaling up:** the full-size problem and its real-world limits.
-7. **Chapter 5 – Code and simulation:** a runnable program and what its results mean.
-8. **Chapter 6 – Summary:** each part of the method, its core formula and what it does in practice.
+1. **Executive Overview:** the decision, why the usual approach fails, and a roadmap of the sections.
+2. **The leap:** from the simple approach to the model, with a table mapping the model's terms to the program.
+3. **The core bottleneck:** what is unknown or hard.
+4. **From data to estimates:** the statistics: estimates, margins of error, and what to do when data are thin.
+5. **The decision engine:** the method itself, with a small example you can check by hand.
+6. **Scaling up:** the full-size problem and its real-world limits.
+7. **Code and simulation:** a runnable program and what its results mean.
+8. **Summary:** each part of the method, its core formula and what it does in practice.
 
 ## Running the code
 

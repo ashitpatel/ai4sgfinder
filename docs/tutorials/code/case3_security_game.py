@@ -19,7 +19,7 @@ ZONES_PER_DAY = 6   # 2 boats x 3 zones each
 PENALTY = 4.0       # what a crew loses if caught: nets confiscated plus a fine (in fish-value units)
 
 
-# ---------------------------------------------------------------- Chapter 3 ---
+# ---------------------------------------------------------------- Estimates ---
 
 def rate_with_margin(incidents, hours):
     """Incidents per patrol hour, with a rough 95% margin of error.
@@ -60,7 +60,7 @@ def make_patrol_history(seed=11):
     return hours, incidents, activity, detection
 
 
-# ---------------------------------------------------------------- Chapter 4 ---
+# ---------------------------------------------------------- Decision engine ---
 
 def attacker_utility(coverage, gain, penalty=PENALTY):
     """Fishers' expected payoff in each zone: keep `gain` if unpatrolled, lose `penalty` if caught."""
@@ -117,7 +117,7 @@ def minimax_coverage(gain, resources, penalty=PENALTY, upper=None, lower=None):
     return np.array([ci.value() for ci in c]), U.value()
 
 
-# -------------------------------------------------------------- Chapter 4.5 ---
+# --------------------------------------------------------------- Scaling up ---
 
 def zone_values(seed=5):
     """Made-up value of a night's illegal catch in each zone (fish-value units)."""
@@ -141,7 +141,7 @@ def comb_sample(coverage, rng):
     return np.searchsorted(edges, teeth, side="right") - 1
 
 
-# ---------------------------------------------------------------- Chapter 5 ---
+# --------------------------------------------------------------- Simulation ---
 
 def simulate(policy, gain, coverage, hist_incidents, days=364, crews=5,
              rationality=1.5, seed=21):
@@ -200,10 +200,10 @@ def simulate(policy, gain, coverage, hist_incidents, days=364, crews=5,
 def main():
     np.set_printoptions(precision=3, suppress=True)
 
-    # ---------------- Chapter 3
+    # ---------------- Estimates
     hours, inc, activity, d = make_patrol_history()
     rate = inc / hours
-    print("Chapter 3 - simulated 3 years of SMART logs, 40 zones")
+    print("Estimates - simulated 3 years of SMART logs, 40 zones")
     print(f"  total patrol hours={hours.sum():.0f}, total incidents={inc.sum()}, "
           f"share of hours on northern reef (zones 0-7)={hours[:8].sum() / hours.sum():.2f}, "
           f"share of incidents there={inc[:8].sum() / inc.sum():.2f}")
@@ -222,8 +222,8 @@ def main():
     r, lo, hi = rate_with_margin(0, 12)
     print(f"  a zone with 0 incidents in 12 hours: rate={r:.3f}, rule-of-three upper bound={hi:.3f}")
 
-    # ---------------- Chapter 4: toy game
-    print("\nChapter 4 - toy game: 3 zones, 1 boat (coverage sums to 1), penalty if caught = 4")
+    # ---------------- Decision engine: toy game
+    print("\nDecision engine - toy game: 3 zones, 1 boat (coverage sums to 1), penalty if caught = 4")
     names = ["North reef", "Central bank", "South bay"]
     toy_gain = np.array([8.0, 4.0, 2.0])
     plans = {
@@ -254,9 +254,9 @@ def main():
     cov2, U2 = minimax_coverage(toy_gain, 1)
     print(f"  minimax LP  : coverage={np.round(cov2, 4)}  fishers' best payoff U={U2:.4f}")
 
-    # ---------------- Chapter 4.5: 40 zones
+    # ---------------- Scaling up: 40 zones
     gain = zone_values()
-    print("\nChapter 4.5 - 40 zones, 6 zone-visits per day")
+    print("\nScaling up - 40 zones, 6 zone-visits per day")
     print(f"  zone values: min={gain.min():.1f} max={gain.max():.1f} mean={gain.mean():.2f}")
     coverage, U40 = minimax_coverage(gain, ZONES_PER_DAY)
     covered = coverage > 1e-6
@@ -290,8 +290,8 @@ def main():
     print(f"  over {n_days:,} sampled days: every day had exactly 6 different zones; "
           f"largest gap between how often a zone was picked and its coverage={np.abs(counts / n_days - coverage).max():.3f}")
 
-    # ---------------- Chapter 5
-    print("\nChapter 5 - one-year simulation, 5 crews a day, fishers who watch and adapt")
+    # ---------------- Simulation
+    print("\nSimulation - one-year simulation, 5 crews a day, fishers who watch and adapt")
     print(f"  {'policy':18s} {'fish taken':>10s} {'vs no patrols':>14s} {'crews caught':>13s} {'stayed home':>12s}")
     baseline = None
     for policy in ("no patrols", "fixed rotation", "hotspot", "uniform random", "game (randomized)"):

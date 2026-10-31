@@ -34,7 +34,7 @@ def solve(prob):
     return time.perf_counter() - start
 
 
-# ---------------------------------------------------------------- Chapter 4 ---
+# ---------------------------------------------------------- Decision engine ---
 # The toy example: 6 villages, 4 candidate sites, 2 districts, budget of 2.
 
 TOY_POP = {"A": 1000, "B": 800, "C": 600, "D": 500, "E": 150, "F": 200}
@@ -87,7 +87,7 @@ def toy_model(fair=False, relax=False, fix=None):
     return {s: round(x[s].value(), 3) for s in x}, pulp.value(prob.objective)
 
 
-# ------------------------------------------------------- Synthetic full case ---
+# ------------------------------------------------------ Synthetic full case ---
 
 def make_region(seed=2023):
     """300 villages in 4 districts, plus candidate borehole sites from a survey.
@@ -127,7 +127,7 @@ def nearest_district(point, xy, dist):
     return dist[np.argmin(((xy - point) ** 2).sum(axis=1))]
 
 
-# ---------------------------------------------------------------- Chapter 3 ---
+# ---------------------------------------------------------------- Estimates ---
 
 def walk_minutes(region, detour=DETOUR):
     """Village x site table of estimated walking minutes.
@@ -145,7 +145,7 @@ def coverage_table(region, limit=WALK_LIMIT_MIN, detour=DETOUR):
     return walk_minutes(region, detour) <= limit
 
 
-# ---------------------------------------------------------------- Chapter 4.5 --
+# --------------------------------------------------------------- Scaling up ---
 
 def covered_by(reach, chosen):
     """Boolean per village: is at least one chosen site within reach?"""
@@ -253,10 +253,10 @@ def backup_sites(region, reach, chosen):
     return np.array(lost), np.array(recovered), np.array(worst)
 
 
-# ---------------------------------------------------------------- main ---------
+# --------------------------------------------------------------------- main ---
 
 def main():
-    print("Chapter 4 - toy example: every pair of sites (budget 2)")
+    print("Decision engine - toy example: every pair of sites (budget 2)")
     pairs = [(a, b) for i, a in enumerate(TOY_REACH) for b in list(TOY_REACH)[i + 1:]]
     for pair in pairs:
         total, sh = toy_shares(pair)
@@ -275,7 +275,7 @@ def main():
     x, obj = toy_model(fair=True)
     print(f"  integer program, maximin:      {x}  worst share={obj:.1%}")
 
-    print("\nChapter 4 - toy maximin: LP relaxation and branch and bound")
+    print("\nDecision engine - toy maximin: LP relaxation and branch and bound")
     for label, fix in (("relaxation (no branch)", None), ("branch S3 = 0", {"S3": 0}),
                        ("branch S3 = 1", {"S3": 1})):
         x, obj = toy_model(fair=True, relax=True, fix=fix)
@@ -285,7 +285,7 @@ def main():
     reach = coverage_table(region)
     pop = region["pop"]
     n_sites = reach.shape[1]
-    print("\nChapter 4.5 - the synthetic region")
+    print("\nScaling up - the synthetic region")
     print(f"  villages={len(pop)}  people={pop.sum():,}  candidate points surveyed="
           f"{region['n_candidates']}  drillable={n_sites}")
     for d in DISTRICTS:
@@ -301,7 +301,7 @@ def main():
     print(f"  even dropping unreachable villages: {n_sites + reachable.sum()}")
     print(f"  ways to choose {BUDGET} of {n_sites} sites: {comb(n_sites, BUDGET):.2e}")
 
-    print("\nChapter 3 - from GPS to walking minutes (one village-site pair)")
+    print("\nEstimates - from GPS to walking minutes (one village-site pair)")
     km = 1.2
     print(f"  {km} km straight line x detour 1.3 = {km * 1.3:.2f} km of path "
           f"-> {km * 1.3 / WALK_SPEED_KMH * 60:.1f} minutes at {WALK_SPEED_KMH:.0f} km/h; "
@@ -309,14 +309,14 @@ def main():
     print(f"  30 minutes reaches {WALK_LIMIT_MIN / 60 * WALK_SPEED_KMH / 1.3:.2f} km straight-line "
           f"(detour 1.3) or {WALK_LIMIT_MIN / 60 * WALK_SPEED_KMH / 1.6:.2f} km (detour 1.6)")
 
-    print("\nChapter 3 - checking District D's detour factor: staff walk 30 village-site pairs")
+    print("\nEstimates - checking District D's detour factor: staff walk 30 village-site pairs")
     rng = np.random.default_rng(11)
     ratios = 1.6 * rng.lognormal(0, 0.15, 30)          # true paths, unknown to the planner
     mean, sd = ratios.mean(), ratios.std(ddof=1)
     half = 1.96 * sd / np.sqrt(len(ratios))
     print(f"  sample mean={mean:.2f}  sd={sd:.2f}  95% CI={mean - half:.2f} to {mean + half:.2f}")
 
-    print("\nChapter 5 - five plans for 25 boreholes")
+    print("\nSimulation - five plans for 25 boreholes")
     plans = {}
     plans["need ranking"] = (need_ranking(region, reach), 0.0)
     start = time.perf_counter()
@@ -340,14 +340,14 @@ def main():
     print(f"  need ranking: sum of each site's catchment={raw:,} vs people actually covered="
           f"{pop[cov].sum():,} (double counted={raw - pop[cov].sum():,})")
 
-    print("\nChapter 4.5 - price of fairness: minimum share every district must reach")
+    print("\nScaling up - price of fairness: minimum share every district must reach")
     for floor in (0.0, 0.10, 0.20, 0.30, best_worst - 1e-6):
         chosen, secs, _ = covering_model(region, reach, floor=floor)
         total, sh, per_d = summarize(region, reach, chosen)
         print(f"  floor={floor:5.1%}  covered={total:7,}  worst={min(sh.values()):.1%}  "
               f"sites/district={[per_d[d] for d in DISTRICTS]}  {secs:.2f}s")
 
-    print("\nChapter 3 - population uncertainty: covered total for the maximin-fair plan")
+    print("\nEstimates - population uncertainty: covered total for the maximin-fair plan")
     fair = plans["maximin fair (ILP)"][0]
     cov = covered_by(reach, fair)
     sd_total = np.sqrt(((0.05 * pop[cov]) ** 2).sum())
@@ -355,7 +355,7 @@ def main():
           f"(about +/-10%), sd of the total={sd_total:,.0f} "
           f"-> 95% CI {pop[cov].sum() - 1.96 * sd_total:,.0f} to {pop[cov].sum() + 1.96 * sd_total:,.0f}")
 
-    print("\nChapter 3 - sensitivity: re-plan under changed assumptions and compare with the "
+    print("\nEstimates - sensitivity: re-plan under changed assumptions and compare with the "
           "original plan")
     print("  kept = original sites still chosen; loss = people the original plan misses vs re-plan;")
     print("  worst-share gap = re-planned worst district share minus the original plan's")
@@ -392,7 +392,7 @@ def main():
           f"(min {r[:, 2].min():.0f}) worst-share gap={r[:, 3].mean():.2%} "
           f"(max {r[:, 3].max():.2%})")
 
-    print("\nChapter 4.5 - dry boreholes and backup sites (maximin-fair plan)")
+    print("\nScaling up - dry boreholes and backup sites (maximin-fair plan)")
     lost, recovered, worst = backup_sites(region, reach, fair)
     print(f"  if one chosen site is dry: people lost on average={lost.mean():,.0f} "
           f"(largest {lost.max():,}); best same-district backup recovers on average="

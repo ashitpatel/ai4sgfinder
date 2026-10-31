@@ -29,7 +29,7 @@ def solve(prob):
     return pulp.value(prob.objective)
 
 
-# =========================================================== Chapter 4: toy ===
+# ===================================================== Decision engine: toy ===
 # Three zones on the coast, one warehouse in each. 120 kits in total.
 # Every storm leaves 80 families needing a kit in the zone where it lands, and it
 # floods the coastal road on both sides, so only that zone's own warehouse can
@@ -92,7 +92,7 @@ def toy_plan(method, eps=0.25):
     return np.array([v.value() for v in x])
 
 
-# ====================================================== Chapter 5: full model ===
+# =================================================== Simulation: full model ===
 # Five coastal zones, west (Z1) to east (Z5). Each zone has a coastal and an inland
 # shelter area. Warehouses W1..W5 sit one per zone; W6 is an inland hub behind Z3.
 
@@ -271,8 +271,8 @@ def wilson(k, n, z=1.96):
 
 
 def main():
-    # ------------------------------------------------------------ Chapter 3 ---
-    print("Chapter 3 - landfall zones of the 8 recorded storms")
+    # ------------------------------------------------------------ Estimates ---
+    print("Estimates - landfall zones of the 8 recorded storms")
     counts = [sum(1 for lf, _ in HISTORY if lf == z) for z in ZONES]
     for z, k in zip(ZONES, counts):
         lo, hi = wilson(k, 8)
@@ -281,8 +281,8 @@ def main():
               f"{min(1, k / 8 + wald):.3f})   Wilson 95% CI=({lo:.3f}, {hi:.3f})")
     print(f"  rule of three for a zone never hit: upper bound ~ 3/8 = {3 / 8:.3f}")
 
-    # ------------------------------------------------------------ Chapter 4 ---
-    print("\nChapter 4 - toy: 3 warehouses, 120 kits, 80 families per storm, "
+    # ------------------------------------------------------ Decision engine ---
+    print("\nDecision engine - toy: 3 warehouses, 120 kits, 80 families per storm, "
           "history N/C/S = 1/5/2 of 8")
     avg_need = TOY_P * TOY_NEED
     toy = {
@@ -299,8 +299,8 @@ def main():
               f"expected={TOY_P @ u:6.2f}  worst={u.max():5.1f}  "
               f"worst re-weighted avg={dro_val:6.2f} (q={np.round(q * 8, 2)}/8)")
 
-    # ------------------------------------------------------------ Chapter 5 ---
-    print("\nChapter 5 - full model: 6 warehouses, 30,000 kits, 10 shelter areas")
+    # ----------------------------------------------------------- Simulation ---
+    print("\nSimulation - full model: 6 warehouses, 30,000 kits, 10 shelter areas")
     sizes = sorted({round(sum(affected(lf, s).values())) for lf, s in HISTORY})
     print(f"  families needing a kit per recorded storm, by severity: {sizes}")
     print(f"  planning storms for robust/DRO (zone, severity): {len(planning_support())}")

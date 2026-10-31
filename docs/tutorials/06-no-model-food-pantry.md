@@ -14,19 +14,19 @@ A volunteer-run food pantry serves about 150 registered households with weekly g
 
 The other tutorials in this series each build a model. This one does something just as useful and less common: it **measures whether a model could help at all**, finds that it couldn't, and writes down the conditions under which it would. The tools are the statistics you already know.
 
-1. **Chapter 1** turns "we need AI to allocate fairly" into three questions you can answer with counts: how often is there a shortfall, how big is it, and what is the most any allocation method could gain?
-2. **Chapter 2** names the real bottleneck: a tiny problem next to a costly, fragile tool, plus demand nobody has recorded.
-3. **Chapter 3** turns the pantry's records into estimates with honest margins of error, and shows why the textbook interval breaks down at small counts.
-4. **Chapter 4** computes the **value of a model** by hand and checks the pantry's written shortfall rule against it.
-5. **Chapter 4.5** makes the "when to revisit" triggers precise, so they separate real change from bad luck.
-6. **Chapter 5** runs it all in code and simulates the pantry under today's demand and under growth.
-7. **Chapter 6** summarizes every piece on one page.
+1. **[The Measurement Leap](#the-measurement-leap--from-we-need-ai-to-how-much-is-there-to-gain)** turns "we need AI to allocate fairly" into three questions you can answer with counts: how often is there a shortfall, how big is it, and what is the most any allocation method could gain?
+2. **[The Core Bottleneck](#the-core-bottleneck--a-tiny-problem-a-fragile-tool-and-demand-you-cant-see)** names the real bottleneck: a tiny problem next to a costly, fragile tool, plus demand nobody has recorded.
+3. **[From Sign-In Sheets to Estimates](#from-sign-in-sheets-to-estimates--rates-intervals-and-hidden-demand)** turns the pantry's records into estimates with honest margins of error, and shows why the textbook interval breaks down at small counts.
+4. **[The Decision Engine](#the-decision-engine--the-value-of-a-model)** computes the **value of a model** by hand and checks the pantry's written shortfall rule against it.
+5. **[Scaling Up](#scaling-up--knowing-when-the-answer-should-change)** makes the "when to revisit" triggers precise, so they separate real change from bad luck.
+6. **[Code Implementation & Simulation](#code-implementation--simulation)** runs it all in code and simulates the pantry under today's demand and under growth.
+7. **[Core Architectural Summary](#core-architectural-summary)** summarizes every piece on one page.
 
 The idea that ties it together: **before optimizing who gets the scarce thing, measure how often it is scarce and by how much. If the answer is "rarely, and by little," fix the supply and write down a fair rule.**
 
 ---
 
-## Chapter 1: The Measurement Leap – From "We Need AI" to "How Much Is There to Gain?"
+## The Measurement Leap – From "We Need AI" to "How Much Is There to Gain?"
 
 ### What an allocation model would do
 
@@ -56,11 +56,11 @@ If question 3 has a small answer, no model is worth its cost. That is the whole 
 
 ---
 
-## Chapter 2: The Core Bottleneck – A Tiny Problem, a Fragile Tool, and Demand You Can't See
+## The Core Bottleneck – A Tiny Problem, a Fragile Tool, and Demand You Can't See
 
 ### Problem size versus tool cost
 
-Some problems are too small to be worth a machine. The pantry hands out about $150 \times 52 = 7{,}800$ boxes a year. Chapter 3 will show that the boxes missing in short weeks add up to a fraction of one percent of that.
+Some problems are too small to be worth a machine. The pantry hands out about $150 \times 52 = 7{,}800$ boxes a year. [From Sign-In Sheets to Estimates](#from-sign-in-sheets-to-estimates--rates-intervals-and-hidden-demand) will show that the boxes missing in short weeks add up to a fraction of one percent of that.
 
 A tool, on the other hand, has costs that don't shrink with the problem:
 
@@ -68,7 +68,7 @@ A tool, on the other hand, has costs that don't shrink with the problem:
 - **Fragility.** With volunteers changing every few months, the tool will soon depend on one person who understands it, and stop working when they leave.
 - **Trust.** Ranking households can feel like surveillance or means-testing to the people being ranked. That cost lands on the households the tool was meant to help.
 
-The comparison in Chapter 4 is simple: the most the tool could gain, against what it costs to keep running.
+The comparison in [The Decision Engine](#the-decision-engine--the-value-of-a-model) is simple: the most the tool could gain, against what it costs to keep running.
 
 ### Absence of evidence is not evidence of absence
 
@@ -78,11 +78,11 @@ There is one gap in the pantry's record, and it matters. "Enough boxes for every
 - households who stopped coming because they expected the shelves to be bare,
 - people in the neighborhood who never registered.
 
-This is **hidden demand**: need that exists but leaves no trace in the data. A record of 49 good weeks out of 52 is *not* evidence that hidden demand is zero; the sign-in sheet simply can't see it. The fix isn't a model; it's a new column on the sheet. Chapter 3 shows how to turn three months of that column into an estimate.
+This is **hidden demand**: need that exists but leaves no trace in the data. A record of 49 good weeks out of 52 is *not* evidence that hidden demand is zero; the sign-in sheet simply can't see it. The fix isn't a model; it's a new column on the sheet. [From Sign-In Sheets to Estimates](#from-sign-in-sheets-to-estimates--rates-intervals-and-hidden-demand) shows how to turn three months of that column into an estimate.
 
 ---
 
-## Chapter 3: From Sign-In Sheets to Estimates – Rates, Intervals and Hidden Demand
+## From Sign-In Sheets to Estimates – Rates, Intervals and Hidden Demand
 
 ### Step 1: How often is the pantry short?
 
@@ -128,7 +128,7 @@ The lower end of the interval is the rate at which seeing 3 or more short weeks 
 | Wilson | 0.0198 to 0.1564 | 1.0 to 8.1 |
 | Exact (Clopper–Pearson) | 0.0121 to 0.1595 | 0.6 to 8.3 |
 
-The honest summary: **the pantry is probably short somewhere between 1 and 8 weeks a year.** One year of records can't pin it down more tightly than that, and the decision in Chapter 4 has to hold across that whole range.
+The honest summary: **the pantry is probably short somewhere between 1 and 8 weeks a year.** One year of records can't pin it down more tightly than that, and the decision in [The Decision Engine](#the-decision-engine--the-value-of-a-model) has to hold across that whole range.
 
 ### Step 3: How big is a shortfall?
 
@@ -176,7 +176,7 @@ The second row is an illustrative scenario. One turn-away a week would be up to 
 
 ---
 
-## Chapter 4: The Decision Engine – The Value of a Model
+## The Decision Engine – The Value of a Model
 
 ### The question it answers
 
@@ -192,7 +192,7 @@ $$
 \text{maximum gain per year} \;\le\; (\text{short weeks per year}) \times (\text{boxes short per short week}).
 $$
 
-From Chapter 3: $3 \times 15 = 45$ boxes a year, or **0.58%** of all boxes. In the pessimistic reading, 163 boxes, or 2.09%. That is the ceiling for *any* method, with perfect information.
+From the estimates in [From Sign-In Sheets to Estimates](#from-sign-in-sheets-to-estimates--rates-intervals-and-hidden-demand): $3 \times 15 = 45$ boxes a year, or **0.58%** of all boxes. In the pessimistic reading, 163 boxes, or 2.09%. That is the ceiling for *any* method, with perfect information.
 
 **Step B: Compare with the cost of a tool.** The pantry hasn't priced a tool, so here is one illustrative cost that doesn't need prices. Keeping a household scoring tool current takes, say, one minute of data entry per household per week: $150 \times 1 \times 52 / 60 = 130$ volunteer-hours a year. That is time spent to rearrange, at most, 45 boxes, and it rests on one laptop and whichever volunteer understands the tool.
 
@@ -205,7 +205,7 @@ Compare the alternative the case recommends: a standing end-of-month top-up orde
 
 Over a year at 3 short weeks, the rule protects about $3 \times 4.5 = 13.5$ priority households who would otherwise have gone without. Averaged over all weeks, the expected number of households short in a week is $0.0577 \times 15 = 0.87$.
 
-Now the key point. **A perfect allocator, one that knew every household's situation exactly, couldn't do better than the rule on this measure**, because the rule already gives every priority household a full box whenever there are enough boxes for them. The only thing left for a model to improve is the rule's mistakes: priority households the volunteer at the table doesn't recognize. Chapter 5 sizes that gap, and it is tiny. Closing it would mean collecting more personal information about every household, which is exactly the surveillance cost from Chapter 2.
+Now the key point. **A perfect allocator, one that knew every household's situation exactly, couldn't do better than the rule on this measure**, because the rule already gives every priority household a full box whenever there are enough boxes for them. The only thing left for a model to improve is the rule's mistakes: priority households the volunteer at the table doesn't recognize. [Code Implementation & Simulation](#code-implementation--simulation) sizes that gap, and it is tiny. Closing it would mean collecting more personal information about every household, which is exactly the surveillance cost from [The Core Bottleneck](#the-core-bottleneck--a-tiny-problem-a-fragile-tool-and-demand-you-cant-see).
 
 ### The decision
 
@@ -221,7 +221,7 @@ Now the key point. **A perfect allocator, one that knew every household's situat
 
 ---
 
-## Chapter 4.5: Scaling Up – Knowing When the Answer Should Change
+## Scaling Up – Knowing When the Answer Should Change
 
 A "no" is only responsible if it says when it becomes a "maybe." The [case's follow-ups](../cases/06-food-pantry-no-model.md#after-the-recommendation) set three triggers for revisiting:
 
@@ -266,11 +266,11 @@ The case's trigger is **deliberately strict**: it ignores a bad month or two and
 
 If the pantry wants earlier warning, a simple alternative is: **3 or more short weeks in any 13-week quarter**. At today's rate that happens in a given quarter with probability 0.0355, and in at least one quarter of the year with probability 0.1347. That's a false alarm about one year in seven, the price of sensitivity. In return, at 13 short weeks a year it fires within the year 98.8% of the time. Neither check is "right"; it's a choice between fewer false alarms and earlier warning, and the pantry can watch both on the same tally sheet.
 
-The binomial calculation treats every week alike. The pantry's short weeks actually cluster at month-end, which makes the case's trigger even quieter under today's conditions: it needs a short week *outside* the month-end spike. Chapter 5 simulates that.
+The binomial calculation treats every week alike. The pantry's short weeks actually cluster at month-end, which makes the case's trigger even quieter under today's conditions: it needs a short week *outside* the month-end spike. [Code Implementation & Simulation](#code-implementation--simulation) simulates that.
 
 ### Triggers 2 and 3
 
-**Turn-aways** (trigger 2) are measured as in Chapter 3, Step 5. If 3 months of records give an interval that sits clearly above zero, the pantry has more demand than its sign-in sheet shows. The first response is still to order more; allocation only matters if supply can't follow.
+**Turn-aways** (trigger 2) are measured as in [From Sign-In Sheets to Estimates](#from-sign-in-sheets-to-estimates--rates-intervals-and-hidden-demand), Step 5. If 3 months of records give an interval that sits clearly above zero, the pantry has more demand than its sign-in sheet shows. The first response is still to order more; allocation only matters if supply can't follow.
 
 **Joining a regional network** (trigger 3) is where the answer genuinely changes. Once several pantries share one supply, the question becomes how to divide loads *across sites* with different needs. That is a real allocation problem:
 
@@ -279,7 +279,7 @@ The binomial calculation treats every week alike. The pantry's short weeks actua
 
 ---
 
-## Chapter 5: Code Implementation & Simulation
+## Code Implementation & Simulation
 
 The full program is [`code/case6_no_model_check.py`](code/case6_no_model_check.py). It needs only `numpy` and the standard library:
 
@@ -336,12 +336,12 @@ The written rule is given a realistic flaw: the volunteer at the table recognize
 ### Output
 
 ```
-Chapter 5 - simulated pantry (illustrative), 10,000 years each
+Simulation - simulated pantry (illustrative), 10,000 years each
   today (150 households)        short weeks/yr  3.20  (end-of-month share 0.94)  mean shortfall  13.8 boxes  case trigger fires 0.0000  quarter check fires 0.0878
   demand +10% (165 households)  short weeks/yr 17.00  (end-of-month share 0.70)  mean shortfall  10.3 boxes  case trigger fires 0.2975  quarter check fires 1.0000
   demand +20% (180 households)  short weeks/yr 22.63  (end-of-month share 0.53)  mean shortfall  19.7 boxes  case trigger fires 0.8370  quarter check fires 1.0000
 
-Chapter 5 - who bears a short week? (today, per year, illustrative)
+Simulation - who bears a short week? (today, per year, illustrative)
   short weeks 3.20, boxes short 44.0
   households sent home with nothing: no rule 44.0 (of them priority 13.23), written rule 0
   average smaller box under the rule, in short weeks: 0.868 of a full box
@@ -358,11 +358,11 @@ Chapter 5 - who bears a short week? (today, per year, illustrative)
 
 **Allocation.** Under today's demand, about 44 boxes a year are short, matching the hand estimate of 45. With no rule, 44 households a year go home with nothing, 13.23 of them priority households. With the written rule, nobody goes home empty; others get 0.868 of a box in short weeks, and the only priority households who lose out are the ones the volunteer didn't recognize, who together go without 1.80 boxes a year. A perfect allocator would get that to zero. **So the most any model could add over a one-card rule is under 2 boxes a year.**
 
-Two cautions. The turnout rates, disruption sizes and the 30% priority share are invented to match the pantry's record, not measured; the conclusions rest on the record itself (3 short weeks, 10–20 boxes), which Chapter 3 analyzed without the simulation. And the simulation can't see hidden demand: if turn-away records show it, rerun the numbers with the higher demand.
+Two cautions. The turnout rates, disruption sizes and the 30% priority share are invented to match the pantry's record, not measured; the conclusions rest on the record itself (3 short weeks, 10–20 boxes), which [From Sign-In Sheets to Estimates](#from-sign-in-sheets-to-estimates--rates-intervals-and-hidden-demand) analyzed without the simulation. And the simulation can't see hidden demand: if turn-away records show it, rerun the numbers with the higher demand.
 
 ---
 
-## Chapter 6: Core Architectural Summary
+## Core Architectural Summary
 
 | Module | Core formula | What it does in practice |
 |---|---|---|

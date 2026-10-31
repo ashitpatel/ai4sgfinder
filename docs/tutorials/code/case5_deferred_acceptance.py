@@ -19,7 +19,7 @@ import numpy as np
 UNMATCHED = None
 
 
-# ---------------------------------------------------------- the algorithm ---
+# ------------------------------------------------------------ the algorithm ---
 
 def deferred_acceptance(youth_lists, employer_rank, capacity):
     """Young-people-proposing deferred acceptance with employer capacities.
@@ -128,7 +128,7 @@ def greedy_fit_assignment(fit, capacity):
     return match
 
 
-# ---------------------------------------------------------- toy market -------
+# --------------------------------------------------------------- toy market ---
 
 TOY_YOUTH = {                      # each young person's ranked list, best first
     "Ana": ["Garage", "Bakery", "Clinic"],
@@ -210,7 +210,7 @@ def employer_proposing(youth_lists, employer_rank, capacity):
     return held
 
 
-# ---------------------------------------------------------- synthetic cohort --
+# --------------------------------------------------------- synthetic cohort ---
 
 N_YOUTH, N_EMPLOYERS, N_TOWNS = 200, 60, 4
 
@@ -294,12 +294,12 @@ def staff_fit_assignment(mk, seed):
     return greedy_fit_assignment(fit, {j: int(c) for j, c in enumerate(mk["capacity"])})
 
 
-# ---------------------------------------------------------- printing ---------
+# ----------------------------------------------------------------- printing ---
 
 def main():
     youth, rank, cap = TOY_YOUTH, TOY_RANK, TOY_CAPACITY
 
-    print("Chapter 4 - toy market: deferred acceptance, round by round")
+    print("Decision engine - toy market: deferred acceptance, round by round")
     match, rounds = deferred_acceptance(youth, rank, cap)
     for r, log in enumerate(rounds, 1):
         props = "; ".join(f"{e} <- {', '.join(ps)}" for e, ps in log["proposals"].items())
@@ -314,7 +314,7 @@ def main():
     bp = blocking_pairs(match, youth, rank, cap)
     print(f"  blocking pairs: {len(bp)} {bp}")
 
-    print("\nChapter 4 - same toy market, staff assignment by fit score")
+    print("\nDecision engine - same toy market, staff assignment by fit score")
     fit_match = greedy_fit_assignment(TOY_FIT, cap)
     fit_match = {p: fit_match.get(p, UNMATCHED) for p in youth}
     for p in youth:
@@ -322,7 +322,7 @@ def main():
     bp = blocking_pairs(fit_match, youth, rank, cap)
     print(f"  blocking pairs: {len(bp)} {bp}")
 
-    print("\nChapter 2 - same toy market, 'first choices first' (Boston-style)")
+    print("\nBottleneck - same toy market, 'first choices first' (Boston-style)")
     honest = first_choices_first(youth, rank, cap)
     for p in youth:
         print(f"    {p}: {place_label(honest, p, youth[p])}")
@@ -335,7 +335,7 @@ def main():
           f"result for Chi = {g['Chi'] or 'unmatched'}")
     print(f"  (Dan's true list is {youth['Dan']}; honest result = {honest['Dan'] or 'unmatched'})")
 
-    print("\nChapter 4 - can anyone gain by misreporting under deferred acceptance?")
+    print("\nDecision engine - can anyone gain by misreporting under deferred acceptance?")
     employers = list(cap)
     gains = 0
     for p in youth:
@@ -362,14 +362,14 @@ def main():
         m, _ = deferred_acceptance(trial, rank, cap)
         print(f"  Fin reports {lst}: Fin gets {m['Fin'] or 'unmatched'}")
 
-    print("\nChapter 4 - every stable matching of the toy market")
+    print("\nDecision engine - every stable matching of the toy market")
     stable = all_stable_matchings(youth, rank, cap)
     for m in stable:
         print("   ", {p: m[p] for p in youth})
     emp = employer_proposing(youth, rank, cap)
     print(f"  employer-proposing result: { {p: emp[p] for p in youth} }")
 
-    print("\nChapter 4 - who benefits: a 2-person market with two stable matchings")
+    print("\nDecision engine - who benefits: a 2-person market with two stable matchings")
     mini_youth = {"Xia": ["Print shop", "Salon"], "Yaw": ["Salon", "Print shop"]}
     mini_rank = {"Print shop": {"Yaw": 0, "Xia": 1}, "Salon": {"Xia": 0, "Yaw": 1}}
     mini_cap = {"Print shop": 1, "Salon": 1}
@@ -378,11 +378,11 @@ def main():
     print("  young-people-proposing:", deferred_acceptance(mini_youth, mini_rank, mini_cap)[0])
     print("  employer-proposing:    ", employer_proposing(mini_youth, mini_rank, mini_cap))
 
-    print("\nChapter 3 - lottery tie-break: chance of winning a tie among k equal scores")
+    print("\nEstimates - lottery tie-break: chance of winning a tie among k equal scores")
     for k in (2, 3, 4):
         print(f"  k={k}: each wins first place with probability 1/{k} = {1/k:.3f}")
 
-    print("\nChapter 3 - risk of ending unmatched vs list length (300 synthetic cohorts each)")
+    print("\nEstimates - risk of ending unmatched vs list length (300 synthetic cohorts each)")
     reps = 300
     for k in (3, 5, 8, 12):
         shares = []
@@ -398,7 +398,7 @@ def main():
               f"= about {mean * N_YOUTH:.1f} of 200 people;  cohorts with nobody unmatched: "
               f"{(shares == 0).mean():.2f}")
 
-    print("\nChapter 5 - one synthetic cohort (seed 2026): 200 young people, 60 employers")
+    print("\nSimulation - one synthetic cohort (seed 2026): 200 young people, 60 employers")
     mk = make_market(seed=2026, list_len=5)
     yl, er, cp = market_inputs(mk)
     print(f"  places: {int(mk['capacity'].sum())}  capacities range {mk['capacity'].min()}-"
@@ -440,7 +440,7 @@ def main():
     print(f"  second round: {len(m2)} unmatched people, {n_open} employers with "
           f"{places_open} places left; placed {placed2}, still unmatched {len(m2) - placed2}")
 
-    print("\nChapter 5 - the same comparison averaged over 100 cohorts (seeds 0-99)")
+    print("\nSimulation - the same comparison averaged over 100 cohorts (seeds 0-99)")
     tot = {n: np.zeros(5) for n in ("staff fit score", "first choices first", "deferred acceptance")}
     r2_placed, r2_left = [], []
     for s in range(100):
