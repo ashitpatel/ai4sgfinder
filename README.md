@@ -118,4 +118,4 @@ The first draft ([`docs/original-draft.md`](docs/original-draft.md)) was restruc
 
 ## License
 
-[MIT](LICENSE)
+[Apache License 2.0](LICENSE). See [NOTICE](NOTICE) for attribution.
