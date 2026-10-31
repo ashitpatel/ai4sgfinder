@@ -1,0 +1,14 @@
+{
+  "name": "ai4sgfinder",
+  "owner": {
+    "name": "Ashit Patel"
+  },
+  "description": "AI4SG Finder: choose the right AI-for-social-good allocation method.",
+  "plugins": [
+    {
+      "name": "ai4sg-finder",
+      "source": "./dist/claude-plugin",
+      "description": "Diagnose an NGO or public-sector resource-allocation problem and recommend the appropriate AI-for-social-good approach (restless bandits, welfare ILP, security games, distributionally robust optimization, or matching markets). Use when someone wants help choosing an algorithm or ML method for allocating aid, staff time, patrols, supplies, or seats."
+    }
+  ]
+}

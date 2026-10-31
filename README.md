@@ -26,7 +26,7 @@ See the [**worked cases**](docs/cases/) for six examples across health, water, c
 
 ## Quick start
 
-Pick your platform. Every file you need is in [`dist/`](dist/).
+Pick your platform. Every file you need is in [`dist/`](dist/), and each [release](https://github.com/ashitpatel/ai4sgfinder/releases/latest) attaches the same files as downloads, so you don't need to clone the repository.
 
 ### Claude
 
@@ -36,13 +36,21 @@ Pick your platform. Every file you need is in [`dist/`](dist/).
 3. Upload [`dist/taxonomy.md`](dist/taxonomy.md) to **Project knowledge**.
 4. Start a chat in the Project and describe your problem.
 
-**Claude Skill** (claude.ai, Claude Desktop, or Claude Code)
-- claude.ai / Desktop: **Settings → Capabilities → Skills → Upload skill**, and choose [`dist/ai4sg-finder.zip`](dist/ai4sg-finder.zip).
-- Claude Code: copy the folder into your skills directory:
-  ```bash
-  cp -r dist/claude-skill/ai4sg-finder ~/.claude/skills/
-  ```
-  Then ask Claude for help choosing an allocation method, or type `/ai4sg-finder`.
+**Claude Skill** (claude.ai or Claude Desktop)
+- **Settings → Capabilities → Skills → Upload skill**, and choose `ai4sg-finder.zip` from the [latest release](https://github.com/ashitpatel/ai4sgfinder/releases/latest) (also at [`dist/ai4sg-finder.zip`](dist/ai4sg-finder.zip)).
+
+**Claude Code plugin**
+
+This repository is also a Claude Code plugin marketplace. In Claude Code, run:
+```
+/plugin install ai4sg-finder --marketplace ashitpatel/ai4sgfinder
+```
+On versions of Claude Code without the one-step form, add the marketplace first:
+```
+/plugin marketplace add ashitpatel/ai4sgfinder
+/plugin install ai4sg-finder@ai4sgfinder
+```
+Then type `/ai4sg-finder:finder`, or just ask Claude for help choosing an allocation method. Updates arrive through `/plugin` when a new version is released.
 
 ### ChatGPT (Custom GPT)
 1. In ChatGPT, open **Explore GPTs → Create → Configure**.
@@ -99,21 +107,36 @@ dist/                     <- generated, ready to paste or upload (do not edit)
   kickoff.md              first-message version for browser assistants
   claude-skill/           Claude Skill folder
   ai4sg-finder.zip        the same Skill, zipped for upload
+  claude-plugin/          Claude Code plugin (skill runs as /ai4sg-finder:finder)
+.claude-plugin/           generated marketplace file that makes this repo installable
 examples/                 API chat scripts for Claude, OpenAI, Gemini
-scripts/build.py          regenerates dist/ from prompt/
+scripts/build.py          regenerates dist/ and .claude-plugin/ from prompt/ and VERSION
+VERSION, CHANGELOG.md     release version and notes
 docs/cases/               six worked cases, one per outcome; also a manual test set
 docs/original-draft.md    the first draft, kept for provenance
 ```
 
 ## Editing the prompt
 
-Edit only the files under `prompt/`, then regenerate:
+Edit only the files under `prompt/` (and `VERSION` when releasing), then regenerate:
 
 ```bash
 python3 scripts/build.py
 ```
 
-`kickoff.md` is condensed by hand, so when you change the full prompt, update it to match. The build fails if the kickoff is missing any filter or recommendation heading from `system-prompt.md`, if it exceeds 4,000 characters, or if the instructions exceed the 8,000-character Custom GPT limit. After a substantive prompt change, run the [worked cases](docs/cases/README.md#using-the-cases) and check the results. CI runs `python3 scripts/build.py --check` and fails when `dist/` was not regenerated after an edit.
+`kickoff.md` is condensed by hand, so when you change the full prompt, update it to match. The build fails if the kickoff is missing any filter or recommendation heading from `system-prompt.md`, if it exceeds 4,000 characters, or if the instructions exceed the 8,000-character Custom GPT limit. After a substantive prompt change, run the [worked cases](docs/cases/README.md#using-the-cases) and check the results. CI runs `python3 scripts/build.py --check` and fails when the generated files were not regenerated after an edit.
+
+## Releasing
+
+1. Update [`VERSION`](VERSION) and add a matching `## <version> — <date>` section to [`CHANGELOG.md`](CHANGELOG.md).
+2. Run `python3 scripts/build.py`. This writes the new version into the plugin manifest, which is how Claude Code users get the update.
+3. Optionally run `claude plugin validate --strict .` to check the plugin and marketplace.
+4. Commit, then tag and push:
+   ```bash
+   git tag v$(cat VERSION) && git push origin main --tags
+   ```
+
+The [release workflow](.github/workflows/release.yml) checks that the tag matches `VERSION` and that the generated files are current, then publishes a GitHub release with the changelog section as its notes and the `dist/` files attached.
 
 ## How the assistant works
 
