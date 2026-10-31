@@ -17,7 +17,7 @@ A county health NGO enrolls 1,200 adults with diagnosed hypertension. Its 10 com
 
 Paste these one at a time, in order, when testing the assistant.
 
-**Filter 1 — Resource and intent.**
+**Filter 1 — The resource and its intent.**
 > Our resource is CHW home visits: about 80 per week across 1,200 patients. The goal is to keep people taking their blood-pressure medication. A visit isn't permanent: if we visit someone this week, that slot is free again next week. Whether it works depends entirely on the patient; some respond well to a visit, some would keep taking their pills anyway, and some won't change no matter what.
 
 **Filter 2 — Choice and preferences.**
@@ -29,18 +29,18 @@ Paste these one at a time, in order, when testing the assistant.
 **Filter 4 — Tolerance for being wrong.**
 > A wrong choice in one week isn't catastrophic; the SMS still goes out and we can visit next week. Over months, though, poor targeting means more uncontrolled blood pressure and strokes. We have about 9 months of weekly adherence records.
 
-**Filter 5 — Field data and workflow.**
+**Filter 5 — Field data and workflow friction.**
 > CHWs record a yes/no adherence check (pill count) at every contact on a phone app that syncs when they reach signal, roughly weekly. The M&E officer uses Excel. CHWs just want a list of who to see.
 
 ## Why Class 1: Dynamic State Evolution
 
 The assistant should select **Class 1 (Dynamic State Evolution)**, solved with restless bandits.
 
-- **Reclaimable, probabilistic resource** (Filter 1): a visit is time, re-routable weekly, and its value depends on the patient's response. That rules out Class 2 (Static Demographic Targeting), which is for permanent transfers.
-- **Central assignment** (Filter 2) rules out Class 5 (Strategic Matching Markets). **No adversary** (Filter 3) rules out Class 3 (Spatiotemporal Security & Adaptive Search).
-- **Exploration is tolerable** and there is history (Filter 4), so the worst-case protection of Class 4 (Robust Contingency Planning) isn't needed.
-- **States drift whether or not you act**, and the visit's effect decays (Filter 3): this is the "restless" structure. Each patient is an arm whose state (adhering / lapsing) moves on its own and moves differently when visited.
-- **Weekly per-patient observations exist** (Filter 5), which restless bandits require.
+- **Reclaimable, probabilistic resource** (Filter 1 — The resource and its intent): a visit is time, re-routable weekly, and its value depends on the patient's response. That rules out Class 2 (Static Demographic Targeting), which is for permanent transfers.
+- **Central assignment** (Filter 2 — Choice and preferences) rules out Class 5 (Strategic Matching Markets). **No adversary** (Filter 3 — Environment dynamics) rules out Class 3 (Spatiotemporal Security & Adaptive Search).
+- **Exploration is tolerable** and there is history (Filter 4 — Tolerance for being wrong), so the worst-case protection of Class 4 (Robust Contingency Planning) isn't needed.
+- **States drift whether or not you act**, and the visit's effect decays (Filter 3 — Environment dynamics): this is the "restless" structure. Each patient is an arm whose state (adhering / lapsing) moves on its own and moves differently when visited.
+- **Weekly per-patient observations exist** (Filter 5 — Field data and workflow friction), which restless bandits require.
 
 ## What a good recommendation contains
 

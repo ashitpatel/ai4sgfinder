@@ -15,7 +15,7 @@ A coastal conservation trust co-manages a marine protected area divided into 40 
 
 ## Interview answers
 
-**Filter 1 — Resource and intent.**
+**Filter 1 — The resource and its intent.**
 > Our resource is boat patrol time: 2 boats, roughly 6 zone-visits a day. We want to deter illegal fishing in the no-take zones. Patrols are re-routed every day. Whether a patrol "works" depends on whether fishers are there and whether the threat of a patrol keeps them away.
 
 **Filter 2 — Choice and preferences.**
@@ -27,15 +27,15 @@ A coastal conservation trust co-manages a marine protected area divided into 40 
 **Filter 4 — Tolerance for being wrong.**
 > A bad week means more fish taken, not loss of life. We can experiment. We have 3 years of patrol logs with GPS tracks and about 400 recorded incidents (nets found, boats intercepted).
 
-**Filter 5 — Field data and workflow.**
+**Filter 5 — Field data and workflow friction.**
 > Rangers log patrols and incidents on a handheld in SMART (the Spatial Monitoring and Reporting Tool); the data is uploaded monthly. Boat captains get a paper schedule on Mondays.
 
 ## Why Class 3: Spatiotemporal Security & Adaptive Search
 
 The assistant should select **Class 3 (Spatiotemporal Security & Adaptive Search)**, solved with a Stackelberg security game.
 
-- **Mobile assets over geography** (Filter 1) and, decisively, **an adversary who adapts to your moves** (Filter 3). This is the defining signature of Class 3 (Spatiotemporal Security & Adaptive Search).
-- Central routing (Filter 2) rules out Class 5 (Strategic Matching Markets); exploration is tolerable (Filter 4), so a Class 4 (Robust Contingency Planning) layer isn't required.
+- **Mobile assets over geography** (Filter 1 — The resource and its intent) and, decisively, **an adversary who adapts to your moves** (Filter 3 — Environment dynamics). This is the defining signature of Class 3 (Spatiotemporal Security & Adaptive Search).
+- Central routing (Filter 2 — Choice and preferences) rules out Class 5 (Strategic Matching Markets); exploration is tolerable (Filter 4 — Tolerance for being wrong), so a Class 4 (Robust Contingency Planning) layer isn't required.
 - Not Class 1 (Dynamic State Evolution): the "state" that matters is the fishers' strategic response to your pattern, not a recipient's independent drift.
 
 ## What a good recommendation contains

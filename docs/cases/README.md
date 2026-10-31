@@ -8,12 +8,12 @@ All organizations and programs in these cases are fictional. The research they c
 
 | Case | Domain | Intervention type | Expected outcome | Deciding filter |
 |------|--------|-------------------|------------------|-----------------|
-| [1. CHW hypertension visits](01-chw-hypertension-visits.md) | Primary health care | Recurring behavioral nudge | **Class 1** Dynamic State Evolution (restless bandits) | 1 (reclaimable, probabilistic) + 5 (weekly data) |
-| [2. Borehole siting](02-borehole-siting.md) | Water and sanitation | Irreversible infrastructure | **Class 2** Static Demographic Targeting (welfare ILP) | 1 (irreversible capital) |
-| [3. Marine patrols](03-marine-patrols.md) | Conservation | Mobile enforcement | **Class 3** Spatiotemporal Security & Adaptive Search (security games) | 3 (adaptive adversary) |
-| [4. Cyclone pre-positioning](04-cyclone-prepositioning.md) | Disaster preparedness | Contingency stockpiling | **Class 4** Robust Contingency Planning (DRO over a location model) | 4 (catastrophic, little history) |
-| [5. Apprenticeship matching](05-apprenticeship-matching.md) | Youth employment | Two-sided placement | **Class 5** Strategic Matching Markets (stable matching) | 2 (both sides choose) |
-| [6. Food pantry](06-food-pantry-no-model.md) | Food security | Recurring in-kind distribution | **No model needed** | 4 (supply already meets demand) |
+| [1. CHW hypertension visits](01-chw-hypertension-visits.md) | Primary health care | Recurring behavioral nudge | **Class 1** Dynamic State Evolution (restless bandits) | **Filter 1** The resource and its intent (reclaimable, probabilistic) + **Filter 5** Field data and workflow friction (weekly data) |
+| [2. Borehole siting](02-borehole-siting.md) | Water and sanitation | Irreversible infrastructure | **Class 2** Static Demographic Targeting (welfare ILP) | **Filter 1** The resource and its intent (irreversible capital) |
+| [3. Marine patrols](03-marine-patrols.md) | Conservation | Mobile enforcement | **Class 3** Spatiotemporal Security & Adaptive Search (security games) | **Filter 3** Environment dynamics (adaptive adversary) |
+| [4. Cyclone pre-positioning](04-cyclone-prepositioning.md) | Disaster preparedness | Contingency stockpiling | **Class 4** Robust Contingency Planning (DRO over a location model) | **Filter 4** Tolerance for being wrong (catastrophic, little history) |
+| [5. Apprenticeship matching](05-apprenticeship-matching.md) | Youth employment | Two-sided placement | **Class 5** Strategic Matching Markets (stable matching) | **Filter 2** Choice and preferences (both sides choose) |
+| [6. Food pantry](06-food-pantry-no-model.md) | Food security | Recurring in-kind distribution | **No model needed** | **Filter 4** Tolerance for being wrong (supply already meets demand) |
 
 Across the six, every filter is the deciding one at least once, and each case names the method it is most likely to be confused with, so the cases also show what separates neighboring classes.
 

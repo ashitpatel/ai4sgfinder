@@ -15,7 +15,7 @@ A rural water NGO has a donor grant for 25 boreholes in a drought-prone region o
 
 ## Interview answers
 
-**Filter 1 — Resource and intent.**
+**Filter 1 — The resource and its intent.**
 > We're drilling 25 boreholes. The aim is to get as many people as possible within a 30-minute walk of safe water. Once a borehole is drilled it stays there for 20 years; it can't be moved. A working borehole meets the need directly: people walk to it and collect water.
 
 **Filter 2 — Choice and preferences.**
@@ -27,16 +27,16 @@ A rural water NGO has a donor grant for 25 boreholes in a drought-prone region o
 **Filter 4 — Tolerance for being wrong.**
 > A bad site is a 20-year mistake and a political problem: last time, two districts complained that a third got most of the wells. Nobody dies directly from one wrong site, but we can't redo it. We have a 2023 household census with village populations and GPS points, and a hydrogeology survey showing which sites can be drilled.
 
-**Filter 5 — Field data and workflow.**
+**Filter 5 — Field data and workflow friction.**
 > This is a one-off decision. Our program team uses Excel and QGIS. The district councils will want to see the reasoning.
 
 ## Why Class 2: Static Demographic Targeting
 
 The assistant should select **Class 2 (Static Demographic Targeting)**, solved with a welfare integer linear program.
 
-- **Irreversible capital** (Filter 1) and **central assignment** (Filter 2) point straight to Class 2 (Static Demographic Targeting).
-- **Passive, slow-moving environment** (Filter 3): no adversary, no drift to track, so Class 1 (Dynamic State Evolution) and Class 3 (Spatiotemporal Security & Adaptive Search) don't apply.
-- **Costly but not catastrophic error, with good data** (Filter 4): one-time census data is enough, and there is no unknown shock to hedge against, so Class 4 (Robust Contingency Planning) isn't needed.
+- **Irreversible capital** (Filter 1 — The resource and its intent) and **central assignment** (Filter 2 — Choice and preferences) point straight to Class 2 (Static Demographic Targeting).
+- **Passive, slow-moving environment** (Filter 3 — Environment dynamics): no adversary, no drift to track, so Class 1 (Dynamic State Evolution) and Class 3 (Spatiotemporal Security & Adaptive Search) don't apply.
+- **Costly but not catastrophic error, with good data** (Filter 4 — Tolerance for being wrong): one-time census data is enough, and there is no unknown shock to hedge against, so Class 4 (Robust Contingency Planning) isn't needed.
 - **Fairness and auditability are explicit requirements**, which is exactly what an integer program with an equity constraint can state and prove.
 
 ## What a good recommendation contains

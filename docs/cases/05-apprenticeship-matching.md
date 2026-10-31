@@ -15,7 +15,7 @@ A youth employment NGO places about 200 graduates of its vocational course into 
 
 ## Interview answers
 
-**Filter 1 — Resource and intent.**
+**Filter 1 — The resource and its intent.**
 > The resource is apprenticeship places, about 220 per cohort for 200 young people. The goal is to get them into a placement they finish, which usually leads to a job. Each cohort is placed once; a placement lasts 6 months. Whether it works depends a lot on whether both the young person and the employer wanted the match.
 
 **Filter 2 — Choice and preferences.**
@@ -27,15 +27,15 @@ A youth employment NGO places about 200 graduates of its vocational course into 
 **Filter 4 — Tolerance for being wrong.**
 > A bad match costs a young person a placement and possibly their job prospects, and damages our employer relationships. It isn't life-threatening. We have records of past placements and completions.
 
-**Filter 5 — Field data and workflow.**
+**Filter 5 — Field data and workflow friction.**
 > Placement happens twice a year. Young people can fill in a paper form; employers use email. Our placement officer uses Excel.
 
 ## Why Class 5: Strategic Matching Markets
 
 The assistant should select **Class 5 (Strategic Matching Markets)**, solved with deferred acceptance (stable matching).
 
-- **Both sides hold preferences the planner must respect** (Filter 2), with evidence that ignoring them causes refusals and dropouts. This is the decisive signal for Class 5 (Strategic Matching Markets).
-- The **strategic misreporting** in Filter 3 is exactly what a well-designed matching mechanism removes.
+- **Both sides hold preferences the planner must respect** (Filter 2 — Choice and preferences), with evidence that ignoring them causes refusals and dropouts. This is the decisive signal for Class 5 (Strategic Matching Markets).
+- The **strategic misreporting** in Filter 3 (Environment dynamics) is exactly what a well-designed matching mechanism removes.
 - No adversary, no catastrophic downside, and no repeated per-person decisions, so Class 1 (Dynamic State Evolution), Class 3 (Spatiotemporal Security & Adaptive Search) and Class 4 (Robust Contingency Planning) don't apply. Class 2 (Static Demographic Targeting) would impose a central assignment, which is what failed.
 
 ## What a good recommendation contains

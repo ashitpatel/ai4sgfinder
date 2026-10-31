@@ -15,7 +15,7 @@ A volunteer-run food pantry serves about 150 registered households. It hands out
 
 ## Interview answers
 
-**Filter 1 — Resource and intent.**
+**Filter 1 — The resource and its intent.**
 > Weekly grocery boxes. We want every registered household to have enough food. A box is used up, and we have a fresh supply every week. Giving the box meets the need directly.
 
 **Filter 2 — Choice and preferences.**
@@ -27,16 +27,16 @@ A volunteer-run food pantry serves about 150 registered households. It hands out
 **Filter 4 — Tolerance for being wrong.**
 > Nobody goes hungry on our watch: in 49 of the last 52 weeks, we had enough boxes for everyone who came. The other 3 weeks we ran short by about 10–20 boxes.
 
-**Filter 5 — Field data and workflow.**
+**Filter 5 — Field data and workflow friction.**
 > Volunteers tick names on a paper sign-in sheet. There's one laptop. Volunteers change every few months.
 
 ## Why no model
 
 The assistant should select **none of the five classes** and recommend simple rules instead.
 
-- Supply **meets demand in 94% of weeks** (Filter 4). An optimizer has almost nothing to optimize; the rare shortfall is a supply problem, not an allocation problem.
-- **Low data and high volunteer turnover** (Filter 5) mean any tool must survive with no one who understands it.
-- The preference question (Filter 2) is about *item choice inside a box*, which a pantry "choice" shelf handles without an algorithm.
+- Supply **meets demand in 94% of weeks** (Filter 4 — Tolerance for being wrong). An optimizer has almost nothing to optimize; the rare shortfall is a supply problem, not an allocation problem.
+- **Low data and high volunteer turnover** (Filter 5 — Field data and workflow friction) mean any tool must survive with no one who understands it.
+- The preference question (Filter 2 — Choice and preferences) is about *item choice inside a box*, which a pantry "choice" shelf handles without an algorithm.
 
 ## What a good recommendation contains
 
