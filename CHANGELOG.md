@@ -2,6 +2,13 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
+## 1.1.2 — 2026-10-31
+
+- New in-depth tutorials, one per worked case, explaining how each method works for readers with basic statistics and no optimization background. Each comes with a runnable Python program that produces every number in the text.
+- New `CITATION.cff`, so the repository can be cited (GitHub's "Cite this repository" button). Releases are archived on Zenodo with a DOI.
+- The README now opens with a short sample session.
+- The files in `dist/` are unchanged apart from the version number in the Claude Code plugin manifest.
+
 ## 1.1.1 — 2026-10-30
 
 - Each class now has a plain-language definition in the taxonomy: what it is, the question it answers, and when to use or avoid it.
