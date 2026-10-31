@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Water, sanitation and hygiene (WASH) |
 | **Intervention type** | Irreversible infrastructure investment |
-| **Expected class** | 2 — Static Demographic Targeting (welfare ILP) |
+| **Expected class** | [2 — Static Demographic Targeting (welfare ILP)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) |
 | **Most likely confusion** | A need-score ranking in a spreadsheet |
 
 ## Scenario
@@ -32,11 +32,11 @@ A rural water NGO has a donor grant for 25 boreholes in a drought-prone region o
 
 ## Why Class 2: Static Demographic Targeting
 
-The assistant should select **Class 2 (Static Demographic Targeting)**, solved with a welfare integer linear program.
+The assistant should select **[Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting)**, solved with a welfare integer linear program.
 
 - **Irreversible capital** (Filter 1 — The resource and its intent) and **central assignment** (Filter 2 — Choice and preferences) point straight to Class 2 (Static Demographic Targeting).
-- **Passive, slow-moving environment** (Filter 3 — Environment dynamics): no adversary, no drift to track, so Class 1 (Dynamic State Evolution) and Class 3 (Spatiotemporal Security & Adaptive Search) don't apply.
-- **Costly but not catastrophic error, with good data** (Filter 4 — Tolerance for being wrong): one-time census data is enough, and there is no unknown shock to hedge against, so Class 4 (Robust Contingency Planning) isn't needed.
+- **Passive, slow-moving environment** (Filter 3 — Environment dynamics): no adversary, no drift to track, so [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) and [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) don't apply.
+- **Costly but not catastrophic error, with good data** (Filter 4 — Tolerance for being wrong): one-time census data is enough, and there is no unknown shock to hedge against, so [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) isn't needed.
 - **Fairness and auditability are explicit requirements**, which is exactly what an integer program with an equity constraint can state and prove.
 
 ## What a good recommendation contains

@@ -5,7 +5,7 @@
 | **Domain** | Food security |
 | **Intervention type** | Recurring in-kind distribution |
 | **Expected class** | None — "You don't need an optimization model" |
-| **Most likely confusion** | Class 1 (Dynamic State Evolution) or Class 2 (Static Demographic Targeting), because the setting sounds like an allocation problem |
+| **Most likely confusion** | [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) or [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting), because the setting sounds like an allocation problem |
 
 ## Scenario
 

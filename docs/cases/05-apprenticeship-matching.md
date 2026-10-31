@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Youth employment and vocational training |
 | **Intervention type** | Two-sided placement |
-| **Expected class** | 5 — Strategic Matching Markets (stable matching) |
+| **Expected class** | [5 — Strategic Matching Markets (stable matching)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) |
 | **Most likely confusion** | Central assignment by an ML "best-fit" score |
 
 ## Scenario
@@ -32,11 +32,11 @@ A youth employment NGO places about 200 graduates of its vocational course into 
 
 ## Why Class 5: Strategic Matching Markets
 
-The assistant should select **Class 5 (Strategic Matching Markets)**, solved with deferred acceptance (stable matching).
+The assistant should select **[Class 5 (Strategic Matching Markets)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets)**, solved with deferred acceptance (stable matching).
 
 - **Both sides hold preferences the planner must respect** (Filter 2 — Choice and preferences), with evidence that ignoring them causes refusals and dropouts. This is the decisive signal for Class 5 (Strategic Matching Markets).
 - The **strategic misreporting** in Filter 3 (Environment dynamics) is exactly what a well-designed matching mechanism removes.
-- No adversary, no catastrophic downside, and no repeated per-person decisions, so Class 1 (Dynamic State Evolution), Class 3 (Spatiotemporal Security & Adaptive Search) and Class 4 (Robust Contingency Planning) don't apply. Class 2 (Static Demographic Targeting) would impose a central assignment, which is what failed.
+- No adversary, no catastrophic downside, and no repeated per-person decisions, so [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution), [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) and [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) don't apply. [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) would impose a central assignment, which is what failed.
 
 ## What a good recommendation contains
 

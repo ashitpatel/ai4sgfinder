@@ -14,7 +14,7 @@ Translate the chosen class into the user's terms. Fill each row from the named f
 
 The filters: **Filter 1** The resource and its intent · **Filter 2** Choice and preferences · **Filter 3** Environment dynamics · **Filter 4** Tolerance for being wrong · **Filter 5** Field data and workflow friction.
 
-### Class 1 — Dynamic State Evolution (restless bandits)
+### Class 1 — [Dynamic State Evolution](taxonomy.md#class-1-dynamic-state-evolution) (restless bandits)
 
 | Element | Meaning | Comes from |
 |---|---|---|
@@ -27,7 +27,7 @@ The filters: **Filter 1** The resource and its intent · **Filter 2** Choice and
 | Transition estimates | How likely each state is to change with and without action, estimated from history, usually by grouping similar people | Filters 4 and 5 |
 | Fairness guard | A minimum-contact rule so no one is ignored indefinitely | Ethics |
 
-### Class 2 — Static Demographic Targeting (welfare optimization)
+### Class 2 — [Static Demographic Targeting](taxonomy.md#class-2-static-demographic-targeting) (welfare optimization)
 
 | Element | Meaning | Comes from |
 |---|---|---|
@@ -39,7 +39,7 @@ The filters: **Filter 1** The resource and its intent · **Filter 2** Choice and
 | Hard constraints | Legal, technical or political rules (drillable sites only, one per village) | Filter 4 |
 | Audit output | What must be published to justify the choice | Filter 4 |
 
-### Class 3 — Spatiotemporal Security & Adaptive Search (security games)
+### Class 3 — [Spatiotemporal Security & Adaptive Search](taxonomy.md#class-3-spatiotemporal-security--adaptive-search) (security games)
 
 | Element | Meaning | Comes from |
 |---|---|---|
@@ -51,7 +51,7 @@ The filters: **Filter 1** The resource and its intent · **Filter 2** Choice and
 | Schedule format | How the randomized plan reaches staff (weekly paper calendar) | Filter 5 |
 | Operational limits | Fuel, distance, weather, safety | Filter 4 |
 
-### Class 4 — Robust Contingency Planning (robust optimization)
+### Class 4 — [Robust Contingency Planning](taxonomy.md#class-4-robust-contingency-planning) (robust optimization)
 
 | Element | Meaning | Comes from |
 |---|---|---|
@@ -63,7 +63,7 @@ The filters: **Filter 1** The resource and its intent · **Filter 2** Choice and
 | Cost of excess | Spoilage, storage and capital cost of over-preparing | Filter 4 |
 | Offline outputs | Dispatch cards usable without connectivity | Filter 5 |
 
-### Class 5 — Strategic Matching Markets (stable matching)
+### Class 5 — [Strategic Matching Markets](taxonomy.md#class-5-strategic-matching-markets) (stable matching)
 
 | Element | Meaning | Comes from |
 |---|---|---|
@@ -96,11 +96,11 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 - **Community voice.** Affected people or their representatives have seen and can question the approach.
 
 **Class-specific**
-- *Class 1 (restless bandits):* At least several months of per-person history at the planned round length; states recorded the same way by all staff; agreement on a minimum-contact rule.
-- *Class 2 (welfare optimization):* Reliable location and population data; the fairness rule agreed by stakeholders **before** results are seen; backup options if a chosen site proves infeasible.
-- *Class 3 (security games):* Patrol logs with location and effort, not just incidents; leadership accepts randomized schedules; sensitive schedules kept confidential.
-- *Class 4 (robust optimization):* A scenario set reviewed by local experts, including events worse than any on record; funders accept that robust plans carry extra stock.
-- *Class 5 (stable matching):* Both sides willing to submit rankings; a commitment not to override results by hand; legal review if placements involve public entitlements.
+- *[Class 1: Dynamic State Evolution](taxonomy.md#class-1-dynamic-state-evolution) (restless bandits):* At least several months of per-person history at the planned round length; states recorded the same way by all staff; agreement on a minimum-contact rule.
+- *[Class 2: Static Demographic Targeting](taxonomy.md#class-2-static-demographic-targeting) (welfare optimization):* Reliable location and population data; the fairness rule agreed by stakeholders **before** results are seen; backup options if a chosen site proves infeasible.
+- *[Class 3: Spatiotemporal Security & Adaptive Search](taxonomy.md#class-3-spatiotemporal-security--adaptive-search) (security games):* Patrol logs with location and effort, not just incidents; leadership accepts randomized schedules; sensitive schedules kept confidential.
+- *[Class 4: Robust Contingency Planning](taxonomy.md#class-4-robust-contingency-planning) (robust optimization):* A scenario set reviewed by local experts, including events worse than any on record; funders accept that robust plans carry extra stock.
+- *[Class 5: Strategic Matching Markets](taxonomy.md#class-5-strategic-matching-markets) (stable matching):* Both sides willing to submit rankings; a commitment not to override results by hand; legal review if placements involve public entitlements.
 
 ---
 
@@ -116,11 +116,11 @@ Recommend the smallest pilot that can show the approach works better than curren
 
 | Class | Practical comparison | Typical duration |
 |---|---|---|
-| 1 — Dynamic State Evolution | Randomly split beneficiaries (or field areas) between the model's list and the current method; compare outcomes such as engagement or adherence | 6–12 rounds (e.g. weeks) |
-| 2 — Static Demographic Targeting | Usually a one-off decision, so compare plans rather than run a trial: model plan vs. current ranking on the same budget, scored on coverage and fairness, reviewed by stakeholders | 1–2 months of analysis |
-| 3 — Spatiotemporal Security | Alternate model-generated and usual schedules by period or zone; compare detections per patrol hour, while noting that deterrence shows up as fewer detections over time | One season or 3+ months |
-| 4 — Robust Contingency Planning | Backtest: replay past events and expert-designed "unseen" scenarios against the model's plan and the current plan; run a tabletop exercise with the dispatch cards | Before the risk season |
-| 5 — Strategic Matching Markets | Run the match in shadow alongside the current process for one cohort, then compare refusals, early dropouts and satisfaction | One placement cycle |
+| [1 — Dynamic State Evolution](taxonomy.md#class-1-dynamic-state-evolution) | Randomly split beneficiaries (or field areas) between the model's list and the current method; compare outcomes such as engagement or adherence | 6–12 rounds (e.g. weeks) |
+| [2 — Static Demographic Targeting](taxonomy.md#class-2-static-demographic-targeting) | Usually a one-off decision, so compare plans rather than run a trial: model plan vs. current ranking on the same budget, scored on coverage and fairness, reviewed by stakeholders | 1–2 months of analysis |
+| [3 — Spatiotemporal Security & Adaptive Search](taxonomy.md#class-3-spatiotemporal-security--adaptive-search) | Alternate model-generated and usual schedules by period or zone; compare detections per patrol hour, while noting that deterrence shows up as fewer detections over time | One season or 3+ months |
+| [4 — Robust Contingency Planning](taxonomy.md#class-4-robust-contingency-planning) | Backtest: replay past events and expert-designed "unseen" scenarios against the model's plan and the current plan; run a tabletop exercise with the dispatch cards | Before the risk season |
+| [5 — Strategic Matching Markets](taxonomy.md#class-5-strategic-matching-markets) | Run the match in shadow alongside the current process for one cohort, then compare refusals, early dropouts and satisfaction | One placement cycle |
 
 ---
 
@@ -132,11 +132,11 @@ Be honest about maturity: Classes 2, 4 and 5 can be built with mature, free, gen
 
 | Class | Tools (all free and open source) | Maturity | Skills needed |
 |---|---|---|---|
-| 1 — Dynamic State Evolution | No ready-made package. Research code: [lily-x/online-rmab](https://github.com/lily-x/online-rmab) (Whittle-index planning, synthetic data only) | Research code | Python and a data scientist familiar with reinforcement learning or operations research |
-| 2 — Static Demographic Targeting | [PuLP](https://coin-or.github.io/pulp/), [Pyomo](https://www.pyomo.org) or [Google OR-Tools](https://developers.google.com/optimization) to write the model; [HiGHS](https://highs.dev) as a free solver | Mature | Python and basic integer programming; a small model can be handed over as a script |
-| 3 — Spatiotemporal Security | [PAWS-public](https://github.com/lily-x/PAWS-public) (poaching risk prediction and patrol planning, research code); [SMART](https://smartconservationtools.org) for recording patrols and incidents | Research code (model); mature (data collection) | Data scientist plus GIS skills; SMART needs only field training |
-| 4 — Robust Contingency Planning | [RSOME](https://xiongpengnus.github.io/rsome/) (robust and distributionally robust models in Python); [CVXPY](https://www.cvxpy.org) or Pyomo for stochastic versions; HiGHS as solver | Mature libraries, specialist modeling | Operations-research skills; this is the hardest class to model well |
-| 5 — Strategic Matching Markets | [matching](https://github.com/daffidwilde/matching) (Python: stable marriage, hospital–resident, student allocation); [matchingMarkets](https://cran.r-project.org/package=matchingMarkets) (R) | Mature algorithm; small libraries | Spreadsheet-level data prep; deferred acceptance can also be run by a short script |
+| [1 — Dynamic State Evolution](taxonomy.md#class-1-dynamic-state-evolution) | No ready-made package. Research code: [lily-x/online-rmab](https://github.com/lily-x/online-rmab) (Whittle-index planning, synthetic data only) | Research code | Python and a data scientist familiar with reinforcement learning or operations research |
+| [2 — Static Demographic Targeting](taxonomy.md#class-2-static-demographic-targeting) | [PuLP](https://coin-or.github.io/pulp/), [Pyomo](https://www.pyomo.org) or [Google OR-Tools](https://developers.google.com/optimization) to write the model; [HiGHS](https://highs.dev) as a free solver | Mature | Python and basic integer programming; a small model can be handed over as a script |
+| [3 — Spatiotemporal Security & Adaptive Search](taxonomy.md#class-3-spatiotemporal-security--adaptive-search) | [PAWS-public](https://github.com/lily-x/PAWS-public) (poaching risk prediction and patrol planning, research code); [SMART](https://smartconservationtools.org) for recording patrols and incidents | Research code (model); mature (data collection) | Data scientist plus GIS skills; SMART needs only field training |
+| [4 — Robust Contingency Planning](taxonomy.md#class-4-robust-contingency-planning) | [RSOME](https://xiongpengnus.github.io/rsome/) (robust and distributionally robust models in Python); [CVXPY](https://www.cvxpy.org) or Pyomo for stochastic versions; HiGHS as solver | Mature libraries, specialist modeling | Operations-research skills; this is the hardest class to model well |
+| [5 — Strategic Matching Markets](taxonomy.md#class-5-strategic-matching-markets) | [matching](https://github.com/daffidwilde/matching) (Python: stable marriage, hospital–resident, student allocation); [matchingMarkets](https://cran.r-project.org/package=matchingMarkets) (R) | Mature algorithm; small libraries | Spreadsheet-level data prep; deferred acceptance can also be run by a short script |
 | No model | A spreadsheet and a written rule | — | None |
 
 Notes: the `matching` Python library's last release was in 2023 and RSOME's in 2024; both work, but check for updates. The research repositories above come from published papers and are not supported products.
@@ -168,11 +168,11 @@ Give the user two or three items for their class, starting with the most accessi
 
 | Class | Accessible start | Deeper |
 |---|---|---|
-| 1 — Dynamic State Evolution | Google Research blog on ARMMAN: [Using ML to boost engagement with a maternal and child health program](https://research.google/blog/using-ml-to-boost-engagement-with-a-maternal-and-child-health-program-in-india/) | Mate et al. (2022), AAAI field study; Mate et al. (2020), *Collapsing Bandits*, NeurIPS |
-| 2 — Static Demographic Targeting | Bradley, Hax, Magnanti, *Applied Mathematical Programming* — free from MIT at [web.mit.edu/15.053/www](https://web.mit.edu/15.053/www/) (integer programming chapters) | Church & ReVelle (1974) on covering location; Flanigan et al. (2021), Nature, on leximin fairness |
-| 3 — Spatiotemporal Security | Fang, Stone, Tambe (2015), *When Security Games Go Green*, IJCAI — [free PDF](https://www.ijcai.org/proceedings/2015/0367.pdf) | Tambe (2011), *Security and Game Theory: Algorithms, Deployed Systems, Lessons Learned*, Cambridge University Press |
-| 4 — Robust Contingency Planning | Rawls & Turnquist (2010) on pre-positioning emergency supplies | Rahimian & Mehrotra (2022), *Frameworks and Results in Distributionally Robust Optimization*, Open Journal of Mathematical Optimization — [open access](https://doi.org/10.5802/ojmo.15) |
-| 5 — Strategic Matching Markets | Roth (2015), *Who Gets What — and Why*, a book for general readers | Abdulkadiroğlu, Pathak & Roth (2005) on the New York City high-school match |
+| [1 — Dynamic State Evolution](taxonomy.md#class-1-dynamic-state-evolution) | Google Research blog on ARMMAN: [Using ML to boost engagement with a maternal and child health program](https://research.google/blog/using-ml-to-boost-engagement-with-a-maternal-and-child-health-program-in-india/) | Mate et al. (2022), AAAI field study; Mate et al. (2020), *Collapsing Bandits*, NeurIPS |
+| [2 — Static Demographic Targeting](taxonomy.md#class-2-static-demographic-targeting) | Bradley, Hax, Magnanti, *Applied Mathematical Programming* — free from MIT at [web.mit.edu/15.053/www](https://web.mit.edu/15.053/www/) (integer programming chapters) | Church & ReVelle (1974) on covering location; Flanigan et al. (2021), Nature, on leximin fairness |
+| [3 — Spatiotemporal Security & Adaptive Search](taxonomy.md#class-3-spatiotemporal-security--adaptive-search) | Fang, Stone, Tambe (2015), *When Security Games Go Green*, IJCAI — [free PDF](https://www.ijcai.org/proceedings/2015/0367.pdf) | Tambe (2011), *Security and Game Theory: Algorithms, Deployed Systems, Lessons Learned*, Cambridge University Press |
+| [4 — Robust Contingency Planning](taxonomy.md#class-4-robust-contingency-planning) | Rawls & Turnquist (2010) on pre-positioning emergency supplies | Rahimian & Mehrotra (2022), *Frameworks and Results in Distributionally Robust Optimization*, Open Journal of Mathematical Optimization — [open access](https://doi.org/10.5802/ojmo.15) |
+| [5 — Strategic Matching Markets](taxonomy.md#class-5-strategic-matching-markets) | Roth (2015), *Who Gets What — and Why*, a book for general readers | Abdulkadiroğlu, Pathak & Roth (2005) on the New York City high-school match |
 
 ### Research groups active in this area
 

@@ -2,6 +2,12 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
+## 1.1.1 — 2026-10-30
+
+- Each class now has a plain-language definition in the taxonomy: what it is, the question it answers, and when to use or avoid it.
+- Class names in the worked cases, cases index, playbook and README link to these definitions.
+- The playbook uses the full Class 3 name (Spatiotemporal Security & Adaptive Search) throughout.
+
 ## 1.1.0 — 2026-10-30
 
 - New implementation playbook (`playbook.md`), shipped as a second knowledge file in every package, covering what to do after an approach is chosen.

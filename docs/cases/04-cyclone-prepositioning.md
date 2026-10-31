@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Humanitarian response and disaster preparedness |
 | **Intervention type** | Contingency stockpiling |
-| **Expected class** | 4 — Robust Contingency Planning (DRO), layered over a location model |
+| **Expected class** | [4 — Robust Contingency Planning (DRO), layered over a location model](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) |
 | **Most likely confusion** | Planning for the "average" storm from historical data |
 
 ## Scenario
@@ -32,11 +32,11 @@ A humanitarian NGO serves a low-lying coastal delta. Before each cyclone season 
 
 ## Why Class 4: Robust Contingency Planning
 
-The assistant should select **Class 4 (Robust Contingency Planning)**, solved with distributionally robust optimization layered over a location model from Class 2 (Static Demographic Targeting).
+The assistant should select **[Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning)**, solved with distributionally robust optimization layered over a location model from [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting).
 
 - **Catastrophic downside** and **almost no history** (Filter 4 — Tolerance for being wrong) are the two triggers for Class 4 (Robust Contingency Planning). Eight storms are far too few to estimate a reliable probability distribution of landfall and damage.
 - The underlying decision is a **one-off central allocation of supplies to locations** (Filter 1 — The resource and its intent; Filter 2 — Choice and preferences), which is Class 2 (Static Demographic Targeting) in structure; Class 4 (Robust Contingency Planning) is the robustness layer on top of it.
-- No adversary (Filter 3 — Environment dynamics), no drifting recipients, and no two-sided preferences, so Class 1 (Dynamic State Evolution), Class 3 (Spatiotemporal Security & Adaptive Search) and Class 5 (Strategic Matching Markets) don't apply.
+- No adversary (Filter 3 — Environment dynamics), no drifting recipients, and no two-sided preferences, so [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution), [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) and [Class 5 (Strategic Matching Markets)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) don't apply.
 
 ## What a good recommendation contains
 

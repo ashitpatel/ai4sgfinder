@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Conservation and natural-resource protection |
 | **Intervention type** | Mobile enforcement patrols |
-| **Expected class** | 3 — Spatiotemporal Security & Adaptive Search (security games) |
+| **Expected class** | [3 — Spatiotemporal Security & Adaptive Search (security games)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) |
 | **Most likely confusion** | A hotspot map of past arrests |
 
 ## Scenario
@@ -32,11 +32,11 @@ A coastal conservation trust co-manages a marine protected area divided into 40 
 
 ## Why Class 3: Spatiotemporal Security & Adaptive Search
 
-The assistant should select **Class 3 (Spatiotemporal Security & Adaptive Search)**, solved with a Stackelberg security game.
+The assistant should select **[Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search)**, solved with a Stackelberg security game.
 
 - **Mobile assets over geography** (Filter 1 — The resource and its intent) and, decisively, **an adversary who adapts to your moves** (Filter 3 — Environment dynamics). This is the defining signature of Class 3 (Spatiotemporal Security & Adaptive Search).
-- Central routing (Filter 2 — Choice and preferences) rules out Class 5 (Strategic Matching Markets); exploration is tolerable (Filter 4 — Tolerance for being wrong), so a Class 4 (Robust Contingency Planning) layer isn't required.
-- Not Class 1 (Dynamic State Evolution): the "state" that matters is the fishers' strategic response to your pattern, not a recipient's independent drift.
+- Central routing (Filter 2 — Choice and preferences) rules out [Class 5 (Strategic Matching Markets)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets); exploration is tolerable (Filter 4 — Tolerance for being wrong), so a [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) layer isn't required.
+- Not [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution): the "state" that matters is the fishers' strategic response to your pattern, not a recipient's independent drift.
 
 ## What a good recommendation contains
 

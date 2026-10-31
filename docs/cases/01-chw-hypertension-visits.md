@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Primary health care |
 | **Intervention type** | Recurring behavioral nudge (home visits) |
-| **Expected class** | 1 — Dynamic State Evolution (restless bandits) |
+| **Expected class** | [1 — Dynamic State Evolution (restless bandits)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) |
 | **Most likely confusion** | A standard risk-prediction model ranking "highest-risk" patients |
 
 ## Scenario
@@ -34,11 +34,11 @@ Paste these one at a time, in order, when testing the assistant.
 
 ## Why Class 1: Dynamic State Evolution
 
-The assistant should select **Class 1 (Dynamic State Evolution)**, solved with restless bandits.
+The assistant should select **[Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution)**, solved with restless bandits.
 
-- **Reclaimable, probabilistic resource** (Filter 1 — The resource and its intent): a visit is time, re-routable weekly, and its value depends on the patient's response. That rules out Class 2 (Static Demographic Targeting), which is for permanent transfers.
-- **Central assignment** (Filter 2 — Choice and preferences) rules out Class 5 (Strategic Matching Markets). **No adversary** (Filter 3 — Environment dynamics) rules out Class 3 (Spatiotemporal Security & Adaptive Search).
-- **Exploration is tolerable** and there is history (Filter 4 — Tolerance for being wrong), so the worst-case protection of Class 4 (Robust Contingency Planning) isn't needed.
+- **Reclaimable, probabilistic resource** (Filter 1 — The resource and its intent): a visit is time, re-routable weekly, and its value depends on the patient's response. That rules out [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting), which is for permanent transfers.
+- **Central assignment** (Filter 2 — Choice and preferences) rules out [Class 5 (Strategic Matching Markets)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets). **No adversary** (Filter 3 — Environment dynamics) rules out [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search).
+- **Exploration is tolerable** and there is history (Filter 4 — Tolerance for being wrong), so the worst-case protection of [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) isn't needed.
 - **States drift whether or not you act**, and the visit's effect decays (Filter 3 — Environment dynamics): this is the "restless" structure. Each patient is an arm whose state (adhering / lapsing) moves on its own and moves differently when visited.
 - **Weekly per-patient observations exist** (Filter 5 — Field data and workflow friction), which restless bandits require.
 
