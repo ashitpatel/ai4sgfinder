@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Primary health care |
 | **Intervention type** | Recurring behavioral nudge (home visits) |
-| **Expected class** | [1 — Dynamic State Evolution (restless bandits)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) |
+| **Expected class** | [Class 1: Dynamic State Evolution (restless bandits)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) |
 | **Most likely confusion** | A standard risk-prediction model ranking "highest-risk" patients |
 | **In-depth tutorial** | [How the method works, step by step](../tutorials/01-restless-bandits-chw-visits.md) |
 
@@ -19,29 +19,40 @@ A county health NGO enrolls 1,200 adults with diagnosed hypertension. Its 10 com
 Paste these one at a time, in order, when testing the assistant.
 
 **Filter 1 — The resource and its intent.**
-> Our resource is CHW home visits: about 80 per week across 1,200 patients. The goal is to keep people taking their blood-pressure medication. A visit isn't permanent: if we visit someone this week, that slot is free again next week. Whether it works depends entirely on the patient; some respond well to a visit, some would keep taking their pills anyway, and some won't change no matter what.
+> Our resource is CHW home visits: about 80 per week across 1,200 patients. The goal is to keep people taking their blood-pressure medication. A visit isn't permanent: if we visit someone this week, that slot is free again next week. Whether it works depends entirely on the patient; some respond well to a visit, some would keep taking their pills anyway, and some won't change no matter what. Of your options, it's (b): given again and again, every week.
 
 **Filter 2 — Choice and preferences.**
 > We decide centrally who gets visited. Patients have consented to the program but don't choose their visit schedule, and they can't really "refuse" in a way that matters to planning.
 
 **Filter 3 — Environment dynamics.**
-> Cooperative. Patients aren't avoiding us. But their adherence changes over time on its own: people who are doing well tend to slip after a few weeks, and the effect of a visit fades.
+> No. Patients aren't avoiding us, and there's nothing to game: they don't apply for visits. But their adherence changes over time on its own: people who are doing well tend to slip after a few weeks, and the effect of a visit fades.
 
 **Filter 4 — Tolerance for being wrong.**
-> A wrong choice in one week isn't catastrophic; the SMS still goes out and we can visit next week. Over months, though, poor targeting means more uncontrolled blood pressure and strokes. We have about 9 months of weekly adherence records.
+> A wrong choice in one week isn't catastrophic; the SMS still goes out and we can visit next week. Over months, though, poor targeting means more uncontrolled blood pressure and strokes. We have about 9 months of weekly adherence records, but no pilot or trial results.
 
 **Filter 5 — Field data and workflow friction.**
-> CHWs record a yes/no adherence check (pill count) at every contact on a phone app that syncs when they reach signal, roughly weekly. The M&E officer uses Excel. CHWs just want a list of who to see.
+> CHWs record a yes/no adherence check (pill count) at every contact on a phone app that syncs when they reach signal, roughly weekly. The M&E officer uses Excel and would run the tool. CHWs just want a list of who to see.
+
+**Narrowing question — Repeated decisions that learn.** *"Which describes your uncertainty better: how each person's situation changes from week to week, or which of several program options works best?"*
+> How each person's situation changes. We only have one option, a home visit. What we don't know is who is slipping this week and who a visit would bring back.
 
 ## Why Class 1: Dynamic State Evolution
 
-The assistant should select **[Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution)**, solved with restless bandits.
+The assistant should select **[Class 1: Dynamic State Evolution](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution)**, solved with restless bandits.
 
-- **Reclaimable, probabilistic resource** (Filter 1 — The resource and its intent): a visit is time, re-routable weekly, and its value depends on the patient's response. That rules out [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting), which is for permanent transfers.
-- **Central assignment** (Filter 2 — Choice and preferences) rules out [Class 5 (Strategic Matching Markets)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets). **No adversary** (Filter 3 — Environment dynamics) rules out [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search).
-- **Exploration is tolerable** and there is history (Filter 4 — Tolerance for being wrong), so the worst-case protection of [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) isn't needed.
-- **States drift whether or not you act**, and the visit's effect decays (Filter 3 — Environment dynamics): this is the "restless" structure. Each patient is an arm whose state (adhering / lapsing) moves on its own and moves differently when visited.
+**Stage 1 places the problem in the *Repeated decisions that learn* family.**
+- **Given again and again** (Filter 1 — The resource and its intent): a visit is time, re-routable weekly, and its value depends on the patient's response. That is option (b), and it rules out [Class 2: Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting), which is for permanent transfers.
+- **Central assignment** (Filter 2 — Choice and preferences) rules out [Class 5: Strategic Matching Markets](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) and [Class 6: Participatory Allocation](../../prompt/knowledge/taxonomy.md#class-6-participatory-allocation). **No one avoids the program or games it** (Filter 3 — Environment dynamics), which rules out [Class 3: Spatiotemporal Security & Adaptive Search](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search).
+- **Exploration is tolerable** and there is history (Filter 4 — Tolerance for being wrong), so the worst-case protection of [Class 4: Robust Contingency Planning](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) isn't needed.
 - **Weekly per-patient observations exist** (Filter 5 — Field data and workflow friction), which restless bandits require.
+
+**Stage 2 picks Class 1 over Class 8.**
+- The uncertainty is **how each patient's situation changes** (narrowing answer), not which option works. States drift whether or not you act, and the visit's effect decays (Filter 3 — Environment dynamics): this is the "restless" structure. Each patient is an arm whose state (adhering / lapsing) moves on its own and moves differently when visited.
+
+**Closest neighbours ruled out.**
+- [Class 8: Learn-While-Allocating](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) is for several options of unknown but stable value. Here there is one option, and what changes is each patient, which Class 8 assumes away.
+- [Class 7: Effect-Based Targeting](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) also asks who a visit would change, but it needs a randomized pilot (there is none, Filter 4) and suits a program offered once, not a choice that repeats every week as people drift.
+- [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) is where a "highest-risk first" list belongs. It finds hidden problems; here the goal is to change behavior, and the patients most likely to lapse are not always the ones a visit helps.
 
 ## What a good recommendation contains
 
@@ -106,7 +117,7 @@ Current approach
   patients, and stable adherers get visits they don't need.
 
 Recommended approach
-  Class 1 (Dynamic State Evolution): a restless multi-armed bandit with a
+  Class 1: Dynamic State Evolution: a restless multi-armed bandit with a
   Whittle index policy, because a visit is reclaimable weekly, its effect
   depends on the patient, adherence drifts over time, and we observe it weekly.
 

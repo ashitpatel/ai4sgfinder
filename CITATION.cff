@@ -6,7 +6,8 @@ title: "AI4SG Finder"
 abstract: >-
   An AI assistant that helps NGOs and public agencies choose the right
   AI-for-social-good allocation method (restless bandits, welfare
-  optimization, security games, robust optimization, or matching markets)
+  optimization, security games, robust optimization, matching markets,
+  participatory budgeting, effect-based targeting, or adaptive experiments)
   for a field problem, packaged for Claude, ChatGPT and Gemini.
 authors:
   - family-names: "Patel"
@@ -26,3 +27,5 @@ keywords:
   - security-games
   - robust-optimization
   - matching-markets
+  - participatory-budgeting
+  - policy-learning

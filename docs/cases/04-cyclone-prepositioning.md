@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Humanitarian response and disaster preparedness |
 | **Intervention type** | Contingency stockpiling |
-| **Expected class** | [4 — Robust Contingency Planning (DRO), layered over a location model](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) |
+| **Expected class** | [Class 4: Robust Contingency Planning (DRO), layered over a location model](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) |
 | **Most likely confusion** | Planning for the "average" storm from historical data |
 | **In-depth tutorial** | [How the method works, step by step](../tutorials/04-robust-optimization-cyclone-prepositioning.md) |
 
@@ -17,27 +17,33 @@ A humanitarian NGO serves a low-lying coastal delta. Before each cyclone season 
 ## Interview answers
 
 **Filter 1 — The resource and its intent.**
-> 30,000 family kits to pre-position across 6 warehouses before the season. Once a storm hits, we can move kits from warehouses to affected areas, but only over whatever roads still work. Handing over a kit meets the immediate need directly.
+> 30,000 family kits to pre-position across 6 warehouses before the season. Once a storm hits, we can move kits from warehouses to affected areas, but only over whatever roads still work. Handing over a kit meets the immediate need directly. Of your options, it's (c): goods moved by truck to many sites.
 
 **Filter 2 — Choice and preferences.**
 > We decide the stock levels and the dispatch, coordinating with the district disaster office.
 
 **Filter 3 — Environment dynamics.**
-> Nature isn't trying to evade us, but it's very unpredictable. Each storm hits a different part of the coast.
+> No one. Nature isn't trying to evade us, but it's very unpredictable. Each storm hits a different part of the coast.
 
 **Filter 4 — Tolerance for being wrong.**
-> Zero tolerance in practice. If kits are in the wrong warehouse and the bridge is out, families go without clean water for days and children get sick. We have detailed records for only 8 severe cyclones in the last 25 years.
+> Zero tolerance in practice. If kits are in the wrong warehouse and the bridge is out, families go without clean water for days and children get sick. We have detailed records for only 8 severe cyclones in the last 25 years, and there's no way to run a trial.
 
 **Filter 5 — Field data and workflow friction.**
-> Planning happens once a year, before the season. During a response our staff often have no connectivity at all. Logistics uses Excel.
+> Planning happens once a year, before the season. During a response our staff often have no connectivity at all. Logistics uses Excel, and our logistics team would run the tool.
+
+**Narrowing question — Space, movement and risk.** *"What is the hardest part: outwitting people who avoid you, preparing for a rare disaster, moving goods to many places, or finding hidden problems?"*
+> Preparing for the storm. Trucking kits out is something we know how to do; the problem is that we don't know where the next one will hit or which roads will survive.
 
 ## Why Class 4: Robust Contingency Planning
 
-The assistant should select **[Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning)**, solved with distributionally robust optimization layered over a location model from [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting).
+The assistant should select **[Class 4: Robust Contingency Planning](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning)**, solved with distributionally robust optimization layered over a location model from [Class 2: Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting).
 
-- **Catastrophic downside** and **almost no history** (Filter 4 — Tolerance for being wrong) are the two triggers for Class 4 (Robust Contingency Planning). Eight storms are far too few to estimate a reliable probability distribution of landfall and damage.
-- The underlying decision is a **one-off central allocation of supplies to locations** (Filter 1 — The resource and its intent; Filter 2 — Choice and preferences), which is Class 2 (Static Demographic Targeting) in structure; Class 4 (Robust Contingency Planning) is the robustness layer on top of it.
-- No adversary (Filter 3 — Environment dynamics), no drifting recipients, and no two-sided preferences, so [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution), [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) and [Class 5 (Strategic Matching Markets)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) don't apply.
+- **Goods moved by vehicle to many sites** (Filter 1 — The resource and its intent) place the problem in the *Space, movement and risk* family, and the narrowing answer, **preparing for a rare disaster**, picks Class 4 within it.
+- **Catastrophic downside** and **almost no history** (Filter 4 — Tolerance for being wrong) are the two triggers for Class 4: Robust Contingency Planning. Eight storms are far too few to estimate a reliable probability distribution of landfall and damage.
+- The underlying decision is a **one-off central allocation of supplies to locations** (Filter 1 — The resource and its intent; Filter 2 — Choice and preferences), which is Class 2: Static Demographic Targeting in structure; Class 4: Robust Contingency Planning is the robustness layer on top of it.
+- No adversary (Filter 3 — Environment dynamics), no drifting recipients, and no two-sided preferences, so [Class 1: Dynamic State Evolution](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution), [Class 3: Spatiotemporal Security & Adaptive Search](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) and [Class 5: Strategic Matching Markets](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) don't apply.
+- Not [Class 9: Routing & Logistics](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics), its closest neighbour. Class 9 minimizes the cost of moving goods over a known network. Here the hard part is not route efficiency but not knowing where the storm will land or which roads will survive. The stage-2 dispatch is a small routing problem inside the robust plan, not the main decision.
+- Not an *anticipatory action* trigger on its own. Within Class 4, a trigger agrees in advance to release money or supplies when a forecast crosses a threshold. That suits cases where forecasts give a few days' warning and the action is fixed. It could later sit alongside this plan, for example to move stock forward when a storm is forecast, but it doesn't decide how much to hold in each warehouse before the season.
 
 ## What a good recommendation contains
 

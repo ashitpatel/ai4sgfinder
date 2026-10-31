@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Water, sanitation and hygiene (WASH) |
 | **Intervention type** | Irreversible infrastructure investment |
-| **Expected class** | [2 — Static Demographic Targeting (welfare ILP)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) |
+| **Expected class** | [Class 2: Static Demographic Targeting (welfare ILP)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) |
 | **Most likely confusion** | A need-score ranking in a spreadsheet |
 | **In-depth tutorial** | [How the method works, step by step](../tutorials/02-welfare-optimization-borehole-siting.md) |
 
@@ -17,27 +17,35 @@ A rural water NGO has a donor grant for 25 boreholes in a drought-prone region o
 ## Interview answers
 
 **Filter 1 — The resource and its intent.**
-> We're drilling 25 boreholes. The aim is to get as many people as possible within a 30-minute walk of safe water. Once a borehole is drilled it stays there for 20 years; it can't be moved. A working borehole meets the need directly: people walk to it and collect water.
+> We're drilling 25 boreholes. The aim is to get as many people as possible within a 30-minute walk of safe water. Once a borehole is drilled it stays there for 20 years; it can't be moved. A working borehole meets the need directly: people walk to it and collect water. So it's (a): handed over once and kept.
 
 **Filter 2 — Choice and preferences.**
 > We choose the sites, in consultation with district water officers. Villages want boreholes but don't get to bid or rank; they can't turn one down in any meaningful sense.
 
 **Filter 3 — Environment dynamics.**
-> Passive. Nobody is avoiding us. Population shifts slowly, over years.
+> No. Nobody is avoiding us, and villages don't apply, so there are no answers to game; we work from the census. Population shifts slowly, over years.
 
 **Filter 4 — Tolerance for being wrong.**
-> A bad site is a 20-year mistake and a political problem: last time, two districts complained that a third got most of the wells. Nobody dies directly from one wrong site, but we can't redo it. We have a 2023 household census with village populations and GPS points, and a hydrogeology survey showing which sites can be drilled.
+> A bad site is a 20-year mistake and a political problem: last time, two districts complained that a third got most of the wells. Nobody dies directly from one wrong site, but we can't redo it. We have a 2023 household census with village populations and GPS points, and a hydrogeology survey showing which sites can be drilled. No pilot or trial results.
 
 **Filter 5 — Field data and workflow friction.**
-> This is a one-off decision. Our program team uses Excel and QGIS. The district councils will want to see the reasoning.
+> This is a one-off decision. Our program team uses Excel and QGIS; our GIS officer would run the tool, probably with outside help to set it up. The district councils will want to see the reasoning.
+
+**Narrowing question 1 — Who gets a limited resource.** *"Do you know everyone who could receive it before you decide, or do people or items arrive one at a time and need a decision on the spot?"*
+> We know them all up front: the 300 villages are in the census, and we pick all 25 sites in one go.
+
+**Narrowing question 2 — Who gets a limited resource.** *"Do you have pilot or trial results showing the program helps some kinds of people much more than others?"*
+> No. A borehole helps everyone within walking distance; what matters is how many people that is.
 
 ## Why Class 2: Static Demographic Targeting
 
-The assistant should select **[Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting)**, solved with a welfare integer linear program.
+The assistant should select **[Class 2: Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting)**, solved with a welfare integer linear program.
 
-- **Irreversible capital** (Filter 1 — The resource and its intent) and **central assignment** (Filter 2 — Choice and preferences) point straight to Class 2 (Static Demographic Targeting).
-- **Passive, slow-moving environment** (Filter 3 — Environment dynamics): no adversary, no drift to track, so [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) and [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) don't apply.
-- **Costly but not catastrophic error, with good data** (Filter 4 — Tolerance for being wrong): one-time census data is enough, and there is no unknown shock to hedge against, so [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) isn't needed.
+- **Handed over once and kept** (Filter 1 — The resource and its intent) and **central assignment** (Filter 2 — Choice and preferences) place the problem in the *Who gets a limited resource* family.
+- **Everyone is known up front** (narrowing question 1), which rules out [Class 10: Online Assignment & Waitlists](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists); that class is for families or items arriving one at a time.
+- **No trial results, and the benefit doesn't vary much by who receives it** (narrowing question 2; Filter 4), which rules out [Class 7: Effect-Based Targeting](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting). Together the two answers point to Class 2: Static Demographic Targeting.
+- **Passive, slow-moving environment** (Filter 3 — Environment dynamics): no adversary, no one gaming a rule, no drift to track, so [Class 1: Dynamic State Evolution](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) and [Class 3: Spatiotemporal Security & Adaptive Search](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) don't apply.
+- **Costly but not catastrophic error, with good data** (Filter 4 — Tolerance for being wrong): one-time census data is enough, and there is no unknown shock to hedge against, so [Class 4: Robust Contingency Planning](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) isn't needed.
 - **Fairness and auditability are explicit requirements**, which is exactly what an integer program with an equity constraint can state and prove.
 
 ## What a good recommendation contains

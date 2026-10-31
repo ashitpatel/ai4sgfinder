@@ -29,9 +29,10 @@ SKILL_NAME = "ai4sg-finder"
 SKILL_DESCRIPTION = (
     "Diagnose an NGO or public-sector resource-allocation problem and recommend the "
     "appropriate AI-for-social-good approach (restless bandits, welfare ILP, security "
-    "games, distributionally robust optimization, or matching markets). Use when someone "
+    "games, distributionally robust optimization, matching markets, participatory "
+    "budgeting, effect-based targeting, or adaptive experiments). Use when someone "
     "wants help choosing an algorithm or ML method for allocating aid, staff time, "
-    "patrols, supplies, or seats."
+    "patrols, supplies, seats, or a community budget."
 )
 
 # The Claude Code plugin names its skill "finder", so it runs as /ai4sg-finder:finder.
@@ -167,7 +168,8 @@ title: "AI4SG Finder"
 abstract: >-
   An AI assistant that helps NGOs and public agencies choose the right
   AI-for-social-good allocation method (restless bandits, welfare
-  optimization, security games, robust optimization, or matching markets)
+  optimization, security games, robust optimization, matching markets,
+  participatory budgeting, effect-based targeting, or adaptive experiments)
   for a field problem, packaged for Claude, ChatGPT and Gemini.
 authors:
   - family-names: "{family}"
@@ -187,6 +189,8 @@ keywords:
   - security-games
   - robust-optimization
   - matching-markets
+  - participatory-budgeting
+  - policy-learning
 """
 
 

@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Youth employment and vocational training |
 | **Intervention type** | Two-sided placement |
-| **Expected class** | [5 — Strategic Matching Markets (stable matching)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) |
+| **Expected class** | [Class 5: Strategic Matching Markets (stable matching)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) |
 | **Most likely confusion** | Central assignment by an ML "best-fit" score |
 | **In-depth tutorial** | [How the method works, step by step](../tutorials/05-stable-matching-apprenticeships.md) |
 
@@ -17,27 +17,33 @@ A youth employment NGO places about 200 graduates of its vocational course into 
 ## Interview answers
 
 **Filter 1 — The resource and its intent.**
-> The resource is apprenticeship places, about 220 per cohort for 200 young people. The goal is to get them into a placement they finish, which usually leads to a job. Each cohort is placed once; a placement lasts 6 months. Whether it works depends a lot on whether both the young person and the employer wanted the match.
+> The resource is apprenticeship places, about 220 per cohort for 200 young people. The goal is to get them into a placement they finish, which usually leads to a job. Each cohort is placed once; a placement lasts 6 months. Whether it works depends a lot on whether both the young person and the employer wanted the match. Of your options, (a) is closest: each place is handed over once per cohort.
 
 **Filter 2 — Choice and preferences.**
 > Both sides choose. Young people have strong preferences about trade and location, and employers want to pick who they take. Last cohort, when we just assigned people, 30 young people turned down their placement or quit in the first month, and several employers refused candidates we sent and took someone from another program instead.
 
 **Filter 3 — Environment dynamics.**
-> Cooperative, but strategic: young people sometimes list a less-wanted employer first because they think they have a better chance there.
+> Nobody avoids us, but some people game the system: young people sometimes list a less-wanted employer first because they think they have a better chance there.
 
 **Filter 4 — Tolerance for being wrong.**
-> A bad match costs a young person a placement and possibly their job prospects, and damages our employer relationships. It isn't life-threatening. We have records of past placements and completions.
+> A bad match costs a young person a placement and possibly their job prospects, and damages our employer relationships. It isn't life-threatening. We have records of past placements and completions, but no pilot or trial results.
 
 **Filter 5 — Field data and workflow friction.**
-> Placement happens twice a year. Young people can fill in a paper form; employers use email. Our placement officer uses Excel.
+> Placement happens twice a year. Young people can fill in a paper form; employers use email. Our placement officer uses Excel and would run it.
+
+**Narrowing question — People choose.** *"Do individual people on both sides rank each other, such as students and schools, or does the community vote on how to split one budget among projects?"*
+> Both sides rank each other. Each young person wants particular employers, and each employer wants particular young people. There's no vote and no shared budget.
 
 ## Why Class 5: Strategic Matching Markets
 
-The assistant should select **[Class 5 (Strategic Matching Markets)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets)**, solved with deferred acceptance (stable matching).
+The assistant should select **[Class 5: Strategic Matching Markets](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets)**, solved with deferred acceptance (stable matching).
 
-- **Both sides hold preferences the planner must respect** (Filter 2 — Choice and preferences), with evidence that ignoring them causes refusals and dropouts. This is the decisive signal for Class 5 (Strategic Matching Markets).
-- The **strategic misreporting** in Filter 3 (Environment dynamics) is exactly what a well-designed matching mechanism removes.
-- No adversary, no catastrophic downside, and no repeated per-person decisions, so [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution), [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) and [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) don't apply. [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) would impose a central assignment, which is what failed.
+- **Both sides hold preferences the planner must respect** (Filter 2 — Choice and preferences), with evidence that ignoring them causes refusals and dropouts. This overrides the *Who gets a limited resource* family suggested by Filter 1 and places the problem in the *People choose* family.
+- **Both sides rank each other** (narrowing question), which is the decisive signal for Class 5: Strategic Matching Markets.
+- The **strategic misreporting** in Filter 3 (Environment dynamics) is gaming, not an adversary, so the class stays the same and the rule must be hard to game. That is exactly what a well-designed matching mechanism provides: with young people proposing, honest ranking is their best strategy.
+- Not [Class 6: Participatory Allocation](../../prompt/knowledge/taxonomy.md#class-6-participatory-allocation), the other *People choose* class: there is no community vote on how to split a shared budget among projects.
+- Not [Class 10: Online Assignment & Waitlists](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists): the whole cohort is known at once, twice a year, rather than arriving one at a time, and both sides hold preferences over each other.
+- No adversary, no catastrophic downside, and no repeated per-person decisions, so [Class 1: Dynamic State Evolution](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution), [Class 3: Spatiotemporal Security & Adaptive Search](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) and [Class 4: Robust Contingency Planning](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) don't apply. [Class 2: Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) would impose a central assignment, which is what failed.
 
 ## What a good recommendation contains
 
@@ -58,7 +64,7 @@ The assistant should select **[Class 5 (Strategic Matching Markets)](../../promp
 
 ## What the assistant should *not* do
 
-- Propose a welfare-maximizing central assignment (Class 2 (Static Demographic Targeting)) that ignores stated preferences.
+- Propose a welfare-maximizing central assignment (Class 2: Static Demographic Targeting) that ignores stated preferences.
 - Claim that matching guarantees completion; it removes one cause of dropout, not all of them.
 
 ## After the recommendation
@@ -93,5 +99,5 @@ It should also flag a gap: there are more places (about 220) than young people (
 
 - **2. Readiness checks:** confirm employers are willing to rank applicants; agree in writing that staff won't adjust results by hand after the match; check whether any placement involves a legal entitlement.
 - **3. Pilot design:** run the match in shadow alongside staff assignment for one cohort, then compare refusals and first-month dropouts against last cohort's 30.
-- **4. Build options:** the `matching` library's hospital–resident solver, or a short script; the placement officer keeps the lists in Excel. This class needs the least technical help of the five.
+- **4. Build options:** the `matching` library's hospital–resident solver, or a short script; the placement officer keeps the lists in Excel. Among the twelve classes, this is one of the easiest to build.
 - **6. Brief for a technical partner:** usually unnecessary here; a volunteer with basic Python can set it up from the table above.

@@ -2,6 +2,24 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
+## Unreleased
+
+- Seven new allocation classes, found by reviewing the research of Lily Xu, Roshni Sahoo and Ashish Goel's group, then their wider networks of collaborators and the AI-for-social-good literature, against the original five:
+  - **Class 6: Participatory Allocation** — a community votes on how a shared budget is split (participatory budgeting, knapsack voting, the method of equal shares).
+  - **Class 7: Effect-Based Targeting** — give a program to the people it helps most, learned from pilot or trial data, rather than to the neediest by default (policy learning, causal forests).
+  - **Class 8: Learn-While-Allocating** — learn which of several stable options works while still serving people (bandits, adaptive experiments).
+  - **Class 9: Routing & Logistics** — move goods or people through depots and routes at least cost (vehicle routing, supply-chain network design).
+  - **Class 10: Online Assignment & Waitlists** — place people or items that arrive one at a time (online allocation, dynamic rationing, lotteries).
+  - **Class 11: Network Seeding** — choose the few people whose social ties spread information furthest (influence maximization).
+  - **Class 12: Risk-Based Inspection** — decide where to inspect or test to find hidden hazards (predictive risk ranking, active search).
+- The twelve classes are grouped into five families in the system prompt and kickoff, which now list one line per class to stay within the 8,000- and 4,000-character limits. Class numbers 1–5 are unchanged.
+- The taxonomy, decision tree, system prompt, kickoff prompt, playbook, README and social preview image cover all twelve classes. The interview now runs in two stages: five filters, each one plain question per turn (with an optional follow-up), place the problem in a family; then one or two narrowing questions pick the class. Each family's narrowing questions are in the taxonomy's decision tree, along with a table of the data each class needs.
+- Feeding America's "Choice System" moves from Class 5 to Class 10: it is an auction with credits for donations as they arrive, not a two-sided stable match.
+- Class 4 now covers forecast-triggered anticipatory action; Class 2 notes predict-then-assign variants and eligibility rules that applicants can game.
+- The unverified "Roshni Sahu" attribution is corrected to Roshni Sahoo, with her verified papers.
+- Seven new worked cases (Cases 7–13), one for each of Classes 6–12, each with interview answers, what a good recommendation contains, and Follow-ups 1 and 6 in full. The six existing cases are updated for the two-stage interview and name their new neighboring classes. The case index is grouped by family.
+- The tutorials still cover Cases 1–6.
+
 ## 1.1.2 — 2026-10-31
 
 - New in-depth tutorials, one per worked case, explaining how each method works for readers with basic statistics and no optimization background. Each comes with a runnable Python program that produces every number in the text.
