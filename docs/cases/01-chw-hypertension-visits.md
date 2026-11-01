@@ -49,7 +49,7 @@ The assistant should select **[Class 1: Dynamic State Evolution](../../prompt/kn
 **Stage 2 picks Class 1 over Class 8.**
 - The uncertainty is **how each patient's situation changes** (narrowing answer), not which option works. States drift whether or not you act, and the visit's effect decays (Filter 3 — Environment dynamics): this is the "restless" structure. Each patient is an arm whose state (adhering / lapsing) moves on its own and moves differently when visited.
 
-**Closest neighbours ruled out.**
+**Closest neighbors ruled out.**
 - [Class 8: Learn-While-Allocating](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) is for several options of unknown but stable value. Here there is one option, and what changes is each patient, which Class 8 assumes away.
 - [Class 7: Effect-Based Targeting](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) also asks who a visit would change, but it needs a randomized pilot (there is none, Filter 4) and suits a program offered once, not a choice that repeats every week as people drift.
 - [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) is where a "highest-risk first" list belongs. It finds hidden problems; here the goal is to change behavior, and the patients most likely to lapse are not always the ones a visit helps.

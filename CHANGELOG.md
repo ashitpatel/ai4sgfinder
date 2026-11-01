@@ -18,7 +18,7 @@ Each release on GitHub attaches the ready-to-use files from `dist/`. The version
 - Class 4 now covers forecast-triggered anticipatory action; Class 2 notes predict-then-assign variants and eligibility rules that applicants can game.
 - The unverified "Roshni Sahu" attribution is corrected to Roshni Sahoo, with her verified papers.
 - Seven new worked cases (Cases 7–13), one for each of Classes 6–12, each with interview answers, what a good recommendation contains, and Follow-ups 1 and 6 in full. The six existing cases are updated for the two-stage interview and name their new neighboring classes. The case index is grouped by family.
-- The tutorials still cover Cases 1–6.
+- Seven new tutorials (7–13), one per new case, each with a runnable program that produces every number in the text. Tutorials 1–6 reviewed and updated to name their new neighboring classes and link the new tutorials.
 
 ## 1.1.2 — 2026-10-31
 

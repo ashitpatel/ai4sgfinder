@@ -47,9 +47,9 @@ def wald_interval(k, n, z=Z):
 def wilson_interval(k, n, z=Z):
     """Wilson score interval: the set of p for which k/n is not surprising."""
     p = k / n
-    centre = (p + z**2 / (2 * n)) / (1 + z**2 / n)
+    center = (p + z**2 / (2 * n)) / (1 + z**2 / n)
     half = (z / (1 + z**2 / n)) * math.sqrt(p * (1 - p) / n + z**2 / (4 * n**2))
-    return centre - half, centre + half
+    return center - half, center + half
 
 
 def binom_cdf(k, n, p):

@@ -182,6 +182,7 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 - Mate, A., et al. (2022). *Field Study in Deploying Restless Multi-Armed Bandits: Assisting Non-Profits in Improving Maternal and Child Health.* AAAI. — Harvard Teamcore (Milind Tambe's group) with Google Research India and the NGO ARMMAN; prioritizing live service calls in the mMitra program.
 - Mate, A., Killian, J., Xu, H., Perrault, A., Tambe, M. (2020). *Collapsing Bandits and Their Application to Public Health Interventions.* NeurIPS. — Tuberculosis medication adherence.
 - Killian, J., et al. (2019). *Learning to Prescribe Interventions for Tuberculosis Patients Using Digital Adherence Data.* KDD. — Predictive work on 99DOTS adherence data in India.
+- Wang, K., Xu, L., Taneja, A., Tambe, M. (2023). *Optimistic Whittle Index Policy: Online Learning for Restless Bandits.* AAAI. — UCWhittle, for learning how recipients respond while allocating; research code at lily-x/online-rmab.
 
 **Class 2 — Convex welfare / fairness**
 - Church, R., ReVelle, C. (1974). *The maximal covering location problem.* Papers of the Regional Science Association. — The standard integer-programming model for siting facilities (clinics, schools, water points) to maximize population covered.
@@ -197,6 +198,7 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 **Class 4 — Robust and stochastic optimization**
 - Rawls, C., Turnquist, M. (2010). *Pre-positioning of emergency supplies for disaster response.* Transportation Research Part B. — Two-stage stochastic programming for hurricane pre-positioning.
 - Delage, E., Ye, Y. (2010). *Distributionally robust optimization under moment uncertainty with application to data-driven problems.* Operations Research. — Foundational DRO.
+- Stienen, V., et al. (2021). *Optimal depot locations for humanitarian logistics service providers using robust optimization.* Omega. — A modeling study of the WFP-managed UN Humanitarian Response Depot network.
 - Mohajerin Esfahani, P., Kuhn, D. (2018). *Data-driven distributionally robust optimization using the Wasserstein metric.* Mathematical Programming.
 
 **Class 5 — Matching markets**

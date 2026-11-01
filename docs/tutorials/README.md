@@ -10,6 +10,13 @@ In-depth walkthroughs of the method behind each [worked case](../cases/). Each o
 | [4. Robust optimization: preparing for cyclones you can't forecast](04-robust-optimization-cyclone-prepositioning.md) | [Class 4: Robust Contingency Planning](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) | [Cyclone supplies](../cases/04-cyclone-prepositioning.md) |
 | [5. Stable matching: placing apprentices when both sides choose](05-stable-matching-apprenticeships.md) | [Class 5: Strategic Matching Markets](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) | [Apprenticeships](../cases/05-apprenticeship-matching.md) |
 | [6. No model needed: deciding with basic statistics](06-no-model-food-pantry.md) | No optimization model | [Food pantry](../cases/06-food-pantry-no-model.md) |
+| [7. Participatory budgeting: letting the neighborhood split the fund](07-participatory-budgeting-neighborhood-fund.md) | [Class 6: Participatory Allocation](../../prompt/knowledge/taxonomy.md#class-6-participatory-allocation) | [Neighborhood budget](../cases/07-neighborhood-participatory-budget.md) |
+| [8. Policy learning: giving grants where they change the most](08-policy-learning-business-grants.md) | [Class 7: Effect-Based Targeting](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) | [Business grants](../cases/08-business-grants-effect-targeting.md) |
+| [9. Adaptive experiments: finding the best reminder while sending it](09-adaptive-experiments-sms-reminders.md) | [Class 8: Learn-While-Allocating](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) | [SMS reminders](../cases/09-sms-reminders-adaptive-experiment.md) |
+| [10. Vehicle routing: planning the weekly food deliveries](10-vehicle-routing-food-delivery.md) | [Class 9: Routing & Logistics](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics) | [Food delivery routes](../cases/10-food-delivery-routing.md) |
+| [11. Online assignment: placing families as they arrive](11-online-assignment-refugee-placement.md) | [Class 10: Online Assignment & Waitlists](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists) | [Refugee placement](../cases/11-refugee-placement-online.md) |
+| [12. Network seeding: choosing peer educators who reach the most people](12-network-seeding-peer-educators.md) | [Class 11: Network Seeding](../../prompt/knowledge/taxonomy.md#class-11-network-seeding) | [Peer educators](../cases/12-peer-educators-network-seeding.md) |
+| [13. Risk-based inspection: where to dig for lead pipes](13-risk-based-inspection-lead-pipes.md) | [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) | [Lead-pipe search](../cases/13-lead-pipe-inspection.md) |
 
 ## How each tutorial is organized
 
@@ -33,6 +40,6 @@ pip install -r docs/tutorials/code/requirements.txt
 python3 docs/tutorials/code/case1_restless_bandits.py
 ```
 
-The programs need only `numpy` and, for cases 2–4, PuLP 3 with its built-in free solver. PuLP is pinned below version 4, which changed the way models are written.
+The programs need only `numpy` and, for some cases, PuLP 3 with its built-in free solver. PuLP is pinned below version 4, which changed the way models are written.
 
 All organizations and numbers in the tutorials are illustrative, chosen to teach the method. The research they cite is real and is drawn from the verified references in the [taxonomy](../../prompt/knowledge/taxonomy.md).

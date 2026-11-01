@@ -32,7 +32,7 @@ The cases are listed by family, the grouping the interview uses to narrow down t
 
 Across the thirteen, every filter and every narrowing question is the deciding one at least once, and each case names the classes it is most likely to be confused with, so the cases also show what separates neighboring classes.
 
-Cases 1–6 also have an [in-depth tutorial](../tutorials/) that explains the method step by step, assuming only basic statistics.
+Each case also has an [in-depth tutorial](../tutorials/) that explains its method step by step, assuming only basic statistics.
 
 ## Each case contains
 

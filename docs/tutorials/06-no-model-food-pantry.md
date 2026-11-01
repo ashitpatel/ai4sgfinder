@@ -4,7 +4,7 @@
 
 **You need:** proportions, probabilities, expected values and the idea of a confidence interval. **You don't need:** any machine learning or optimization background. Every term is explained when it first appears.
 
-**Approach:** no optimization model; the nearest alternative would be [Class 2: Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting). **Code:** [`code/case6_no_model_check.py`](code/case6_no_model_check.py). Every number in this tutorial comes from running that file.
+**Approach:** no optimization model; the classes it is most easily mistaken for are [Class 1: Dynamic State Evolution](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) and [Class 2: Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting). **Code:** [`code/case6_no_model_check.py`](code/case6_no_model_check.py). Every number in this tutorial comes from running that file.
 
 ---
 
@@ -53,6 +53,16 @@ If question 3 has a small answer, no model is worth its cost. That is the whole 
 | Shortfall | Demand minus boxes in a week when demand is larger; 3 of the last 52 weeks, about 10–20 boxes each |
 | Allocation rule | The written shortfall rule: in a short week, households with children under 5 or no other support get a full box first; everyone else gets a smaller box |
 | Data | A paper sign-in sheet with ticked names; one laptop; volunteers who change every few months |
+
+### Why none of the twelve classes fits
+
+The finder's interview places a weekly box, handed out centrally, in the *Repeated decisions that learn* family, and then asks which uncertainty matters more: how each household's situation changes, or which of several options works best. The pantry's answer: *"Neither, really. Every registered household that comes gets a box, so we aren't choosing who gets one, and there's only one kind of box."* That rules out each class the pantry might otherwise drift toward, and says what would have to change for it to fit:
+
+- [Class 1: Dynamic State Evolution](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) needs a weekly choice of *which* households get a scarce extra, such as a home visit, with households' situations shifting from week to week. Here everyone who comes is served.
+- [Class 8: Learn-While-Allocating](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) needs several options whose payoff is unknown, such as two box designs or two outreach messages to compare. Here there is one kind of box.
+- [Class 10: Online Assignment & Waitlists](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists) needs capacity to ration as people arrive. Households do arrive one at a time, but there are enough boxes in almost every week, so there is nothing to hold back for later arrivals.
+
+If the pantry started rationing a scarce extra each week, testing alternatives, or running short most weeks, the answer would move toward one of these classes. [Scaling Up](#scaling-up--knowing-when-the-answer-should-change) turns that into measurable triggers.
 
 ---
 
@@ -112,7 +122,7 @@ $$
 \frac{\hat p + \dfrac{z^2}{2n}}{1 + \dfrac{z^2}{n}} \;\pm\; \frac{z}{1 + \dfrac{z^2}{n}}\sqrt{\frac{\hat p(1-\hat p)}{n} + \frac{z^2}{4n^2}}, \qquad z = 1.96.
 $$
 
-The centre is pulled slightly toward one half, and the width never pushes past 0 or 1. With $n = 52$: $z^2 = 3.8416$, the centre is $(0.0577 + 0.0369)/1.0739 = 0.0881$, and the half-width is $1.825 \times \sqrt{0.0010455 + 0.0003552} = 0.0683$.
+The center is pulled slightly toward one half, and the width never pushes past 0 or 1. With $n = 52$: $z^2 = 3.8416$, the center is $(0.0577 + 0.0369)/1.0739 = 0.0881$, and the half-width is $1.825 \times \sqrt{0.0010455 + 0.0003552} = 0.0683$.
 
 **The exact (Clopper–Pearson) interval** uses the binomial distribution directly. The **binomial distribution** gives the chance of exactly $k$ "yes" results in $n$ independent trials that each say yes with probability $p$:
 
@@ -275,7 +285,7 @@ The binomial calculation treats every week alike. The pantry's short weeks actua
 **Joining a regional network** (trigger 3) is where the answer genuinely changes. Once several pantries share one supply, the question becomes how to divide loads *across sites* with different needs. That is a real allocation problem:
 
 - If a central coordinator divides supply by need, it is [Class 2: Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting), the welfare optimization built in the [Case 2 tutorial](02-welfare-optimization-borehole-siting.md).
-- If donated loads arrive over time and each pantry says, or bids for, what it wants, it becomes an online allocation question, [Class 10: Online Assignment & Waitlists](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists). The best-known example in food is Feeding America's **Choice System**, which lets food banks bid for donated loads using an internal currency. Prendergast (2022, *Journal of Political Economy*) describes it and finds it improved allocation across food banks. That works at the scale of a national network of food banks, not a single pantry.
+- If donated loads arrive over time and each pantry says, or bids for, what it wants, it becomes an online allocation question, [Class 10: Online Assignment & Waitlists](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists), the subject of the [online assignment tutorial](11-online-assignment-refugee-placement.md). The best-known example in food is Feeding America's **Choice System**, which lets food banks bid for donated loads using an internal currency. Prendergast (2022, *Journal of Political Economy*) describes it and finds it improved allocation across food banks. That works at the scale of a national network of food banks, not a single pantry.
 
 ---
 
@@ -294,9 +304,9 @@ python3 docs/tutorials/code/case6_no_model_check.py
 def wilson_interval(k, n, z=Z):
     """Wilson score interval: the set of p for which k/n is not surprising."""
     p = k / n
-    centre = (p + z**2 / (2 * n)) / (1 + z**2 / n)
+    center = (p + z**2 / (2 * n)) / (1 + z**2 / n)
     half = (z / (1 + z**2 / n)) * math.sqrt(p * (1 - p) / n + z**2 / (4 * n**2))
-    return centre - half, centre + half
+    return center - half, center + half
 ```
 
 ### The trigger's monthly probability
@@ -379,4 +389,4 @@ Two cautions. The turnout rates, disruption sizes and the 30% priority share are
 
 - **Use the rule and start the tally**, as in the [case's follow-ups](../cases/06-food-pantry-no-model.md#after-the-recommendation): the shortfall rule on a card, a monthly count of short weeks and turn-aways, and the note to the foundation proposing storage and a month-end supplier order.
 - **If the pantry joins a regional network**, read Prendergast (2022) on Feeding America's Choice System, listed in the [taxonomy's verified references](../../prompt/knowledge/taxonomy.md#3-deployment-evidence), and see the [implementation playbook](../../prompt/knowledge/playbook.md#no-model-needed) for what to track.
-- **See what a model looks like when one is warranted**: [restless bandits](01-restless-bandits-chw-visits.md), [welfare optimization](02-welfare-optimization-borehole-siting.md), [security games](03-security-games-marine-patrols.md), [robust optimization](04-robust-optimization-cyclone-prepositioning.md) and [stable matching](05-stable-matching-apprenticeships.md).
+- **See what a model looks like when one is warranted.** The closest to this pantry, if its situation changed: [restless bandits](01-restless-bandits-chw-visits.md) (Class 1, choosing whom to reach each week), [adaptive experiments](09-adaptive-experiments-sms-reminders.md) (Class 8, learning which option works) and [online assignment](11-online-assignment-refugee-placement.md) (Class 10, the Choice System's class). Others: [welfare optimization](02-welfare-optimization-borehole-siting.md), [security games](03-security-games-marine-patrols.md), [robust optimization](04-robust-optimization-cyclone-prepositioning.md) and [stable matching](05-stable-matching-apprenticeships.md).

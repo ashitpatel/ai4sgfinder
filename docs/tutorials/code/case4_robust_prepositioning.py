@@ -14,7 +14,7 @@ Four ways to decide how many kits each warehouse holds before the season:
   A. average storm   - stock in proportion to the average storm's damage
   B. expected value  - best average over the 8 recorded storms (stochastic programming)
   C. robust          - best worst case over every storm we consider possible (minimax)
-  D. distributionally robust (DRO) - best average under the least favourable
+  D. distributionally robust (DRO) - best average under the least favorable
      re-weighting of history that stays "close" to the 8 storms
 """
 
@@ -33,9 +33,9 @@ def solve(prob):
 # Three zones on the coast, one warehouse in each. 120 kits in total.
 # Every storm leaves 80 families needing a kit in the zone where it lands, and it
 # floods the coastal road on both sides, so only that zone's own warehouse can
-# reach them within 2 days. Of 8 recorded storms: 1 North, 5 Centre, 2 South.
+# reach them within 2 days. Of 8 recorded storms: 1 North, 5 Center, 2 South.
 
-TOY_ZONES = ["North", "Centre", "South"]
+TOY_ZONES = ["North", "Center", "South"]
 TOY_KITS, TOY_NEED = 120, 80
 TOY_COUNTS = np.array([1, 5, 2])
 TOY_P = TOY_COUNTS / TOY_COUNTS.sum()
@@ -79,7 +79,7 @@ def toy_plan(method, eps=0.25):
             prob += t >= u[z]
         prob += t
     elif method == "dro":
-        # Worst case over re-weightings, rewritten (by LP duality) as a minimisation:
+        # Worst case over re-weightings, rewritten (by LP duality) as a minimization:
         # lam = price of one zone-step of moved probability, s[i] = worst loss that
         # history in zone i can be moved to, after paying for the move.
         lam = pulp.LpVariable("lam", lowBound=0)
@@ -115,7 +115,7 @@ STRESS = [
     ("east end, severe",            5, 3, []),
     ("west end, moderate",          1, 2, []),
     ("east end, moderate",          5, 2, []),
-    ("centre, stronger than record", 3, 4, []),
+    ("center, stronger than record", 3, 4, []),
     ("east end, stronger than record", 5, 4, []),
     ("Z2 severe, inland road out",  2, 3, ["inland"]),
     ("Z4 severe, inland road out",  4, 3, ["inland"]),
@@ -265,9 +265,9 @@ def evaluate(stock):
 def wilson(k, n, z=1.96):
     """95% Wilson interval for a proportion; behaves sensibly when k = 0 or n is small."""
     p = k / n
-    centre = (p + z * z / (2 * n)) / (1 + z * z / n)
+    center = (p + z * z / (2 * n)) / (1 + z * z / n)
     half = z * np.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / (1 + z * z / n)
-    return max(0.0, centre - half), min(1.0, centre + half)
+    return max(0.0, center - half), min(1.0, center + half)
 
 
 def main():

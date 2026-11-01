@@ -47,6 +47,13 @@ A **matching market** is a setting where things are paired up and the price can'
 
 A **matching** is the list of who goes where, respecting capacities. The question is which matching to pick, and by what procedure.
 
+### Why matching, and not a vote or a waitlist
+
+Two other approaches also let people choose, and it helps to see why neither fits here.
+
+- **A community vote** ([Class 6: Participatory Allocation](../../prompt/knowledge/taxonomy.md#class-6-participatory-allocation)) splits *one shared budget* among projects according to residents' ballots; the [participatory budgeting tutorial](07-participatory-budgeting-neighborhood-fund.md) works through one. Here nobody votes on a common pot. Each young person wants particular employers and each employer wants particular young people, as the NGO told the finder: *"Both sides rank each other... There's no vote and no shared budget."* Preferences over specific partners on both sides are what make this a matching problem.
+- **Assignment as people arrive** ([Class 10: Online Assignment & Waitlists](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists)) places each person or item on the spot, before knowing who comes next, and usually only one side chooses (the program decides where a refugee family goes, say). This cohort is known all at once, twice a year, so everyone's lists can be collected first and matched together. If the program switched to rolling intake, with graduates arriving week by week, the problem would move toward Class 10; the [online assignment tutorial](11-online-assignment-refugee-placement.md) covers that setting.
+
 ### Mapping it to the program
 
 | Matching term | In this program |
@@ -94,7 +101,7 @@ Take any matching. A young person $y$ and an employer $e$ form a **blocking pair
 1. $y$ prefers $e$ to the place $y$ was given (or $y$ was given nothing, or a place $y$ never listed), **and**
 2. $e$ either has an empty place, or prefers $y$ to at least one person it was given.
 
-A blocking pair is a deal waiting to happen outside the system. The young person turns down their placement, or quits after a week, and the employer takes them anyway, leaving another young person's placement or an employer's slot in the lurch. The program's 30 refusals and early quits, and employers "taking someone from another program instead," are what blocking pairs look like in the field.
+A blocking pair is a deal waiting to happen outside the system. The young person turns down their placement, or quits after a week, and the employer takes them anyway, leaving another young person's placement or an employer's slot in the lurch. The program's 30 refusals and early quits, and employers who "took someone from another program instead," are what blocking pairs look like in the field.
 
 A matching with **no** blocking pairs is called **stable**. Nobody has both the wish and the opportunity to defect, so the placements tend to stick. Stability is the central idea of the whole field, introduced by Gale and Shapley (1962).
 
@@ -419,4 +426,4 @@ Cautions:
 - **Run the shadow pilot** described in the [case's follow-ups](../cases/05-apprenticeship-matching.md#after-the-recommendation): run the match alongside staff assignment for one cohort, then compare refusals and first-month dropouts with last cohort's 30 (see also [pilot design in the playbook](../../prompt/knowledge/playbook.md#follow-up-3-pilot-design)).
 - **Read** Roth, *Who Gets What — and Why* (2015), a book for general readers by one of the designers of these matches; then Roth & Peranson (1999) on the residency match and Abdulkadiroğlu, Pathak & Roth (2005) on New York City, listed in the [playbook's reading list](../../prompt/knowledge/playbook.md#follow-up-5-reading-and-people-to-contact). Gale & Shapley (1962), *College admissions and the stability of marriage*, is the original paper and is short.
 - **Code to build on:** the [`matching`](https://github.com/daffidwilde/matching) Python library's hospital–resident solver.
-- **Other tutorials:** [restless bandits for home visits](01-restless-bandits-chw-visits.md), [welfare optimization for borehole siting](02-welfare-optimization-borehole-siting.md), [security games for marine patrols](03-security-games-marine-patrols.md), [robust optimization for cyclone pre-positioning](04-robust-optimization-cyclone-prepositioning.md), and [when no model is needed: the food pantry](06-no-model-food-pantry.md).
+- **Other tutorials:** [restless bandits for home visits](01-restless-bandits-chw-visits.md), [welfare optimization for borehole siting](02-welfare-optimization-borehole-siting.md), [security games for marine patrols](03-security-games-marine-patrols.md), [robust optimization for cyclone pre-positioning](04-robust-optimization-cyclone-prepositioning.md), [when no model is needed: the food pantry](06-no-model-food-pantry.md), [participatory budgeting for a neighborhood fund](07-participatory-budgeting-neighborhood-fund.md) (the other *People choose* class, where the community votes on one budget), and [online assignment for refugee placement](11-online-assignment-refugee-placement.md) (placing people as they arrive).

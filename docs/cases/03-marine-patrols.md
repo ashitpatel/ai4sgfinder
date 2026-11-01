@@ -39,7 +39,7 @@ A coastal conservation trust co-manages a marine protected area divided into 40 
 The assistant should select **[Class 3: Spatiotemporal Security & Adaptive Search](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search)**, solved with a Stackelberg security game.
 
 - **Patrols that search for something hidden** (Filter 1 — The resource and its intent) place the problem in the *Space, movement and risk* family. Decisively, there is **an adversary who adapts to your moves** (Filter 3 — Environment dynamics), and the narrowing answer confirms that outwitting them is the hard part. This is the defining signature of Class 3: Spatiotemporal Security & Adaptive Search.
-- Not [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection), its closest neighbour. Class 12 also sends limited checks to where problems are likely, but it assumes the hidden problem stays put. Here the fishers move when they see a pattern, so a ranked list of high-risk zones becomes predictable and is avoided. The risk model inside Class 3 plays the same role as a Class 12 model, inside a randomized plan.
+- Not [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection), its closest neighbor. Class 12 also sends limited checks to where problems are likely, but it assumes the hidden problem stays put. Here the fishers move when they see a pattern, so a ranked list of high-risk zones becomes predictable and is avoided. The risk model inside Class 3 plays the same role as a Class 12 model, inside a randomized plan.
 - Not [Class 8: Learn-While-Allocating](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) or [Class 9: Routing & Logistics](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics): Class 8 learns which options pay off when nobody is evading you, and Class 9 minimizes travel cost, which isn't the problem here.
 - Central routing (Filter 2 — Choice and preferences) rules out [Class 5: Strategic Matching Markets](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) and [Class 6: Participatory Allocation](../../prompt/knowledge/taxonomy.md#class-6-participatory-allocation); exploration is tolerable (Filter 4 — Tolerance for being wrong), so a [Class 4: Robust Contingency Planning](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) layer isn't required.
 - Not [Class 1: Dynamic State Evolution](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution): the "state" that matters is the fishers' strategic response to your pattern, not a recipient's independent drift.
@@ -86,7 +86,7 @@ A good answer goes through the playbook checklist using this program's answers, 
 | Maintenance | Partly ready | SMART data arrives monthly. Decide who refits the model each month and who covers when they're away. |
 | Exit plan | Ready | The current schedule remains the fallback. |
 
-Fix the four "not ready" items before the pilot; the "partly ready" items can be resolved during it.
+Fix the three "not ready" items before the pilot; the "partly ready" items can be resolved during it.
 
 ### The other follow-ups, in brief
 

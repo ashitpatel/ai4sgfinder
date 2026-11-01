@@ -95,16 +95,16 @@ def make_region(seed=2023):
     Returns a dict of numpy arrays. All of it is invented for teaching.
     """
     rng = np.random.default_rng(seed)
-    # district: (number of villages, market-town centres (km), median village size)
+    # district: (number of villages, market-town centers (km), median village size)
     layout = {"A": (95, [(10, 38), (16, 30), (6, 28)], 900),   # river valley: big, dense villages
               "B": (80, [(34, 38), (40, 30)], 650),
               "C": (70, [(12, 12), (20, 6)], 600),
               "D": (55, [(34, 14), (42, 6), (30, 4)], 380)}    # hills: small, scattered villages
     xy, pop, dist = [], [], []
-    for d, (n, centres, median) in layout.items():
+    for d, (n, centers, median) in layout.items():
         spread = 4.0 if d == "D" else 2.5
         for i in range(n):
-            cx, cy = centres[i % len(centres)]
+            cx, cy = centers[i % len(centers)]
             xy.append((cx + rng.normal(0, spread), cy + rng.normal(0, spread)))
             pop.append(int(round(median * rng.lognormal(0, 0.5))))
             dist.append(d)
@@ -192,7 +192,7 @@ def covering_model(region, reach, pop=None, mode="coverage", floor=0.0, worst=No
     mode="coverage": maximize people covered; every district must reach `floor` share.
     mode="maximin":  maximize the worst district's share.
     worst=t:         also require every district >= t (used to break maximin ties
-                     in favour of more people covered).
+                     in favor of more people covered).
     Returns (chosen sites, seconds, number of decision variables).
     """
     pop = region["pop"] if pop is None else pop

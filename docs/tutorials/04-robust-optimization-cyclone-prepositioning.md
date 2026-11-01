@@ -12,7 +12,7 @@
 
 A humanitarian NGO serves a low-lying coastal delta. Before each cyclone season it stores **30,000 family kits** (water purification tablets, tarpaulins, five days of dry food) in **6 warehouses**. When a cyclone makes landfall, roads flood, bridges go out, and some warehouses are cut off for days. Kits in the wrong warehouse might as well not exist. The NGO has detailed records of only **8 severe cyclones in 25 years**.
 
-The usual answer is to plan for the average storm: look at where past storms hit, and stock each warehouse in proportion. It fails in an instructive way. The average storm never happens. Each real storm hits one part of the coast hard, and the first one to hit an end of the coast finds the nearest warehouse nearly empty and the bridges from the well-stocked centre washed out.
+The usual answer is to plan for the average storm: look at where past storms hit, and stock each warehouse in proportion. It fails in an instructive way. The average storm never happens. Each real storm hits one part of the coast hard, and the first one to hit an end of the coast finds the nearest warehouse nearly empty and the bridges from the well-stocked center washed out.
 
 This tutorial builds the alternative step by step:
 
@@ -26,7 +26,7 @@ This tutorial builds the alternative step by step:
 
 The idea that ties it together: **don't plan for the storm you expect; plan so that no plausible storm finds you badly short.**
 
-A word of honesty before we start. Of the five approaches in this project, this one is the **least field-proven**. The evidence is mostly in modeling studies, such as Rawls & Turnquist (2010) on hurricane pre-positioning and a modeling study of the WFP-managed UN Humanitarian Response Depot network ([Stienen et al., Omega 2021](https://pure.uva.nl/ws/files/67452240/1_s2.0_S0305048321001031_main.pdf)). Operational use by NGOs is much less documented.
+A word of honesty before we start. Of the twelve approaches in this project, robust pre-positioning is one of the **least field-proven**. The evidence is mostly in modeling studies, such as Rawls & Turnquist (2010) on hurricane pre-positioning and a modeling study of the WFP-managed UN Humanitarian Response Depot network ([Stienen et al., Omega 2021](https://pure.uva.nl/ws/files/67452240/1_s2.0_S0305048321001031_main.pdf)). Operational use by NGOs is much less documented. (Forecast-triggered anticipatory action, a related design within the same class, does have documented field use; see [Why this method and not another](#why-this-method-and-not-another).)
 
 ---
 
@@ -80,7 +80,7 @@ In the [Case 1 tutorial](01-restless-bandits-chw-visits.md), a wrong choice mean
 
 ### Problem 3: The average storm never happens
 
-Averages hide exactly what matters. If half the storms hit the centre and the rest are split between the two sides, the "average" landfall is the centre, and an average-based plan concentrates stock there. That plan looks fine on paper and fails the first time a storm hits one end of the coast, which the record shows will happen eventually.
+Averages hide exactly what matters. If half the storms hit the center and the rest are split between the two sides, the "average" landfall is the center, and an average-based plan concentrates stock there. That plan looks fine on paper and fails the first time a storm hits one end of the coast, which the record shows will happen eventually.
 
 ### What the method must do
 
@@ -90,6 +90,13 @@ Put together, the method must:
 2. **Not trust the record's proportions** as if they were exact.
 3. **Protect against storms the record doesn't contain**, such as landfall at an end of the coast or a storm stronger than any on file.
 4. **Say what that protection costs**, so funders can choose how much of it to buy.
+
+### Why this method and not another
+
+Two neighboring approaches look similar and are worth ruling out explicitly.
+
+- **[Class 9: Routing & Logistics](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics).** Kits do move by truck, and the NGO's answer to the finder's narrowing question puts the movement in its place: *"Trucking kits out is something we know how to do; the problem is that we don't know where the next one will hit or which roads will survive."* Routing models minimize the cost of moving goods over a known network. Here the network itself is uncertain, so the after-landfall dispatch becomes a small routing problem *inside* the robust plan (stage 2, below), not the main decision. If the NGO later ran regular deliveries to many sites, Class 9 would be the right tool for those (see the [vehicle routing tutorial](10-vehicle-routing-food-delivery.md)).
+- **Forecast-triggered anticipatory action**, a related design within [Class 4](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning). Partners agree in advance on a forecast threshold, the action and its funding, so money or supplies are released automatically when a forecast crosses the threshold. OCHA and the Central Emergency Response Fund activated such a pilot in Somalia in 2020, triggered by projected food insecurity, and GiveDirectly sent cash to about 3,250 households in Kogi State, Nigeria, in 2024 ahead of forecast peak flooding. A trigger suits a fixed action with a few days' warning. It could sit alongside this plan, for example to move stock forward once a cyclone is forecast, but it doesn't decide how many kits to hold in each warehouse months before the season. That is the question this tutorial answers.
 
 ---
 
@@ -107,7 +114,7 @@ Tally the landfall zones. The natural estimate of each zone's probability is the
 |---|---|---|
 | Z1 (west end) | 0 | 0.000 |
 | Z2 | 2 | 0.250 |
-| Z3 (centre) | 4 | 0.500 |
+| Z3 (center) | 4 | 0.500 |
 | Z4 | 2 | 0.250 |
 | Z5 (east end) | 0 | 0.000 |
 
@@ -121,7 +128,7 @@ $$
 \hat p \pm 1.96 \sqrt{\frac{\hat p (1-\hat p)}{n}}
 $$
 
-With $n = 8$ it gives nonsense at the edges. For a zone with no storms, $\hat p = 0$, so the interval is 0.000 to 0.000: perfect certainty from zero evidence. A better choice for small samples is the **Wilson interval**, which shifts the centre slightly toward one half and never collapses to a single point:
+With $n = 8$ it gives nonsense at the edges. For a zone with no storms, $\hat p = 0$, so the interval is 0.000 to 0.000: perfect certainty from zero evidence. A better choice for small samples is the **Wilson interval**, which shifts the center slightly toward one half and never collapses to a single point:
 
 $$
 \frac{\hat p + \dfrac{z^2}{2n} \;\pm\; z\sqrt{\dfrac{\hat p(1-\hat p)}{n} + \dfrac{z^2}{4n^2}}}{1 + \dfrac{z^2}{n}}, \qquad z = 1.96
@@ -137,7 +144,7 @@ $$
 
 A simpler check gives the same message. The **rule of three** says that if an event happened 0 times in $n$ tries, a rough 95% upper bound on its probability is $3/n$. Here $3/8 = 0.375$. **A zone that has never been hit could still take more than a third of future storms**, as far as 8 storms can tell.
 
-The centre's share is somewhere between about 0.2 and 0.8. The record can't even tell us whether the centre takes most storms or a minority of them. This is [The Core Bottleneck](#the-core-bottleneck--eight-storms-and-a-catastrophic-downside) in numbers.
+The center's share is somewhere between about 0.2 and 0.8. The record can't even tell us whether the center takes most storms or a minority of them. This is [The Core Bottleneck](#the-core-bottleneck--eight-storms-and-a-catastrophic-downside) in numbers.
 
 ### Step 3: Build a plausible set of probability patterns
 
@@ -169,13 +176,13 @@ Write $x$ for the stock plan (kits per warehouse) and $U_k(x)$ for the **unmet n
 | **A. Average storm** | (no optimization) stock in proportion to the average storm's damage | Plan for a storm that never happens |
 | **B. Expected value** | $\sum_k p_k\, U_k(x)$ | Best on average, trusting the record's proportions $p_k$ |
 | **C. Robust** | $\max_k U_k(x)$ | Best in the single worst storm considered possible |
-| **D. Distributionally robust (DRO)** | $\max_{q \in \text{plausible set}} \sum_k q_k\, U_k(x)$ | Best on average under the least favourable plausible pattern of storms |
+| **D. Distributionally robust (DRO)** | $\max_{q \in \text{plausible set}} \sum_k q_k\, U_k(x)$ | Best on average under the least favorable plausible pattern of storms |
 
 Plan B is called **two-stage stochastic programming**: Rawls & Turnquist (2010) used this form for hurricane pre-positioning. Plan C is **robust optimization**: it plays a game against nature, where you choose the stock first and nature then picks the storm that hurts you most. Choosing the plan whose worst case is least bad is called **minimax** (minimize the maximum). Plan D is **distributionally robust optimization**: nature picks not a single storm but the worst plausible *probability pattern* from [From Eight Storms to Estimates](#from-eight-storms-to-estimates--wide-intervals-and-a-plausible-set). It sits between B (nature has no freedom) and C (nature has total freedom).
 
 ### Step-by-step concrete example: three warehouses, 120 kits
 
-A coast with three zones, North, Centre and South, each with one warehouse. There are **120 kits**. Every storm leaves **80 families** needing a kit in the zone where it lands, and it floods the coastal road on both sides, so **only that zone's own warehouse can reach them within 2 days**. Of 8 recorded storms, **1 landed North, 5 Centre, 2 South**, so the record's probabilities are $1/8, 5/8, 2/8$.
+A coast with three zones, North, Center and South, each with one warehouse. There are **120 kits**. Every storm leaves **80 families** needing a kit in the zone where it lands, and it floods the coastal road on both sides, so **only that zone's own warehouse can reach them within 2 days**. Of 8 recorded storms, **1 landed North, 5 Center, 2 South**, so the record's probabilities are $1/8, 5/8, 2/8$.
 
 Because only the local warehouse helps, the unmet need for a storm in zone $z$ is simply
 
@@ -185,19 +192,19 @@ $$
 
 **Step A: Four stock plans, and the unmet need if the storm lands in each zone.**
 
-- **A, average storm.** The average storm needs $80 \times 1/8 = 10$ kits North, $80 \times 5/8 = 50$ Centre and $80 \times 2/8 = 20$ South. Scale up in proportion to use all 120 kits: 15, 75, 30.
-- **B, expected value.** A kit in the Centre warehouse is used in 5 storms out of 8, so fill the Centre to 80 first; a kit in the South is used in 2 of 8, so the remaining 40 go South; North gets nothing.
+- **A, average storm.** The average storm needs $80 \times 1/8 = 10$ kits North, $80 \times 5/8 = 50$ Center and $80 \times 2/8 = 20$ South. Scale up in proportion to use all 120 kits: 15, 75, 30.
+- **B, expected value.** A kit in the Center warehouse is used in 5 storms out of 8, so fill the Center to 80 first; a kit in the South is used in 2 of 8, so the remaining 40 go South; North gets nothing.
 - **C, robust.** Nature will pick the zone with the least stock, so make the three equal: 40 each.
-- **D, distributionally robust.** Fill the Centre to 80, then split the remaining 40 evenly between the two ends: 20 and 20. Step C shows why.
+- **D, distributionally robust.** Fill the Center to 80, then split the remaining 40 evenly between the two ends: 20 and 20. Step C shows why.
 
-| Plan | Stock N / C / S | Unmet if North | Unmet if Centre | Unmet if South |
+| Plan | Stock N / C / S | Unmet if North | Unmet if Center | Unmet if South |
 |---|---|---|---|---|
 | A. Average storm | 15 / 75 / 30 | 65 | 5 | 50 |
 | B. Expected value | 0 / 80 / 40 | 80 | 0 | 40 |
 | C. Robust | 40 / 40 / 40 | 40 | 40 | 40 |
 | D. DRO | 20 / 80 / 20 | 60 | 0 | 60 |
 
-**Step B: Expected and worst-case unmet need.** The expected value weights each column by the record: $\tfrac18 \times \text{North} + \tfrac58 \times \text{Centre} + \tfrac28 \times \text{South}$. For plan A:
+**Step B: Expected and worst-case unmet need.** The expected value weights each column by the record: $\tfrac18 \times \text{North} + \tfrac58 \times \text{Center} + \tfrac28 \times \text{South}$. For plan A:
 
 $$
 \tfrac18(65) + \tfrac58(5) + \tfrac28(50) = \frac{65 + 25 + 100}{8} = 23.75
@@ -214,7 +221,7 @@ For plan D: $(60 + 0 + 120)/8 = 22.5$. For B: $(80 + 0 + 80)/8 = 20$. For C: 40.
 
 Plan A loses to plan D on **both** measures. Planning for the average storm isn't a cautious compromise; it is simply worse.
 
-**Step C: The worst plausible pattern.** Use the plausible set from [From Eight Storms to Estimates](#from-eight-storms-to-estimates--wide-intervals-and-a-plausible-set) with $\varepsilon = 0.25$: nature may move two of the eight storms one zone each. Centre is next to both ends, so nature's best move is to take two Centre storms and land them at whichever end the plan has left weakest. The odds become $3/8, 3/8, 2/8$ (or $1/8, 3/8, 4/8$ if South is weaker). For plan D:
+**Step C: The worst plausible pattern.** Use the plausible set from [From Eight Storms to Estimates](#from-eight-storms-to-estimates--wide-intervals-and-a-plausible-set) with $\varepsilon = 0.25$: nature may move two of the eight storms one zone each. Center is next to both ends, so nature's best move is to take two Center storms and land them at whichever end the plan has left weakest. The odds become $3/8, 3/8, 2/8$ (or $1/8, 3/8, 4/8$ if South is weaker). For plan D:
 
 $$
 \tfrac38(60) + \tfrac38(0) + \tfrac28(60) = \frac{180 + 0 + 120}{8} = 37.5
@@ -227,7 +234,7 @@ $$
 | C. Robust | any (all zones equal) | 40.00 |
 | D. DRO | 3 / 3 / 2 | **37.50** |
 
-Plan D wins this contest because it gives nature nothing to exploit: both ends are equally stocked, so moving storms to either end costs the same, and the Centre, still the most likely landfall, stays full. Try nudging it: with 10 / 80 / 30, nature moves two storms North and the figure rises to $(3 \times 70 + 2 \times 50)/8 = 38.75$.
+Plan D wins this contest because it gives nature nothing to exploit: both ends are equally stocked, so moving storms to either end costs the same, and the Center, still the most likely landfall, stays full. Try nudging it: with 10 / 80 / 30, nature moves two storms North and the figure rises to $(3 \times 70 + 2 \times 50)/8 = 38.75$.
 
 ### Writing the plans as linear programs
 
@@ -255,7 +262,7 @@ Read $\lambda$ (lambda) as **the price nature pays to move one storm by one zone
 
 Compare the plans with plan B, the best on the record's own odds:
 
-- **Plan C** cuts the worst case from 80 families to 40, but doubles expected unmet need, from 20 to 40. It treats a Centre storm, the most common kind, as no more likely than a North storm.
+- **Plan C** cuts the worst case from 80 families to 40, but doubles expected unmet need, from 20 to 40. It treats a Center storm, the most common kind, as no more likely than a North storm.
 - **Plan D** cuts the worst case from 80 to 60 and raises expected unmet need only from 20 to 22.5.
 
 The extra unmet need on average (or, with a flexible budget, the extra stock) that a plan accepts in exchange for a better worst case is called the **price of robustness**. Every robust plan pays it. The question is never "robust or not?" but "how much protection, at what price?" The plausible-set size $\varepsilon$ is the dial: $\varepsilon = 0$ gives plan B, and in this toy a large enough $\varepsilon$ gives plan C.
@@ -266,9 +273,9 @@ The extra unmet need on average (or, with a flexible budget, the extra stock) th
 
 The toy has one warehouse per zone and a single road rule. The full model in the code keeps the same logic with more realistic pieces.
 
-**1. The coast and its people.** Five coastal zones, Z1 (west) to Z5 (east). Each zone has a coastal shelter area of 45,000 families and an inland one of 30,000. A storm of severity $s$ leaves $12\% \times s$ of coastal families in the landfall zone needing a kit, $4\% \times s$ in each neighbouring zone, and half those shares inland. A recorded storm landing in Z2–Z4 leaves 12,000, 24,000 or 36,000 families needing kits at severity 1, 2 or 3.
+**1. The coast and its people.** Five coastal zones, Z1 (west) to Z5 (east). Each zone has a coastal shelter area of 45,000 families and an inland one of 30,000. A storm of severity $s$ leaves $12\% \times s$ of coastal families in the landfall zone needing a kit, $4\% \times s$ in each neighboring zone, and half those shares inland. A recorded storm landing in Z2–Z4 leaves 12,000, 24,000 or 36,000 families needing kits at severity 1, 2 or 3.
 
-**2. Warehouses and roads.** W1–W5 sit one per zone on the coast; W6 is an inland hub behind Z3. Within 2 days, a coastal warehouse can reach its own zone and the neighbouring zones, crossing a bridge; W6 reaches Z2–Z4 by an inland road. A storm of severity 2 or more cuts the bridges on both sides of landfall; a severity-4 storm also cuts the next ones out.
+**2. Warehouses and roads.** W1–W5 sit one per zone on the coast; W6 is an inland hub behind Z3. Within 2 days, a coastal warehouse can reach its own zone and the neighboring zones, crossing a bridge; W6 reaches Z2–Z4 by an inland road. A storm of severity 2 or more cuts the bridges on both sides of landfall; a severity-4 storm also cuts the next ones out.
 
 **3. Stage 2 as a small linear program.** For each storm, the dispatch decides $f_{wa}$, the kits warehouse $w$ sends to area $a$:
 
@@ -363,7 +370,7 @@ Simulation - full model: 6 warehouses, 30,000 kits, 10 shelter areas
   east end, severe                  A=0.29  B=0.42  C=0.55  D=0.51
   west end, moderate                A=0.35  B=0.50  C=0.70  D=0.64
   east end, moderate                A=0.31  B=0.50  C=0.70  D=0.64
-  centre, stronger than record      A=0.56  B=0.43  C=0.26  D=0.31
+  center, stronger than record      A=0.56  B=0.43  C=0.26  D=0.31
   east end, stronger than record    A=0.20  B=0.38  C=0.43  D=0.45
   Z2 severe, inland road out        A=0.49  B=0.17  C=0.33  D=0.25
   Z4 severe, inland road out        A=0.41  B=0.17  C=0.33  D=0.25
@@ -394,7 +401,7 @@ The same run first prints the intervals from [From Eight Storms to Estimates](#f
 
 **On the 8 recorded storms, plan B looks best**: it reaches 94.2% of affected families on average and 70.0% in the worst recorded storm. Of course it does; it was built from those storms. Plan A, the average-storm plan, reaches 77.2% on average and 49.2% in the worst recorded storm.
 
-**On the 10 storms nobody planned for, the order changes.** Plan B's worst case falls to 16.7%. The robust plans hold up better: C reaches 26.3% in its worst stress scenario and D 25.0%, against 19.5% for A and 16.7% for B. The gain is clearest at the ends of the coast, where no recorded storm has landed. (Plans C and D did consider end-of-coast landfalls, because they moved recorded storms there; they never saw the workshop list itself.) in a severe west-end storm, C and D reach 55% and 51% of families against B's 42% and A's 32%. Plans C and D improve on A in all four summary numbers, so by the case's decision rule (adopt if worst-case reach improves on the current layout and the stock fits the budget), either would pass if A stands in for the current layout.
+**On the 10 storms nobody planned for, the order changes.** Plan B's worst case falls to 16.7%. The robust plans hold up better: C reaches 26.3% in its worst stress scenario and D 25.0%, against 19.5% for A and 16.7% for B. The gain is clearest at the ends of the coast, where no recorded storm has landed. (Plans C and D did consider end-of-coast landfalls, because they moved recorded storms there; they never saw the workshop list itself.) In a severe west-end storm, C and D reach 55% and 51% of families against B's 42% and A's 32%. Plans C and D improve on A in all four summary numbers, so by the case's decision rule (adopt if worst-case reach improves on the current layout and the stock fits the budget), either would pass if A stands in for the current layout.
 
 **The price of robustness is visible and moderate for D.** Moving from B to D gives up 5.8 points of average reach on the recorded storms (0.942 to 0.884) and raises the worst stress result from 16.7% to 25.0%. Plan C gives up 11.6 points (0.942 to 0.826) for a little more protection. The dial table shows the trade-off step by step: as $\varepsilon$ grows, average reach on the record falls (0.942, 0.896, 0.884, then 0.826 for C) while the worst case over every landfall zone rises (0.417, 0.500, 0.512, 0.551). (In the full model, plan C is the most protective setting rather than the literal end of the $\varepsilon$ dial: nature may move a storm's landfall but not make it stronger, so the DRO plan never reduces exactly to "guard against the single worst storm.")
 
@@ -406,7 +413,7 @@ The same run first prints the intervals from [From Eight Storms to Estimates](#f
 
 Four things the numbers do **not** show.
 
-1. **A robust plan is only robust against what is in its set.** Plans C and D lean on the inland hub W6 because no planning storm cut the inland road. When the workshop scenarios cut it, C and D reach 33% and 25% of families against A's 49% and 41%. Likewise, the centre storm stronger than any on record hurts C (26%) more than A (56%), which kept most stock in the centre. This is why the workshop scenarios must come from local engineers, and why the plan should be rerun after they are added to the planning set (with a new stress set for testing).
+1. **A robust plan is only robust against what is in its set.** Plans C and D lean on the inland hub W6 because no planning storm cut the inland road. When the workshop scenarios cut it, C and D reach 33% and 25% of families against A's 49% and 41%. Likewise, the center storm stronger than any on record hurts C (26%) more than A (56%), which kept most stock in the center. This is why the workshop scenarios must come from local engineers, and why the plan should be rerun after they are added to the planning set (with a new stress set for testing).
 2. **No layout of 30,000 kits handles the worst storms well.** Every plan's worst stress result is below 27%. The honest message is that stock placement can't substitute for more stock, faster routes or other measures in the worst cases.
 3. **Out-of-sample results don't move smoothly with $\varepsilon$.** The stress columns improve from $\varepsilon = 0$ to $\varepsilon = 0.25$ and then barely change. The dial guarantees a trade-off only on the storms the model was given.
 4. **Everything here is invented.** The coast, populations, storm effects and road rules are made up to teach the method; real gains depend on a real road map and real storm footprints. The model also ignores costs the case cares about, such as storage and the kits that expire unused in remote warehouses. A real version would add them; the pilot's harm measure tracks them.
@@ -433,4 +440,4 @@ Four things the numbers do **not** show.
 - **Run the pilot** described in the [case's follow-ups](../cases/04-cyclone-prepositioning.md#after-the-recommendation): replay the recorded storms, stress-test with workshop scenarios kept out of the model, and run a tabletop exercise with the dispatch cards and no phones. The [playbook's pilot section](../../prompt/knowledge/playbook.md#follow-up-3-pilot-design) has the general rules.
 - **Read** Rawls & Turnquist (2010) on pre-positioning emergency supplies first, then Rahimian & Mehrotra (2022), *Frameworks and Results in Distributionally Robust Optimization*, an [open-access review](https://doi.org/10.5802/ojmo.15). Delage & Ye (2010) and Mohajerin Esfahani & Kuhn (2018) are the foundational DRO papers. See the [implementation playbook](../../prompt/knowledge/playbook.md#follow-up-5-reading-and-people-to-contact).
 - **Tools and help:** [RSOME](https://xiongpengnus.github.io/rsome/) writes robust and distributionally robust models in Python; Pyomo with the free HiGHS solver handles the stochastic version. This is the hardest class to model well, so look for an operations-research specialist, for example through INFORMS Pro Bono Analytics ([build options](../../prompt/knowledge/playbook.md#follow-up-4-build-options--tools-and-partners)).
-- **Other tutorials:** the [Case 2 tutorial](02-welfare-optimization-borehole-siting.md) covers the location model that this robustness layer sits on; the [Case 1 tutorial](01-restless-bandits-chw-visits.md) shows the opposite situation, where errors are cheap and learning by trial is the right approach; the [Case 6 tutorial](06-no-model-food-pantry.md) covers when no model is needed at all.
+- **Other tutorials:** the [Case 2 tutorial](02-welfare-optimization-borehole-siting.md) covers the location model that this robustness layer sits on; the [Case 1 tutorial](01-restless-bandits-chw-visits.md) shows the opposite situation, where errors are cheap and learning by trial is the right approach; the [vehicle routing tutorial](10-vehicle-routing-food-delivery.md) ([Class 9](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics)) covers the case where moving the goods, not preparing for the storm, is the hard part; the [Case 6 tutorial](06-no-model-food-pantry.md) covers when no model is needed at all.

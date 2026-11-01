@@ -6,6 +6,7 @@
 | **Intervention type** | Peer education (a message passed person to person) |
 | **Expected class** | [11 — Network Seeding (influence maximization)](../../prompt/knowledge/taxonomy.md#class-11-network-seeding) |
 | **Most likely confusion** | Training the most at-risk youth, or letting staff pick "natural leaders" with no model |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/12-network-seeding-peer-educators.md) |
 
 ## Scenario
 

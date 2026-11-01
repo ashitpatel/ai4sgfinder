@@ -6,6 +6,7 @@
 | **Intervention type** | Repeated message to new recipients (SMS reminder wording) |
 | **Expected class** | [8 — Learn-While-Allocating (adaptive experimentation)](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) |
 | **Most likely confusion** | [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution), because the reminders go out every week; or "no model needed, just run a four-arm randomized trial" |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/09-adaptive-experiments-sms-reminders.md) |
 
 ## Scenario
 

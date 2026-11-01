@@ -6,6 +6,7 @@
 | **Intervention type** | One-time placement of arrivals under yearly quotas |
 | **Expected class** | [10 — Online Assignment & Waitlists (online allocation)](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists) |
 | **Most likely confusion** | Assigning the whole year's families at once with an integer program, or a stable match between families and cities |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/11-online-assignment-refugee-placement.md) |
 
 ## Scenario
 

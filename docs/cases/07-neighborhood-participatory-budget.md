@@ -6,6 +6,7 @@
 | **Intervention type** | Shared community budget for small public works |
 | **Expected class** | [6 — Participatory Allocation (method of equal shares)](../../prompt/knowledge/taxonomy.md#class-6-participatory-allocation) |
 | **Most likely confusion** | A planner ranking the projects ([Class 2](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting)), or treating the vote as a matching problem ([Class 5](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets)) |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/07-participatory-budgeting-neighborhood-fund.md) |
 
 ## Scenario
 
@@ -51,7 +52,7 @@ The assistant should select **[Class 6 (Participatory Allocation)](../../prompt/
 - **The community votes on how to split a budget** (Filter 2 — Choice and preferences). That moves the problem into the *People choose* family, even though Filter 1 (a) on its own would have pointed to *Who gets a limited resource*.
 - **One budget, no two-sided ranking** (narrowing question). Projects have no preferences over voters, so this is [Class 6 (Participatory Allocation)](../../prompt/knowledge/taxonomy.md#class-6-participatory-allocation), not [Class 5 (Strategic Matching Markets)](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets).
 - **The decision right belongs to residents**, with the council committed to the outcome (Filter 2). That rules out [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting): there is no planner's objective to optimize, and an optimized plan that overrode the vote would break the council's promise.
-- **Bloc voting is not an adversary** (Filter 3 — Environment dynamics). Nobody evades anyone over territory, so [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) is out. Blocs are exactly what a proportional rule is built to handle.
+- **Bloc voting is not an adversary** (Filter 3 — Environment dynamics). Nobody evades anyone over territory, so [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) is out. A proportional rule limits what a bloc can win, though the step that spends leftover money can still favor it (see the tutorial).
 - **Errors are fixable yearly** (Filter 4 — Tolerance for being wrong), so [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) isn't needed; the stake is trust, which a fair, published rule protects. A costed project list and a voting process (Filters 1 and 5) are the data Class 6 needs.
 
 ## What a good recommendation contains

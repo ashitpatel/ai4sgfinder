@@ -6,10 +6,11 @@
 | **Intervention type** | Recurring in-kind delivery by truck |
 | **Expected class** | [9 — Routing & Logistics (vehicle routing with capacities and time windows)](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics) |
 | **Most likely confusion** | [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting), deciding *who* gets food rather than how it travels; or [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning), treating rainy-season road closures as the main risk |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/10-vehicle-routing-food-delivery.md) |
 
 ## Scenario
 
-A regional food-assistance NGO delivers food every week to 140 distribution points (church halls, schools, community centres) from 3 warehouses, using 12 trucks. Each point is run by volunteers who open at set hours on a set day. Today each warehouse serves a fixed list of points inherited from years ago, and dispatchers build routes by hand in Excel. Trucks sometimes arrive after volunteers have gone home, and fuel is the second-largest cost after the food itself.
+A regional food-assistance NGO delivers food every week to 140 distribution points (church halls, schools, community centers) from 3 warehouses, using 12 trucks. Each point is run by volunteers who open at set hours on a set day. Today each warehouse serves a fixed list of points inherited from years ago, and dispatchers build routes by hand in Excel. Trucks sometimes arrive after volunteers have gone home, and fuel is the second-largest cost after the food itself.
 
 *This is an illustrative scenario, not a real program.*
 

@@ -6,6 +6,7 @@
 | **Intervention type** | One-off grant with business training |
 | **Expected class** | [7 — Effect-Based Targeting (policy learning)](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) |
 | **Most likely confusion** | Ranking applicants by poverty and funding the poorest ([Class 2](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting)) |
+| **In-depth tutorial** | [How the method works, step by step](../tutorials/08-policy-learning-business-grants.md) |
 
 ## Scenario
 

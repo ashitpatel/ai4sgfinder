@@ -59,6 +59,10 @@ A **restless** bandit adds three rules that match how patients behave:
 
 The goal is to collect as many reward points as possible over the coming weeks: as many patient-weeks of adherence as the 80 visits can buy.
 
+### Why this and not a neighboring class
+
+In the AI4SG Finder interview this problem lands in the *Repeated decisions that learn* family, and one [narrowing answer](../cases/01-chw-hypertension-visits.md#why-class-1-dynamic-state-evolution) settles the class. [Class 8: Learn-While-Allocating](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) is for uncertainty about *which of several options works*, when each option's payoff stays put. Here there is one option, a home visit, and the uncertainty is *each patient's state, which drifts week to week*. Two other classes come close. [Class 7: Effect-Based Targeting](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) also asks who a visit would change, but it learns that from a randomized pilot (this program has none) and suits a program offered once, not a choice remade every Monday. The risk score from the overview belongs to [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection), which finds hidden problems; the goal here is to change behavior, and the patients most likely to lapse are not always the ones a visit helps.
+
 ---
 
 ## The Core Bottleneck – Unknown, Patient-Specific Odds
@@ -88,7 +92,7 @@ Look at the hard-to-move group. Its lapsing patients have the **worst** odds of 
 ### Two complications
 
 1. **We don't know these probabilities.** They have to be estimated from the CHWs' records, and for some combinations, especially "lapsing and visited," there may be very little data. [From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism) deals with this.
-2. **They drift.** The tutorial this one is modeled on calls it the *novelty decay effect*: a patient visited week after week may stop responding to the visits. [From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism) also shows how to let old records fade.
+2. **They drift.** Researchers call this the *novelty decay effect*: a patient visited week after week may stop responding to the visits. [From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism) also shows how to let old records fade.
 
 ---
 
@@ -334,3 +338,4 @@ Two cautions. These groups and probabilities are invented to teach the method; r
 - **Run the pilot** described in the [case's follow-ups](../cases/01-chw-hypertension-visits.md#after-the-recommendation): split CHW areas between the index list and current practice for 8–12 weeks.
 - **Read** the Google Research post on ARMMAN and the AAAI 2022 field study (Mate et al.), listed in the [implementation playbook](../../prompt/knowledge/playbook.md#follow-up-5-reading-and-people-to-contact).
 - **Code to build on:** [lily-x/online-rmab](https://github.com/lily-x/online-rmab), research code for UCWhittle from the authors of the AAAI 2023 paper.
+- **Other tutorials:** [adaptive experiments for SMS reminders](09-adaptive-experiments-sms-reminders.md) for when the open question is which of several options works rather than how each person drifts (Class 8); [policy learning for business grants](08-policy-learning-business-grants.md) for targeting a one-off program by its effect when trial data exist (Class 7); [risk-based inspection for lead pipes](13-risk-based-inspection-lead-pipes.md) for when the goal is to find hidden problems, not change behavior (Class 12); and [welfare optimization for borehole siting](02-welfare-optimization-borehole-siting.md), which explains the integer programming mentioned under [Scaling Up](#scaling-up--real-limits-on-who-can-be-visited).
