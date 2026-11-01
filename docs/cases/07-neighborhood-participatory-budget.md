@@ -45,6 +45,9 @@ Paste these one at a time, in order, when testing the assistant.
 **Narrowing (People choose).** *"Do individual people on both sides rank each other, such as students and schools, or does the community vote on how to split one budget among projects?"*
 > The community votes on one budget. The projects don't rank anyone.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> Only that the council asked for some minimum for low-turnout areas, so the east side isn't left out again.
+
 ## Why Class 6: Participatory Allocation
 
 The assistant should select **[Class 6 (Participatory Allocation)](../../prompt/knowledge/taxonomy.md#class-6-participatory-allocation)**, counted with the method of equal shares.
@@ -54,6 +57,7 @@ The assistant should select **[Class 6 (Participatory Allocation)](../../prompt/
 - **The decision right belongs to residents**, with the council committed to the outcome (Filter 2). That rules out [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting): there is no planner's objective to optimize, and an optimized plan that overrode the vote would break the council's promise.
 - **Bloc voting is not an adversary** (Filter 3 — Environment dynamics). Nobody evades anyone over territory, so [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) is out. A proportional rule limits what a bloc can win, though the step that spends leftover money can still favor it (see the tutorial).
 - **Errors are fixable yearly** (Filter 4 — Tolerance for being wrong), so [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) isn't needed; the stake is trust, which a fair, published rule protects. A costed project list and a voting process (Filters 1 and 5) are the data Class 6 needs.
+- **The minimum for low-turnout areas is a layer** (second-decision question): a [Class 2](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting)-style fairness floor placed on top of the vote, the combination listed in the taxonomy's [When two classes combine](../../prompt/knowledge/taxonomy.md#5-when-two-classes-combine). It constrains the count; it doesn't replace it.
 
 ## What a good recommendation contains
 
@@ -69,6 +73,8 @@ The assistant should select **[Class 6 (Participatory Allocation)](../../prompt/
 - *Successes:* in Aarau, 17 projects funded instead of 7 from the same budget; equal shares has moved from research into real city votes in two countries.
 - *Challenges:* equal shares is harder to explain than "most votes wins," so the explanation must be ready before the vote; the count needs every individual ballot, not just totals per project; equal shares can leave part of the budget unallocated, so the published rule must say how leftover money is spent.
 - *Unknowns:* proportionality protects groups that vote, not groups that don't. Whether the east side's projects win depends on east-side turnout, so pair the rule with a minimum share for low-turnout areas and outreach there. Whether results hold for a 40-project neighborhood vote is untested here; the pilot will show it.
+
+**6. Simpler alternative.** Area envelopes: split the $250,000 into one envelope per area, run the clerk's familiar greedy count inside each envelope on that area's projects, then spend leftovers by the greedy count across the neighborhood. Or skip any build and count equal shares with the free tools at equalshares.net. In the [tutorial](../tutorials/07-participatory-budgeting-neighborhood-fund.md#the-simpler-alternative-area-envelopes-and-the-greedy-count), envelopes sized by ballots landed within one project of equal shares and held the north bloc to a smaller share than equal shares with completion did (illustrative data). They are close on fairness across areas. They give up fairness to groups that are not places (renters, young people, parents of one school) and handle projects that span areas poorly. Check before choosing them: this year's individual ballots will show whether people mostly back projects in their own area (last year's totals can't); few projects span areas; the envelope sizes (by ballots or by adults) are agreed and published before voting.
 
 **Next steps.** Agree the counting rule, the minimum shares and the tie-break with the council and publish them before the ballot is printed; redesign the ballot as an approval ballot with costs; plan outreach in the east-side blocks with the volunteers.
 
@@ -121,6 +127,10 @@ Recommended approach
   Class 6 (Participatory Allocation): approval ballots counted by the method
   of equal shares, because residents decide one shared budget and a
   proportional rule stops any bloc or high-turnout area taking it all.
+
+Simpler option to beat
+  Area envelopes with the greedy count inside each, in the clerk's Excel sheet.
+  Close if voters mostly back projects in their own area.
 
 Data we have
   Last year's vote totals per project and the funded list. This year:

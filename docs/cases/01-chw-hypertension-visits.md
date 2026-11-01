@@ -36,6 +36,9 @@ Paste these one at a time, in order, when testing the assistant.
 **Narrowing question — Repeated decisions that learn.** *"Which describes your uncertainty better: how each person's situation changes from week to week, or which of several program options works best?"*
 > How each person's situation changes. We only have one option, a home visit. What we don't know is who is slipping this week and who a visit would bring back.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> No. The visit is the same for everyone; the only decision is who gets one each week.
+
 ## Why Class 1: Dynamic State Evolution
 
 The assistant should select **[Class 1: Dynamic State Evolution](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution)**, solved with restless bandits.
@@ -68,6 +71,8 @@ The assistant should select **[Class 1: Dynamic State Evolution](../../prompt/kn
 - *Successes:* the mMitra study reported fewer engagement drops under the bandit policy than under the comparison groups.
 - *Challenges:* per-patient transition probabilities must be estimated from little data, usually by grouping similar patients; staff need to trust a list they can't see the reasoning for.
 - *Unknowns:* fairness. A pure index policy can leave some patients unvisited for months. Recommend a minimum-contact guarantee (e.g. everyone visited at least once a quarter) and monitor who is never chosen.
+
+**6. Simpler alternative.** A six-cell table in Excel. Group patients as the records allow (for example responsive, steady and hard-to-move) and, for each group and state, multiply the extra chance a visit brings a patient back by how much more adhering is worth than lapsing; each week, visit the patients in the highest cells. In the [tutorial](../tutorials/01-restless-bandits-chw-visits.md#the-simpler-alternative-a-six-cell-table-in-excel) this table chose exactly the same patients as the full index, because it ranks the cells in the same order; a plain rotation gained less than half as much, and visiting the lapsing patients with the worst odds gained almost nothing (illustrative data). It is close on the weekly list; it gives up accuracy when a visit's benefit lasts several weeks and groups slip back at different speeds. Check before settling for it: rank the six cells both ways once, with a partner computing the exact index, and recheck each quarter as estimates change. The table saves computation, not data: it needs the same weekly per-patient records. Note that the simplest schedule is not enough: in ARMMAN's field study, round-robin calling did not beat usual practice (Mate et al., 2022).
 
 **Next steps.** Clean the 9 months of adherence data into a patient × week table; pilot the list in 2 of 10 CHW areas with the rest as comparison; agree the minimum-contact rule with the medical lead.
 
@@ -120,6 +125,10 @@ Recommended approach
   Class 1: Dynamic State Evolution: a restless multi-armed bandit with a
   Whittle index policy, because a visit is reclaimable weekly, its effect
   depends on the patient, adherence drifts over time, and we observe it weekly.
+
+Simpler option to beat
+  A six-cell table (patient group x adhering/lapsing) of the one-step benefit
+  of a visit, kept in Excel. Close if it ranks the cells as the index does.
 
 Data we have
   About 9 months of weekly yes/no adherence checks (pill counts) per

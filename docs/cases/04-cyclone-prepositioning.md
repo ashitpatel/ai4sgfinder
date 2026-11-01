@@ -34,6 +34,9 @@ A humanitarian NGO serves a low-lying coastal delta. Before each cyclone season 
 **Narrowing question — Space, movement and risk.** *"What is the hardest part: outwitting people who avoid you, preparing for a rare disaster, moving goods to many places, or finding hidden problems?"*
 > Preparing for the storm. Trucking kits out is something we know how to do; the problem is that we don't know where the next one will hit or which roads will survive.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> Getting kits from the warehouses to shelters after landfall, but that's part of the same plan.
+
 ## Why Class 4: Robust Contingency Planning
 
 The assistant should select **[Class 4: Robust Contingency Planning](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning)**, solved with distributionally robust optimization layered over a location model from [Class 2: Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting).
@@ -44,6 +47,7 @@ The assistant should select **[Class 4: Robust Contingency Planning](../../promp
 - No adversary (Filter 3 — Environment dynamics), no drifting recipients, and no two-sided preferences, so [Class 1: Dynamic State Evolution](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution), [Class 3: Spatiotemporal Security & Adaptive Search](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) and [Class 5: Strategic Matching Markets](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets) don't apply.
 - Not [Class 9: Routing & Logistics](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics), its closest neighbor. Class 9 minimizes the cost of moving goods over a known network. Here the hard part is not route efficiency but not knowing where the storm will land or which roads will survive. The stage-2 dispatch is a small routing problem inside the robust plan, not the main decision.
 - Not an *anticipatory action* trigger on its own. Within Class 4, a trigger agrees in advance to release money or supplies when a forecast crosses a threshold. That suits cases where forecasts give a few days' warning and the action is fixed. It could later sit alongside this plan, for example to move stock forward when a storm is forecast, but it doesn't decide how much to hold in each warehouse before the season.
+- **The second decision is part of the same model** (second-decision question). Moving kits after landfall is the plan's second stage, the dispatch cards, not a separate [Class 9 (Routing & Logistics)](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics) layer. Routing would become a layer only if the organization also ran the trucks' multi-stop routes after a storm.
 
 ## What a good recommendation contains
 
@@ -59,6 +63,8 @@ The assistant should select **[Class 4: Robust Contingency Planning](../../promp
 - *Successes:* in published modeling studies, stochastic and robust plans hold up better than average-case plans on adverse scenarios; that is what they are designed to do.
 - *Challenges:* building credible road-failure scenarios needs local engineers; robust plans hold more stock, and donors may question "excess" inventory.
 - *Unknowns:* how large the uncertainty set should be. Too small and it isn't robust; too large and the plan is wastefully conservative. Note that much of this evidence is from modeling studies; flag that operational deployments by NGOs are less documented.
+
+**6. Simpler alternative.** An equal split: the same number of kits in each warehouse, or in proportion to the people each warehouse can reach. In the [tutorial](../tutorials/04-robust-optimization-cyclone-prepositioning.md#the-simpler-alternative-an-equal-split) an equal split matched or beat the robust plans on the worst stress scenarios, because it leans on no single road or warehouse, while reaching about 6 points fewer families than the DRO plan in an average recorded storm and doing worse at the ends of the coast (illustrative data). It is close on robustness; it gives up average performance, dispatch cards and the price of robustness for funders. Check before settling for it: the districts are similar in population and exposure; eight storms are too few to trust; every warehouse can store and protect the stock. A sensible first season is an equal or population-proportional split, with dispatch cards drawn up for it, while the model is built.
 
 **Next steps.** Compile the 8 storm footprints and the road network with known failure points; workshop extra "plausible but unseen" landfall scenarios with the district disaster office; draft dispatch cards for the current stock layout as an immediate improvement.
 

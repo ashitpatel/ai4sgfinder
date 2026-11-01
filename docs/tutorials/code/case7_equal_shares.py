@@ -36,6 +36,18 @@ def greedy(approvals, costs, budget):
     return funded
 
 
+def greedy_envelopes(approvals, costs, budget, area_of_project, envelope):
+    """The spreadsheet guard: split the budget into one envelope per area, run the greedy
+    count inside each area's envelope, then spend what is left by the greedy count overall."""
+    funded = []
+    for a, amount in enumerate(envelope):
+        own = np.flatnonzero(area_of_project == a)
+        funded += [int(own[p]) for p in greedy(approvals[:, own], costs[own], amount)]
+    rest = approvals.copy()
+    rest[:, funded] = False                            # already funded: take off the ballot
+    return funded + greedy(rest, costs, budget - costs[funded].sum())
+
+
 def price_per_supporter(money, cost):
     """Smallest rho such that each supporter pays min(their money, rho) and together they
     pay `cost`. Returns None if all their money together is not enough."""
@@ -242,6 +254,12 @@ def main():
     print(f"  completion raised each share by {raises}% before filling the rest by votes")
     print(f"  fair-share failures: greedy={len(jr_failures(ap, costs, BUDGET, g))}  "
           f"equal shares={len(jr_failures(ap, costs, BUDGET, esc))}")
+    for label, weight in (("ballots", nb["n_voters"]), ("adults", nb["residents"])):
+        env = BUDGET * weight / weight.sum()
+        ge = greedy_envelopes(ap, costs, BUDGET, pa, env)
+        report(f"greedy in envelopes by {label}", ge, nb)
+        print(f"    envelopes N/W/S/E=" + "/".join(f"${x:,.0f}" for x in env)
+              + f"  fair-share failures={len(jr_failures(ap, costs, BUDGET, ge))}")
     top = np.argsort(-ap.sum(axis=0))[:12]
     print("  12 most-voted projects (area, votes):",
           ", ".join(f"{AREAS[pa[p]][0]}{ap[:, p].sum()}" for p in top))
@@ -294,6 +312,9 @@ def main():
            nb, ap_bloc)
     report("equal shares + completion, with bloc",
            equal_shares_completed(ap_bloc, costs, BUDGET)[0], nb, ap_bloc)
+    env = BUDGET * nb["n_voters"] / nb["n_voters"].sum()
+    report("greedy in ballot envelopes, with bloc",
+           greedy_envelopes(ap_bloc, costs, BUDGET, pa, env), nb, ap_bloc)
     print()
     print(f"Run time: {time.perf_counter() - t0:.1f}s")
 

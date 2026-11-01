@@ -1,6 +1,6 @@
 # Worked cases
 
-Thirteen illustrative cases that together exercise every outcome the assistant can reach: one per allocation class, plus one where the right answer is "no model." Each spans a different impact domain and intervention type.
+Sixteen illustrative cases that together exercise every outcome the assistant can reach: one per allocation class, one where the right answer is "no model," and three where a program needs two classes working together. Each spans a different impact domain and intervention type, and each names the simpler alternative to its method and when it is close enough.
 
 All organizations and programs in these cases are fictional. The research they cite is real and is drawn from the verified references in [`taxonomy.md`](../../prompt/knowledge/taxonomy.md).
 
@@ -29,17 +29,21 @@ The cases are listed by family, the grouping the interview uses to narrow down t
 | [12. Peer educators](12-peer-educators-network-seeding.md) | HIV prevention | Training a few messengers | [**Class 11** Network Seeding](../../prompt/knowledge/taxonomy.md#class-11-network-seeding) (influence maximization) | **Filter 1** (a message to pass on) + narrowing: friendships can be mapped |
 | **No model** | | | | |
 | [6. Food pantry](06-food-pantry-no-model.md) | Food security | Recurring in-kind distribution | **No model needed** | **Filter 4** (supply already meets demand) |
+| **Two classes together** | | | | |
+| [14. Cash before a flood](14-anticipatory-cash-floods.md) | Disaster risk | Cash released on a forecast | [**Class 4**](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) trigger + [**Class 2**](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) targeting layer | **Second decision** (when to pay) + **Filter 4** (late is harmful, little history) |
+| [15. Snare search](15-snare-search-patrols.md) | Conservation | Ranger foot patrols | [**Class 12**](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) risk map + [**Class 3**](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) randomization layer | **Narrowing** (finding hidden snares) + **Filter 3** (poachers adapt) |
+| [16. Job-search support](16-job-support-adaptive-targeting.md) | Youth employment | One of three supports per person | [**Class 8**](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) experiment + [**Class 7**](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) targeting layer | **Second decision** (for whom) + **Filter 4** (no randomized data yet) |
 
-Across the thirteen, every filter and every narrowing question is the deciding one at least once, and each case names the classes it is most likely to be confused with, so the cases also show what separates neighboring classes.
+Across the sixteen, every filter, every narrowing question and the second-decision question is the deciding one at least once, and each case names the classes it is most likely to be confused with, so the cases also show what separates neighboring classes. Cases 4, 7, 9 and 13 show second decisions that are *not* a separate layer, or only a later one.
 
-Each case also has an [in-depth tutorial](../tutorials/) that explains its method step by step, assuming only basic statistics.
+Cases 1–13 each have an [in-depth tutorial](../tutorials/) that explains the method step by step, assuming only basic statistics, and measures the simpler alternative against it on illustrative data. Cases 14–16 point to the two tutorials that teach their layers.
 
 ## Each case contains
 
 - **Scenario**: the organization and its constraint, in a few sentences.
-- **Interview answers**: a realistic answer to each of the five filters and to the narrowing question for its family, written in the user's voice.
+- **Interview answers**: a realistic answer to each of the five filters, the narrowing question for its family and the second-decision question, written in the user's voice.
 - **Why Class N: Name**: the selected class by number and name, how the answers map through the [two-stage decision tree](../../prompt/knowledge/taxonomy.md#2-the-ngo-decision-tree), and which classes are ruled out and why, each named alongside its number.
-- **What a good recommendation contains**: the key points under each of the five required headings.
+- **What a good recommendation contains**: the key points under each of the six required headings, including **6. Simpler alternative**: the best paper or spreadsheet option, in what ways it comes close, and what to check before settling for it. Combined cases cover a simpler option for each layer.
 - **What the assistant should not do**: the most likely wrong answers.
 - **After the recommendation**: how the assistant's follow-ups from the [implementation playbook](../../prompt/knowledge/playbook.md) help the user narrow down tools and partners, adapt the approach to their program, check readiness and plan a pilot. Each case works through one or two follow-ups in full, built from its own interview answers, and summarizes the rest.
 
@@ -49,9 +53,9 @@ Together, the cases show each of the six follow-ups worked through at least once
 
 | Follow-up | Shown in full in |
 |---|---|
-| 1. Fit the model to your program | [Case 1](01-chw-hypertension-visits.md#follow-up-1-fit-the-model-to-your-program) (restless bandits), [Case 5](05-apprenticeship-matching.md#follow-up-1-fit-the-model-to-your-program) (stable matching), and each of Cases 7–13 |
+| 1. Fit the model to your program | [Case 1](01-chw-hypertension-visits.md#follow-up-1-fit-the-model-to-your-program) (restless bandits), [Case 5](05-apprenticeship-matching.md#follow-up-1-fit-the-model-to-your-program) (stable matching), and each of Cases 7–16 |
 | 2. Readiness checks | [Case 3](03-marine-patrols.md#follow-up-2-readiness-checks): a status table with what to fix before the pilot |
-| 3. Pilot design | [Case 4](04-cyclone-prepositioning.md#follow-up-3-pilot-design): testing a plan when a live trial is impossible |
+| 3. Pilot design | [Case 4](04-cyclone-prepositioning.md#follow-up-3-pilot-design): testing a plan when a live trial is impossible; Cases [14](14-anticipatory-cash-floods.md#follow-up-3-pilot-design), [15](15-snare-search-patrols.md#follow-up-3-pilot-design) and [16](16-job-support-adaptive-targeting.md#follow-up-3-pilot-design): piloting two layers in order |
 | 4. Build options: tools and partners | [Case 2](02-borehole-siting.md#follow-up-4-build-options--tools-and-partners): narrowing software and partners to one choice |
 | 5. Reading and people to contact | [Case 5](05-apprenticeship-matching.md#follow-up-5-reading-and-people-to-contact) |
 | 6. One-page brief for a technical partner | [Case 1](01-chw-hypertension-visits.md#follow-up-6-one-page-brief-for-a-technical-partner), and each of Cases 7–13 |
@@ -59,14 +63,14 @@ Together, the cases show each of the six follow-ups worked through at least once
 
 ## Using the cases
 
-**To learn the method.** Read the "Why Class N" sections side by side, family by family. The contrasts that matter most: cases 1 and 9 (each person's state drifts vs. which option works), cases 2, 8 and 11 (need vs. effect vs. arrivals over time), cases 5 and 7 (two-sided choice vs. a vote), and cases 3 and 13 (an adversary vs. a hidden problem).
+**To learn the method.** Read the "Why Class N" sections side by side, family by family. The contrasts that matter most: cases 1 and 9 (each person's state drifts vs. which option works), cases 2, 8 and 11 (need vs. effect vs. arrivals over time), cases 5 and 7 (two-sided choice vs. a vote), cases 3 and 13 (an adversary vs. a hidden problem), and case 15 against cases 3 and 13 (both at once). Then read the sixth heading across all sixteen: how close the simple option comes varies from "identical" (case 5) to "the simplest rotation was not enough" (case 1).
 
 **To demo the assistant.** Start a chat on any platform, then paste the case's interview answers one at a time as the assistant asks each question.
 
-**To test a prompt change.** After editing `prompt/system-prompt.md` or `prompt/kickoff.md`, run all thirteen cases and check each final recommendation against the case:
-1. Does it reach the expected outcome?
-2. Did it ask one question per turn, including the narrowing question?
-3. Does each of the five headings cover the points listed?
+**To test a prompt change.** After editing `prompt/system-prompt.md` or `prompt/kickoff.md`, run all sixteen cases and check each final recommendation against the case:
+1. Does it reach the expected outcome, including the layer for cases 14–16 and no extra layer elsewhere?
+2. Did it ask one question per turn, including the narrowing and second-decision questions?
+3. Does each of the six headings cover the points listed? Does the simpler alternative say in what ways it is close and what to check?
 4. Does it avoid everything under "should not do"?
 5. Is every citation either in the verified list or marked unverified?
 6. Does it end by offering the six follow-ups? Ask for the follow-up the case shows in full and compare: is it built from the case's answers, and does it use only tools and partners from the playbook?

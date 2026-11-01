@@ -34,6 +34,9 @@ A coastal conservation trust co-manages a marine protected area divided into 40 
 **Narrowing question — Space, movement and risk.** *"What is the hardest part: outwitting people who avoid you, preparing for a rare disaster, moving goods to many places, or finding hidden problems?"*
 > Outwitting the fishers. Finding nets is the job, but the hard part is that they move as soon as they see a pattern.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> No. We know roughly which zones matter; the question is how to patrol them.
+
 ## Why Class 3: Spatiotemporal Security & Adaptive Search
 
 The assistant should select **[Class 3: Spatiotemporal Security & Adaptive Search](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search)**, solved with a Stackelberg security game.
@@ -58,6 +61,8 @@ The assistant should select **[Class 3: Spatiotemporal Security & Adaptive Searc
 - *Successes:* field tests of PAWS reported finding more snares and signs of illegal activity in the areas the model prioritized than in comparison areas.
 - *Challenges:* ranger and captain compliance with a randomized schedule ("why are we going to zone 12 again?"); fuel and weather constraints the model must include.
 - *Unknowns:* how rational the fishers really are, and how badly detection bias distorts the risk model. Build in some patrols to low-information zones to keep learning.
+
+**6. Simpler alternative.** Two, close in different ways. (a) A **weighted lottery**: each morning draw zones from a bag of slips, with each zone's slips in proportion to its estimated value; never a weekly rotation. (b) **Goal Seek**: the equilibrium has a closed form for a simple game, so one spreadsheet column (coverage = (value − U) ÷ (value + penalty), floored at 0 and capped at 1) and Excel's Goal Seek on U reproduce the game's plan. In the [tutorial](../tutorials/03-security-games-marine-patrols.md#the-simpler-alternative-goal-seek-in-a-spreadsheet) the lottery cut fish taken by about two-thirds as much as the game, and Goal Seek matched it exactly (illustrative data). Check before settling for Goal Seek: the trust's loss is the fishers' gain (catch value, not reef damage that differs by zone), one penalty applies everywhere, and any set of zones can be patrolled on a day. Once boats must follow connected routes, use the LP. Both still need zone values corrected for where the boats went; a simple rule fed hotspot counts fails the same way the hotspot plan did.
 
 **Next steps.** Export the 3 years of SMART data and tabulate effort and incidents by zone and month; brief captains on why randomization matters; run the generated calendar for one quarter alongside the existing plan.
 

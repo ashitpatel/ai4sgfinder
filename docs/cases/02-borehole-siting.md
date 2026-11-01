@@ -37,6 +37,9 @@ A rural water NGO has a donor grant for 25 boreholes in a drought-prone region o
 **Narrowing question 2 — Who gets a limited resource.** *"Do you have pilot or trial results showing the program helps some kinds of people much more than others?"*
 > No. A borehole helps everyone within walking distance; what matters is how many people that is.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> Not for us. Once sites are chosen, a contracted drilling team schedules the work.
+
 ## Why Class 2: Static Demographic Targeting
 
 The assistant should select **[Class 2: Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting)**, solved with a welfare integer linear program.
@@ -62,6 +65,8 @@ The assistant should select **[Class 2: Static Demographic Targeting](../../prom
 - *Successes:* by construction, an optimal covering solution serves at least as many people (as modeled) as any ranking-based choice of the same number of sites, and a written fairness rule turns a political argument into an agreed parameter.
 - *Challenges:* walking-distance estimates from straight-line GPS distance can be badly wrong in hilly terrain; validate with local staff. Hydrogeology failure rates mean some chosen sites may come up dry, so keep ranked backup sites.
 - *Unknowns:* how the councils will weigh total coverage against district equity. Present two or three options (pure coverage, maximin, a middle ground) and let them choose.
+
+**6. Simpler alternative.** Greedy with a district floor, in Excel: while any district is below the agreed share, add the site that covers the most not-yet-covered people in the district furthest behind; after that, add whichever site covers the most new people anywhere. In the [tutorial](../tutorials/02-welfare-optimization-borehole-siting.md#the-simpler-alternative-greedy-with-a-floor-in-a-spreadsheet) it chose the same 25 sites as the integer program with a 20% floor (illustrative data). It is close on coverage and on a simple floor when catchments barely overlap. It gives up proof that no better plan exists, the price of fairness in people covered, and rules like maximin or several constraints at once. Check before settling for it: how many villages fall within reach of three or more candidate sites (many means greedy can lock in a poor early choice), and whether the councils want more than a floor. The walking-distance table is the real work for both methods.
 
 **Next steps.** Build the village × candidate-site walking-distance table; agree the fairness rule with district officers *before* running the model; produce the map and comparison table for the donor.
 

@@ -335,23 +335,25 @@ for d in DISTRICTS:
 
 For a floor, keep the "people covered" objective and set `floor`. For maximin, make `t` the objective; then solve again with the best `t` as a floor and "people covered" as the objective, to break ties in favor of more people.
 
-### Simulation: five plans, 25 boreholes
+### Simulation: six plans, 25 boreholes
 
-The code compares five ways of choosing 25 sites in the illustrative region:
+The code compares six ways of choosing 25 sites in the illustrative region:
 
 - **Need ranking:** sort villages by population and drill the nearest drillable site to each, until 25 are chosen (the spreadsheet method).
 - **Greedy:** a smarter spreadsheet. Each round, add the site that covers the most people *not already covered*.
 - **Max coverage:** the covering model, no fairness rule.
 - **Maximin fair:** the covering model with maximin, ties broken by people covered.
 - **Middle ground:** the covering model with a 20% floor for every district.
+- **Greedy with floor:** the smarter spreadsheet with the same rule. While any district is below 20%, add the site covering the most new people in the district furthest below; then plain greedy.
 
 ```
-Simulation - five plans for 25 boreholes
+Simulation - six plans for 25 boreholes
   need ranking                     covered= 90,013 (39.8%)  A=52%  B=48%  C=26%  D=0%  worst=0.0%  sites/district=[15, 7, 3, 0]
   greedy (most new people)         covered=108,488 (48.0%)  A=52%  B=60%  C=51%  D=0%  worst=0.0%  sites/district=[10, 9, 6, 0]
   max coverage (ILP)               covered=108,488 (48.0%)  A=52%  B=60%  C=51%  D=0%  worst=0.0%  sites/district=[10, 9, 6, 0]  0.03s
   maximin fair (ILP)               covered= 86,767 (38.4%)  A=38%  B=39%  C=39%  D=37%  worst=37.1%  sites/district=[6, 4, 4, 11]  0.11s
   middle ground (ILP, floor 20%)   covered=104,877 (46.4%)  A=47%  B=52%  C=51%  D=22%  worst=22.2%  sites/district=[8, 7, 6, 4]  0.05s
+  greedy with floor 20%            covered=104,877 (46.4%)  A=47%  B=52%  C=51%  D=22%  worst=22.2%  sites/district=[8, 7, 6, 4]
   need ranking: sum of each site's catchment=98,600 vs people actually covered=90,013 (double counted=8,587)
 ```
 
@@ -363,6 +365,18 @@ The times at the end of each line are seconds on one laptop; they will differ sl
 - **The middle ground beats the spreadsheet on both counts.** It covers $104{,}877 - 90{,}013 = 14{,}864$ more people *and* gives every district at least 22.2%, where the spreadsheet left District D with nothing.
 - **Maximin is the most equal, at a real cost.** All four districts land between 37% and 39%, but it covers 21,721 fewer people than max coverage (20.0%) and even 3,246 fewer than the spreadsheet.
 - **Greedy matched the optimum here.** That happens when catchments are fairly separate, as in this region. It isn't guaranteed: greedy can lock in an early choice it would later regret, and it has no way to tell you whether it found the best plan or to add a fairness rule. The covering model does both, in a fraction of a second.
+
+### The simpler alternative: greedy with a floor, in a spreadsheet
+
+Greedy with a floor matched the middle-ground model exactly here: the same 25 sites, 104,877 people, every district at 22% or more. It needs the coverage table and a column that recomputes "new people covered" after each pick, which is a few formulas in Excel or an hour with a printed table. The coverage table is the real work, and both methods need it.
+
+In what ways it is close, and what to check before settling for it:
+
+- **Close when catchments barely overlap.** Here most villages are within reach of only one or two sites, so taking the biggest new gain each round can't go far wrong. Check the coverage table: if many villages sit inside three or more catchments, greedy can lock in an early pick it would later regret. Its guarantee is weak in theory (it always reaches at least 63% of the best possible coverage), even if it is often exact in practice.
+- **Close for simple fairness rules.** A floor per district, or a minimum number of sites per district, fits greedy naturally. Maximin across districts does not, and neither do several rules at once (a floor per district *and* a budget in money rather than sites *and* sites that rule each other out); use the integer program for those.
+- **It can't prove anything.** Greedy can't tell you whether a better plan exists or what the fairness floor costs in people covered. One run of the integer program, by a partner or a free tool, answers both, and can then check the spreadsheet plan each year.
+
+Where the councils can't wait for a partner, greedy with a floor is a defensible first plan, far better than the need ranking (14,864 more people, and District D included).
 
 Two cautions. The region, populations and sites are invented to teach the method; real gains depend on the real coverage table, especially the walking times near the 30-minute line ([From Census and GPS to Estimates](#from-census-and-gps-to-estimates--the-coverage-table)). And "covered" means *within a 30-minute walk as modeled*, not "uses the borehole": that is worth checking after drilling.
 

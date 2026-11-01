@@ -42,6 +42,9 @@ Paste these one at a time, in order, when testing the assistant.
 **Narrowing question (Spread).** *"Do you know, even roughly, who talks to whom, or could people name the trusted messengers in their community?"*
 > Not today, but we could ask residents who their closest friends at the shelter are, on the tablets.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> No. The training is the same for everyone we choose.
+
 ## Why Class 11: Network Seeding
 
 The assistant should select **[Class 11 (Network Seeding)](../../prompt/knowledge/taxonomy.md#class-11-network-seeding)**, solved with influence maximization and greedy seed selection.
@@ -65,6 +68,8 @@ The assistant should select **[Class 11 (Network Seeding)](../../prompt/knowledg
 - *Successes:* in the 2021 trial, risk behavior fell in the algorithm-chosen arm, with the shelter population matching this case closely.
 - *Challenges:* shelter populations change week to week, so the network goes stale; invited youth decline or leave before training; residents may hesitate to name friends to staff.
 - *Unknowns:* how likely a friend is to pass the message on (it must be guessed roughly); whether a friendship map collected by staff could be misused (it reveals who associates with whom in a vulnerable population); how much better than staff picks it will be *at this shelter*.
+
+**6. Simpler alternative.** Count friends from the tablet survey and pick the most-named residents, spread across friend groups in proportion to each group's size; where a survey isn't possible, ask residents "who here is good at spreading news?" or train the friends that residents name. In the [tutorial](../tutorials/12-network-seeding-peer-educators.md#the-simpler-alternative-count-friends-spread-across-groups) the spread-out count reached about 94% as many residents as greedy seeding and far more than staff picks (illustrative data). It is close on reach when friend groups are clear and the message travels only a step or two; the gap grows when people pass a message on readily. Check before settling for it: staff can tell where the friend groups are; the count includes residents who didn't answer but were named. The asking rules have field evidence elsewhere (Banerjee et al., 2019; Kim et al., 2015), in other settings and for other messages.
 
 **Next steps.** Draft a one-screen consent and friendship question with the shelter's safeguarding lead; collect two weeks of answers on the tablets; have the volunteer produce a seed list and a staff-picked list for comparison before the next training.
 
@@ -116,6 +121,10 @@ Recommended approach
   Class 11 (Network Seeding): influence maximization with greedy seed
   selection, because the benefit spreads through friendships and residents
   can tell us who their closest friends are.
+
+Simpler option to beat
+  The most-named residents, spread across friend groups. Close on reach when
+  groups are clear; falls behind when the message spreads easily.
 
 Data we have
   None yet. Planned: a consented tablet survey at check-in naming up to

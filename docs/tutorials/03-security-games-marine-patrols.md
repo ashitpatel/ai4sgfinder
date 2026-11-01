@@ -374,7 +374,7 @@ def comb_sample(coverage, rng):
 
 `np.cumsum` builds the line of stretches; `np.searchsorted` finds which stretch each tooth lands in.
 
-### Simulation: five policies, one year, fishers who watch
+### Simulation: six policies, one year, fishers who watch
 
 The code simulates 364 days. Each day 5 crews choose a zone, or to stay home. Each crew estimates the chance that each zone is patrolled today from what it saw at the jetty: half from how often the zone was patrolled in the last 28 days, half from how often it was patrolled on **the same weekday** over the last 4 weeks, so a weekly pattern gets noticed. Crews pick zones with higher expected payoff more often but not always (bounded rationality). A crew in a patrolled zone is caught; otherwise it takes the zone's value in fish. The policies:
 
@@ -382,6 +382,7 @@ The code simulates 364 days. Each day 5 crews choose a zone, or to stay home. Ea
 - **Fixed rotation:** the same weekly schedule every week, 6 zones a day, every zone covered at least once a week.
 - **Hotspot:** the 6 zones with the most recorded incidents (starting from the three-year logs in [From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went)), refreshed every 30 days with new incidents.
 - **Uniform random:** 6 zones drawn at random each day, all zones equally likely.
+- **Weighted lottery:** the paper version. Each zone's chance is in proportion to its value (capped at certain), drawn each day with the comb or with numbered slips in a bag.
 - **Game (randomized):** the coverage from [Scaling Up](#scaling-up--40-zones-2-boats-one-paper-schedule), drawn each day with the comb.
 
 ```
@@ -391,6 +392,7 @@ Simulation - one-year simulation, 5 crews a day, fishers who watch and adapt
   fixed rotation          15756          -2.0%             0            0
   hotspot                 15087          -6.2%             0            0
   uniform random          13446         -16.4%           268            0
+  weighted lottery        11698         -27.3%           418            0
   game (randomized)        9608         -40.3%           509            0
   (5 crews x 364 days = 1820 fishing trips per policy)
 ```
@@ -400,12 +402,29 @@ Simulation - one-year simulation, 5 crews a day, fishers who watch and adapt
 - **Fixed rotation and hotspot patrols catch nobody.** The fishers learn the weekly pattern, or the fixed hotspot list, and fish elsewhere. Fish taken falls only 2% and 6%, because the patrols merely push the nets into the next-best zones.
 - **The hotspot policy traps itself.** It never records an incident outside its 6 zones, because it never goes there, so its monthly refresh keeps choosing the same northern zones. This is the detection-bias loop from [From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went), running live.
 - **Randomizing alone helps.** Uniform random patrols catch 268 crews and cut fish taken by 16%.
-- **Randomizing in the right proportions helps much more.** The game strategy catches 509 crews and cuts fish taken by 40%, with the same 6 zone-visits a day.
+- **Weighting by value helps more.** The weighted lottery catches 418 crews and cuts fish taken by 27%, about two-thirds of the game's cut, with no model at all.
+- **Randomizing in the right proportions helps most.** The game strategy catches 509 crews and cuts fish taken by 40%, with the same 6 zone-visits a day.
 - **Nobody stays home.** With a penalty of 4 against zones worth up to 9.4, fishing pays somewhere under every policy. The equilibrium payoff of 4.207 is still positive. The game strategy changes *where* and *how profitably* crews fish, not *whether* they do. A real deterrent would need a larger penalty or more boats, which is a policy conversation, not a modeling one.
 
 A consistency check you can do by hand: under the game strategy the crews' average payoff per trip is $(9608 - 4 \times 509) / 1820 = 4.160$, close to the equilibrium value $U = 4.207$ from [Scaling Up](#scaling-up--40-zones-2-boats-one-paper-schedule). The theory predicted what the simulated fishers would get.
 
 Three cautions. First, everything here is invented to teach the method: zone values, patrol logs and fisher behavior are illustrative, and real gains depend on real data. Second, the game strategy is given the true zone values; in the field they come from the estimates in [From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went), with their margins of error. Third, the simulated fishers only see the jetty. If schedules leak, or crews can track boats at sea, the advantage shrinks, which is why issuing only the day's zones matters.
+
+### The simpler alternative: Goal Seek in a spreadsheet
+
+For a game this simple, the full equilibrium does not need a solver. The hand method from [The Decision Engine](#the-decision-engine--the-stackelberg-equilibrium) scales to 40 zones in one spreadsheet column: put $U$ in one cell, compute each zone's coverage as $\max\bigl(0, (G_i - U)/(G_i + 4)\bigr)$, capped at 1, and use Excel's **Goal Seek** to choose $U$ so the column adds up to 6. The code does the same with bisection:
+
+```
+weighted lottery (chance in proportion to value): fishers' best payoff U=5.882 (game 4.207); zones with coverage > 0: 40
+spreadsheet goal seek: U=4.207; largest gap from the LP coverage=0.0000
+```
+
+So there are two simpler options, and they are close in different ways:
+
+- **The weighted lottery** needs only the zone values and a bag of slips. It keeps the most important property, unpredictability, and gets about two-thirds of the game's effect here. It falls short because it spreads patrols over every zone, including the 14 low-value zones the fishers never bother with, and so leaves the richest zones softer (the fishers' best option pays 5.88 instead of 4.21).
+- **Goal Seek** gives exactly the game's plan, but only while three assumptions hold. Check them before relying on it: (1) the trust's loss is the fishers' gain (zero-sum), so it cares about catch value and not, say, reef damage that differs by zone; (2) one penalty applies everywhere; (3) any 6 zones can be patrolled on a day, with no routes linking them. Fuel caps and learning floors can be added as limits on each cell, then Goal Seek again. Once boats must follow connected routes, or payoffs differ between the sides, use the LP.
+
+Both rest on the same thing the game does: zone values estimated from patrol logs corrected for where the boats went ([From Patrol Logs to Estimates](#from-patrol-logs-to-estimates--correcting-for-where-the-boats-went)). A simple rule fed with biased hotspot counts will fail the same way the hotspot policy did.
 
 For the pilot, the [playbook](../../prompt/knowledge/playbook.md#follow-up-3-pilot-design) suggests alternating model-generated and usual schedules and comparing **nets found per patrol hour**. Expect that number to rise at first and then fall: as deterrence works, there is less to find.
 

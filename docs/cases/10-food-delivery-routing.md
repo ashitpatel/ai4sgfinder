@@ -36,6 +36,9 @@ Paste these one at a time, in order, when testing the assistant.
 **Narrowing — Space, movement and risk.** The assistant asks: "What is the hardest part: outwitting people who avoid you, preparing for a rare disaster, moving goods to many places, or finding hidden problems?"
 > Moving goods to many places. Getting 12 trucks to 140 points in their opening hours without burning fuel on long, overlapping routes.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> No. Which points get food and how much is decided by the food bank network; we just deliver.
+
 ## Why Class 9: Routing & Logistics
 
 The assistant should select **[Class 9 (Routing & Logistics)](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics)**, solved as a capacitated vehicle routing problem with time windows, plus an assignment of distribution points to warehouses.
@@ -61,6 +64,8 @@ The assistant should select **[Class 9 (Routing & Logistics)](../../prompt/knowl
 - *Successes:* both deployments above reported large cost savings from routing and network models used in real operations.
 - *Challenges:* route models are only as good as their travel times and locations; drivers know shortcuts and hazards the map doesn't, and will ignore sheets they don't trust. In Boston, the proposed school start-time changes were approved but not implemented after community opposition, though the bus routing went ahead: changing people's schedules is much harder than changing routes.
 - *Unknowns:* how accurate the handwritten times in two years of records are; how predictable the rainy-season closures really are; whether points can widen their opening windows. Flag that documented food-NGO routing deployments are thinner than the operations-research literature.
+
+**6. Simpler alternative.** The recommended method is already a rule of thumb, so the simpler options are about who runs it. A dispatcher can compute the Clarke–Wright savings table for one warehouse-day in a spreadsheet and join the largest savings first while the truck has room and the windows hold; or a volunteer can set up a free route planner (VROOM or OR-Tools) once. In the [tutorial](../tutorials/10-vehicle-routing-food-delivery.md#the-simpler-alternative-the-savings-method-by-hand-or-a-free-planner) the savings plan was 0–2.3% longer than the exact optimum, and most of the saving came from replacing habit with any systematic method (illustrative data). Check before doing it by hand: few, wide opening windows; one truck type; time for an hour or two per warehouse-day. What no shortcut replaces is the travel-time table from the GPS logs.
 
 **Next steps.** Geocode all 140 points and check them with drivers; build a travel-time table from the GPS logs rather than the handwritten times; replan one past month of deliveries with the model and compare distance and on-time rate with what actually happened.
 
@@ -113,6 +118,10 @@ Recommended approach
   Class 9 (Routing & Logistics): a vehicle routing model with truck
   capacities and opening-hour time windows, plus warehouse-to-point
   assignment, solved for dry-season and wet-season road networks.
+
+Simpler option to beat
+  The savings method run by the dispatcher in a spreadsheet, or a free route
+  planner. Exact optimization adds a few percent at most.
 
 Data we have
   Two years of delivery records (date, truck, points, quantities,

@@ -143,6 +143,32 @@ def comb_sample(coverage, rng):
 
 # --------------------------------------------------------------- Simulation ---
 
+def proportional_coverage(gain, resources):
+    """The paper version: each zone's chance of a patrol in proportion to its value, capped at 1."""
+    cov = np.zeros_like(gain)
+    free = np.ones(gain.size, dtype=bool)
+    left = float(resources)
+    while True:
+        cov[free] = left * gain[free] / gain[free].sum()
+        over = free & (cov > 1)
+        if not over.any():
+            return cov
+        cov[over] = 1.0
+        free &= ~over
+        left = resources - cov[~free].sum()
+
+
+def goal_seek_coverage(gain, resources, penalty=PENALTY):
+    """The spreadsheet version of the equilibrium: c_i = max(0, (G_i - U) / (G_i + P)), U chosen
+    (Excel's Goal Seek, here bisection) so the coverages add up to the zone-visits per day."""
+    lo, hi = 0.0, float(gain.max())
+    for _ in range(60):
+        U = (lo + hi) / 2
+        total = np.clip((gain - U) / (gain + penalty), 0, 1).sum()
+        lo, hi = (U, hi) if total > resources else (lo, U)
+    return np.clip((gain - U) / (gain + penalty), 0, 1), U
+
+
 def simulate(policy, gain, coverage, hist_incidents, days=364, crews=5,
              rationality=1.5, seed=21):
     """One year of patrols against fishers who learn from what they see at the jetty.
@@ -171,7 +197,7 @@ def simulate(policy, gain, coverage, hist_incidents, days=364, crews=5,
             zones = hotspot
         elif policy == "uniform random":
             zones = rng.choice(N_ZONES, ZONES_PER_DAY, replace=False)
-        elif policy == "game (randomized)":
+        elif policy in ("game (randomized)", "weighted lottery"):
             zones = comb_sample(coverage, rng)
         else:                                        # "no patrols"
             zones = np.array([], dtype=int)
@@ -278,6 +304,14 @@ def main():
     cov_floor, U_floor = minimax_coverage(gain, ZONES_PER_DAY, lower=floor)
     print(f"  with a learning floor of 0.03 in every zone: U={U_floor:.3f} (was {U40:.3f})")
 
+    prop = proportional_coverage(gain, ZONES_PER_DAY)
+    U_prop = attacker_utility(prop, gain).max()
+    print(f"  weighted lottery (chance in proportion to value): fishers' best payoff U={U_prop:.3f} "
+          f"(game {U40:.3f}); zones with coverage > 0: {(prop > 1e-6).sum()}; highest coverage={prop.max():.3f}")
+
+    cov_gs, U_gs = goal_seek_coverage(gain, ZONES_PER_DAY)
+    print(f"  spreadsheet goal seek: U={U_gs:.3f}; largest gap from the LP coverage={np.abs(cov_gs - coverage).max():.4f}")
+
     rng = np.random.default_rng(1)
     first_days = [sorted(comb_sample(coverage, rng).tolist()) for _ in range(3)]
     print(f"  comb sampling, first three days: {first_days}")
@@ -294,8 +328,10 @@ def main():
     print("\nSimulation - one-year simulation, 5 crews a day, fishers who watch and adapt")
     print(f"  {'policy':18s} {'fish taken':>10s} {'vs no patrols':>14s} {'crews caught':>13s} {'stayed home':>12s}")
     baseline = None
-    for policy in ("no patrols", "fixed rotation", "hotspot", "uniform random", "game (randomized)"):
-        f, c, s = simulate(policy, gain, coverage, inc)
+    for policy in ("no patrols", "fixed rotation", "hotspot", "uniform random",
+                   "weighted lottery", "game (randomized)"):
+        cov_used = prop if policy == "weighted lottery" else coverage
+        f, c, s = simulate(policy, gain, cov_used, inc)
         baseline = f if baseline is None else baseline
         print(f"  {policy:18s} {f:10.0f} {f / baseline - 1:+14.1%} {c:13.0f} {s:12.0f}")
     print(f"  (5 crews x 364 days = {5 * 364} fishing trips per policy)")

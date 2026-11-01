@@ -399,6 +399,17 @@ Column guide: *top choice* and *any listed* are shares of the 200 young people; 
 
 **The second round matters.** Averaged over 100 cohorts, deferred acceptance left 25.2 people unmatched after the main round, and the second round placed 25.0 of them on average.
 
+### The simpler alternative: run deferred acceptance by hand
+
+In this class the best method *is* the simple one. Deferred acceptance needs no prediction, no solver and no data beyond the ranked lists; the [round-by-round example](#the-decision-engine--deferred-acceptance) is exactly what staff would do on paper. With 200 young people and 60 employers it took 15 rounds in the sample cohort: each round, every unplaced young person's form moves to their next employer, and each employer keeps its best applicants up to its places. A wall of envelopes, one per employer, works; so does a spreadsheet with one row per young person, or the free `matching` library for a volunteer who codes.
+
+What to check before running it by hand:
+
+- **Market size.** Up to a few hundred people and a few dozen employers is a day's work for two staff with a checklist; much larger, use the library. The result is the same either way, which is worth saying in the published rules.
+- **Employers' rankings must exist before the match.** If employers rank by a scoring rule, apply it first and write each employer's ordered list down; if they insist on interviewing after seeing who applied, that is a different, slower process.
+- **The tie-break lottery must be drawn before the match, in public.** By hand it is a numbered draw; that is the simplest step to get wrong.
+- **The tempting shortcut is worse.** "First choices first" is also easy by hand, but it gives everyone a reason to rank strategically (Abdulkadiroğlu and Sönmez, American Economic Review, 2003, show this for the old Boston school-choice rule) and left about 56 blocking pairs per cohort here.
+
 Cautions:
 
 - **The cohorts are invented.** The popularity spread, the taste noise and the scoring rule are made up to teach the method. Real shares of first choices and of unmatched people depend on how much young people's tastes agree, which only the program's own forms will show.

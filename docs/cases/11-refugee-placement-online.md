@@ -36,6 +36,9 @@ Paste these one at a time, in order, when testing the assistant.
 **Narrowing — "Do you know everyone who could receive it before you decide, or do people or items arrive one at a time and need a decision on the spot?"**
 > They arrive a few at a time all year. Each family needs a city within about a week of referral, and we don't know who will come next month.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> Only the employment predictions for each family in each city, which this already needs.
+
 ## Why Class 10: Online Assignment & Waitlists
 
 The assistant should select **[Class 10 (Online Assignment & Waitlists)](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists)**: predict each family's chance of employment in each city, then assign each arrival under the quotas while holding back capacity for families still to come.
@@ -59,6 +62,8 @@ The assistant should select **[Class 10 (Online Assignment & Waitlists)](../../p
 - *Successes:* a resettlement agency, HIAS, uses the approach in its placement work; backtests on its past data point to a meaningful gain in short-run employment.
 - *Challenges:* caseworkers must trust suggestions they did not make, so each placement needs a plain explanation; the model can only learn from cities and kinds of families that past placements covered.
 - *Unknowns:* no randomized evidence on the employment gain; whether the predictions are equally accurate for every nationality and family type; whether this year's arrivals resemble the last five years.
+
+**6. Simpler alternative.** Greedy from a printed table with quarterly allotments: the caseworker looks up the family type's predicted chance in each city and picks the highest city with room, but no city may use more than a quarter of its quota per quarter (cumulative). In the [tutorial](../tutorials/11-online-assignment-refugee-placement.md#the-simpler-alternative-greedy-with-quarterly-allotments) it captured about 72% of weekly re-solving's gain over first-available, kept early and late arrivals within 3 points of each other, and held up when the arrival mix was the reverse of the forecast (illustrative data). It is close on fairness over time; it gives up the look-ahead that saves a city's places for the families who gain most there. Check before settling for it: arrivals are spread fairly evenly through the year (otherwise shape the allotments to the expected pattern), and the predicted chances are trustworthy, since both rules depend on them. Replaying last year under both rules shows the agency its own gap.
 
 **Next steps.** Pull the five years of records into one table (family characteristics, city, employed at six months); agree the year's fairness rules with the partner cities; replay last year's arrivals through a simple version of the model and compare it with what caseworkers actually did.
 
@@ -110,6 +115,10 @@ Recommended approach
   Class 10 (Online Assignment & Waitlists): predict employment for each
   family in each city, then assign each arrival under the quotas while
   reserving capacity for families likely to arrive later in the year.
+
+Simpler option to beat
+  Greedy placement from a printed table of predicted chances, with quarterly
+  allotments per city. Close on fairness over time; misses look-ahead.
 
 Data we have
   Five years of placements: family characteristics, city, and employment

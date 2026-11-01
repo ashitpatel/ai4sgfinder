@@ -357,6 +357,7 @@ Simulation - full model: 6 warehouses, 30,000 kits, 10 shelter areas
   B expected value     4800      0      0   1200   4800  19200
   C robust             8677      0   4800      0   8677   7846
   D DRO eps=0.5        7543      0   1800      0   7543  13114
+  E equal split        5000   5000   5000   5000   5000   5000
 
   Share of affected families reached within 2 days
                       8 storms: avg  worst   | 10 stress: avg  worst
@@ -364,18 +365,19 @@ Simulation - full model: 6 warehouses, 30,000 kits, 10 shelter areas
   B expected value           0.942  0.700   |            0.497  0.167
   C robust                   0.826  0.551   |            0.532  0.263
   D DRO eps=0.5              0.884  0.614   |            0.521  0.250
+  E equal split              0.820  0.617   |            0.525  0.380
 
   Stress scenarios one by one (share reached)
-  west end, severe                  A=0.32  B=0.42  C=0.55  D=0.51
-  east end, severe                  A=0.29  B=0.42  C=0.55  D=0.51
-  west end, moderate                A=0.35  B=0.50  C=0.70  D=0.64
-  east end, moderate                A=0.31  B=0.50  C=0.70  D=0.64
-  center, stronger than record      A=0.56  B=0.43  C=0.26  D=0.31
-  east end, stronger than record    A=0.20  B=0.38  C=0.43  D=0.45
-  Z2 severe, inland road out        A=0.49  B=0.17  C=0.33  D=0.25
-  Z4 severe, inland road out        A=0.41  B=0.17  C=0.33  D=0.25
-  Z2 moderate, extra bridge out     A=0.64  B=1.00  C=0.73  D=0.82
-  Z4 moderate, extra bridge out     A=0.51  B=1.00  C=0.73  D=0.82
+  west end, severe                  A=0.32  B=0.42  C=0.55  D=0.51  E=0.42
+  east end, severe                  A=0.29  B=0.42  C=0.55  D=0.51  E=0.42
+  west end, moderate                A=0.35  B=0.50  C=0.70  D=0.64  E=0.51
+  east end, moderate                A=0.31  B=0.50  C=0.70  D=0.64  E=0.51
+  center, stronger than record      A=0.56  B=0.43  C=0.26  D=0.31  E=0.42
+  east end, stronger than record    A=0.20  B=0.38  C=0.43  D=0.45  E=0.38
+  Z2 severe, inland road out        A=0.49  B=0.17  C=0.33  D=0.25  E=0.48
+  Z4 severe, inland road out        A=0.41  B=0.17  C=0.33  D=0.25  E=0.48
+  Z2 moderate, extra bridge out     A=0.64  B=1.00  C=0.73  D=0.82  E=0.82
+  Z4 moderate, extra bridge out     A=0.51  B=1.00  C=0.73  D=0.82  E=0.82
 
   Choosing how robust to be: DRO radius eps (average zone-shift per storm)
   eps=0 (plan B)  W1= 4800 W3=    0 W5= 4800 W6=19200  8 storms avg=0.942 worst=0.700  any zone worst=0.417  stress avg=0.497 worst=0.167
@@ -409,12 +411,28 @@ The same run first prints the intervals from [From Eight Storms to Estimates](#f
 
 **The dispatch card** for a severe west-end storm under plan D tells W1 to send all 7,543 of its kits to Zone 1's coastal shelters, W3 to send 1,800 to Zone 2 inland and W6 to send 5,400 to Zone 2's coast. That reaches 51.2% of the 28,800 affected families ($16{,}200 + 5{,}400$ in Zone 1, $5{,}400 + 1{,}800$ in Zone 2). Zone 1's 5,400 inland families get nothing within 2 days: with bridge B12 out, W1 is the only warehouse that can reach Zone 1 at all, and its stock is smaller than Zone 1's need. (The solver happened to send all of W1's kits to the coast; any split between Zone 1's two areas reaches the same number of families, so the card's author can choose.) A card like this also tells the planners where the plan is thin.
 
+### The simpler alternative: an equal split
+
+Plan E is the calculator rule: 30,000 kits divided by six warehouses, 5,000 each, with no storm data at all. It is a serious competitor here:
+
+- **On robustness it matches or beats the optimized plans.** Its worst stress result (38.0%) is the best of the five, because it doesn't lean on any one road or warehouse: when the inland road is cut it still reaches 48%, against 25% for D. Its worst recorded storm (61.7%) equals D's (61.4%).
+- **On the average it gives up a little.** On the recorded storms it reaches 82.0% on average, about the same as the robust plan C (82.6%) but 6 points below D (88.4%) and 12 below B (94.2%). It also does worse than C and D at the ends of the coast (42% against 55% and 51% in a severe west-end storm), where the models moved stock.
+- **It provides none of the rest.** No dispatch cards, no price of robustness for funders, no way to weigh a known risk. Those come from the model, but the dispatch cards can still be built for an equal-split layout, because stage 2 is a separate calculation.
+
+What makes the equal split close here, and what to check before using it:
+
+1. **The sites are alike.** Every coastal zone has the same population and exposure, and every warehouse can reach a different part of the coast. If one district has three times the people, or two warehouses serve the same villages, split in proportion to the people each warehouse can reach instead, and recheck.
+2. **History is too thin to trust.** With eight storms, ignoring the record costs little. With decades of reliable records, or a strong forecast early in the season, plan B's average advantage becomes real.
+3. **Warehouses have room.** An equal split puts 5,000 kits where plan B put none (W2, W3). Check storage, security and the cost of kits that expire unused in remote sites.
+
+A sensible path is to start the season with an equal or population-proportional split, then use the model's stress table to see where it is thin (here, both ends of the coast) and move stock only where the model shows a clear gain across scenarios.
+
 ### Cautions
 
 Four things the numbers do **not** show.
 
 1. **A robust plan is only robust against what is in its set.** Plans C and D lean on the inland hub W6 because no planning storm cut the inland road. When the workshop scenarios cut it, C and D reach 33% and 25% of families against A's 49% and 41%. Likewise, the center storm stronger than any on record hurts C (26%) more than A (56%), which kept most stock in the center. This is why the workshop scenarios must come from local engineers, and why the plan should be rerun after they are added to the planning set (with a new stress set for testing).
-2. **No layout of 30,000 kits handles the worst storms well.** Every plan's worst stress result is below 27%. The honest message is that stock placement can't substitute for more stock, faster routes or other measures in the worst cases.
+2. **No layout of 30,000 kits handles the worst storms well.** Every optimized plan's worst stress result is below 27%, and even the equal split's is 38%. The honest message is that stock placement can't substitute for more stock, faster routes or other measures in the worst cases.
 3. **Out-of-sample results don't move smoothly with $\varepsilon$.** The stress columns improve from $\varepsilon = 0$ to $\varepsilon = 0.25$ and then barely change. The dial guarantees a trade-off only on the storms the model was given.
 4. **Everything here is invented.** The coast, populations, storm effects and road rules are made up to teach the method; real gains depend on a real road map and real storm footprints. The model also ignores costs the case cares about, such as storage and the kits that expire unused in remote warehouses. A real version would add them; the pilot's harm measure tracks them.
 

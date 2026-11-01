@@ -21,7 +21,7 @@ This tutorial builds the alternative step by step:
 3. **[From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism)** turns the CHWs' weekly records into estimates, with honest margins of error, and shows how to be *optimistic* about what we haven't tested.
 4. **[The Decision Engine](#the-decision-engine--the-whittle-index)** computes a single priority score per patient, the **Whittle index**, and works one through by hand.
 5. **[Scaling Up](#scaling-up--real-limits-on-who-can-be-visited)** handles the real-world limits: 80 visits in total, 8 per CHW, and a promise that nobody is ignored.
-6. **[Code Implementation & Simulation](#code-implementation--simulation)** runs it all in code and compares it with rotation and a risk score.
+6. **[Code Implementation & Simulation](#code-implementation--simulation)** runs it all in code and compares it with rotation, a risk score and a six-cell spreadsheet table.
 7. **[Core Architectural Summary](#core-architectural-summary)** summarizes every piece on one page.
 
 The idea that ties it together: **visit where a visit changes the most, now and in the weeks that follow.**
@@ -300,22 +300,36 @@ def optimistic(successes, trials, week, prior=0.5):
     return min(1.0, p_hat + radius), p_hat, radius
 ```
 
-### Simulation: three policies, 12 weeks
+### Simulation: five policies, 12 weeks
 
-The code simulates 1,200 patients, 400 in each group, starting with 60% adhering, and runs 12 weeks under three policies with 80 visits a week:
+The code simulates 1,200 patients, 400 in each group, starting with 60% adhering, and runs 12 weeks under five policies with 80 visits a week:
 
+- **No visits:** the baseline, to show what the visits add.
 - **Rotation:** visit the next 80 patients on the list each week.
 - **Risk score:** visit lapsing patients first, worst recovery odds first.
+- **One-step table:** the spreadsheet rule. Fill in the six-cell "hand calculation" column above once, then each week visit the 80 patients whose group and state have the highest value.
 - **Whittle:** visit the 80 highest Whittle indices.
 
 ```
 Simulation - 12-week simulation, average share adhering (1,200 patients, 80 visits/week)
+  no visits  0.420
   rotation   0.451
   risk score 0.422
+  one-step   0.490
   whittle    0.490
 ```
 
-The **risk score does worse than simple rotation**: it pours visits into hard-to-move patients where they change little. The Whittle policy keeps about 4 more patients in every 100 adhering than rotation, with the same 80 visits. With 1,200 patients, that is roughly 47 more people taking their medication in an average week.
+The **risk score does worse than simple rotation**: it pours visits into hard-to-move patients where they change little, adding almost nothing over no visits at all. The Whittle policy keeps about 4 more patients in every 100 adhering than rotation, with the same 80 visits. With 1,200 patients, that is roughly 47 more people taking their medication in an average week.
+
+### The simpler alternative: a six-cell table in Excel
+
+Here the one-step table matches the Whittle policy exactly. That is not luck: it ranks the six group-and-state cells in the same order as the exact index (compare the two columns in [the table above](#the-index-for-every-group-and-state)), so it picks the same patients every week. It needs a calculator and the transition estimates, not bisection or code: $eta 	imes (	ext{visit odds} - 	ext{no-visit odds}) 	imes (V_1 - V_0)$ for each cell.
+
+In what ways it is close, and what to check before settling for it:
+
+- **Close on the outcome when the order matches.** Rank the cells both ways once, using a partner or the program for the exact index. If the order is the same, the table *is* the policy. It differs when a visit's benefit lasts several weeks and groups slip back at different speeds; then the table over-values visiting people who are doing fine (0.489 against 0.328 here) and could push them above someone else.
+- **It still needs the hard part.** The table is only as good as the transition estimates behind it, which need weekly records per patient and some visits to every kind of patient. The simple rule saves the computation, not the data collection.
+- **Re-check when the estimates move.** After each quarter's update, recompute the six cells and see whether their order changed. If it rarely changes, the table can be printed and kept.
 
 Two cautions. These groups and probabilities are invented to teach the method; real gains depend on real data. And this simulation gives the Whittle policy the true probabilities. In the field it would start from the estimates in [From Records to Estimates](#from-records-to-estimates--plausible-ranges-then-optimism) and learn, so early weeks would do somewhat worse, which is exactly what a pilot measures.
 

@@ -18,6 +18,8 @@ In-depth walkthroughs of the method behind each [worked case](../cases/). Each o
 | [12. Network seeding: choosing peer educators who reach the most people](12-network-seeding-peer-educators.md) | [Class 11: Network Seeding](../../prompt/knowledge/taxonomy.md#class-11-network-seeding) | [Peer educators](../cases/12-peer-educators-network-seeding.md) |
 | [13. Risk-based inspection: where to dig for lead pipes](13-risk-based-inspection-lead-pipes.md) | [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) | [Lead-pipe search](../cases/13-lead-pipe-inspection.md) |
 
+The three combined cases use two of these tutorials each: [cash before a flood](../cases/14-anticipatory-cash-floods.md) (tutorials 4 and 2), [snare search](../cases/15-snare-search-patrols.md) (tutorials 13 and 3) and [job-search support](../cases/16-job-support-adaptive-targeting.md) (tutorials 9 and 8). [Tutorial 6](06-no-model-food-pantry.md) is about the simple rule throughout.
+
 ## How each tutorial is organized
 
 Every tutorial follows the same arc, so once you've read one the others are easy to navigate:
@@ -28,7 +30,7 @@ Every tutorial follows the same arc, so once you've read one the others are easy
 4. **From data to estimates:** the statistics: estimates, margins of error, and what to do when data are thin.
 5. **The decision engine:** the method itself, with a small example you can check by hand.
 6. **Scaling up:** the full-size problem and its real-world limits.
-7. **Code and simulation:** a runnable program and what its results mean.
+7. **Code and simulation:** a runnable program and what its results mean, ending with **the simpler alternative**: the best paper or spreadsheet rule, measured against the method on the same data, in what ways it comes close, and what to check before settling for it.
 8. **Summary:** each part of the method, its core formula and what it does in practice.
 
 ## Running the code

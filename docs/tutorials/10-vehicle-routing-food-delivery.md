@@ -355,6 +355,18 @@ Simulation - one week of routes, evaluated over 200 weeks of random travel times
 - **Keeping the windows costs trucks.** The new plan uses 40 truck-days a week instead of 37, and 9 trucks on its busiest day instead of 8. The current routes fill trucks to capacity regardless of time; the model sometimes sends a part-full truck because a fuller one would arrive late. Both stay well within the 12-truck fleet.
 - **The size of the saving is not a forecast.** The 47.5% cut is against a deliberately simple "current" plan in an invented region. Real dispatchers are better than this habit rule, and real roads are messier. The case is explicit: **don't promise a fuel saving.** The way to find the real number is the case's first step: replan a past month with the model and compare it with what actually happened.
 
+### The simpler alternative: the savings method by hand, or a free planner
+
+In routing, the simple method and the good method are close relatives. The plan above *is* a rule of thumb: Clarke–Wright savings (Clarke and Wright, Operations Research, 1964) plus 2-opt, the method worked [by hand](#clarkewright-savings-a-heuristic-you-can-run-by-hand) for seven points. On the two warehouse-days checked against the exact model it was 0.0% and 2.3% longer. Exact optimization would add at most a few percent; the 47.5% came from replacing habit with any systematic method.
+
+So the options, simplest first, and how close each is:
+
+- **Savings by hand, per warehouse-day.** For a day with 10 to 15 stops, a dispatcher can compute the savings table in a spreadsheet (distance to $i$ + distance to $j$ − distance between them), join the largest savings first while the truck has room and the windows hold, then try swapping stop order. It reaches roughly what the code does, at an hour or two per warehouse-day. Check: few, wide time windows (tight windows make hand-checking slow and errors likely), and one truck type.
+- **A free route planner.** VROOM or OR-Tools, set up once by a volunteer, does the same in seconds for every day, with windows and capacities. This is the realistic "simple" option for 140 points; it is software, but not a model anyone has to build or maintain.
+- **Fixing assignment by map.** Sending each point to its nearest warehouse with room is a calculator job. Here it would be worth less than routing (339 of the 2,753 km saved came from new lists).
+
+What all of them need, and what no shortcut replaces: a travel-time table drivers trust. With that in hand, the gap between a spreadsheet savings plan and an optimized one is small; without it, both promise arrivals that won't happen.
+
 ### Cautions
 
 1. **The travel-time table is the foundation.** In the simulation, the planner's times are off by a median of 7.9% and the buffer absorbs it. With handwritten times, or wrong coordinates, the same model would promise arrivals it can't deliver. Drivers know shortcuts and hazards the map doesn't, and will ignore sheets they don't trust; check the first sheets with them.

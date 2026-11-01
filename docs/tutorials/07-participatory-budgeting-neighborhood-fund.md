@@ -254,6 +254,7 @@ Suppose the homeowners' group gets every north voter to tick the same list of 6 
 | Greedy | 59% | 55% |
 | Equal shares, no completion | 30% | 36% |
 | Equal shares + completion | 44% | **56%** |
+| Greedy in ballot envelopes | 44% | 49% |
 
 Under greedy, the bloc changes little: north already wins. Under equal shares, the main count holds the bloc below north's 44% share of ballots: concentrating on fewer projects only helps north spend more of the shares it already has. **Completion is where the bloc gains.** Raising everyone's share helps most the group that can actually spend the extra, and the bloc's list is designed to be spendable. Here, it lifts north to 56%.
 
@@ -332,9 +333,13 @@ Simulation - greedy count vs equal shares
   equal shares + completion              projects=23  spent=$248,800  share N/W/S/E=44%/29%/15%/11%  ...
   completion raised each share by 52% before filling the rest by votes
   fair-share failures: greedy=2  equal shares=0
+  greedy in envelopes by ballots         projects=22  spent=$245,600  share N/W/S/E=44%/28%/15%/11%  ...
+    envelopes N/W/S/E=$110,565/$60,197/$51,597/$27,641  fair-share failures=0
+  greedy in envelopes by adults          projects=21  spent=$245,600  share N/W/S/E=30%/23%/15%/30%  ...
+    envelopes N/W/S/E=$53,571/$62,500/$53,571/$80,357  fair-share failures=0
 ```
 
-(Some lines are shortened; the program prints the full table, the reserve options, the bootstrap and the bloc test quoted above.)
+(Some lines are shortened; the program prints the full table, the reserve options, the bootstrap and the bloc test quoted above and below.)
 
 ### What the results say
 
@@ -342,6 +347,28 @@ Simulation - greedy count vs equal shares
 - **Each area gets about its share of ballots.** North 44%, east 11%, against 44.2% and 11.1% of ballots. Greedy gave north 59% and the east nothing.
 - **Proportional to ballots is not proportional to residents.** The east has 32% of adults. Only turnout, or a published reserve, changes that.
 - **It is the same pattern as the real evidence, not a forecast of it.** In Aarau, Switzerland, equal shares funded 17 projects where the standard greedy count would have funded 7 with the same budget (Pournaras et al., 2025); equal shares was also used in Wieliczka, Poland, in 2023. Those are city-run votes, the closest parallel to this fund; none is a neighborhood association. This neighborhood's numbers are invented, and its real result will depend on its real ballots.
+
+### The simpler alternative: area envelopes and the greedy count
+
+Many participatory budgets avoid one area taking everything with a simpler device: split the fund into an envelope per area, run the familiar greedy count inside each envelope on that area's projects, then spend any leftovers by the greedy count across the neighborhood. It needs only the clerk's spreadsheet and a sort.
+
+| | Equal shares + completion | Greedy, envelopes by ballots | Greedy, envelopes by adults |
+|---|---|---|---|
+| Projects funded | 23 | 22 | 21 |
+| Share N / W / S / E | 44% / 29% / 15% / 11% | 44% / 28% / 15% / 11% | 30% / 23% / 15% / 30% |
+| Fair-share failures | 0 | 0 | 0 |
+| North's share with the bloc list | 56% | 49% | |
+
+Here envelopes sized by ballots land almost exactly where equal shares does, and they hold the north bloc to 49%, lower than equal shares with completion. Sizing them by adults instead is the reserve idea taken all the way: the east gets 30%.
+
+Why it is so close here, and what to check before choosing it:
+
+- **Voters' preferences follow geography.** In this simulation people mostly back projects in their own area, so "fair to each area" and "fair to each group of voters" are the same thing. Check last year's ballots: if many voters back projects across areas, or the groups that matter are not places (renters and homeowners, young people, parents of one school), envelopes can't see them and equal shares can.
+- **Projects belong to one area.** A shared path between two areas, or a neighborhood-wide project, has no envelope; it competes only for leftovers. If such projects are common, equal shares handles them naturally.
+- **The envelope sizes are a political choice.** By ballots rewards turnout; by adults ignores it; either must be agreed and published before voting. Equal shares sizes groups automatically from the ballots.
+- **What is lost.** Envelopes give no guarantee for groups within an area, so the north's renters could still win nothing inside the north envelope.
+
+If the checks pass, envelopes are a defensible first step that the clerk can run this year; equal shares can be counted alongside as a comparison, as the pilot suggests.
 
 The cautions from earlier stand: the count needs individual ballots, completion can favor a well-organized bloc, and every rule must be published before voting. The case's pilot is the right test: one cycle, counted under both rules, with the binding rule announced in advance and a fairness survey afterwards.
 

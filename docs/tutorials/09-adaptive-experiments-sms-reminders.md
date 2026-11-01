@@ -324,6 +324,22 @@ These rows are the share of runs ending on each wording.
 - **With no real difference, the rule keeps A most of the time, but not 95% of the time.** Thompson switches away from A in $100\% - 86.5\% = 13.5\%$ of runs. A 95% threshold, checked every week and across three challengers, gives more than 5% false alarms. Here a false switch costs nothing, since all wordings are equal; but if the switch had a cost, the threshold would need to be stricter.
 - **With 1–2 point differences, the usual answer is "no clear winner, keep A".** All three designs keep A in about two thirds of runs and find B in under 20%, and the adaptive designs gain almost nothing (+2 on-time vaccinations over the season for Thompson). This is the case's warning: with about 4,000 parents, wordings that differ by a point or two may never separate. The experiment is still worth running, because it tells the team that no wording is much better than A.
 
+### The simpler alternative: an equal split, then switch
+
+The equal split is itself the simple option: four wordings, 100 parents each a week, a spreadsheet of on-time counts, and after 10 weeks a comparison of the four rates with their margins of error. It is how most organizations already test messages. How close does it come?
+
+| Scenario | Equal split, on time over the season | Thompson + guards | Equal split picks the best | Thompson picks the best |
+|---|---|---|---|---|
+| Wordings differ (B best by 7 points) | 6,773 | 6,823 (+50) | 85.4% | 88.4% |
+| Small differences (1–2 points) | 6,312 | 6,313 (+2) | 17.7% | 19.6% |
+| No difference | 6,240 | 6,240 (+0) | n/a | n/a |
+
+- **Close on the final choice.** It picks the best wording nearly as often as the adaptive designs in every scenario. Most of what the experiment is worth comes from switching everyone to the winner afterwards, and both designs do that.
+- **Less close during the experiment, when one option is much better.** The adaptive design's extra 50 on-time vaccinations come from moving parents off weak wordings while the test runs. With small or no differences, there is nothing to gain.
+- **Better on the evidence.** Fixed shares give every wording the same sample and a narrower margin of error (±0.032 for C, against ±0.043 under Thompson), and the usual difference-in-means and confidence intervals are valid. Adaptive designs need adjusted methods for that (Hadad and colleagues, PNAS, 2021). A donor asking "how much better is B, and how sure are you?" is better served by the equal split.
+
+What to check before settling for it: a few options (two to four), not dozens, where an equal split spreads too thin; a test short enough that serving the weaker wordings for 10 weeks costs little; and outcomes that arrive weekly, so a fixed end date is natural. If there are many options, or one option may be clearly harmful, or the test must run for a long season, the adaptive design earns its complexity.
+
 Two cautions. The true rates are invented to teach the method; the real gain depends on how different the wordings really are, which is what the experiment finds out. And the simulation assumes the outcome records are complete and correctly matched to phone numbers, which the case lists as the main practical friction.
 
 ---

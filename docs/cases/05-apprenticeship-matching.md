@@ -34,6 +34,9 @@ A youth employment NGO places about 200 graduates of its vocational course into 
 **Narrowing question — People choose.** *"Do individual people on both sides rank each other, such as students and schools, or does the community vote on how to split one budget among projects?"*
 > Both sides rank each other. Each young person wants particular employers, and each employer wants particular young people. There's no vote and no shared budget.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> No. Training and stipends are the same for everyone placed.
+
 ## Why Class 5: Strategic Matching Markets
 
 The assistant should select **[Class 5: Strategic Matching Markets](../../prompt/knowledge/taxonomy.md#class-5-strategic-matching-markets)**, solved with deferred acceptance (stable matching).
@@ -59,6 +62,8 @@ The assistant should select **[Class 5: Strategic Matching Markets](../../prompt
 - *Successes:* the NYC redesign substantially reduced the number of students assigned administratively to schools they had not ranked; the residency match has run stably for decades.
 - *Challenges:* employers may need help producing rankings; staff must resist "fixing" results by hand after the match, which breaks the honesty guarantee.
 - *Unknowns:* small markets with couples or linked requirements (e.g. two siblings needing the same town) can lack a stable match; check whether such constraints exist here.
+
+**6. Simpler alternative.** Here the recommended method is itself the simple option: deferred acceptance can be run by hand, with one envelope per employer and rounds of proposals, or in a spreadsheet. The [tutorial's](../tutorials/05-stable-matching-apprenticeships.md#the-simpler-alternative-run-deferred-acceptance-by-hand) cohort of 200 young people and 60 employers needed 15 rounds. Check before running it by hand: employers' rankings (or scoring rules) are written down before the match; the tie-break lottery is drawn first, in public; no couples or linked placements. The tempting shortcut, "first choices first", is not close: it invites strategic ranking (Abdulkadiroğlu & Sönmez, 2003) and left dozens of blocking pairs per cohort in the tutorial.
 
 **Next steps.** Draft the plain-language rules and the ranking forms; run the next cohort's match in parallel with staff assignment and compare; track refusals and first-month dropouts.
 

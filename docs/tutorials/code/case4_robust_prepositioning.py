@@ -16,6 +16,8 @@ Four ways to decide how many kits each warehouse holds before the season:
   C. robust          - best worst case over every storm we consider possible (minimax)
   D. distributionally robust (DRO) - best average under the least favorable
      re-weighting of history that stays "close" to the 8 storms
+Plus the calculator rule, for comparison:
+  E. equal split     - the same number of kits in every warehouse
 """
 
 import numpy as np
@@ -310,6 +312,7 @@ def main():
         "B expected value": plan("expected"),
         "C robust": plan("robust"),
         "D DRO eps=0.5": plan("dro", eps=0.5),
+        "E equal split": {w: TOTAL_KITS / len(WAREHOUSES) for w in WAREHOUSES},
     }
     print("\n  Stock per warehouse (kits)")
     print("  " + " " * 18 + "".join(f"{w:>7s}" for w in WAREHOUSES))

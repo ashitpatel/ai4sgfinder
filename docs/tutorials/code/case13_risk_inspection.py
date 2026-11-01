@@ -142,10 +142,17 @@ def run_year(city, X, past, rule, seed):
         avail = ~dug
         if rule == "current practice":
             pick = current_practice(city, DIGS_PER_MONTH, avail, rng)
-        elif rule == "oldest first":
+        elif rule in ("oldest first", "oldest + random"):
             cand = np.flatnonzero(avail)
             order = np.lexsort((rng.random(cand.size), city["year"][cand]))
-            pick = cand[order[:DIGS_PER_MONTH]]
+            n_rank = DIGS_PER_MONTH - (RANDOM_PER_MONTH if rule == "oldest + random" else 0)
+            pick = cand[order[:n_rank]]
+            if rule == "oldest + random":
+                rest = avail.copy()
+                rest[pick] = False
+                rand = rng.choice(np.flatnonzero(rest), RANDOM_PER_MONTH, replace=False)
+                random_digs.extend(rand)
+                pick = np.concatenate([pick, rand])
         else:
             beta = fit_logistic(X[dug], city["lead"][dug].astype(float))   # monthly refit
             risk = np.where(avail, sigmoid(X @ beta), -1.0)
@@ -180,7 +187,8 @@ def estimate_total(city, X, past, year, rand, beta, dug, rule):
     return base + k / n * pool, (base + lo * pool, base + hi * pool)
 
 
-RULES = ["current practice", "oldest first", "model, no random", "model + random"]
+RULES = ["current practice", "oldest first", "oldest + random", "model, no random", "model + random"]
+WITH_RANDOM = ("oldest + random", "model + random")
 
 
 # ------------------------------------------------------------- Main ---
@@ -251,8 +259,8 @@ def main():
     print(f"  top 300 undug homes by starting risk: expected lead = sum of risks = "
           f"{p0[top].sum():.0f}; actually lead (hidden) = {lead[top].sum()}")
 
-    # ---- one simulated year, four rules
-    print("\nOne year in Millbrook - 300 digs (12 months x 25), four rules")
+    # ---- one simulated year, five rules
+    print("\nOne year in Millbrook - 300 digs (12 months x 25), five rules")
     results = {}
     for r in RULES:
         year, rand, b_end, dug = run_year(city, X, past, r, seed=7)
@@ -297,7 +305,7 @@ def main():
     # ---- averaged over many synthetic cities
     print(f"\nAverage over {N_CITIES} synthetic cities (each with its own past digs)")
     tally = {r: dict(found=[], zero=[], err=[], low=[]) for r in RULES}
-    covered = 0
+    covered = {r: 0 for r in WITH_RANDOM}
     for s in range(N_CITIES):
         c = make_city(100 + s)
         Xc = features(c)
@@ -311,7 +319,7 @@ def main():
             t["err"].append(est - c["lead"].sum())
             t["low"].append((c["hood"][yr] == low).sum())
             if ci and ci[0] <= c["lead"].sum() <= ci[1]:
-                covered += 1
+                covered[r] += 1
     print("  rule               lead found per 300 (min-max)  hit rate  hoods w/o digs  "
           "Lowmoor digs  total estimate error (mean, typical size)")
     for r in RULES:
@@ -321,7 +329,8 @@ def main():
         print(f"  {r:<17}  {f.mean():6.1f} ({f.min()}-{f.max()})            {f.mean() / 300:.0%}"
               f"        {np.mean(t['zero']):.1f}          {np.mean(t['low']):5.1f}"
               f"        {e.mean():+7,.0f}, {np.sqrt(np.mean(e ** 2)):6,.0f}")
-    print(f"  model + random: 95% CI for the total contained the truth in {covered} of {N_CITIES} cities")
+    for r in WITH_RANDOM:
+        print(f"  {r}: 95% CI for the total contained the truth in {covered[r]} of {N_CITIES} cities")
 
 
 if __name__ == "__main__":

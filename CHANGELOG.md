@@ -2,6 +2,14 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
+## Unreleased
+
+- **Simpler alternatives.** Every recommendation now has a sixth heading, *The simpler alternative*: the best paper, spreadsheet or calculator option for the class, in what ways it comes close (total outcome, fairness, worst case, evidence) and what it gives up, the assumptions to check before settling for it, and how to compare it with the model on past records. The taxonomy's new [Section 4](prompt/knowledge/taxonomy.md#4-simpler-alternatives-for-each-class) lists the option for each class with verified evidence where it exists; the playbook adds a readiness check, a pilot comparison against the simple option, and a "Simpler option to beat" line in the partner brief.
+- **Tutorials measure the simple option.** Each tutorial for Cases 1–13 ends with a section comparing the best simple rule with the method on the same illustrative data. New rules in the programs: a six-cell one-step table (Case 1), greedy with a district floor (2), a weighted patrol lottery and a Goal Seek equilibrium (3), an equal split of stock (4), greedy within area envelopes (7), greedy placement with quarterly allotments (11), most-named residents spread across friend groups (12) and oldest-first with a random share (13). Earlier figures in the tutorials are unchanged.
+- **Two classes together.** The interview ends with a question about a second decision in the same program (when to act, where to look first, how it reaches people, or which version works for whom); a yes adds a second class as a layer. The taxonomy's new [Section 5](prompt/knowledge/taxonomy.md#5-when-two-classes-combine) lists combinations seen in practice, with real examples.
+- Three new worked cases that combine classes: cash released before a flood (Class 4 trigger with a Class 2 targeting layer), snare search with randomized patrols (Class 12 with a Class 3 layer) and job-search support that learns which option works for whom (Class 8 with a Class 7 layer). Cases 1–13 gain an answer to the second-decision question and a simpler-alternative section; Cases 4, 7, 9 and 13 show second decisions that are not a separate layer, or only a later one.
+- New verified references: Hanna & Olken (2018), Kim et al. (2015), Abdulkadiroğlu & Sönmez (2003), Clarke & Wright (1964), Hadad et al. (2021), Gholami et al. (2017), Pople et al. (2021), Bansak et al. (2018), plus comparisons with simple rules reported in Mate et al. (2022), Aiken et al. (2022) and Kempe et al. (2003).
+
 ## 1.2.0 — 2026-10-31
 
 - Seven new allocation classes, found by reviewing the research of Lily Xu, Roshni Sahoo and Ashish Goel's group, then their wider networks of collaborators and the AI-for-social-good literature, against the original five:

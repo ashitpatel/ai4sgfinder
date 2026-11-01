@@ -163,6 +163,10 @@ The filters: **Filter 1** The resource and its intent · **Filter 2** Choice and
 
 Write down the simple rule, who applies it, and the one or two numbers to track monthly that would show a model has become worthwhile.
 
+### Simpler option, for any class
+
+When the user would rather start with the simpler option from the [taxonomy's Section 4](taxonomy.md#4-simpler-alternatives-for-each-class), fit it the same way: write the rule in the user's terms (the columns of their spreadsheet, or the steps on paper), name who applies it and how often, list the assumptions it rests on with how each will be checked, and name the sign that it has stopped being close enough (for example, a district left with nothing, or last year's replay showing a growing gap).
+
 ---
 
 ## Follow-up 2: Readiness checks
@@ -177,6 +181,7 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 - **Do-no-harm.** Who loses out under the new allocation compared with today, and is that acceptable and explainable?
 - **Maintenance.** Someone can rerun the model, fix the data pipeline and answer staff questions a year from now, after the original builder leaves.
 - **Exit plan.** If the model fails or the partner leaves, staff can fall back to a written simple rule.
+- **Simpler option tested.** The best simple option for the class ([taxonomy, Section 4](taxonomy.md#4-simpler-alternatives-for-each-class)) has been replayed on past records alongside the model, and the gap is worth the model's full cost: building it, the data pipeline, staff time each cycle and maintenance.
 - **Community voice.** Affected people or their representatives have seen and can question the approach.
 - **Bias in risk scores.** If any step uses a predicted score, check what it actually predicts and whether it is equally accurate across groups. A health algorithm that predicted costs instead of illness under-referred Black patients (Obermeyer et al., Science 2019).
 - **Human override.** Staff know when they may set the model's suggestion aside, and each override is recorded and reviewed.
@@ -202,7 +207,8 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 Recommend the smallest pilot that can show the approach works better than current practice.
 
 **For every class**
-- **Compare against current practice**, not against nothing.
+- **Compare against current practice**, not against nothing, and where possible also against the best simple option for the class ([taxonomy, Section 4](taxonomy.md#4-simpler-alternatives-for-each-class)). A model that can't beat a good spreadsheet rule in the pilot shouldn't be scaled.
+- **For combined classes, pilot the input layer first.** A forecast trigger, risk map or outcome prediction is tested before the decision that depends on it ([taxonomy, Section 5](taxonomy.md#5-when-two-classes-combine)).
 - **Pick one or two success measures** agreed before the pilot starts, plus one harm measure (who might be worse off).
 - **Fix the duration** up front and the conditions for stopping early.
 - **Keep it reversible.** The old process stays available.
@@ -325,6 +331,10 @@ Current approach
 Recommended approach
   [Class number and name, and the method (e.g. restless bandits with a Whittle index),
    with one sentence on why it fits our answers.]
+
+Simpler option to beat
+  [The best paper or spreadsheet rule, and the assumptions it rests on. Any build
+   must beat it on last year's records before the pilot.]
 
 Data we have
   [Fields, how often recorded, how many records, format, known gaps.]

@@ -107,13 +107,20 @@ def simulate(policy, weeks=12, n_per_group=400, budget=80, seed=7):
     state = rng.random(group.size) < 0.6          # 60% adhering at the start
     index_table = {(g, s): whittle_index(GROUPS[n]["passive"], GROUPS[n]["active"], s)
                    for g, n in enumerate(names) for s in (0, 1)}
+    step_table = {(g, s): one_step_benefit(GROUPS[n]["passive"], GROUPS[n]["active"], s)[0]
+                  for g, n in enumerate(names) for s in (0, 1)}
     adhering_share = []
     for week in range(weeks):
-        if policy == "rotation":
+        if policy == "no visits":
+            chosen = np.array([], dtype=int)
+        elif policy == "rotation":
             chosen = np.arange(week * budget, (week + 1) * budget) % group.size
         elif policy == "risk score":   # visit lapsing patients first, worst groups first
             risk = (1 - state) * 10 + np.array([GROUPS[names[g]]["passive"][0] for g in group]) * -1
             chosen = np.argsort(-risk, kind="stable")[:budget]
+        elif policy == "one-step":     # the spreadsheet rule: a 6-cell table of one-step benefits
+            idx = np.array([step_table[(g, int(s))] for g, s in zip(group, state)])
+            chosen = np.argsort(-idx, kind="stable")[:budget]
         elif policy == "whittle":
             idx = np.array([index_table[(g, int(s))] for g, s in zip(group, state)])
             chosen = np.argsort(-idx, kind="stable")[:budget]
@@ -162,7 +169,7 @@ def main():
           f"26 weeks={0.9**26:.3f}; effective sample size of 39 weeks={weights.sum():.1f}")
 
     print("\nSimulation - 12-week simulation, average share adhering (1,200 patients, 80 visits/week)")
-    for policy in ("rotation", "risk score", "whittle"):
+    for policy in ("no visits", "rotation", "risk score", "one-step", "whittle"):
         print(f"  {policy:10s} {simulate(policy):.3f}")
 
 

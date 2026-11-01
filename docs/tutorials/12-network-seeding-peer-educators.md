@@ -208,7 +208,7 @@ The code builds an illustrative shelter that matches the case: 400 residents in 
 
 Planning value: $p = 0.15$, a modest chance that any one friend passes the message on.
 
-### Four plans compared
+### Five plans compared
 
 Each plan gets 25 seeds and is scored on 2,000 fresh worlds:
 
@@ -218,12 +218,14 @@ Each plan gets 25 seeds and is scored on 2,000 fresh worlds:
 | Most at-risk (intake score) | 50.1 | 49.7 to 50.5 | 12.5% | 10 of 14 | 54.3 |
 | Staff picks (most visible) | 51.3 | 50.9 to 51.6 | 12.8% | 3 of 14 | 87.5 |
 | Most friends (degree) | 71.9 | 71.5 to 72.3 | 18.0% | 10 of 14 | 100.9 |
+| Most friends, by group | 73.2 | 72.7 to 73.6 | 18.3% | 14 of 14 | 93.9 |
 | **Greedy** | **77.8** | **77.4 to 78.3** | **19.5%** | **13 of 14** | 92.5 |
 
 The last column is what the seeds would reach if each worked alone. Comparing it with the combined reach shows the overlap.
 
 - **Staff picks and the most at-risk do no better than random.** Staff picks have a large solo total (87.5) but cluster in 3 groups, so most of it is overlap. At-risk seeds spread out, but each starts few conversations.
 - **Degree does well but wastes seeds on overlap.** Its solo total, 100.9, is the highest of any plan; its combined reach is 29 less.
+- **Spreading the popular list across groups helps.** "Most friends, by group" gives each friend group seeds in proportion to its size (at least one), then picks the people with the most friends in each. It gains 1.3 residents over plain degree.
 - **Greedy reaches the most** by spreading seeds over 13 of the 14 groups. Its seeds still have many friends (8.8 on average, against 9.4 for the degree plan), and 15 of its 25 seeds are also on the degree list. It replaces the 10 popular people whose friends were already covered.
 
 Because every plan is scored on the same worlds, the differences can be measured directly, world by world, which gives tight intervals:
@@ -233,6 +235,7 @@ Because every plan is scored on the same worlds, the differences can be measured
 | Most at-risk | 27.7 | 27.3 to 28.2 |
 | Staff picks | 26.6 | 26.1 to 27.0 |
 | Most friends | 5.9 | 5.6 to 6.2 |
+| Most friends, by group | 4.7 | 4.4 to 4.9 |
 
 These intervals measure *simulation* uncertainty only: how sure we are about the model's answer, not whether the model is right. Against staff picks the gain is large (about half as many residents again). Against the degree list it is small, and the [pilot](../../prompt/knowledge/playbook.md#follow-up-3-pilot-design) is what would show whether it is real at this shelter.
 
@@ -240,15 +243,15 @@ These intervals measure *simulation* uncertainty only: how sure we are about the
 
 The code reruns everything at a low and a high value of $p$. For each, it chooses greedy seeds afresh and also scores the original list chosen at $p = 0.15$. Every row uses new worlds, which is why the 0.15 row shows 77.7 rather than 77.8:
 
-| $p$ | Greedy re-chosen for this $p$ | Original greedy list | Degree | Staff picks | Most at-risk | Seeds kept from original list |
-|---|---|---|---|---|---|---|
-| 0.08 | 47.6 | 47.6 | 45.5 | 36.7 | 33.9 | 22 of 25 |
-| 0.15 | 77.7 | 77.7 | 71.8 | 51.1 | 50.5 | 24 of 25 |
-| 0.25 | 144.6 | 143.8 | 129.4 | 88.7 | 105.3 | 17 of 25 |
+| $p$ | Greedy re-chosen for this $p$ | Original greedy list | Degree | Degree, by group | Staff picks | Most at-risk | Seeds kept from original list |
+|---|---|---|---|---|---|---|---|
+| 0.08 | 47.6 | 47.6 | 45.5 | 45.5 | 36.7 | 33.9 | 22 of 25 |
+| 0.15 | 77.7 | 77.7 | 71.8 | 73.0 | 51.1 | 50.5 | 24 of 25 |
+| 0.25 | 144.6 | 143.8 | 129.4 | 137.0 | 88.7 | 105.3 | 17 of 25 |
 
 Three things stand out:
 
-- **The ranking of plans doesn't change.** Greedy beats degree, which beats staff picks and the at-risk list, at every value tried.
+- **The ranking of plans doesn't change.** Greedy beats both degree rules, which beat staff picks and the at-risk list, at every value tried. The gap between greedy and the simple rules grows as $p$ rises, because the further a message travels, the more seeds' reach overlaps.
 - **Guessing $p$ wrong costs almost nothing.** The list chosen at 0.15 reaches the same as the re-chosen list at 0.08, and 0.8 fewer residents (144.6 against 143.8) at 0.25, even though 8 of its seeds would change.
 - **Reach itself depends heavily on $p$**, from 47.6 to 144.6. So don't promise the funder a number of residents; promise a comparison with staff picks, measured as described below.
 
@@ -358,10 +361,12 @@ Plans for 25 seeds, scored on 2000 fresh worlds (p=0.15)
   most at-risk (intake score)    reach=  50.1  95% CI 49.7 to 50.5  (12.5%)  groups with a seed=10/14  seeds in groups 0-1= 6  sum of solo reaches=54.3
   staff picks (most visible)     reach=  51.3  95% CI 50.9 to 51.6  (12.8%)  groups with a seed= 3/14  seeds in groups 0-1=24  sum of solo reaches=87.5
   most friends (degree)          reach=  71.9  95% CI 71.5 to 72.3  (18.0%)  groups with a seed=10/14  seeds in groups 0-1=11  sum of solo reaches=100.9
+  most friends, by group         reach=  73.2  95% CI 72.7 to 73.6  (18.3%)  groups with a seed=14/14  seeds in groups 0-1= 7  sum of solo reaches=93.9
   greedy (influence max.)        reach=  77.8  95% CI 77.4 to 78.3  (19.5%)  groups with a seed=13/14  seeds in groups 0-1= 7  sum of solo reaches=92.5
   greedy minus most at-risk (intake score)     27.7  95% CI 27.3 to 28.2
   greedy minus staff picks (most visible)      26.6  95% CI 26.1 to 27.0
   greedy minus most friends (degree)            5.9  95% CI 5.6 to 6.2
+  greedy minus most friends, by group           4.7  95% CI 4.4 to 4.9
 ```
 
 The whole program, including the toy example, the sensitivity check and the refusal simulation, runs in under a minute on a laptop. Its output is the same on every run, because every random step uses a fixed seed.
@@ -369,10 +374,21 @@ The whole program, including the toy example, the sensitivity check and the refu
 ### What the results say
 
 - **Spreading seeds out matters more than picking popular people.** Greedy reaches 77.8 residents on average, 26.6 more than staff-style picks with the same 25 places: about half as many residents again.
-- **The popular-people list is a strong simple rule here,** within 5.9 residents of greedy. A shelter that can't run the script would do far better with "most friends, at most a few per group" than with staff picks. The greedy script does that balancing automatically.
+- **The popular-people list is a strong simple rule here,** within 5.9 residents of greedy, and 4.7 once it is spread across friend groups. See [the simpler alternative](#the-simpler-alternative-count-friends-spread-across-groups) below.
 - **The at-risk list does worst,** below even random seeds. The case's warning holds: the message stops with seeds on the edge of the network.
 - **The choice is robust to $p$; the reach number isn't.** Report comparisons, not promises.
 - **Backups matter.** Without them, a 20% decline rate costs 13.5 residents of reach; with 10 ranked backups, 3.0.
+
+### The simpler alternative: count friends, spread across groups
+
+"Most friends, by group" needs only the friendship survey, a tally of how often each resident was named, and staff knowledge of which residents hang out together. Done on paper, it reaches 73.2 residents against greedy's 77.8, about 94%, and far more than staff picks (51.3).
+
+In what ways it is close, and what to check before settling for it:
+
+- **Close on total reach, when the groups are clear.** Here 90% of friendships fall inside 14 well-separated groups, so "one or more per group" captures most of what greedy does. If staff can't tell where the groups are, or the network is one tangled web, plain degree is the fallback (71.9 here), and it wastes more seeds on overlap.
+- **Less close when messages travel far.** At $p = 0.25$ the by-group rule falls 7.6 residents behind greedy, because popular people's reach overlaps more. If the message is something people readily pass on, the script is worth more.
+- **It doesn't pick bridges.** Greedy sometimes chooses a less popular person who links two groups; a count of friends never will.
+- **Without a survey, ask.** Where a friendship survey isn't possible, asking residents "who here is good at spreading news?" (Banerjee and colleagues, Review of Economic Studies, 2019) or asking random residents to name a friend and training the friend (Kim and colleagues, Lancet, 2015) are field-tested simple rules. In Kim's Honduras trial, the friend-nomination rule raised take-up of a multivitamin offer over random seeding, while choosing the most-named people did not. Different setting, different message: test before assuming either transfers.
 
 Two cautions. The shelter, friendships, risk scores and decline rate are invented to teach the method; the real gain depends on the real friendship map, especially how clustered it is. And "reach" means *hearing the message as modeled*, not getting tested or starting PrEP; the follow-up question measures the first, and the program's own records the rest.
 

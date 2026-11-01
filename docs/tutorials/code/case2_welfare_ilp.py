@@ -186,6 +186,23 @@ def greedy(region, reach):
     return chosen
 
 
+def greedy_with_floor(region, reach, floor):
+    """The spreadsheet with a fairness rule: while any district is below the floor, add the
+    site covering the most new people IN the district furthest below it; then plain greedy."""
+    chosen, covered = set(), np.zeros(reach.shape[0], bool)
+    for _ in range(BUDGET):
+        share = district_shares(region, covered)
+        lagging = min(DISTRICTS, key=lambda d: share[d])
+        weight = region["pop"] * (region["district"] == lagging) if share[lagging] < floor \
+            else region["pop"]
+        gains = (reach & ~covered[:, None]).T @ weight
+        gains[list(chosen)] = -1
+        j = int(np.argmax(gains))
+        chosen.add(j)
+        covered |= reach[:, j]
+    return chosen
+
+
 def covering_model(region, reach, pop=None, mode="coverage", floor=0.0, worst=None):
     """The maximal covering model (Church & ReVelle 1974) with a district fairness rule.
 
@@ -316,7 +333,7 @@ def main():
     half = 1.96 * sd / np.sqrt(len(ratios))
     print(f"  sample mean={mean:.2f}  sd={sd:.2f}  95% CI={mean - half:.2f} to {mean + half:.2f}")
 
-    print("\nSimulation - five plans for 25 boreholes")
+    print("\nSimulation - six plans for 25 boreholes")
     plans = {}
     plans["need ranking"] = (need_ranking(region, reach), 0.0)
     start = time.perf_counter()
@@ -328,6 +345,7 @@ def main():
     middle = 0.20     # a middle ground the councils might choose: every district >= 20%
     chosen, secs, _ = covering_model(region, reach, floor=middle)
     plans[f"middle ground (ILP, floor {middle:.0%})"] = (chosen, secs)
+    plans[f"greedy with floor {middle:.0%}"] = (greedy_with_floor(region, reach, middle), 0.0)
     for name, (chosen, secs) in plans.items():
         total, sh, per_d = summarize(region, reach, chosen)
         print(f"  {name:32s} covered={total:7,} ({total / pop.sum():.1%})  "

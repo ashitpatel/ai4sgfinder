@@ -34,6 +34,9 @@ A volunteer-run food pantry serves about 150 registered households. It hands out
 **Narrowing question — Repeated decisions that learn.** *"Which describes your uncertainty better: how each person's situation changes from week to week, or which of several program options works best?"*
 > Neither, really. Every registered household that comes gets a box, so we aren't choosing who gets one, and there's only one kind of box.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> No. There's nothing else to decide; the boxes go out on the same days to whoever comes.
+
 ## Why no model
 
 The assistant should select **none of the twelve classes** and recommend simple rules instead.
@@ -46,7 +49,7 @@ The assistant should select **none of the twelve classes** and recommend simple 
 
 ## What a good recommendation contains
 
-A good answer still uses the five headings, but each is short and honest:
+A good answer still uses the six headings, but each is short and honest:
 
 **1. Class.** No optimization model. Use two simple rules: (a) a predictable end-of-month top-up order from the supplier, and (b) a written shortfall rule (for example, households with children under 5 or with no other support are served first; everyone else gets a smaller box).
 
@@ -57,6 +60,8 @@ A good answer still uses the five headings, but each is short and honest:
 **4. Evidence.** At the network level, food *allocation* does merit mechanism design: Feeding America's Choice System, which lets food banks bid for donated loads with an internal currency, improved allocation across food banks (Prendergast, JPE 2022). It is an example of [Class 10: Online Assignment & Waitlists](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists): loads are placed as they arrive. That is a different scale; if the pantry later joins a regional network, that is where such tools belong.
 
 **5. Report card.** Successes: simple rules are transparent and survive volunteer turnover. Challenges: the end-of-month spike needs a standing supplier arrangement. Unknowns: whether unregistered households are being turned away, which the sign-in sheet doesn't capture.
+
+**6. Simpler alternative.** Here the simple rule *is* the recommendation, so this heading says what would make it stop being close enough: shortfalls in more than a few weeks a year, recorded turn-aways, or the pantry starting to share supply with other sites. Until one of those appears, the written rule and the supplier buffer capture almost all the value a model could add.
 
 **Next steps.** Spend the foundation's offer on storage capacity or a supplier buffer for end-of-month weeks, and record turn-aways for 3 months to check whether hidden demand exists.
 

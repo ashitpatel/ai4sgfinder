@@ -16,7 +16,7 @@ Steps:
      years of records (group rates shrunk toward a simpler estimate, with CIs).
   2. Offline benchmark: the "hindsight best" integer program, as if the whole
      year's families were known up front.
-  3. Online rules: first-available, greedy, bid prices and weekly re-solving with
+  3. Online rules: first-available, greedy (also with quarterly allotments), bid prices and weekly re-solving with
      a forecast, on a 6-family hand example and then a simulated year.
 """
 
@@ -306,6 +306,13 @@ def run_year(policy, year, est, world, forecast, rng, override=0.0, explain=Fals
                 c = first_available(room, rng)
             elif policy == "greedy":
                 c = open_c[np.argmax(est[k, open_c])]
+            elif policy == "greedy + quarterly":
+                # Spreadsheet guard: a city may use only a quarter of its quota per quarter
+                # (cumulative), so early arrivals can't fill the best cities by June.
+                used = world["quota"] - room
+                allot = np.flatnonzero((room > 0) & (used < world["quota"] * (w // 13 + 1) / 4))
+                pool = allot if allot.size else open_c
+                c = pool[np.argmax(est[k, pool])]
             elif policy == "bid price":
                 c = open_c[np.argmax(est[k, open_c] - prices[open_c])]
             else:
@@ -360,7 +367,7 @@ def summarise(name, placed, world, counts_hind=None):
 
 
 def simulate(world, est, forecast, years, label, override_run=True, explain=False):
-    policies = ["first-available", "greedy", "bid price", "re-solve"]
+    policies = ["first-available", "greedy", "greedy + quarterly", "bid price", "re-solve"]
     res = {pol: [] for pol in policies + ["re-solve + 15% overrides", "hindsight best",
                                           "hindsight, true chances"]}
     for y, year in enumerate(years):

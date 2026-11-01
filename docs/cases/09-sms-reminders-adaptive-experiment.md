@@ -43,6 +43,9 @@ A district immunization NGO sends an SMS reminder to parents a few days before e
 **Narrowing — "Which describes your uncertainty better: how each person's situation changes from week to week, or which of several program options works best?"**
 > Which wording works best. Each parent only gets one or two reminders for a given vaccination, so there's no week-to-week situation to track.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> Maybe for whom: we suspect first-time parents respond differently from parents of older children.
+
 ## Why Class 8: Learn-While-Allocating
 
 The assistant should select **[Class 8 (Learn-While-Allocating)](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating)**, solved with an adaptive experiment (Thompson sampling or exploration sampling).
@@ -51,6 +54,7 @@ The assistant should select **[Class 8 (Learn-While-Allocating)](../../prompt/kn
 - **Small, fixable errors and no history** (Filter 4 — Tolerance for being wrong) make learning acceptable, so the worst-case protection of [Class 4 (Robust Contingency Planning)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) isn't needed. With no trial results, [Class 7 (Effect-Based Targeting)](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) has nothing to learn *who* responds from.
 - **Outcomes arrive within about a week** and the mix can change weekly (Filter 5 — Field data and workflow friction), which is the minimum data Class 8 needs.
 - **The narrowing answer decides it:** the uncertainty is which of four stable options works best, not how each parent's situation drifts. [Class 1 (Dynamic State Evolution)](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) would need repeated observations of each parent over many weeks; here each parent receives one or two reminders and leaves the list.
+- **"For whom" is a possible later layer** (second-decision question): [Class 7 (Effect-Based Targeting)](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) on top of the experiment, as in the Jordan study. With about 4,000 parents it is secondary; the primary question is which wording works at all.
 
 ## What a good recommendation contains
 
@@ -68,6 +72,8 @@ But be honest about when a **fixed randomized trial is still better**: if a dono
 - *Successes:* both field experiments show adaptive assignment can be run by real organizations on a weekly or wave-by-wave cycle.
 - *Challenges:* in the Jordan experiment the targeting algorithm's gain was small, about 1 percentage point of employment. Say so plainly: the adaptive design mainly avoids waste during learning; it does not make a weak message strong. Matching vaccination records to phone numbers, and the one-to-two-week outcome delay, are the practical friction here.
 - *Unknowns:* whether the four wordings differ much at all. With about 4,000 parents over 10 weeks, wordings that differ by a point or two may never separate; the stopping rule should then end with "no clear winner, keep A". Whether the best wording differs between groups (first-time parents, rural areas) is also open.
+
+**6. Simpler alternative.** An equal split: 25% of parents to each wording for the 10 weeks, a spreadsheet of on-time counts, then switch everyone to the winner. In the [tutorial](../tutorials/09-adaptive-experiments-sms-reminders.md#the-simpler-alternative-an-equal-split-then-switch) it picked the best wording nearly as often as Thompson sampling (85% against 88% of runs) and gave up about 50 on-time vaccinations over a season when one wording was clearly better, nothing when differences were small (illustrative data). It is close on the final choice and better on evidence: every wording gets the same sample, and the usual confidence intervals stay valid (Hadad et al., 2021). Check before settling for it: four options or fewer; serving the weaker wordings for 10 weeks is acceptable; weekly outcomes. The "for whom" question is a possible [Class 7](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) layer, as in the Jordan experiment: say plainly that with about 4,000 parents, differences by parent type will be hard to detect, so record parity now and look at it once the main question is answered.
 
 **Next steps.** Write down the outcome (vaccinated within 7 days of the due date), the shares, the floor, the control and the stopping rule before the first week; check whether the evaluation needs ethics approval and whether parents' enrolment covers using their records this way; build and test the weekly spreadsheet on last month's wording-A data.
 
@@ -120,6 +126,10 @@ Recommended approach
   Class 8 (Learn-While-Allocating): an adaptive experiment using Thompson
   sampling or exploration sampling, because the options are stable,
   outcomes arrive within weeks, and a weaker message costs little.
+
+Simpler option to beat
+  An equal 25% split for 10 weeks, then switch to the best wording. Close on
+  the final choice; costs some on-time vaccinations if one wording is far better.
 
 Data we have
   Clinic records of each vaccination, entered within a week, matched to

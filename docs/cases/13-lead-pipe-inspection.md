@@ -41,6 +41,9 @@ A children's environmental-health NGO in the (fictional) city of Millbrook works
 *"What is the hardest part: outwitting people who avoid you, preparing for a rare disaster, moving goods to many places, or finding hidden problems?"*
 > Finding hidden problems. We know roughly where lead pipes could be; we don't know which homes actually have them.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> After we find lead, scheduling crews to replace pipes, but the utility's contractor does that.
+
 ## Why Class 12: Risk-Based Inspection
 
 The assistant should select **[Class 12 (Risk-Based Inspection)](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection)**, solved with a predictive risk model that ranks homes for digging, updated as results come in.
@@ -50,6 +53,7 @@ The assistant should select **[Class 12 (Risk-Based Inspection)](../../prompt/kn
 - Not [Class 3 (Spatiotemporal Security & Adaptive Search)](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search): nothing evades the crews (Filter 3 — Environment dynamics), so a randomized game against an adversary would add complexity with no benefit.
 - Not [Class 2 (Static Demographic Targeting)](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting): a dig is not a benefit handed to a household; the pipes are *findings*, and the value of each dig depends on how likely it is to find lead.
 - Not [Class 8 (Learn-While-Allocating)](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) as the primary class: there are no competing program options to compare. But a learning element sits *inside* Class 12: each month's digs update the model, and a random share keeps it learning about places it would otherwise skip.
+- **Replacement scheduling is not this program's decision** (second-decision question). If the utility later asked for help sequencing crews, that would be a [Class 9 (Routing & Logistics)](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics) layer; here the contractor owns it, so recommend one class.
 
 ## What a good recommendation contains
 
@@ -70,6 +74,8 @@ The assistant should select **[Class 12 (Risk-Based Inspection)](../../prompt/kn
 - *Successes:* the Flint and Chicago projects were built with public agencies on their own records (see the papers for reported results); Eva shows the explore-and-target design outperforming random choice at scale.
 - *Challenges:* incomplete, inconsistent records; crews and residents asking why one street is dug and the next isn't; finding pipes faster than the utility can replace them.
 - *Unknowns:* how badly the selective past digs bias the starting model; whether records are worse in poorer neighborhoods, so the model under-scores them; whether the replacement budget keeps pace with findings.
+
+**6. Simpler alternative.** Sort the undug homes by year built in Excel, dig the oldest, and keep the same 4 random checks a month. In the [tutorial](../tutorials/13-risk-based-inspection-lead-pipes.md#the-simpler-alternative-sort-by-age-keep-a-random-share) sorting by age found about 85% as many lead pipes as the model, and with the random share it gave an almost unbiased estimate of the city's total (illustrative data). It is close on finds when one factor carries most of the risk, and on honest totals with the random share. It gives up what records and neighborhood add (about 34 more pipes a year in the tutorial) and the monthly learning that moves digs toward a neighborhood worse than its age suggests. Check before settling for it: in the 1,500 past digs, compare the hit rate for the oldest quarter of homes with the rest; if age barely separates them, the model is worth more. The Flint study compared its model with the city's actual digging, not with an age sort, so there is no published figure for this gap.
 
 **Next steps.** Clean the 1,500 past dig records and flag how each was chosen; join them to house age and neighborhood; agree with the utility the random share, the equity check, and the replacement and filter plan *before* the first ranked list goes out.
 
@@ -125,6 +131,10 @@ Recommended approach
   chance of a lead line, with a random share of digs to correct for
   past selective digging, retrained monthly, because the pipes are
   hidden, digs are limited and past results exist.
+
+Simpler option to beat
+  Oldest homes first, plus 4 random checks a month. Close if year built
+  separates past hits from misses; the model adds records and neighborhood.
 
 Data we have
   ~1,500 past dig results (lead and not) in Excel; property records with

@@ -349,6 +349,17 @@ The program also prints the toy example, the pilot summary, the subgroup table, 
 - **A two-question checklist loses nothing here** to a model that uses every field, because the true pattern is simple. A causal forest is still the right first step on real data, to find out whether the pattern *is* simple.
 - **The floor and the gaming checks are where the real decisions sit.** A 20% need floor costs 11.3% of the gain; unverified shop ages would cost about 12%.
 
+### The simpler alternative: a pivot table of the pilot
+
+Most of what policy learning does here can be done with a pivot table. Split the pilot by one characteristic at a time (shop age bands, urban or rural, sells food), compute the difference in average income between offered and not offered within each group, and fund the group with the largest difference. That is the one-question rule, "shop open 3 years or more", and on the held-out half it delivers a true $37.0 per grant against $45.0 for the two-question rule, $25.7 for a lottery and $10.7 for poorest-first. One question captures about 60% of the two-question rule's advantage over a lottery; adding the second question in the pivot table (shop age, then urban or rural) captures all of it.
+
+In what ways it is close, and what to check before settling for it:
+
+- **It still needs the randomized pilot.** The pivot table saves the modeling, not the experiment. Without a lottery between offered and not-offered applicants, differences between groups are differences in who applied, not in what the grant did.
+- **Close when the pattern is simple.** Here the true effect depends on two characteristics, so a two-way table finds it. If the effect depends on many characteristics in small ways, a table misses it and a causal forest earns its place. Run the forest once with a partner to learn which case you are in.
+- **The held-out check is the part people skip.** Pick the groups on half the pilot and check them on the other half. Comparing many subgroups in one table guarantees that some look good by chance, which is why the training estimate here ($50.2) overstated the truth.
+- **Keep the groups large and the questions verifiable.** A rule based on a group of 40 people or on an answer applicants can fake will not hold up when the program scales.
+
 Two cautions. The applicants, effects and gaming rates are invented to teach the method; real gains depend on how sharply the real effect varies, which only the real pilot can show. And the outcome is income a year later, not five years later; a grant that pays off slowly for new shops would look worse here than it is.
 
 ---

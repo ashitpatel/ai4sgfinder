@@ -311,27 +311,29 @@ rest = avail.copy(); rest[pick] = False
 rand = rng.choice(np.flatnonzero(rest), 4, replace=False)      # 4 random checks
 ```
 
-### Simulation: four rules, 300 digs
+### Simulation: five rules, 300 digs
 
-The code runs one year (12 months of 25 digs) under four rules, starting from the same city and the same 1,500 past digs:
+The code runs one year (12 months of 25 digs) under five rules, starting from the same city and the same 1,500 past digs:
 
 - **Current practice:** 60% of digs follow complaints, 40% follow repaving, as before.
 - **Oldest first:** dig the oldest undug homes, a simple rule needing no model.
+- **Oldest + random:** the 21 oldest undug homes plus 4 random checks a month, still no model.
 - **Model, no random:** dig the top 25 by risk each month, refitting monthly.
 - **Model + random:** dig the top 21 by risk plus 4 random checks, refitting monthly.
 
 For the city in the tables above:
 
 ```
-One year in Millbrook - 300 digs (12 months x 25), four rules
+One year in Millbrook - 300 digs (12 months x 25), five rules
   current practice  lead found 118/300 (39%)  neighborhoods with no digs: 0  estimated total 8,122
   oldest first      lead found 242/300 (81%)  neighborhoods with no digs: 1  estimated total 9,500
+  oldest + random   lead found 220/300 (73%)  neighborhoods with no digs: 0  estimated total 6,520 (95% CI 4,458 to 9,090)
   model, no random  lead found 287/300 (96%)  neighborhoods with no digs: 3  estimated total 8,498
   model + random    lead found 253/300 (84%)  neighborhoods with no digs: 0  estimated total 5,416 (95% CI 3,577 to 7,931)
   true total: 6,471
 ```
 
-Each rule's "estimated total" is the estimate it naturally produces: for current practice and oldest first, the hit rate of all digs so far times 20,000; for the model-only rule, lead found plus the model's summed risks for undug homes; for the random share, the formula in [The Decision Engine](#estimating-the-citys-total-from-random-checks).
+Each rule's "estimated total" is the estimate it naturally produces: for current practice and oldest first, the hit rate of all digs so far times 20,000; for the model-only rule, lead found plus the model's summed risks for undug homes; for the two rules with a random share, the formula in [The Decision Engine](#estimating-the-citys-total-from-random-checks).
 
 One city could be lucky, so the code repeats the year in 30 synthetic cities, each with its own homes and past digs:
 
@@ -340,8 +342,10 @@ Average over 30 synthetic cities (each with its own past digs)
   rule               lead found per 300 (min-max)  hit rate  hoods w/o digs  Lowmoor digs  total estimate error (mean, typical size)
   current practice    120.8 (103-141)            40%        0.1            3.4         +1,752,  1,760
   oldest first        246.5 (235-260)            82%        1.3           70.7         +3,148,  3,153
+  oldest + random     225.3 (214-238)            75%        0.0           65.0           +466,  1,425
   model, no random    289.6 (283-295)            97%        2.5          134.8         +1,748,  1,761
   model + random      259.3 (252-269)            86%        0.0          124.3           +209,  1,113
+  oldest + random: 95% CI for the total contained the truth in 27 of 30 cities
   model + random: 95% CI for the total contained the truth in 28 of 30 cities
 ```
 
@@ -353,6 +357,26 @@ Average over 30 synthetic cities (each with its own past digs)
 - **The model beats oldest-first** because it also uses the records and the neighborhood: 259.3 against 246.5 with the random share, 289.6 without.
 - **The random share costs about 30 pipes a year** (259.3 against 289.6) and buys three things the model-only rule can't give: every neighborhood checked (0.0 neighborhoods without digs, against 2.5), a total estimate that is right on average (error +209 against +1,748), and an honest interval for it (28 of 30).
 - **The selected rules over-estimate the total badly.** Current practice and the model-only rule are both about 1,750 too high; oldest-first, about 3,150. A replacement budget planned on those numbers would be wrong from the start.
+
+### The simpler alternative: sort by age, keep a random share
+
+Oldest-first is a sort in Excel on one column the city already has. Averaged over 30 cities it finds 246.5 lead pipes per 300 digs, against 289.6 for the model alone: about 85% of the model's finds, and about twice current practice. Adding the same 4 random checks a month ("oldest + random") costs about 21 pipes (225.3) and buys back most of what the random share gives the model: every neighborhood checked, and a total estimate that is right on average (+466) with an interval that contained the truth in 27 of 30 cities.
+
+| | Finds per 300 | Neighborhoods without digs | Total estimate error (mean) |
+|---|---|---|---|
+| Oldest first | 246.5 | 1.3 | +3,148 |
+| Oldest + random | 225.3 | 0.0 | +466 |
+| Model + random | 259.3 | 0.0 | +209 |
+| Model, no random | 289.6 | 2.5 | +1,748 |
+
+In what ways it is close, and what to check before settling for it:
+
+- **Close when one factor carries most of the risk.** In Millbrook, age is the strongest predictor. Check the city's own records: among past digs, compare the hit rate for the oldest quarter of homes with the rest. If age barely separates them, a sort on age is little better than current practice.
+- **Not close when records or neighborhoods matter.** The model also uses permit records and neighborhood, which is why it finds about 34 more pipes a year (259.3 against 225.3 with a random share each). Over a ten-year replacement program those are hundreds of homes found sooner.
+- **The random share matters more than the model for planning.** A sort on age alone over-states the city's total by about 3,150, because it only digs where lead is likely. Whatever the ranking, keep a few random digs if anyone will budget from the estimate.
+- **What it can't do.** A sort can't learn from this year's digs; the model updates monthly. If a neighborhood turns out to be worse than its age suggests (Lowmoor here), only the model moves digs there quickly.
+
+The field evidence from Flint, Michigan (Abernethy and colleagues, KDD 2018) compares its model with the city's actual digging, not with an age sort, so there is no published figure for how close an age rule would have come there.
 
 Two cautions. The city, its neighborhoods and the way complaints follow lead are invented to teach the method; the real gain depends on how well age and records predict lead in Millbrook, which only a pilot shows. And the 30-city averages show how much one year can vary: a single city's estimate (5,416 here) can be more than 1,000 off, so report the interval, not just the number.
 

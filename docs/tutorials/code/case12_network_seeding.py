@@ -194,6 +194,23 @@ def top(score, k):
     return [int(i) for i in np.argsort(-score, kind="stable")[:k]]
 
 
+def spread_by_group(deg, group, k):
+    """The paper rule: give each friend group seeds in proportion to its size (at least one),
+    then pick the people with the most friends inside each group."""
+    sizes = np.bincount(group)
+    share = k * sizes / sizes.sum()
+    quota = np.maximum(1, np.floor(share)).astype(int)
+    for g in np.argsort(-(share - np.floor(share)), kind="stable"):   # largest remainders first
+        if quota.sum() >= k:
+            break
+        quota[g] += 1
+    seeds = []
+    for g, q in enumerate(quota):
+        members = np.flatnonzero(group == g)
+        seeds += [int(i) for i in members[np.argsort(-deg[members], kind="stable")[:q]]]
+    return seeds
+
+
 def main():
     toy_example()
     rng = np.random.default_rng(2026)
@@ -229,6 +246,7 @@ def main():
         "most at-risk (intake score)": top(sh["risk"], N_SEEDS),
         "staff picks (most visible)": top(sh["visibility"], N_SEEDS),
         "most friends (degree)": top(deg + 1e-3 * sh["visibility"], N_SEEDS),
+        "most friends, by group": spread_by_group(deg, group, N_SEEDS),
         "greedy (influence max.)": greedy,
     }
     rng_rand = np.random.default_rng(3)
@@ -247,7 +265,7 @@ def main():
         print(f"  {name:30s} reach={m:6.1f}  95% CI {lo:.1f} to {hi:.1f}  ({m / n:.1%})"
               f"  groups with a seed={n_groups:2d}/14  seeds in groups 0-1={np.isin(group[seeds], [0, 1]).sum():2d}"
               f"  sum of solo reaches={solo:.1f}")
-    for name in list(plans)[:3]:
+    for name in list(plans)[:-1]:
         d = per_world["greedy (influence max.)"] - per_world[name]
         m, lo, hi = ci95(d)
         print(f"  greedy minus {name:30s} {m:5.1f}  95% CI {lo:.1f} to {hi:.1f}")
@@ -266,6 +284,7 @@ def main():
         line = f"  p={p:.2f}  greedy re-chosen={e_w.reach_per_world(re_opt).mean():6.1f}"
         line += f"  base-p greedy list={e_w.reach_per_world(greedy).mean():6.1f}"
         line += f"  degree={e_w.reach_per_world(plans['most friends (degree)']).mean():6.1f}"
+        line += f"  by group={e_w.reach_per_world(plans['most friends, by group']).mean():6.1f}"
         line += f"  staff={e_w.reach_per_world(plans['staff picks (most visible)']).mean():6.1f}"
         line += f"  at-risk={e_w.reach_per_world(plans['most at-risk (intake score)']).mean():6.1f}"
         line += f"  seeds kept from base list={len(set(re_opt) & set(greedy))}/25"

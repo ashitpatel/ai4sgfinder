@@ -21,7 +21,7 @@ This tutorial builds the alternative step by step:
 3. **[From Five Years of Records to Estimates](#from-five-years-of-records-to-estimates--employment-chances-by-family-and-city)** turns the records into an employment chance for every family type in every city, with margins of error.
 4. **[The Decision Engine](#the-decision-engine--hindsight-best-greedy-re-solving-and-bid-prices)** works a 6-family example by hand: the hindsight best, greedy, re-solving with a forecast, and bid prices.
 5. **[Scaling Up](#scaling-up--30-cities-a-year-of-arrivals-caseworkers-in-the-loop)** handles 30 cities and a year of arrivals, with caseworker overrides and explanations.
-6. **[Code Implementation & Simulation](#code-implementation--simulation)** runs it all and compares four rules over simulated years.
+6. **[Code Implementation & Simulation](#code-implementation--simulation)** runs it all and compares five rules over simulated years, including a spreadsheet-friendly greedy rule with quarterly allotments.
 7. **[Core Architectural Summary](#core-architectural-summary)** summarizes every piece on one page.
 
 The idea that ties it together: **a place in a strong city is worth most to the family that gains most from it, and that family may not have arrived yet.**
@@ -265,12 +265,13 @@ prob.solve(pulp.PULP_CBC_CMD(msg=False))
 
 Each line matches a line of the formula in [Scaling Up](#scaling-up--30-cities-a-year-of-arrivals-caseworkers-in-the-loop). The bid-price rule solves the same program with the forecast families only and reads each quota's shadow price with `prob.constraints[f"q{c}"].pi`.
 
-### Simulation: four rules and two benchmarks
+### Simulation: five rules and two benchmarks
 
 All rules use the shrunk estimates from [From Five Years of Records to Estimates](#from-five-years-of-records-to-estimates--employment-chances-by-family-and-city); results are scored with the true chances, so prediction error counts against them.
 
 - **First-available:** a proxy for current practice. Pick a city with room, more likely the more room it has. Real caseworkers also use judgment, so this baseline is probably worse than the agency's practice.
 - **Greedy:** the city with room and the highest predicted chance.
+- **Greedy + quarterly:** the spreadsheet guard. Greedy, but each city may fill only a quarter of its quota per quarter (cumulative), falling back to any city with room.
 - **Bid price:** highest predicted chance minus city price, prices recomputed every four weeks.
 - **Re-solve:** the weekly program above.
 - **Re-solve + 15% overrides:** caseworkers set aside 15% of suggestions.
@@ -283,6 +284,7 @@ Simulation - typical years: 6 years, 962 families a year on average
   policy                     employed    vs current (95% CI) quota use    Q1    Q2    Q3    Q4 no-prior others full by June
   first-available               374.9      +0.0 ( +0.0 to  +0.0)     91.7% 40.8% 39.1% 38.4% 37.5%    27.7%  44.8%          0.0
   greedy                        437.6     +62.7 (+59.9 to +65.6)     91.7% 57.8% 47.8% 42.1% 32.4%    30.8%  53.2%         13.0
+  greedy + quarterly            432.5     +57.6 (+54.0 to +61.3)     91.7% 49.4% 43.1% 42.8% 46.0%    31.1%  52.2%          0.0
   bid price                     457.8     +82.9 (+79.0 to +86.7)     91.7% 48.6% 49.4% 47.0% 44.4%    32.7%  55.3%          4.8
   re-solve                      455.4     +80.5 (+77.6 to +83.3)     91.7% 46.6% 46.7% 47.9% 48.6%    32.5%  55.0%          4.3
   re-solve + 15% overrides      447.1     +72.2 (+68.4 to +76.1)     91.7% 47.6% 46.7% 47.0% 44.1%    32.2%  53.9%          4.2
@@ -292,7 +294,7 @@ Simulation - typical years: 6 years, 962 families a year on average
 
 ### What the results say
 
-- **Any use of the predictions beats first-available,** and the forecast-based rules beat greedy. Re-solving adds 80.5 expected employed families a year over first-available, $80.5 / 374.9 = 21.5\%$ more; greedy adds 62.7 (16.7%).
+- **Any use of the predictions beats first-available,** and the forecast-based rules beat both greedy rules. Re-solving adds 80.5 expected employed families a year over first-available, $80.5 / 374.9 = 21.5\%$ more; greedy adds 62.7 (16.7%).
 - **The online rules get close to the hindsight best.** Re-solving reaches $455.4 / 461.5 = 98.7\%$ of it and bid prices 99.2%; greedy reaches 94.8%. Bid prices did slightly better than re-solving here; the difference is small and could go either way on other data.
 - **Greedy is unfair over time; re-solving is not.** Greedy's first-quarter families average 57.8% and last-quarter families 32.4%, a gap of 25 points, and 13 cities are full by June. Re-solving keeps every quarter between 46.6% and 48.6%.
 - **Quota use is the same for every rule (91.7%),** because every family is placed and total quotas exceed arrivals. The rules differ in *who* gets which place, not how many are used.
@@ -308,6 +310,7 @@ Simulation - forecast wrong (arrival mix reversed): 4 years, 916 families a year
   policy                     employed    vs current (95% CI) quota use    Q1    Q2    Q3    Q4 no-prior others full by June
   first-available               353.2      +0.0 ( +0.0 to  +0.0)     87.2% 36.4% 37.8% 39.7% 40.6%    28.0%  43.8%          0.0
   greedy                        419.1     +65.9 (+63.0 to +68.7)     87.2% 53.3% 47.9% 44.8% 36.5%    33.5%  51.8%         11.8
+  greedy + quarterly            418.3     +65.0 (+63.3 to +66.8)     87.2% 45.4% 43.2% 45.4% 50.3%    32.5%  52.2%          0.0
   bid price                     438.7     +85.5 (+82.3 to +88.7)     87.2% 46.1% 48.6% 47.8% 49.1%    32.8%  55.3%          4.8
   re-solve                      434.8     +81.6 (+75.6 to +87.5)     87.2% 44.4% 45.0% 49.5% 51.4%    32.0%  55.1%          4.2
   hindsight best                439.4     +86.2 (+81.9 to +90.5)     87.2%   -     -     -     -      33.2%  55.3%            -
@@ -315,6 +318,24 @@ Simulation - forecast wrong (arrival mix reversed): 4 years, 916 families a year
 ```
 
 The forecast-based rules held up: re-solving still gains 81.6 and stays within 4.6 of the hindsight best. The forecast got the *total* mix right, just the timing wrong, and the weekly re-solve corrects as families arrive. A bigger surprise, such as more families than the quotas can take, was not tested and needs its own plan.
+
+### The simpler alternative: greedy with quarterly allotments
+
+Greedy needs only the table of predicted chances and a "pick the highest city with room" lookup, which a caseworker can do from a printed table. Its flaw is timing: it fills the best cities by June. The quarterly allotment fixes most of that with one more column in the spreadsheet (places used so far against a quarter, half, three-quarters of the quota):
+
+| Rule | Employed (typical years) | Gain over first-available | Q1 / Q4 average chance | Cities full by June | Forecast reversed: gain |
+|---|---|---|---|---|---|
+| Greedy | 437.6 | +62.7 | 57.8% / 32.4% | 13.0 | +65.9 |
+| **Greedy + quarterly** | **432.5** | **+57.6** | **49.4% / 46.0%** | **0.0** | **+65.0** |
+| Re-solve | 455.4 | +80.5 | 46.6% / 48.6% | 4.3 | +81.6 |
+
+In what ways it is close, and what it gives up:
+
+- **Close on fairness over time.** The gap between early and late arrivals shrinks from 25 points to 3, about as even as re-solving, and no city fills by June.
+- **Not as close on the total.** It captures about 72% of re-solving's gain ($57.6 / 80.5$), giving up about 23 expected employed families a year here. The missing piece is looking ahead: greedy doesn't save a city's places for the family types that benefit most from it.
+- **It doesn't depend on a forecast.** When the arrival mix reversed, its gain held (+65.0). Re-solving still did better, but the simple rule has nothing to get wrong.
+
+What to check before settling for it: arrivals spread fairly evenly through the year (if half arrive in one quarter, set the allotments to match the expected arrival pattern instead of equal quarters); the predicted chances are trustworthy, because both rules lean on them (the shrinkage step above applies equally); and the 23 families a year the model would add are worth an analyst's weekly time. Replaying last year under both rules, as the case recommends, gives the agency its own version of this table.
 
 ### How this compares with the research
 

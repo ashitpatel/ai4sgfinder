@@ -43,6 +43,9 @@ A women's enterprise NGO has funding for 600 one-off grants, each paired with a 
 **Narrowing 2 — "Do you have pilot or trial results showing the program helps some kinds of people much more than others?"**
 > Yes. The pilot showed big income gains for women who had run a shop for two years or more, and little for very new businesses.
 
+**Second decision.** *"Is there a second decision in this program: when to act, where to look first, how it reaches people, or which version works for whom?"*
+> No. The grant and training come as one package this year.
+
 ## Why Class 7: Effect-Based Targeting
 
 The assistant should select **[Class 7 (Effect-Based Targeting)](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting)**, solved with causal forests and a short learned targeting rule.
@@ -68,6 +71,8 @@ The assistant should select **[Class 7 (Effect-Based Targeting)](../../prompt/kn
 - *Successes:* in the CUNY study, effect-based targeting outperformed need-based targeting on the outcome the program cared about; the rule is short and auditable.
 - *Challenges:* with 3,000 pilot applicants, only large, simple differences (such as shop age) can be estimated reliably; staff and funders may resist not funding the poorest; verifying shop age takes field time.
 - *Unknowns:* whether this year's applicants resemble the pilot's (Sahoo, Lei & Wager, 2023, treat this problem), and whether reported shop age shifts once the rule is known. Ethically, the rule will turn away some very needy women with new shops. Recommend a need floor: reserve a share of grants for the poorest applicants by verifiable indicators, and offer training alone or a later round to new businesses.
+
+**6. Simpler alternative.** A pivot table of the randomized pilot: split it by shop age band (and then urban or rural), compare average income of offered and not-offered applicants within each group, fund the group with the largest difference, and confirm the choice on a held-back half of the pilot. In the [tutorial](../tutorials/08-policy-learning-business-grants.md#the-simpler-alternative-a-pivot-table-of-the-pilot) a one-question rule from the table captured about 60% of the best rule's gain over a lottery, and a two-question rule matched it (illustrative data). It is close when the effect depends on one or two characteristics. It saves the modeling, not the experiment: without the pilot's lottery, the table compares who applied, not what the grant did. Check before settling for it: groups of a few hundred or more; the characteristics are verifiable; the held-out half confirms the pattern. One causal-forest run with a partner shows whether the pattern really is that simple.
 
 **Next steps.** Split the pilot data and hold back a part for validation; list which app fields can be verified and drop the rest from the rule; agree the need floor with the board and funder before seeing results.
 
@@ -119,6 +124,10 @@ Recommended approach
   Class 7 (Effect-Based Targeting): a causal forest on our pilot, then a
   short rule, because the grant is one-off, all applicants are known
   before deciding, and our randomized pilot shows the effect varies.
+
+Simpler option to beat
+  A pivot table of the pilot by shop age and urban/rural, checked on the
+  held-back half. Close if one or two characteristics drive the effect.
 
 Data we have
   A randomized pilot of 3,000 applicants: app data plus income a year
