@@ -12,7 +12,7 @@ abstract: >-
 authors:
   - family-names: "Patel"
     given-names: "Ashit"
-version: "1.2.0"
+version: "1.3.0"
 # Zenodo concept DOI: always resolves to the latest archived release.
 doi: 10.5281/zenodo.23840133
 license: Apache-2.0

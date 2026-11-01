@@ -2,7 +2,7 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
-## Unreleased
+## 1.3.0 — 2026-11-01
 
 - **Simpler alternatives.** Every recommendation now has a sixth heading, *The simpler alternative*: the best paper, spreadsheet or calculator option for the class, in what ways it comes close (total outcome, fairness, worst case, evidence) and what it gives up, the assumptions to check before settling for it, and how to compare it with the model on past records. The taxonomy's new [Section 4](prompt/knowledge/taxonomy.md#4-simpler-alternatives-for-each-class) lists the option for each class with verified evidence where it exists; the playbook adds a readiness check, a pilot comparison against the simple option, and a "Simpler option to beat" line in the partner brief.
 - **Tutorials measure the simple option.** Each tutorial for Cases 1–13 ends with a section comparing the best simple rule with the method on the same illustrative data. New rules in the programs: a six-cell one-step table (Case 1), greedy with a district floor (2), a weighted patrol lottery and a Goal Seek equilibrium (3), an equal split of stock (4), greedy within area envelopes (7), greedy placement with quarterly allotments (11), most-named residents spread across friend groups (12) and oldest-first with a random share (13). Earlier figures in the tutorials are unchanged.
