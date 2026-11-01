@@ -17,8 +17,9 @@ In-depth walkthroughs of the method behind each [worked case](../cases/). Each o
 | [11. Online assignment: placing families as they arrive](11-online-assignment-refugee-placement.md) | [Class 10: Online Assignment & Waitlists](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists) | [Refugee placement](../cases/11-refugee-placement-online.md) |
 | [12. Network seeding: choosing peer educators who reach the most people](12-network-seeding-peer-educators.md) | [Class 11: Network Seeding](../../prompt/knowledge/taxonomy.md#class-11-network-seeding) | [Peer educators](../cases/12-peer-educators-network-seeding.md) |
 | [13. Risk-based inspection: where to dig for lead pipes](13-risk-based-inspection-lead-pipes.md) | [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) | [Lead-pipe search](../cases/13-lead-pipe-inspection.md) |
+| [14. Anticipatory action: when the cash goes out before a flood](14-anticipatory-cash-flood-trigger.md) | [Class 4](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) trigger with a [Class 2](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) list | [Cash before a flood](../cases/14-anticipatory-cash-floods.md) |
 
-The three combined cases use two of these tutorials each: [cash before a flood](../cases/14-anticipatory-cash-floods.md) (tutorials 4 and 2), [snare search](../cases/15-snare-search-patrols.md) (tutorials 13 and 3) and [job-search support](../cases/16-job-support-adaptive-targeting.md) (tutorials 9 and 8). [Tutorial 6](06-no-model-food-pantry.md) is about the simple rule throughout.
+Of the three combined cases, [cash before a flood](../cases/14-anticipatory-cash-floods.md) has its own tutorial (14), because its main decision, when to act on a forecast, is taught nowhere else. The other two use two existing tutorials each: [snare search](../cases/15-snare-search-patrols.md) (tutorials 13 and 3) and [job-search support](../cases/16-job-support-adaptive-targeting.md) (tutorials 9 and 8). [Tutorial 6](06-no-model-food-pantry.md) is about the simple rule throughout.
 
 ## How each tutorial is organized
 

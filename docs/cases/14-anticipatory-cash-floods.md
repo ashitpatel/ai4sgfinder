@@ -7,7 +7,7 @@
 | **Expected class** | [4 — Robust Contingency Planning (forecast trigger)](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning), with a [Class 2 — Static Demographic Targeting](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) layer for who receives the cash |
 | **Combination** | [4 + 2: when to act, then who gets it](../../prompt/knowledge/taxonomy.md#5-when-two-classes-combine) |
 | **Most likely confusion** | Treating it as targeting alone (Class 2) and paying after the flood, or as routing (Class 9) when the money moves by mobile phone |
-| **In-depth tutorials** | No separate tutorial. The two layers are taught in [robust pre-positioning](../tutorials/04-robust-optimization-cyclone-prepositioning.md) (planning for bad cases with thin history) and [welfare optimization](../tutorials/02-welfare-optimization-borehole-siting.md) (choosing recipients under a budget with a fairness floor) |
+| **In-depth tutorial** | [Anticipatory action: when should the cash go out before a flood?](../tutorials/14-anticipatory-cash-flood-trigger.md) (the trigger, the cost-loss rule, a robust threshold and the list). Background: [robust pre-positioning](../tutorials/04-robust-optimization-cyclone-prepositioning.md) and [welfare optimization](../tutorials/02-welfare-optimization-borehole-siting.md) |
 
 ## Scenario
 

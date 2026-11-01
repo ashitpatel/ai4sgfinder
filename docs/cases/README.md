@@ -36,7 +36,7 @@ The cases are listed by family, the grouping the interview uses to narrow down t
 
 Across the sixteen, every filter, every narrowing question and the second-decision question is the deciding one at least once, and each case names the classes it is most likely to be confused with, so the cases also show what separates neighboring classes. Cases 4, 7, 9 and 13 show second decisions that are *not* a separate layer, or only a later one.
 
-Cases 1–13 each have an [in-depth tutorial](../tutorials/) that explains the method step by step, assuming only basic statistics, and measures the simpler alternative against it on illustrative data. Cases 14–16 point to the two tutorials that teach their layers.
+Cases 1–13 each have an [in-depth tutorial](../tutorials/) that explains the method step by step, assuming only basic statistics, and measures the simpler alternative against it on illustrative data. Case 14 has its own tutorial on choosing a forecast trigger; Cases 15 and 16 point to the two tutorials that teach their layers.
 
 ## Each case contains
 

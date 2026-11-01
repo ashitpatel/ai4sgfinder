@@ -62,7 +62,7 @@ The right method can do far better with the same budget, but "use AI" is not one
 
 Choosing the wrong class wastes money and can do harm: visits pile up on people who would have done fine anyway, patrols become predictable, or a placement scheme drives away the people it was meant to serve. Sometimes the honest answer is that a simple rule is enough, and the assistant will say that too. Every recommendation also names the best paper, spreadsheet or calculator alternative to the method, says in what ways it comes close (total outcome, fairness, worst case, quality of evidence) and lists the assumptions to check before settling for it. Some programs need two methods together, such as a forecast trigger that decides when to pay and a targeting rule that decides who; the assistant asks about a second decision and names a primary class and a layer when there is one.
 
-See the [**worked cases**](docs/cases/) for sixteen examples across health, water, conservation, disaster preparedness, youth employment, food security, civic participation, resettlement and environmental health: one for each class, a "no model" case, and three cases that combine two classes. Each also walks through the follow-ups after the recommendation, from narrowing down tools and partners to designing a pilot. To understand how each method works, read the [**tutorials**](docs/tutorials/): one per single-class case, assuming only basic statistics, each with a runnable program that also measures the simpler alternative against the method.
+See the [**worked cases**](docs/cases/) for sixteen examples across health, water, conservation, disaster preparedness, youth employment, food security, civic participation, resettlement and environmental health: one for each class, a "no model" case, and three cases that combine two classes. Each also walks through the follow-ups after the recommendation, from narrowing down tools and partners to designing a pilot. To understand how each method works, read the [**tutorials**](docs/tutorials/): one per single-class case plus one for the flood-trigger case, assuming only basic statistics, each with a runnable program that also measures the simpler alternative against the method.
 
 **After you've picked an approach**, the [**implementation playbook**](prompt/knowledge/playbook.md) covers what comes next: fitting the model to your program, readiness checks, pilot design, tools and pro bono partners, further reading, and a one-page brief to send to a technical partner. The assistant offers each of these as a follow-up, tailored to your answers.
 
@@ -157,7 +157,7 @@ examples/                 API chat scripts for Claude, OpenAI, Gemini
 scripts/build.py          regenerates dist/ and .claude-plugin/ from prompt/ and VERSION
 VERSION, CHANGELOG.md     release version and notes
 docs/cases/               sixteen worked cases: one per outcome, three combined; also a manual test set
-docs/tutorials/           in-depth method walkthroughs, one per single-class case, with runnable code
+docs/tutorials/           in-depth method walkthroughs (Cases 1–14), with runnable code
 docs/original-draft.md    the first draft, kept for provenance
 ```
 
