@@ -1,6 +1,6 @@
 {
   "name": "ai4sg-finder",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Diagnose an NGO or public-sector resource-allocation problem and recommend the appropriate AI-for-social-good approach (restless bandits, welfare ILP, security games, distributionally robust optimization, matching markets, participatory budgeting, effect-based targeting, or adaptive experiments). Use when someone wants help choosing an algorithm or ML method for allocating aid, staff time, patrols, supplies, seats, or a community budget.",
   "author": {
     "name": "Ashit Patel"

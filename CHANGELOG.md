@@ -2,7 +2,7 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
-## Unreleased
+## 1.2.0 — 2026-10-31
 
 - Seven new allocation classes, found by reviewing the research of Lily Xu, Roshni Sahoo and Ashish Goel's group, then their wider networks of collaborators and the AI-for-social-good literature, against the original five:
   - **Class 6: Participatory Allocation** — a community votes on how a shared budget is split (participatory budgeting, knapsack voting, the method of equal shares).
