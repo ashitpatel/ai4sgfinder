@@ -178,7 +178,7 @@ python3 scripts/build.py
 3. Optionally run `claude plugin validate --strict .` to check the plugin and marketplace.
 4. Commit, then tag and push:
    ```bash
-   git tag v$(cat VERSION) && git push origin main --tags
+   git tag v$(cat VERSION) && git push origin main v$(cat VERSION)
    ```
 
 The [release workflow](.github/workflows/release.yml) checks that the tag matches `VERSION` and that the generated files are current, then publishes a GitHub release with the changelog section as its notes and the `dist/` files attached.
