@@ -28,17 +28,33 @@ The users are program staff, not computer scientists. Stay on this topic, and do
 ```text
 Search the academic literature on AI for social good and operations research. Start with the published work of Prof. Lily Xu and Prof. Roshni Sahoo (Columbia) and Prof. Ashish Goel (Stanford), then widen to their students and co-authors and to the rest of the field.
 
-1. Group the allocation approaches into classes. For each class give:
+1. Group the allocation approaches into classes, and the classes into a few families by the kind of decision. The classes must cover at least these decisions; split them or add others where the literature supports it:
+   - who gets a limited resource, when everyone eligible is known up front;
+   - who gets it when people or items arrive one at a time and must be placed on the spot;
+   - whom to target when a pilot or trial shows the program helps some people much more than others;
+   - whom to reach each round, when each person's situation changes over time;
+   - which of several options works best, learned while serving people;
+   - where to patrol when the people you are looking for adapt to your moves;
+   - what to stock, and where, before a rare disaster with little history;
+   - how to move goods or people by vehicle to many sites;
+   - where to look first for hidden problems, with a limited number of inspections or tests;
+   - matching two sides who choose and can refuse each other;
+   - how a community votes to split a shared budget;
+   - whom to train or brief so that a message spreads through social ties.
+
+   For each class give:
    - a plain-language name;
    - the decision it answers;
    - the underlying methods;
    - the problem traits that point to it;
+   - the data it needs;
    - documented field deployments, with full citations (authors, year, venue).
 2. For each class, find the simplest approach that comes close: paper and pencil, a spreadsheet or a calculator. Say in what ways it comes close, and what a user must check to decide whether it is close enough.
 3. Find real programs that combined two classes, and what signals that need.
-4. Turn the characteristics that tell the classes apart into interview questions:
+4. Turn the characteristics that tell the classes apart into a two-stage interview:
+   - First, a few filter questions that place the problem in a family: the resource and what it should achieve; who decides who gets what; whether anyone avoids you or adapts to your plans; how costly a wrong allocation is and what records exist; how staff record data and who would run the tool.
+   - Then, narrowing questions inside the family that pick the class. Where two classes would get the same answers, add a question that separates them.
    - Each question is open-ended and asks one thing. Examples are illustrations, not the only choices.
-   - Where two classes would get the same answers, add a narrowing question.
    - End with a question that uncovers a second decision calling for a second class.
 5. List the well-studied approaches you left out, and why. Don't call the list exhaustive unless you can show it is.
 6. Check every researcher's name and every deployment. Mark anything you couldn't confirm as unverified.
@@ -76,8 +92,9 @@ Return the full prompt.
 ```text
 Below are a system prompt and a reference document from a design conversation. Set up a GitHub project in this folder that makes them easy to use in Claude, ChatGPT and Gemini. Also cover browser-based assistants such as Google AI Mode, which have no system-prompt field and no file upload.
 
-- Work out the best format for each platform. Keep one source of truth so the versions can't drift apart.
-- Check each platform's current limits, such as instruction length, and stay within them.
+- Work out the best format for each platform. Keep one source of truth so the versions can't drift apart, and add a build check that fails when they do.
+- Check each platform's current limits, such as instruction length, and stay within them. Keep the core instructions within the strictest platform's limit, and move the reference material into knowledge files.
+- For Claude, also package it as a skill. For assistants with no system-prompt field, write one kickoff message the user pastes at the start of a chat, within that assistant's message limit.
 - Define each class once, and link every mention of a class name to its definition.
 - Write a README that explains how to use each version.
 - Use the Apache 2.0 licence.
@@ -103,10 +120,11 @@ Check that every tool and organization you list exists and is active, and includ
 **Prompt 6: Worked examples**
 
 ```text
-Create worked examples across different impact domains and intervention types. Together they should cover every class and the common combinations of classes. Document them in the repository.
+Create worked examples, called cases, across different impact domains and intervention types. Together they should cover every class, the common combinations of classes, and at least one program that needs no model. Save each as docs/cases/NN-short-name.md, with an index at docs/cases/README.md that gives each case's domain, intervention type, expected class and deciding question.
 
-Each example has:
+Each case has:
 - an illustrative scenario with a fictional organization;
+- what the organization does today, with its numbers (people, budget, how often it decides);
 - the answers that organization would give to each interview question;
 - the class the assistant should recommend, and why;
 - the classes it rules out, and why;
@@ -116,7 +134,7 @@ Each example has:
 
 Wherever you mention a class or an interview question, give its number and name together. Cite only research you have verified.
 
-Check that the interview questions lead each example to its expected class. Where they don't, fix the prompt.
+Check that the interview questions lead each case to its expected class. Where they don't, fix the prompt.
 ```
 
 **Prompt 7: Tutorials**
@@ -124,11 +142,12 @@ Check that the interview questions lead each example to its expected class. Wher
 The template inside this prompt is distilled from the project's 14 tutorials, so you don't need a tutorial of your own to attach.
 
 ```text
-Write an in-depth tutorial for each worked example, for a reader who knows basic statistics (proportions, expected values, confidence intervals) but has no knowledge of ML or advanced optimization. Where an example only combines methods that other tutorials already teach, link to those tutorials instead of writing a new one.
+Write an in-depth tutorial for each case, for a reader who knows basic statistics (proportions, expected values, confidence intervals) but has no knowledge of ML or advanced optimization. Where a case only combines methods that other tutorials already teach, link to those tutorials instead of writing a new one.
 
 Instructions:
-- Files: docs/tutorials/NN-method-program.md, with its program at docs/tutorials/code/caseN_method.py. Add a docs/tutorials/README.md that lists each tutorial with its class and case, and a requirements.txt.
-- Use the example's organization and numbers. The data are invented to teach the method; say so.
+- Files: docs/tutorials/NN-method-program.md, where NN is the case number, with its program at docs/tutorials/code/caseN_method.py. Add a docs/tutorials/README.md that lists each tutorial with its class and case, and docs/tutorials/code/requirements.txt.
+- Use the case's organization, numbers and current practice. The data are invented to teach the method; say so.
+- Keep the template's headings for every method. Where a method doesn't estimate anything from records (matching, routing, voting), use the three Steps under "From [Data] to Estimates" for the inputs it does need, such as preferences, distances or ballots.
 - Explain every term the first time it appears. Write every formula in math notation, and say in words what each symbol means.
 - Work one small example by hand in "The Decision Engine", so a reader can check every step with a calculator.
 - In the simulation, compare the method with current practice and with the simpler alternative, on the same data, over many runs.
