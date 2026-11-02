@@ -159,6 +159,7 @@ VERSION, CHANGELOG.md     release version and notes
 docs/cases/               sixteen worked cases: one per outcome, three combined; also a manual test set
 docs/tutorials/           in-depth method walkthroughs (Cases 1–14), with runnable code
 docs/original-draft.md    the first draft, kept for provenance
+docs/building-from-scratch.md  prompts to build a similar project from scratch
 ```
 
 ## Editing the prompt
@@ -201,6 +202,10 @@ The first draft ([`docs/original-draft.md`](docs/original-draft.md)) was restruc
 - **Added evidence integrity rules.** The draft asked for "documented deployments" and "literature tracking data" without guarding against fabricated citations, which language models produce readily.
 - **Corrected the deployment examples.** Several attributions in the original taxonomy could not be verified or were misattributed. They are listed under *Unverified claims* in [`taxonomy.md`](prompt/knowledge/taxonomy.md), and the assistant is told not to cite them as fact. Verified references were added for each class.
 - **Renamed Class 4** from "Robust Contingency Matching" to "Robust Contingency Planning," since it is not a matching method.
+
+## Building your own
+
+[Building an AI4SG Finder from scratch](docs/building-from-scratch.md) gives eight prompts that recreate a project like this one: three for a chat assistant to design the prompt, and five for a coding agent to package it and write the worked examples, tutorials and release. The tutorial prompt includes a template, so no example tutorial is needed.
 
 ## Limitations
 
