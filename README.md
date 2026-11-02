@@ -160,6 +160,7 @@ docs/cases/               sixteen worked cases: one per outcome, three combined;
 docs/tutorials/           in-depth method walkthroughs (Cases 1–14), with runnable code
 docs/original-draft.md    the first draft, kept for provenance
 docs/building-from-scratch.md  prompts to build a similar project from scratch
+docs/landscape.md         how the project compares with related AI-for-good programs
 ```
 
 ## Editing the prompt
@@ -203,9 +204,13 @@ The first draft ([`docs/original-draft.md`](docs/original-draft.md)) was restruc
 - **Corrected the deployment examples.** Several attributions in the original taxonomy could not be verified or were misattributed. They are listed under *Unverified claims* in [`taxonomy.md`](prompt/knowledge/taxonomy.md), and the assistant is told not to cite them as fact. Verified references were added for each class.
 - **Renamed Class 4** from "Robust Contingency Matching" to "Robust Contingency Planning," since it is not a matching method.
 
+## Where it fits
+
+J-PAL, CEGA, Dasra, The/Nudge, Fast Forward, Google.org and Wadhwani AI evaluate, fund, build or advise on AI for social good. None publishes a tool for choosing which kind of AI method fits a program's problem; AI4SG Finder covers that step. [Where AI4SG Finder fits](docs/landscape.md) compares them, using each organization's own website.
+
 ## Building your own
 
-[Building an AI4SG Finder from scratch](docs/building-from-scratch.md) gives eight prompts that recreate a project like this one: three for a chat assistant to design the prompt, and five for a coding agent to package it and write the worked examples, tutorials and release. The tutorial prompt includes a template, so no example tutorial is needed.
+[Building an AI4SG Finder from scratch](docs/building-from-scratch.md) gives eight prompts that recreate a project like this one: four for a chat assistant to design the prompt, and four for a coding agent to package it and write the worked examples, tutorials and release. The tutorial prompt includes a template, so no example tutorial is needed.
 
 ## Limitations
 
