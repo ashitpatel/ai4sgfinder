@@ -5,8 +5,8 @@
 
 These prompts follow the requests that built AI4SG Finder. Each has been rewritten so an agent is less likely to drift: it states the goal and the audience, what to check, and what to avoid. Later corrections are folded into the first prompt that needs them, so nothing has to be redone.
 
-- **Prompts 1–3** design prompts
-- **Prompts 4–8** implementation prompts
+- **Prompts 1–4** design prompts
+- **Prompts 5–8** implementation prompts
 
 Read each result before sending the next prompt.
 
@@ -23,7 +23,7 @@ I work with NGOs. Is it worth building a decision support system that helps an N
 The users are program staff, not computer scientists. Stay on this topic, and don't offer to write other documents.
 ```
 
-**Prompt 2: Map the methods and the questions that separate them**
+**Prompt 2: Map the methods**
 
 ```text
 Search the academic literature on AI for social good and operations research. Start with the leading research groups on resource allocation for NGOs and public agencies, then widen to their students and co-authors and to the rest of the field.
@@ -49,24 +49,26 @@ Search the academic literature on AI for social good and operations research. St
    - the data it needs;
    - documented field deployments, with full citations (authors, year, venue).
 2. For each class, find the simplest approach that comes close: paper and pencil, a spreadsheet or a calculator. Say in what ways it comes close, and what a user must check to decide whether it is close enough.
-3. Find real programs that combined two classes, and what signals that need.
-4. Turn the characteristics that tell the classes apart into a two-stage interview:
-   - First, filter questions built from the dimensions in item 1 that place the problem in a family, plus one on how staff record data and who would run the tool.
-   - Then, narrowing questions inside the family that pick the class. Where two classes would get the same answers, add a question that separates them.
-   - Each question is open-ended and asks one thing. Examples are illustrations, not the only choices.
-   - End with a question that uncovers a second decision calling for a second class.
-5. List the well-studied approaches you left out, and why. Don't call the list exhaustive unless you can show it is.
-6. Check every researcher's name and every deployment. Mark anything you couldn't confirm as unverified.
+3. Find real programs that combined two classes, and what signals the need for the second one.
+4. List the well-studied approaches you left out, and why. Don't call the list exhaustive unless you can show it is.
+5. Check every researcher's name and every deployment. Mark anything you couldn't confirm as unverified.
 
 Return this as one reference document.
 ```
 
-**Prompt 3: Write the system prompt**
+**Prompt 3: Design the interview and write the system prompt**
 
 ```text
-Using that reference, write a system prompt for the assistant.
+Using that reference, write a system prompt for the assistant. It interviews the user, then gives one recommendation.
 
-It interviews the user one plain-language question per turn, skipping what they have already answered. Then it gives one recommendation with these sections:
+The interview:
+- One plain-language question per turn. Skip anything the user has already answered, and confirm your reading instead.
+- Each question is open-ended and asks one thing. Examples are illustrations, not the only choices.
+- First, filter questions built from the reference's dimensions that place the problem in a family, plus one on how staff record data and who would run the tool.
+- Then, narrowing questions inside the family that pick the class. Where two classes would get the same answers, add a question that separates them.
+- Last, a question that uncovers a second decision calling for a second class, drawing on the reference's combined programs.
+
+The recommendation has these sections:
 1. The recommended class, and why the user's answers point there.
 2. What goes wrong with a naive ML model or a spreadsheet instead.
 3. How field staff use the result on paper or in Excel.
@@ -74,38 +76,22 @@ It interviews the user one plain-language question per turn, skipping what they 
 5. A report card covering successes, field challenges and unknowns.
 6. The simpler alternative: how close it comes, and what to check before settling for it.
 
-If the program needs two classes, it names a primary class and adds the second as a layer.
+If the program needs two classes, name a primary class and add the second as a layer. If the simpler alternative is close enough, or the problem needs no model at all, say so plainly instead of forcing a class.
 
 Rules for the prompt:
 - Never invent a citation, deployment or statistic.
 - Mark anything uncertain as unverified.
 - Never present a simulation as a deployment.
 
+Before returning the prompt, check the interview: for each class, write the answers that lead to it, and make sure no two classes end on the same answers. Where they do, fix the questions.
+
 Return the full prompt.
 ```
 
-### Build the project (coding agent)
-
-**Prompt 4: Package it**
+**Prompt 4: Write the follow-ups**
 
 ```text
-Below are a system prompt and a reference document from a design conversation. Set up a GitHub project in this folder that makes them easy to use in Claude, ChatGPT and Gemini. Also cover browser-based assistants such as Google AI Mode, which have no system-prompt field and no file upload.
-
-- Work out the best format for each platform. Keep one source of truth so the versions can't drift apart, and add a build check that fails when they do.
-- Check each platform's current limits, such as instruction length, and stay within them. Keep the core instructions within the strictest platform's limit, and move the reference material into knowledge files.
-- For Claude, also package it as a skill. For assistants with no system-prompt field, write one kickoff message the user pastes at the start of a chat, within that assistant's message limit.
-- Define each class once, and link every mention of a class name to its definition.
-- Write a README that explains how to use each version.
-- Use the Apache 2.0 licence.
-- Initialize git and commit. Ask me before creating the GitHub repository or pushing anything.
-
-[paste the system prompt and reference document]
-```
-
-**Prompt 5: What happens after the recommendation**
-
-```text
-Add follow-ups the assistant offers after its recommendation, tailored to the user's answers:
+Add follow-ups the assistant offers after its recommendation, one at a time, tailored to the user's answers:
 - how to adapt the method to their program;
 - what to check before starting: data, consent, fairness, staff capacity;
 - how to design a small pilot that is compared with the simpler alternative;
@@ -113,13 +99,33 @@ Add follow-ups the assistant offers after its recommendation, tailored to the us
 - what to read and whom to contact;
 - a short brief they can hand to a technical partner.
 
-Check that every tool and organization you list exists and is active, and include links. Tell users to recheck them before relying on them.
+For each class, gather what these follow-ups draw on: tools, services, partners, reading and contacts. Check that every tool and organization exists and is active, and include links. Tell users to recheck them before relying on them.
+
+Return the full updated system prompt, and the per-class material as a separate follow-up guide.
+```
+
+### Build the project (coding agent)
+
+**Prompt 5: Package it**
+
+```text
+Below are a system prompt, a reference document and a follow-up guide from a design conversation. Set up a GitHub project in this folder that makes them easy to use in Claude, ChatGPT and Gemini. Also cover browser-based assistants such as Google AI Mode, which have no system-prompt field and no file upload.
+
+- Work out the best format for each platform. Keep one source of truth so the versions can't drift apart, and add a build check that fails when they do.
+- Check each platform's current limits, such as instruction length, and stay within them. Keep the core instructions within the strictest platform's limit, and move the reference document and follow-up guide into knowledge files.
+- For Claude, also package it as a skill. For assistants with no system-prompt field, write one kickoff message the user pastes at the start of a chat, within that assistant's message limit.
+- Define each class once, and link every mention of a class name to its definition.
+- Write a README that explains how to use each version.
+- Use the Apache 2.0 licence.
+- Initialize git and commit. Ask me before creating the GitHub repository or pushing anything.
+
+[paste the system prompt, reference document and follow-up guide]
 ```
 
 **Prompt 6: Worked examples**
 
 ```text
-Create worked examples, called cases, across different impact domains and intervention types. Together they should cover every class, the common combinations of classes, and at least one program that needs no model. Save each as docs/cases/NN-short-name.md, with an index at docs/cases/README.md that gives each case's domain, intervention type, expected class and deciding question.
+Create worked examples, called cases, across different impact domains and intervention types. Together they should cover every class, the common combinations of classes and at least one program that needs no model, and every interview question should be the deciding one in at least one case. First show me the planned list, with each case's domain, intervention type, expected class and deciding question, and wait for my go-ahead.
 
 Each case has:
 - an illustrative scenario with a fictional organization;
@@ -131,9 +137,12 @@ Each case has:
 - what a wrong recommendation would look like;
 - how the follow-ups help that organization.
 
-Wherever you mention a class or an interview question, give its number and name together. Cite only research you have verified.
+Conventions:
+- Save each case as docs/cases/NN-short-name.md, with an index at docs/cases/README.md built from the planned list.
+- Wherever you mention a class or an interview question, give its number and name together.
+- Cite only research you have verified.
 
-Check that the interview questions lead each case to its expected class. Where they don't, fix the prompt.
+Check that the interview questions lead each case to its expected class. Where they don't, fix the prompt and rebuild.
 ```
 
 **Prompt 7: Tutorials**
@@ -141,7 +150,7 @@ Check that the interview questions lead each case to its expected class. Where t
 The template inside this prompt is distilled from the project's 14 tutorials, so you don't need a tutorial of your own to attach.
 
 ```text
-Write an in-depth tutorial for each case, for a reader who knows basic statistics (proportions, expected values, confidence intervals) but has no knowledge of ML or advanced optimization. Where a case only combines methods that other tutorials already teach, link to those tutorials instead of writing a new one.
+Write an in-depth tutorial for each case, for a reader who knows basic statistics (proportions, expected values, confidence intervals) but has no knowledge of ML or advanced optimization. Where a case only combines methods that other tutorials already teach, link to those tutorials instead of writing a new one. Write the first tutorial and show it to me before writing the rest.
 
 Instructions:
 - Files: docs/tutorials/NN-method-program.md, where NN is the case number, with its program at docs/tutorials/code/caseN_method.py. Add a docs/tutorials/README.md that lists each tutorial with its class and case, and docs/tutorials/code/requirements.txt.
@@ -153,7 +162,7 @@ Instructions:
 - Programs use fixed random seeds and numpy. Add a free solver (for example PuLP, with its version pinned) only where it's needed. Each program prints labelled sections that match the tutorial's sections, and runs in about a minute or less.
 - Copy every number in the text from the program's output. After any change to the code, rerun it and update the text.
 - Use plain headings: no "Chapter" labels and no decimal section numbers.
-- Cite only verified references from the taxonomy. Never present a simulation as a deployment.
+- Cite only verified references from the reference document. Never present a simulation as a deployment.
 - When you're done, run every program, check that every number in the text matches its output, and check that every link and anchor resolves.
 
 Template (replace everything in square brackets; keep the headings and their order):
@@ -242,7 +251,7 @@ In what ways it is close, and what to check before settling for it:
 
 ### Where to go next
 - Run the pilot described in the case's follow-ups.
-- Read [verified references from the taxonomy].
+- Read [verified references from the reference document].
 - Code to build on: [verified open-source tools].
 - Other tutorials: [neighboring classes, and when to read each].
 ```
@@ -250,7 +259,11 @@ In what ways it is close, and what to check before settling for it:
 **Prompt 8: Release**
 
 ```text
-Before releasing, check three things: every link resolves, every number in a tutorial matches its program's output, and every prompt version is within its platform's limit.
+Before releasing, check that:
+- every link resolves;
+- every number in a tutorial matches its program's output;
+- every prompt version is within its platform's limit;
+- the README describes everything now in the repository, including the cases and tutorials.
 
-Then bump the version, update the changelog, and show me what will be committed and tagged. After I confirm, commit, push, and publish a release with the files people need attached.
+Then set or bump the version, write or update the changelog, and show me what will be committed and tagged. After I confirm, commit, push, and publish a release with the files people need attached.
 ```
