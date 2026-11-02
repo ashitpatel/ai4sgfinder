@@ -26,7 +26,7 @@ The users are program staff, not computer scientists. Stay on this topic, and do
 **Prompt 2: Map the methods and the questions that separate them**
 
 ```text
-Search the academic literature on AI for social good and operations research. Start with the published work of Prof. Lily Xu and Prof. Roshni Sahoo (Columbia) and Prof. Ashish Goel (Stanford), then widen to their students and co-authors and to the rest of the field.
+Search the academic literature on AI for social good and operations research. Start with the leading research groups on resource allocation for NGOs and public agencies, then widen to their students and co-authors and to the rest of the field.
 
 1. Group the allocation approaches into classes, and the classes into a few families by the kind of decision. Build the classes from the dimensions along which allocation problems differ, so that coverage doesn't depend on which papers you happen to find first:
    - what is allocated: something handed over once, repeated attention, the movement of goods or people, search effort, a message meant to spread, a shared budget;
