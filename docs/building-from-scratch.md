@@ -28,19 +28,18 @@ The users are program staff, not computer scientists. Stay on this topic, and do
 ```text
 Search the academic literature on AI for social good and operations research. Start with the published work of Prof. Lily Xu and Prof. Roshni Sahoo (Columbia) and Prof. Ashish Goel (Stanford), then widen to their students and co-authors and to the rest of the field.
 
-1. Group the allocation approaches into classes, and the classes into a few families by the kind of decision. The classes must cover at least these decisions; split them or add others where the literature supports it:
-   - who gets a limited resource, when everyone eligible is known up front;
-   - who gets it when people or items arrive one at a time and must be placed on the spot;
-   - whom to target when a pilot or trial shows the program helps some people much more than others;
-   - whom to reach each round, when each person's situation changes over time;
-   - which of several options works best, learned while serving people;
-   - where to patrol when the people you are looking for adapt to your moves;
-   - what to stock, and where, before a rare disaster with little history;
-   - how to move goods or people by vehicle to many sites;
-   - where to look first for hidden problems, with a limited number of inspections or tests;
-   - matching two sides who choose and can refuse each other;
-   - how a community votes to split a shared budget;
-   - whom to train or brief so that a message spreads through social ties.
+1. Group the allocation approaches into classes, and the classes into a few families by the kind of decision. Build the classes from the dimensions along which allocation problems differ, so that coverage doesn't depend on which papers you happen to find first:
+   - what is allocated: something handed over once, repeated attention, the movement of goods or people, search effort, a message meant to spread, a shared budget;
+   - when decisions are made: once with everyone known, as people or items arrive, round after round, or ahead of an event that may not happen;
+   - who decides: the organization, two sides choosing each other, or a community vote;
+   - what is unknown: who needs it most, who benefits most, which option works, how each person's situation changes, where problems are hidden, what an adversary will do, whether and where a disaster will strike;
+   - whether anyone adapts to your plans;
+   - how costly a wrong allocation is, and what records exist.
+
+   Then check coverage both ways, and show it as a table of classes against dimensions:
+   - every value of every dimension is handled by at least one class, or you say why none is needed;
+   - every two classes differ on at least one dimension; if two don't, merge them.
+   Add any approach the literature supports that the dimensions miss, and add the dimension that separates it.
 
    For each class give:
    - a plain-language name;
@@ -52,7 +51,7 @@ Search the academic literature on AI for social good and operations research. St
 2. For each class, find the simplest approach that comes close: paper and pencil, a spreadsheet or a calculator. Say in what ways it comes close, and what a user must check to decide whether it is close enough.
 3. Find real programs that combined two classes, and what signals that need.
 4. Turn the characteristics that tell the classes apart into a two-stage interview:
-   - First, a few filter questions that place the problem in a family: the resource and what it should achieve; who decides who gets what; whether anyone avoids you or adapts to your plans; how costly a wrong allocation is and what records exist; how staff record data and who would run the tool.
+   - First, filter questions built from the dimensions in item 1 that place the problem in a family, plus one on how staff record data and who would run the tool.
    - Then, narrowing questions inside the family that pick the class. Where two classes would get the same answers, add a question that separates them.
    - Each question is open-ended and asks one thing. Examples are illustrations, not the only choices.
    - End with a question that uncovers a second decision calling for a second class.
