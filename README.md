@@ -161,6 +161,8 @@ docs/tutorials/           in-depth method walkthroughs (Cases 1–14), with runn
 docs/original-draft.md    the first draft, kept for provenance
 docs/building-from-scratch.md  prompts to build a similar project from scratch
 docs/landscape.md         how the project compares with related AI-for-good programs
+blog/                     blog site (GitHub Pages); unpublished posts wait in blog/_drafts/
+.github/workflows/pages.yml  builds blog/ and publishes it to GitHub Pages
 ```
 
 ## Editing the prompt

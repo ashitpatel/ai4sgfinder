@@ -1,0 +1,16 @@
+title: AI4SG Finder
+description: >-
+  Notes on choosing AI methods that help nonprofits and public agencies decide
+  where scarce help goes: who gets a visit, a patrol, a placement or a grant.
+author: Ashit Patel
+url: https://ashitpatel.github.io
+baseurl: /ai4sgfinder
+permalink: /:title/
+theme: minima
+github_username: ashitpatel
+header_pages:
+  - about.md
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
