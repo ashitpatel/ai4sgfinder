@@ -6,6 +6,8 @@ An AI assistant that helps NGOs and public agencies choose the right **AI-for-so
 
 It is a system prompt plus a reference file, packaged so it runs in **Claude, ChatGPT, Gemini, Google AI Studio, and other browser-based assistants**, or through the Claude, OpenAI, and Gemini APIs.
 
+Why this project exists: [Beyond chatbots: the AI that helps nonprofits decide where help goes](https://ashitpatel.github.io/ai4sgfinder/beyond-chatbots/), the first post in a [blog series](https://ashitpatel.github.io/ai4sgfinder/) on choosing the right kind of AI for a program's hardest decisions.
+
 ## Try it now
 
 No setup: click a link, sign in to your free account if asked, and the finder starts by asking about your problem.
@@ -161,7 +163,7 @@ docs/tutorials/           in-depth method walkthroughs (Cases 1–14), with runn
 docs/original-draft.md    the first draft, kept for provenance
 docs/building-from-scratch.md  prompts to build a similar project from scratch
 docs/landscape.md         how the project compares with related AI-for-good programs
-blog/                     blog site (GitHub Pages); unpublished posts wait in blog/_drafts/
+blog/                     the blog site at ashitpatel.github.io/ai4sgfinder; unpublished posts wait in blog/_drafts/
 .github/workflows/pages.yml  builds blog/ and publishes it to GitHub Pages
 ```
 
