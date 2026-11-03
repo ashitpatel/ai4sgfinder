@@ -2,10 +2,11 @@
 title: "Five questions that tell you which AI you need, if any"
 description: "Most nonprofits don't have an AI strategy yet. A strategy starts with the decision you want to improve, not the tool. These five questions, and a few follow-ups, point a program to the right kind of AI, or to a simple rule."
 layout: post
-date: 2026-11-11
+series: finder
+date: 2026-11-03 00:01:00 +0000
 ---
 
-*Part 2 of 6 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder). Previous: [Beyond chatbots: the AI that helps nonprofits decide where help goes]({{ site.baseurl }}/beyond-chatbots/).*
+*Part 2 of 6 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 Three in four nonprofits don't yet have an AI strategy ([TechSoup, 2025](https://blog.techsoup.org/posts/what-ai-means-for-nonprofits-in-2025-insights-from-the-ai-benchmark-report)). Most conversations about one start from a tool: should we use ChatGPT, build a chatbot, buy an AI product? A more useful starting point is a plainer question: **which decision are we trying to improve?**
 
@@ -89,4 +90,4 @@ The questions can also show that you don't need AI at all. In another worked cas
 
 AI4SG Finder is free and open source. The [project page](https://github.com/ashitpatel/ai4sgfinder) has one-click links for ChatGPT, Claude and Google AI Mode, so you can try it on a real decision in your program. If it gets something wrong, I'd like to hear about it.
 
-*Next in the series: Which of these 12 decisions does your program make?*
+{% include series.html %}

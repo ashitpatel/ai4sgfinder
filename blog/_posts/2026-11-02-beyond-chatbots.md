@@ -2,6 +2,7 @@
 title: "Beyond chatbots: the AI that helps nonprofits decide where help goes"
 description: "Most nonprofit AI use is generative: chatbots, writing and summaries. A less visible kind of AI decides who gets a call, a patrol or a placement, and has a field record. Here's what it is and how to tell which one your program needs."
 layout: post
+series: finder
 date: 2026-11-02
 ---
 
@@ -64,15 +65,10 @@ I wrote this series the same way. I set the direction and made the editorial cal
 
 ## What's next
 
-This series covers:
-
-1. **Beyond chatbots: the AI that helps nonprofits decide where help goes** (this post)
-2. Five questions that tell you which AI you need, if any
-3. Which of these 12 decisions does your program make?
-4. When a spreadsheet is enough: 16 worked cases
-5. The missing step in AI for social good: choosing the method
-6. Not the last word: adapt it to your field
+This is the first of six posts. The rest cover the questions the finder asks, the twelve kinds of decision it recognizes, the worked cases behind it, where it fits among related work, and how to adapt it to your field.
 
 **Try it now**, no setup needed: the [project page](https://github.com/ashitpatel/ai4sgfinder) has one-click links for ChatGPT, Claude and Google AI Mode.
 
 Thank you to the Stanford Alumni Alliance on Innovation for Global Impact, its co-hosts and everyone at the round table for the discussion and questions that shaped it.
+
+{% include series.html %}
