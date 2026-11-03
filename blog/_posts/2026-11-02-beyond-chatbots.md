@@ -34,7 +34,7 @@ The trouble is that different allocation problems need different methods, and th
 
 **A risk score tells you who is at risk, not whom your visit will help.** Some people do well whether or not you visit; others only improve if you do. In a field experiment with more than 53,000 CUNY students, targeting financial-aid reminders by each student's estimated effect beat targeting by predicted need. Nudging the students with the lowest predicted outcomes actually hurt them ([Athey, Keleher & Spiess, *Journal of Econometrics* 2025](https://arxiv.org/abs/2310.08672)).
 
-**A fixed patrol rota gets learned and avoided.** Poachers, smugglers and fraudsters adapt to your schedule. Security-game models randomize patrols so the pattern can't be learned and avoided; the Coast Guard schedules above come from this family.
+**A fixed patrol schedule gets learned and avoided.** Poachers, smugglers and fraudsters adapt to whatever pattern you follow. Security-game models randomize patrols so they can't be predicted; the Coast Guard schedules above come from this family.
 
 **A plan built on last year's flood fails when the next one looks different.** When there are only a handful of past disasters and mistakes cost lives, robust optimization plans against the bad cases instead of the average one. This is the least field-proven of these methods; most of its evidence comes from models, not deployments, and an honest advisor should say so.
 
