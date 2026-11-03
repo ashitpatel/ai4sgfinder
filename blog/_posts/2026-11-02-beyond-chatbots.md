@@ -42,7 +42,7 @@ The trouble is that different allocation problems need different methods, and th
 
 So I built [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder), a small attempt to help nonprofits and public agencies evaluate this other kind of AI for the resources they allocate.
 
-It's a free, open-source prompt you paste into ChatGPT, Claude, Gemini or Google AI Mode. It interviews you with five core questions:
+It's a free, open-source prompt you paste into [ChatGPT]({{ site.data.try_links.chatgpt }}), [Claude]({{ site.data.try_links.claude }}), Gemini or [Google AI Mode]({{ site.data.try_links.google_ai_mode }}). It interviews you with five core questions:
 
 1. What are you allocating, and what should it achieve?
 2. Who decides who gets what: you, both sides by choosing each other, or the community by vote?
