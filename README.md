@@ -208,7 +208,7 @@ The first draft ([`docs/original-draft.md`](docs/original-draft.md)) was restruc
 
 ## Where it fits
 
-J-PAL, CEGA, Dasra, The/Nudge, Fast Forward, Google.org and Wadhwani AI evaluate, fund, build or advise on AI for social good. None publishes a tool for choosing which kind of AI method fits a program's problem; AI4SG Finder covers that step. [Where AI4SG Finder fits](docs/landscape.md) compares them, using each organization's own website.
+Many organizations evaluate, fund, build or advise on AI for social good, from J-PAL and CEGA to DataKind, NetHope and Wadhwani AI. None of the fourteen we checked publishes a tool for choosing which kind of AI method fits a program's problem; AI4SG Finder covers that step. [Where AI4SG Finder fits](docs/landscape.md) compares them, using each organization's own website.
 
 ## Building your own
 
