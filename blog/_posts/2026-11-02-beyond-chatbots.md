@@ -26,7 +26,7 @@ None of these are language models. They come from operations research, economics
 
 ## Where this started
 
-That gap ran through a lively audience discussion at a [round table on AI, planetary health and poverty alleviation](https://www.linkedin.com/posts/stanford-alumni-alliance-on-innovation-for-global-impact_sharing-invite-to-a-in-person-interactive-activity-7517089723962769408-0GU8) at Stanford, held on October 30, 2026 by the Stanford Alumni Alliance on Innovation for Global Impact as part of its Reimagining AI for the Sustainable Development Goals series. It was sparked by research presented there by Columbia professors Roshni Sahoo and Lily Xu. People in the room knew they wanted to use AI. What they struggled with was choosing the right method for their own constraints.
+That gap ran through a lively audience discussion at a [round table on AI, planetary health and poverty alleviation](https://www.linkedin.com/posts/stanford-alumni-alliance-on-innovation-for-global-impact_sharing-invite-to-a-in-person-interactive-activity-7517089723962769408-0GU8) at Stanford, held on October 30, 2026 by the [Stanford Alumni Alliance on Innovation for Global Impact](https://www.linkedin.com/company/stanford-alumni-alliance-on-innovation-for-global-impact) as part of its Reimagining AI for the Sustainable Development Goals series. It was sparked by research presented there by Columbia professors Roshni Sahoo and Lily Xu. People in the room knew they wanted to use AI. What they struggled with was choosing the right method for their own constraints.
 
 ## Why "use AI" is not one answer
 
