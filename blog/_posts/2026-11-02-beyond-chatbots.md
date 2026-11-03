@@ -67,7 +67,7 @@ I wrote this series the same way. I set the direction and made the editorial cal
 
 This is the first of six posts. The rest cover the questions the finder asks, the twelve kinds of decision it recognizes, the worked cases behind it, where it fits among related work, and how to adapt it to your field.
 
-**Try it now**, no setup needed: the [project page](https://github.com/ashitpatel/ai4sgfinder) has one-click links for ChatGPT, Claude and Google AI Mode.
+**Try it now**, no setup needed: open it in [ChatGPT]({{ site.data.try_links.chatgpt }}), [Claude]({{ site.data.try_links.claude }}) or [Google AI Mode]({{ site.data.try_links.google_ai_mode }}).
 
 Thank you to the Stanford Alumni Alliance on Innovation for Global Impact, its co-hosts and everyone at the round table for the discussion and questions that shaped it.
 

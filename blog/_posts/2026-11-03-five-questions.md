@@ -88,6 +88,6 @@ The questions can also show that you don't need AI at all. In another worked cas
 
 ## Try it
 
-AI4SG Finder is free and open source. The [project page](https://github.com/ashitpatel/ai4sgfinder) has one-click links for ChatGPT, Claude and Google AI Mode, so you can try it on a real decision in your program. If it gets something wrong, I'd like to hear about it.
+AI4SG Finder is free and open source. Try it on a real decision in your program, with no setup: open it in [ChatGPT]({{ site.data.try_links.chatgpt }}), [Claude]({{ site.data.try_links.claude }}) or [Google AI Mode]({{ site.data.try_links.google_ai_mode }}). Each link starts a new chat with the finder's prompt already filled in. If it gets something wrong, I'd like to hear about it.
 
 {% include series.html %}
