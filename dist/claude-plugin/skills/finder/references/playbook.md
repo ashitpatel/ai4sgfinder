@@ -319,10 +319,16 @@ Researchers rarely take on projects from cold emails, but a well-written brief t
 
 ## Follow-up 6: One-page brief for a technical partner
 
-Fill this from the conversation so the user can send it to a volunteer data scientist, university group or pro bono service. Keep it to one page and in plain language.
+Fill this from the conversation so the user can send it to a volunteer data scientist, university group, pro bono service or research evaluator. Keep it to about one page and in plain language.
+
+**Before drafting**, check which of these the interview has not covered, and ask for all of them in one turn: what the program delivers and the change it aims for; where it runs (country or region, urban or rural, how many sites and how far apart); the timeline (when a decision is due, seasons or funding cycles, how soon a pilot must start); and resources (staff who would work on this, their skills, budget for a build and for running it). Draft once the user answers; mark anything still unknown as *[to confirm]* rather than guessing.
 
 ```
 PROJECT BRIEF — [Organization name]
+
+The program
+  [What we deliver, to whom, and the change it aims for (e.g. better attendance,
+   fewer missed doses, higher incomes).]
 
 The decision we need help with
   [One or two sentences: what is allocated, to whom, how often.]
@@ -344,8 +350,20 @@ Simpler option to beat
 Data we have
   [Fields, how often recorded, how many records, format, known gaps.]
 
-Constraints
-  [Budget per round, capacities, fairness rules, legal limits, connectivity.]
+Where we work
+  [Country or region; urban or rural; number of sites and distances between them;
+   connectivity and any seasonal access problems.]
+
+Timeline
+  [When the next decision is due; seasons, funding or school cycles that fix the
+   dates; when a pilot could start and must finish.]
+
+Resources
+  [Staff who would work on this and their skills; budget for a build and for
+   running it each cycle; who maintains it after the partner leaves.]
+
+Other constraints
+  [Budget per round, capacities, fairness rules, legal or data-protection limits.]
 
 What success looks like
   [One or two measures and the harm measure to watch.]
@@ -353,8 +371,14 @@ What success looks like
 How results must reach staff
   [Paper list, Excel sheet, app; who runs it and how often.]
 
-What we are asking for
-  [e.g. a 3-month pilot build, a review of our data, or a one-off plan.]
+Where a partner can help
+  Build: [what a technical partner would do, e.g. clean the data, build the model,
+   test it against the simpler option, set up the staff sheet; the scope, e.g. a
+   3-month pilot build, a review of our data, or a one-off plan.]
+  Evaluation: [only if the program reaches several hundred people or sites, can be
+   randomized or rolled out in stages, and already records the outcome (see
+   Follow-up 4): what an evaluator such as CEGA, J-PAL or IPA would measure.
+   Otherwise write "Not yet: the pilot in Follow-up 3 comes first."]
 
 Contact
   [Name, role, email.]
