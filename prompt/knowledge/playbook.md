@@ -176,7 +176,7 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 **For every class**
 - **Decision owner.** One named person or team will use the output and is authorized to act on it.
 - **Data.** The required fields exist, are recorded consistently, and cover the people or places the model will decide about. Gaps fall unevenly on some groups?
-- **Consent and privacy.** People whose data is used were told and agreed; personal data is stored securely; the model can run on pseudonymized IDs.
+- **Consent and privacy.** People whose data is used were told, in words they understand, and agreed; personal data is stored securely; the model can run on pseudonymized IDs. Before data goes to an outside partner, replace names and phone numbers with random IDs (hashing phone numbers is not enough, since they are easy to guess) and coarsen exact GPS points to village or grid cell. Put in writing that scores are used only to direct help, never to deny entitlements, trigger enforcement or penalize people who don't respond.
 - **Fairness.** Decide in advance which groups must not be disadvantaged and how that will be measured.
 - **Do-no-harm.** Who loses out under the new allocation compared with today, and is that acceptable and explainable?
 - **Maintenance.** Someone can rerun the model, fix the data pipeline and answer staff questions a year from now, after the original builder leaves.
@@ -265,6 +265,11 @@ Notes: the `matching` Python library's last release was in 2023 and RSOME's in 2
 | [Wadhwani AI](https://www.wadhwaniai.org) | Builds AI for health, education and agriculture with governments and NGOs, mainly in India | Not stated | "Partner with us" contact |
 | [Omdena](https://www.omdena.com) | Commercial AI project delivery for NGOs and UN agencies | Paid | Book a consultation |
 | Local universities | Operations research, industrial engineering, economics or computer science departments often take capstone or thesis projects | Usually free | Email the department or a faculty member working on the relevant class |
+| [CEGA (UC Berkeley)](https://cega.berkeley.edu/engage/for-partners/) | Matches programs in low- and middle-income countries with affiliated researchers for impact evaluations, new uses of existing data (including mobile-phone and satellite data) and monitoring help | Not stated; ask | Research Collaboration Form on the For Partners page |
+| [J-PAL](https://www.povertyactionlab.org/j-pal-offices) | Network of affiliated professors who run randomized evaluations of poverty programs; affiliates raise their own research funding | Not stated; ask | Contact the regional office for your country |
+| [Innovations for Poverty Action (IPA)](https://poverty-action.org/Partner-With-Us) | Runs randomized evaluations and field data collection through 15 country offices, mainly in Africa, Latin America and the Philippines | Not stated; ask | Contact form on the Partner With Us page |
+
+CEGA, J-PAL and IPA evaluate programs; they don't build tools. Suggest them only when the user can say yes to all three: the program reaches at least several hundred people or sites; it can be randomized or rolled out in stages (a lottery or waitlist); and it already records the outcome that matters (attendance, repayment, test scores). Otherwise a build partner above, plus the pilot from Follow-up 3, comes first.
 
 The brief from Follow-up 6 is the right document to send to any of these.
 
