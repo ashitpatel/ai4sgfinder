@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-03 00:04:00 +0000
 ---
 
-*Part 5 of 6 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 5 of 9 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 Who else is working on AI for social good, and where does AI4SG Finder fit? To answer that honestly, I looked at fourteen organizations doing serious work in this space, using only what each says on its own website and in the files it hosts. The full comparison, with a link for every claim, is on the project's [landscape page](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/landscape.md). This post summarizes it.
 
@@ -14,7 +14,7 @@ Who else is working on AI for social good, and where does AI4SG Finder fit? To a
 
 A program usually goes from an idea to a tested tool in four steps: choose a method, build it, fund it, and evaluate it. Advisors and capacity builders help organizations get ready along the way. The fourteen fall into these roles:
 
-- **Evaluate.** J-PAL and CEGA test whether AI applications work. J-PAL's Project AI Evidence has funded 16 projects; CEGA's work includes machine-learning targeting of cash transfers in Togo.
+- **Evaluate.** [J-PAL]({{ site.baseurl }}/j-pal/) and [CEGA]({{ site.baseurl }}/cega/) test whether AI applications work, and publish much that helps a program before it builds anything. J-PAL's Project AI Evidence has funded 16 projects; CEGA's work includes machine-learning targeting of cash transfers in Togo.
 - **Fund.** Fast Forward, Google.org, the Patrick J. McGovern Foundation and The/Nudge's Pragati program back nonprofits that build AI, through grants, accelerators and mentoring.
 - **Advise and train.** NetHope, data.org and Dasra build the sector's readiness, through toolkits, courses, challenges and convening.
 - **Build.** DataKind, Omdena, Digital Green, Wadhwani AI and Project Tech4Dev develop AI with NGOs and governments.
@@ -56,7 +56,7 @@ AI4SG Finder isn't a competitor to any of these organizations. It sits at the st
 1. **Choose** an approach with AI4SG Finder, and get a one-page brief.
 2. **Build** it with a technical partner such as DataKind, Omdena or Wadhwani AI.
 3. **Fund** it through a program such as Fast Forward, Pragati or the McGovern Foundation.
-4. **Evaluate** it, as J-PAL and CEGA do.
+4. **Evaluate** it, as J-PAL and CEGA do. [Part 9]({{ site.baseurl }}/research-partners/) shows how to use AI4SG Finder to work with them, before building as well as after.
 
 NetHope, data.org and Dasra build the sector's capacity around all of these steps.
 

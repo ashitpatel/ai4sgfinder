@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-03 00:02:00 +0000
 ---
 
-*Part 3 of 6 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 3 of 9 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 The [last post]({{ site.baseurl }}/five-questions/) described the five questions AI4SG Finder asks. Here is where they lead: twelve kinds of decision, grouped in five families. Each comes with the method that fits it and an example of that method at work in the field.
 

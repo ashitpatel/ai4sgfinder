@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-03 00:03:00 +0000
 ---
 
-*Part 4 of 6 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 4 of 9 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 Recommending a method is the easy part. The hard part is showing why it fits, and being honest about when a spreadsheet would do almost as well.
 
