@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-12 00:02:00 +0000
 ---
 
-*Part 9 of 9 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 9 of 10 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 The last two posts described [J-PAL]({{ site.baseurl }}/j-pal/) and [CEGA]({{ site.baseurl }}/cega/). This one is practical: how a program can use AI4SG Finder to work with them, or with a similar research group, at the right moment.
 
@@ -77,7 +77,7 @@ A few expectations to set:
 
 ## Where this leaves the series
 
-The first six posts were about choosing a method. These last three are about what comes before and after: learning from what others have already tested, and, once a program is ready, finding out whether the method actually helped.
+The first six posts were about choosing a method. These three are about what comes before and after: learning from what others have already tested, and, once a program is ready, finding out whether the method actually helped. The [last post]({{ site.baseurl }}/for-funders/) turns to the people on the other side of the proposal: funders.
 
 If you take a brief from AI4SG Finder to a research partner, I'd like to hear how it went, including what was missing. Tell me through an [issue on GitHub](https://github.com/ashitpatel/ai4sgfinder/issues).
 

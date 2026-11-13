@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-03 00:04:00 +0000
 ---
 
-*Part 5 of 9 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 5 of 10 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 Who else is working on AI for social good, and where does AI4SG Finder fit? To answer that honestly, I looked at fourteen organizations doing serious work in this space, using only what each says on its own website and in the files it hosts. The full comparison, with a link for every claim, is on the project's [landscape page](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/landscape.md). This post summarizes it.
 

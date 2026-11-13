@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-03 00:01:00 +0000
 ---
 
-*Part 2 of 9 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 2 of 10 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 Three in four nonprofits don't yet have an AI strategy ([TechSoup, 2025](https://blog.techsoup.org/posts/what-ai-means-for-nonprofits-in-2025-insights-from-the-ai-benchmark-report)). Most conversations about one start from a tool: should we use ChatGPT, build a chatbot, buy an AI product? A more useful starting point is a plainer question: **which decision are we trying to improve?**
 

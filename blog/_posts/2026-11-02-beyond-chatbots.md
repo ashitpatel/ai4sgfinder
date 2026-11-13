@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-02
 ---
 
-*Part 1 of 9 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder), a free, open-source assistant that helps nonprofits choose an AI method for allocating scarce resources.*
+*Part 1 of 10 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder), a free, open-source assistant that helps nonprofits choose an AI method for allocating scarce resources.*
 
 When nonprofits talk about AI, they usually mean chatbots, faster grant writing or summarized reports. Those tools are useful, but they are one kind of AI, and they work on the words around the work.
 
@@ -65,7 +65,7 @@ I wrote this series the same way. I set the direction and made the editorial cal
 
 ## What's next
 
-This is the first of nine posts. The next five cover the questions the finder asks, the twelve kinds of decision it recognizes, the worked cases behind it, where it fits among related work, and how to adapt it to your field. The last three are about research partners: what J-PAL and CEGA do, and how to use the finder to work with them.
+This is the first of ten posts. The next five cover the questions the finder asks, the twelve kinds of decision it recognizes, the worked cases behind it, where it fits among related work, and how to adapt it to your field. Three more are about research partners: what J-PAL and CEGA do, and how to use the finder to work with them. The last is for funders reviewing a proposal that uses AI.
 
 **Try it now**, no setup needed: open it in [ChatGPT]({{ site.data.try_links.chatgpt }}), [Claude]({{ site.data.try_links.claude }}) or [Google AI Mode]({{ site.data.try_links.google_ai_mode }}).
 
