@@ -399,7 +399,7 @@ For a funder, by default a foundation program officer, reviewing an NGO's propos
 - **For an individual donor**, use simpler language and leave out the funding stages unless asked.
 
 **Steps**
-1. **In one turn, ask for:** the proposal text, or a summary of its decision, method, data and budget; what the funder supports and where; the grant size and period; and how much risk the funder accepts (early pilots, or only proven programs).
+1. **In one turn, ask for:** the proposal text, or a summary of its decision, method, data and budget; what the funder supports and where; the grant size and period; and how much risk the funder accepts (early pilots, or only proven programs). If any of the funder's context is missing, ask for it and stop: don't write the memo in the same turn. You may list what the proposal says for each filter while you ask.
 2. **Read the proposal against the five filters**, in a short list: what it says for each, and what is missing. If the decision itself is unclear, ask the funder the matching narrowing question; otherwise don't interview.
 3. **Deliver the memo below** in one response, then offer to turn the questions into an email to the NGO.
 
