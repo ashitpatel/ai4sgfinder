@@ -1,6 +1,6 @@
 # AI4SG Implementation Playbook
 
-What to do after an approach has been chosen. The AI4SG Finder assistant uses this file for its six follow-ups; people can also read it directly.
+What to do after an approach has been chosen. The AI4SG Finder assistant uses this file for its six follow-ups and for the funder review at the end; people can also read it directly.
 
 Tools, organizations and links were last checked on **2026-10-30**. Services change: confirm that a tool or partner is still active before relying on it.
 
@@ -382,4 +382,72 @@ Where a partner can help
 
 Contact
   [Name, role, email.]
+```
+
+---
+
+## Funder review: checking a proposal
+
+For a funder, by default a foundation program officer, reviewing an NGO's proposal to use a model or AI to allocate something: visits, patrols, transfers, places, supplies. It replaces the interview: the proposal supplies the answers.
+
+**Rules for the assistant**
+- **Review the method, never the organization.** Don't score, rank or judge the NGO's capacity, leadership or trustworthiness, and don't suggest other NGOs.
+- **Give questions and conditions, not a decision.** Never say whether to fund or decline.
+- **Use only the proposal and the funder's answers.** Anything the proposal doesn't say is a question for the NGO, never a guess.
+- **Check the proposal's evidence** under the evidence integrity rules: compare each cited deployment or figure with the verified references in the taxonomy, and say whether it is a field deployment, a pilot, a simulation or a proposal.
+- **If nothing is allocated** (a chatbot that only answers questions, a dashboard), say this review doesn't apply, and point out any allocation decision hidden inside the proposal.
+- **For an individual donor**, use simpler language and leave out the funding stages unless asked.
+
+**Steps**
+1. **In one turn, ask for:** the proposal text, or a summary of its decision, method, data and budget; what the funder supports and where; the grant size and period; and how much risk the funder accepts (early pilots, or only proven programs).
+2. **Read the proposal against the five filters**, in a short list: what it says for each, and what is missing. If the decision itself is unclear, ask the funder the matching narrowing question; otherwise don't interview.
+3. **Deliver the memo below** in one response, then offer to turn the questions into an email to the NGO.
+
+**Choosing the verdict**
+
+| Verdict | When | Common examples |
+|---|---|---|
+| **Fits** | The proposed method belongs to the class the decision falls in, and the data it needs exists at the needed rate ([taxonomy, Data each class needs](taxonomy.md#data-each-class-needs)) | Vehicle routing for weekly deliveries to many sites, with locations and travel times on record |
+| **Heavier than needed** | Right class, but the simpler option ([taxonomy, Section 4](taxonomy.md#4-simpler-alternatives-for-each-class)) is likely close: few people or sites, thin data, a decision that rarely changes; or research-code methods (Classes 1 and 3) with no technical partner named | A custom optimizer for 20 boreholes that a sorted list with a district floor would match |
+| **Mismatch** | The method belongs to a different class from the decision | A risk score ranking the "highest-need" where the real question is whom the help changes (Class 7, or Class 1 if repeated); a fixed or predicted patrol schedule against people who adapt (Class 3); a plan built on average years for rare disasters (Class 4); central assignment where both sides choose (Class 5); a chatbot proposed for what is really an allocation decision |
+| **No model needed** | Supply roughly meets demand, few decisions are made, or a written rule captures most of the value | An AI system to decide pantry quantities when every household already gets served |
+
+**Funding stages.** Suggest stages that release money as the evidence comes in, matched to the funder's risk appetite; if they fund only proven programs, say which stage the proposal has reached.
+1. **Test on past records** (small grant, weeks): replay last year's decisions under the proposed model and under the simpler option, counting the model's full cost. For one-off decisions (Classes 2 and 4), compare plans instead. Release the next stage only if the gap is worth that cost.
+2. **Pilot** ([Follow-up 3](#follow-up-3-pilot-design)): against current practice, with one or two success measures and a harm measure agreed in advance, a fixed duration, and the old process kept available.
+3. **Scale**: with a named maintenance owner and a written fallback rule. Suggest an evaluation only if the program passes the three-part test in [Follow-up 4](#follow-up-4-build-options--tools-and-partners); evaluation funding from J-PAL, CEGA or IPA goes through their researchers, so the NGO approaches them with a researcher.
+
+```
+PROPOSAL REVIEW — [NGO name]: [proposal title]
+For [funder]. Based only on the proposal and the funder's answers; it reviews
+the proposed method, not the organization.
+
+1. The decision
+  [One line: what is allocated, to whom, how often.]
+
+2. Method fit
+  Verdict: [Fits / Heavier than needed / Mismatch / No model needed]
+  [The class the decision falls in, the method proposed, and why they do or
+   don't match, in two or three sentences.]
+
+3. The simpler option to beat
+  [The best paper or spreadsheet rule for the class. Does the proposal plan to
+   compare against it on past records, counting the model's full cost?]
+
+4. Questions for the NGO
+  [Up to five, most important first: missing filter answers, then the readiness
+   checks (Follow-up 2) most at risk, e.g. who maintains it after the builder
+   leaves.]
+
+5. Risks to people
+  [Only those that apply: fairness across groups, consent and privacy,
+   surveillance, biased risk scores, withdrawing help from people scored
+   "low benefit".]
+
+6. Evidence check
+  [Each deployment or figure the proposal cites: verified, unverified, or
+   overstated (e.g. a simulation described as a deployment).]
+
+7. Suggested funding stages
+  [The stages above, with the milestone that releases each one.]
 ```

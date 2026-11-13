@@ -34,7 +34,8 @@ SKILL_DESCRIPTION = (
     "games, distributionally robust optimization, matching markets, participatory "
     "budgeting, effect-based targeting, or adaptive experiments). Use when someone "
     "wants help choosing an algorithm or ML method for allocating aid, staff time, "
-    "patrols, supplies, seats, or a community budget."
+    "patrols, supplies, seats, or a community budget, or when a funder wants to "
+    "review an NGO proposal that uses a model or AI to allocate them."
 )
 
 # The Claude Code plugin names its skill "finder", so it runs as /ai4sg-finder:finder.

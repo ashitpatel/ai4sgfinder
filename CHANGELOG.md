@@ -2,6 +2,12 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
+## Unreleased
+
+- **Funder review.** A funder can paste an NGO's proposal instead of answering the interview. The assistant writes a seven-part review memo: the decision, whether the method fits (fits, heavier than needed, mismatch, or no model needed), the simpler option to beat, questions for the NGO, risks to people, an evidence check and suggested funding stages. It reviews the method, never the organization, and doesn't say whether to fund. The playbook's new last section holds the rules, verdict guide and template; the system prompt gains one line routing funders to it. Three new worked cases (17–19) cover a mismatch, a fit and a no-model verdict.
+- The partner brief (Follow-up 6) now covers the program itself, where it works, its timeline and resources, and splits where a partner can help into build and evaluation.
+- Follow-up 4 lists CEGA, J-PAL and IPA as evaluation partners, with a three-part test for when to suggest them; the consent and privacy readiness check is more specific.
+
 ## 1.3.0 — 2026-11-01
 
 - **Simpler alternatives.** Every recommendation now has a sixth heading, *The simpler alternative*: the best paper, spreadsheet or calculator option for the class, in what ways it comes close (total outcome, fairness, worst case, evidence) and what it gives up, the assumptions to check before settling for it, and how to compare it with the model on past records. The taxonomy's new [Section 4](prompt/knowledge/taxonomy.md#4-simpler-alternatives-for-each-class) lists the option for each class with verified evidence where it exists; the playbook adds a readiness check, a pilot comparison against the simple option, and a "Simpler option to beat" line in the partner brief.

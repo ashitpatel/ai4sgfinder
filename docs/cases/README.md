@@ -1,6 +1,6 @@
 # Worked cases
 
-Sixteen illustrative cases that together exercise every outcome the assistant can reach: one per allocation class, one where the right answer is "no model," and three where a program needs two classes working together. Each spans a different impact domain and intervention type, and each names the simpler alternative to its method and when it is close enough.
+Sixteen illustrative cases that together exercise every outcome the assistant can reach: one per allocation class, one where the right answer is "no model," and three where a program needs two classes working together. Three more show the [funder review](../../prompt/knowledge/playbook.md#funder-review-checking-a-proposal), in which a funder pastes an NGO's proposal instead of answering the interview. Each spans a different impact domain and intervention type, and each names the simpler alternative to its method and when it is close enough.
 
 All organizations and programs in these cases are fictional. The research they cite is real and is drawn from the verified references in [`taxonomy.md`](../../prompt/knowledge/taxonomy.md).
 
@@ -33,10 +33,16 @@ The cases are listed by family, the grouping the interview uses to narrow down t
 | [14. Cash before a flood](14-anticipatory-cash-floods.md) | Disaster risk | Cash released on a forecast | [**Class 4**](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) trigger + [**Class 2**](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) targeting layer | **Second decision** (when to pay) + **Filter 4** (late is harmful, little history) |
 | [15. Snare search](15-snare-search-patrols.md) | Conservation | Ranger foot patrols | [**Class 12**](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) risk map + [**Class 3**](../../prompt/knowledge/taxonomy.md#class-3-spatiotemporal-security--adaptive-search) randomization layer | **Narrowing** (finding hidden snares) + **Filter 3** (poachers adapt) |
 | [16. Job-search support](16-job-support-adaptive-targeting.md) | Youth employment | One of three supports per person | [**Class 8**](../../prompt/knowledge/taxonomy.md#class-8-learn-while-allocating) experiment + [**Class 7**](../../prompt/knowledge/taxonomy.md#class-7-effect-based-targeting) targeting layer | **Second decision** (for whom) + **Filter 4** (no randomized data yet) |
+| **Funder review** | | | | |
+| [17. Risk-score home visits](17-funder-review-risk-score-visits.md) | Primary health care | Proposal: weekly visits chosen by a lapse-risk model | **Mismatch**: the decision is [**Class 1**](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) | A risk score measures need, not the effect of a visit |
+| [18. Delivery routing](18-funder-review-delivery-routing.md) | Food assistance | Proposal: vehicle routing for three trucks | **Fits**: [**Class 9**](../../prompt/knowledge/taxonomy.md#class-9-routing--logistics) | The method and data match the decision |
+| [19. Screening chatbot](19-funder-review-screening-chatbot.md) | Emergency assistance | Proposal: a chatbot that scores applications | **No model needed** | Supply nearly meets demand; the allocation is hidden inside a chatbot |
 
 Across the sixteen, every filter, every narrowing question and the second-decision question is the deciding one at least once, and each case names the classes it is most likely to be confused with, so the cases also show what separates neighboring classes. Cases 4, 7, 9 and 13 show second decisions that are *not* a separate layer, or only a later one.
 
 Cases 1–13 each have an [in-depth tutorial](../tutorials/) that explains the method step by step, assuming only basic statistics, and measures the simpler alternative against it on illustrative data. Case 14 has its own tutorial on choosing a forecast trigger; Cases 15 and 16 point to the two tutorials that teach their layers.
+
+Cases 17–19 have a shorter structure: the scenario, what the funder pastes, why the verdict follows, what a good review memo contains under each of its seven headings, and what the assistant should not do.
 
 ## Each case contains
 
