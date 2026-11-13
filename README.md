@@ -115,7 +115,7 @@ Then type `/ai4sg-finder:finder`, or just ask Claude for help choosing an alloca
 3. Pick a Gemini model, type a first message about your problem, and save the prompt so you can reopen or share it.
 
 ### Browser assistants with a custom-instructions field
-Assistants such as Perplexity Spaces let you save instructions and attach files. Paste [`dist/instructions.md`](dist/instructions.md) as the instructions and upload [`dist/taxonomy.md`](dist/taxonomy.md) and [`dist/playbook.md`](dist/playbook.md) as files. If there is no file upload, paste [`dist/all-in-one.md`](dist/all-in-one.md) as the instructions instead, provided the field accepts it (about 35,000 characters).
+Assistants such as Perplexity Spaces let you save instructions and attach files. Paste [`dist/instructions.md`](dist/instructions.md) as the instructions and upload [`dist/taxonomy.md`](dist/taxonomy.md) and [`dist/playbook.md`](dist/playbook.md) as files. If there is no file upload, paste [`dist/all-in-one.md`](dist/all-in-one.md) as the instructions instead, provided the field accepts it (about 107,000 characters, which many instruction fields won't).
 
 ### Any browser assistant, no setup
 For assistants with no place for custom instructions, such as Google AI Mode in Search, Gemini in Chrome, Microsoft Copilot, or a fresh chat in any app, paste [`dist/kickoff.md`](dist/kickoff.md) as your **first message**. It is a condensed version (under 4,000 characters, so it fits most chat boxes) that asks the assistant to take on the role and start the interview.
