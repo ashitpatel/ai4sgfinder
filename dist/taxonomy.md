@@ -1,6 +1,6 @@
 # AI4SG Allocation Taxonomy
 
-Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, and the combinations of classes seen in practice.
+Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, the combinations of classes seen in practice, and how to treat input layers such as speech recognition, document extraction and prediction models.
 
 ## 1. The twelve allocation archetypes
 
@@ -259,6 +259,14 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 - Bastani, H., Drakopoulos, K., Gupta, V., et al. (2021). *Efficient and targeted COVID-19 border testing via reinforcement learning.* Nature. — Eva, deployed at Greek borders in 2020; found about 1.85 times as many asymptomatic infected travelers as random testing.
 - Obermeyer, Z., Powers, B., Vogeli, C., Mullainathan, S. (2019). *Dissecting racial bias in an algorithm used to manage the health of populations.* Science. — A cautionary case: a risk score that predicted health costs rather than illness under-referred Black patients. Check what any risk score actually predicts.
 
+**Input layers and fairness checks** (used in [Section 6](#6-input-layers))
+- Obermeyer, Z., et al. (2026). *An ECG biomarker for sudden cardiac death discovered with deep learning.* Nature. doi:10.1038/s41586-026-10674-6. — A deep residual network trained on about 440,000 Swedish ECGs linked to death certificates predicts sudden cardiac death within a year; validated without retraining on US (San Diego) and Taiwanese (Taipei) data. Its high-risk group had about a 7% annual rate of sudden cardiac death, against 4.6% for patients flagged by low ejection fraction, the standard test for a defibrillator. A published prediction model a program would use, not build.
+- Zink, A., Obermeyer, Z., Pierson, E. (2024). *Race adjustments in clinical algorithms can help correct for racial disparities in data quality.* PNAS. — In a colorectal cancer risk model, family history predicted cancer for White but not Black participants; removing race made the model under-predict risk for Black participants. Removing a group variable is not a fairness check.
+- Shanmugam, D., Hou, K., Pierson, E. (2021). *Quantifying disparities in intimate partner violence: a machine learning method to correct for underreporting.* arXiv 2110.04133. — A positive-unlabeled method for estimating how common a condition is in each group when many cases go undiagnosed.
+- Gera, N., Pierson, E. (2024). *Testing for racial bias using inconsistent perceptions of race.* arXiv 2409.11269. — Compares traffic stops of the same driver when officers recorded different races (Stanford Open Policing data, Arizona, Colorado and Texas), a design that separates discrimination from differences between drivers.
+- Nethil, K., Mishra, V., Anandan, K., Manohar, K. (2025). *Scalable Offline ASR for Command-Style Dictation in Courtrooms.* Interspeech. — Adalat AI's courtroom speech recognition: fine-tuned Whisper models with voice-activity detection, run offline on one GPU per site. Reports speed, not effects on hearings.
+- Peskoff, D., Barrow, J., Vu, C., Davenport, D. (2026). *Freeing the Law with LOCUS: A Local Ordinance Corpus for the United States.* arXiv 2606.19334. — About 7 million pages of local codes read with a vision-language OCR model, split into sections, labelled by language models and distilled into a small classifier; released as LOCUS-v1 with a hand-audited subset. An extraction layer at national scale.
+
 **Simpler rules and combined designs** (used in [Section 4](#4-simpler-alternatives-for-each-class) and [Section 5](#5-when-two-classes-combine))
 - Mate et al. (2022), above, also report that a simple round-robin calling schedule did not significantly improve on ARMMAN's usual practice, while the restless-bandit schedule reduced engagement drops by about 30%: evidence that the simplest rotation is not always close enough.
 - Aiken et al. (2022), above, compare the phone-data model with simpler options: it reduced errors of exclusion by 4–21% relative to the geographic targeting the government considered, but had 9–35% more exclusion errors than targeting based on a comprehensive social registry, which Togo did not have.
@@ -275,13 +283,16 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 
 ### Unverified claims (do not cite without confirmation)
 
-The original draft of this taxonomy included the examples below. They could not be confirmed against a primary source. The assistant must not present them as documented facts; if mentioned at all, label them *"(unverified — please confirm before citing)"*.
+The original draft of this taxonomy included the first five examples below, and later reviews added the rest. They could not be confirmed against a primary source. The assistant must not present them as documented facts; if mentioned at all, label them *"(unverified — please confirm before citing)"*.
 
 - **Mantra4Change** using RMABs to rotate physical student toolkits across school sections.
 - **"Prof. Roshni Sahu / Data Science for Social Good"** and ILP-targeted cash transfers for extreme poverty. The researcher is Roshni Sahoo (Columbia Business School; see Class 7 for her verified papers). Her work learns transfer rules from survey data; an ILP deployment and a Data Science for Social Good link are not confirmed.
 - **UN-OCHA** running DRO for monsoon pre-positioning. Humanitarian pre-positioning is well studied (see Class 4 above), but an OCHA DRO deployment is not confirmed.
 - **"Prof. Lily Xu / Harvard Center for Health"** as the lead on tuberculosis adherence calls. Lily Xu is a co-author on related restless-bandit work, but she is best known for PAWS and green-security patrol planning. The TB and maternal-health RMAB deployments are led by Aditya Mate, Jackson Killian, and colleagues in Milind Tambe's Teamcore group.
 - **Deceased-donor organ allocation** as stable matching. National organ registries generally allocate deceased-donor organs by priority rules, not a two-sided stable match. Kidney *paired exchange* is the matching-market example.
+- **Adalat AI's productivity results and scale.** Trials showing faster hearings are mentioned in Adalat AI's own materials but not published; reported courtroom counts differ by source and date. Cite Nethil et al. (2025) for the method only.
+- **Gera & Pierson in Science Advances.** A 2025 Science Advances version of Gera & Pierson (2024) (doi:10.1126/sciadv.adx5829) is reported but could not be confirmed; cite the arXiv preprint above.
+- **LOCUS at NeurIPS 2026.** Reported as accepted by Berkeley News; cite the arXiv version until the proceedings appear.
 
 ## 4. Simpler alternatives for each class
 
@@ -332,3 +343,31 @@ Rules for combinations:
 - **Sequence them.** Usually the layer that produces inputs (a forecast, a risk map, a prediction) is piloted first, because the other depends on it; say so in the next steps.
 - **Each layer has its own simple option.** A combination of two simple rules (a forecast threshold plus a published eligibility list; an age sort plus a weighted lottery) is often the right first year.
 - **Don't invent combinations.** If the user describes one decision, recommend one class.
+
+## 6. Input layers
+
+Some programs ask about a tool that allocates nothing on its own: it turns speech, images, documents or records into something a decision uses. These are **input layers**. The assistant doesn't classify the tool or recommend a model architecture for it. It names the decision the tool feeds, classifies *that* decision, and treats the tool as a layer to check and pilot first ([Section 5](#5-when-two-classes-combine)). If no decision is fed, say so: the tool may be worth having, but it is outside this taxonomy.
+
+| Kind | What it produces | Decision it typically feeds | Real example |
+|---|---|---|---|
+| **Perception** | Text from speech; labels from images or signals | Often none: it replaces manual work. Sometimes a rollout order (usually *no model needed*) | Adalat AI's courtroom speech recognition in Indian languages (Nethil et al., 2025) |
+| **Extraction** | A table from documents (OCR, then language-model labels) | A yearly plan or a ranking (Class 2, Class 12) that needs a column no one has typed | LOCUS, a corpus of US local ordinances (Peskoff et al., 2026) |
+| **Prediction** | A risk score or forecast from records | Where to look (Class 12), when to act (Class 4), where to place (Class 10) | A deep-learning ECG model for sudden cardiac death risk (Obermeyer et al., 2026) |
+
+**Build, adapt or use.** Ask how many outcomes the program has on record.
+- **Use a published model** when local outcomes are too few to train one (a few hundred events, against the hundreds of thousands a deep model was trained on). Validate it on the program's own records before relying on it: does it rank well, are its predicted rates right (calibration), and does it hold for each group? A model can rank well in a new place and still mis-state absolute risk, which changes how many people pass a threshold.
+- **Adapt an open model** (fine-tune it on local data) when a good general model exists but local speech, language or documents differ, as with speech models fine-tuned for Indian languages and legal vocabulary.
+- **Build** only when the program has many outcomes, a technical partner, and someone to maintain it.
+
+**What to measure before an allocation relies on it.** Always on the program's own data, never a published benchmark alone:
+- *Perception:* error rate by language, accent or condition, and separately for what matters most (names, numbers, legal terms); who corrects errors and how long correction takes compared with the manual process.
+- *Extraction:* label accuracy on a random sample checked by hand, reported by source type (scanned or digital, large or small jurisdiction), since errors cluster where documents are poorest.
+- *Prediction:* calibration and accuracy by group; what the label actually measures (Obermeyer et al., 2019); whether a high score means high benefit or only high risk, including the risk of other outcomes first (competing risk).
+- *All:* cost per unit, what happens when the layer fails, and the manual process kept as a fallback.
+
+**Fairness of a score is checked, not assumed.** Removing race or another group variable from a model doesn't make it fair: if a predictor is recorded less reliably for one group, a model without the group variable can under-predict that group's risk (Zink, Obermeyer & Pierson, 2024). Labels such as "diagnosed" miss people who were never tested, so groups with less access look lower-risk than they are (Shanmugam, Hou & Pierson, 2021). Measure calibration and share of slots by group either way.
+
+Rules for input layers:
+- **Name the decision first.** "Build a transcription system" or "build a database" is a means; ask what will be decided with its output, and by whom.
+- **Pilot the layer first,** with its error measured, before the allocation that depends on it.
+- **Don't choose the model.** Point to the providers' model cards and evaluation reports; the assistant's evidence base covers allocation methods, not speech, vision or language models.

@@ -160,7 +160,7 @@ dist/                     <- generated, ready to paste or upload (do not edit)
 examples/                 API chat scripts for Claude, OpenAI, Gemini
 scripts/build.py          regenerates dist/ and .claude-plugin/ from prompt/ and VERSION
 VERSION, CHANGELOG.md     release version and notes
-docs/cases/               sixteen worked cases: one per outcome, three combined; also a manual test set
+docs/cases/               sixteen worked cases (one per outcome, three combined), funder reviews and real-world patterns; also a manual test set
 docs/tutorials/           in-depth method walkthroughs (Cases 1–14), with runnable code
 docs/original-draft.md    the first draft, kept for provenance
 docs/building-from-scratch.md  prompts to build a similar project from scratch

@@ -20,7 +20,7 @@ A community foundation has a proposal from a local NGO that runs a small emergen
 > We will build a chatbot on a large language model that guides applicants through our application, answers questions in English and Spanish, and scores each application so staff can approve the most urgent first. This will make decisions faster and fairer. Budget: US$60,000 for a developer and a year of hosting. Success measure: time from application to decision.
 
 **The funder's answers.**
-> We fund basic needs in one county. Grants are US$5,000–50,000 a year. We're cautious about technology projects; we'd want to know this is the right tool.
+> We fund basic needs in one county. Grants are US$5,000–50,000 a year. We're cautious about technology projects; we'd want to know this is the right tool. The NGO told us it gets about 40 applications a month and can pay about 35.
 
 ## Why the verdict is No model needed
 

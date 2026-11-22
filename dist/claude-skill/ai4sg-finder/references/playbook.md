@@ -183,7 +183,8 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 - **Exit plan.** If the model fails or the partner leaves, staff can fall back to a written simple rule.
 - **Simpler option tested.** The best simple option for the class ([taxonomy, Section 4](taxonomy.md#4-simpler-alternatives-for-each-class)) has been replayed on past records alongside the model, and the gap is worth the model's full cost: building it, the data pipeline, staff time each cycle and maintenance.
 - **Community voice.** Affected people or their representatives have seen and can question the approach.
-- **Bias in risk scores.** If any step uses a predicted score, check what it actually predicts and whether it is equally accurate across groups. A health algorithm that predicted costs instead of illness under-referred Black patients (Obermeyer et al., Science 2019).
+- **Bias in risk scores.** If any step uses a predicted score, run the [fairness audit for a risk score](#fairness-audit-for-a-risk-score) below. A health algorithm that predicted costs instead of illness under-referred Black patients (Obermeyer et al., Science 2019).
+- **Input layers.** If the program relies on speech recognition, document extraction or a published prediction model, its error has been measured on the program's own data, by language or group, and there is a manual fallback ([taxonomy, Section 6](taxonomy.md#6-input-layers)).
 - **Human override.** Staff know when they may set the model's suggestion aside, and each override is recorded and reviewed.
 
 **Class-specific**
@@ -199,6 +200,21 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 - *[Class 10: Online Assignment & Waitlists](taxonomy.md#class-10-online-assignment--waitlists) (online allocation):* At least a year of arrival records; agreed fairness rules for the season; a way to explain each placement to the person affected.
 - *[Class 11: Network Seeding](taxonomy.md#class-11-network-seeding) (influence maximization):* Consent for collecting network data; enough staff to train the chosen seeds; a measure of spread that can be collected later.
 - *[Class 12: Risk-Based Inspection](taxonomy.md#class-12-risk-based-inspection) (predictive inspection):* Records of past inspections including negative results; a plan to act on what is found; a check that the risk score does not simply send inspectors back to the neighborhoods they already over-inspect.
+
+### Fairness audit for a risk score
+
+For any step that ranks or screens people by a predicted score (Classes 2, 10 and 12 most often), and for any proposal a funder reviews that uses one. Work through it with the user on past records, before the pilot; mark each item as done, partly done or not done.
+
+1. **What the label measures.** Name the outcome the score was trained on and ask whether it is the thing that matters. Cost is not illness (Obermeyer et al., 2019). "Diagnosed" or "found at a past inspection" is not "has it": groups who were tested less look lower-risk than they are, and methods for under-reported outcomes exist (Shanmugam, Hou & Pierson, 2021). If the label is biased, fix the label before the model.
+2. **Calibration by group.** For each group that must not be disadvantaged, compare predicted rates with observed rates. A score can rank well overall and still under-predict for one group, which sends that group fewer slots.
+3. **With and without group variables.** Removing race, sex or another group variable is not a fairness check. If a predictor is recorded less reliably for one group (family history, past diagnoses), a model without the group variable can under-predict that group's risk (Zink, Obermeyer & Pierson, 2024). Compare both versions, and interactions between the group and that predictor, on step 2. Whether a group variable may legally be an input differs by country and sector: check, but use it to *measure* either way.
+4. **Share of slots by group.** Under the score, under the simpler rule and under current practice, what share of slots does each group get, against its share of the need?
+5. **A random share.** Keep 10–20% of slots chosen at random among those the score would not pick, so its misses can be measured, by group, after the pilot.
+6. **Recheck after the pilot and yearly.** Repeat steps 2 and 4 on new results; populations and recording practices change.
+
+If the program asks whether past *decisions* were discriminatory (for example in enforcement or service records), that is a research question for a partner, not part of this audit. Point to outcome and threshold tests, and to designs comparing the same person recorded differently (Gera & Pierson, 2024, arXiv 2409.11269), and suggest an academic partner.
+
+**Tools.** [scikit-learn](https://scikit-learn.org/stable/modules/calibration.html) draws calibration curves; [Fairlearn](https://fairlearn.org) reports accuracy and selection rates by group. Both are free; a spreadsheet pivot table of predicted against observed rates by group does steps 2 and 4 for a small program.
 
 ---
 
@@ -249,10 +265,12 @@ Be honest about maturity: Classes 2, 4, 5, 6, 7, 9 and 12 can be built with matu
 | [9 — Routing & Logistics](taxonomy.md#class-9-routing--logistics) | [Google OR-Tools routing](https://developers.google.com/optimization/routing) (vehicle routing with capacities and time windows); [VROOM](https://github.com/VROOM-Project/vroom) (fast route optimization); PuLP or Pyomo with HiGHS for network design | Mature | An analyst comfortable with Python; good data on locations and travel times matters most |
 | [10 — Online Assignment & Waitlists](taxonomy.md#class-10-online-assignment--waitlists) | No dedicated package: usually a prediction model plus an assignment model re-solved as people arrive (PuLP or OR-Tools), or a published priority-and-lottery rule | Methods mature; tools custom | Operations-research skills; one staff member to run it at each arrival |
 | [11 — Network Seeding](taxonomy.md#class-11-network-seeding) | [NetworkX](https://networkx.org) (Python) to store the network and compute reach; the standard greedy seed-selection method takes a short script | Simple code; research methods | A data scientist; the hard part is collecting network data ethically |
-| [12 — Risk-Based Inspection](taxonomy.md#class-12-risk-based-inspection) | [scikit-learn](https://scikit-learn.org) for the risk model; a spreadsheet to rank and assign inspections | Mature | A data scientist for the model; inspectors need only a ranked list |
+| [12 — Risk-Based Inspection](taxonomy.md#class-12-risk-based-inspection) | [scikit-learn](https://scikit-learn.org) for the risk model; [Fairlearn](https://fairlearn.org) for the fairness audit; a spreadsheet to rank and assign inspections | Mature | A data scientist for the model; inspectors need only a ranked list |
 | No model | A spreadsheet and a written rule | — | None |
 
 Notes: the `matching` Python library's last release was in 2023 and RSOME's in 2024; both work, but check for updates. The research repositories above come from published papers and are not supported products.
+
+**Input layers** ([taxonomy, Section 6](taxonomy.md#6-input-layers)). The playbook doesn't recommend speech, vision, OCR or language models: they change too fast for a fixed list. Point the user to where they can compare them on their own terms: the model's card on [Hugging Face](https://huggingface.co/models) (languages covered, training data, licence, reported error rates), the provider's own evaluation reports, and for Indian languages the open models and benchmarks from [AI4Bharat](https://ai4bharat.iitm.ac.in/). Whatever the source, the deciding test is the error rate on 50–100 of the program's own recordings, documents or records, checked by hand, by language or group. Check the licence too: some models and datasets are for non-commercial use only.
 
 ### Partners who help nonprofits
 
@@ -396,6 +414,7 @@ For a funder, by default a foundation program officer, reviewing an NGO's propos
 - **Use only the proposal and the funder's answers.** Anything the proposal doesn't say is a question for the NGO, never a guess.
 - **Check the proposal's evidence** under the evidence integrity rules: compare each cited deployment or figure with the verified references in the taxonomy, and say whether it is a field deployment, a pilot, a simulation or a proposal.
 - **If nothing is allocated** (a chatbot that only answers questions, a dashboard), say this review doesn't apply, and point out any allocation decision hidden inside the proposal.
+- **If the proposal is an input layer** (speech recognition, document extraction, a prediction model: [taxonomy, Section 6](taxonomy.md#6-input-layers)), don't classify or judge the model itself, and don't suggest a different one. Review the decision it feeds, if any, as usual, and ask three questions in the memo either way: what is its error rate on the program's own data, by language or group; who corrects its errors, and how long that takes compared with the manual process; and what decision will its output feed, and who makes it.
 - **For an individual donor**, use simpler language and leave out the funding stages unless asked.
 
 **Steps**
@@ -442,11 +461,15 @@ the proposed method, not the organization.
 5. Risks to people
   [Only those that apply: fairness across groups, consent and privacy,
    surveillance, biased risk scores, withdrawing help from people scored
-   "low benefit".]
+   "low benefit". If a score ranks people, ask for the fairness audit
+   (Follow-up 2): what the label measures, calibration by group, share of
+   slots by group.]
 
 6. Evidence check
   [Each deployment or figure the proposal cites: verified, unverified, or
-   overstated (e.g. a simulation described as a deployment).]
+   overstated (e.g. a simulation described as a deployment, or accuracy
+   measured on a published benchmark presented as accuracy on the
+   program's own data).]
 
 7. Suggested funding stages
   [The stages above, with the milestone that releases each one.]
