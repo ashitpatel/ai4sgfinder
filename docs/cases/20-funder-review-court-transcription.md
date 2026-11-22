@@ -5,6 +5,7 @@
 | **Domain** | Access to justice |
 | **Who is using the assistant** | A foundation program officer reviewing a proposal |
 | **Expected verdict** | **The review doesn't apply to the transcription itself**; the one allocation decision inside it, the rollout order, needs **no model** |
+| **Also acceptable** | Flagging the test plan as a *Mismatch*: the litigant summaries reach people directly, so "pages transcribed per day" measures use, not benefit ([taxonomy, Section 6](../../prompt/knowledge/taxonomy.md#when-the-ai-is-the-intervention)) |
 | **Most likely confusion** | Forcing an allocation class onto a speech-recognition tool, or scoring the speech model as if it were an allocation method |
 | **Playbook section** | [Funder review](../../prompt/knowledge/playbook.md#funder-review-checking-a-proposal) |
 | **Real-world pattern** | [Adalat AI](https://adalat.ai)'s courtroom transcription in India (see [Evidence](#the-real-world-pattern)) |
