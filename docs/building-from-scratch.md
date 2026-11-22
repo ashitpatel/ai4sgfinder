@@ -76,7 +76,7 @@ The recommendation has these sections:
 5. A report card covering successes, field challenges and unknowns.
 6. The simpler alternative: how close it comes, and what to check before settling for it.
 
-If the program needs two classes, name a primary class and add the second as a layer. If the simpler alternative is close enough, or the problem needs no model at all, say so plainly instead of forcing a class.
+If the program needs two classes, name a primary class and add the second as a layer. If the user describes a tool that only feeds a decision (speech recognition, document extraction, a prediction model), classify the decision it feeds and treat the tool as an input to check first; don't choose its model. If the simpler alternative is close enough, or the problem needs no model at all, say so plainly instead of forcing a class.
 
 Rules for the prompt:
 - Never invent a citation, deployment or statistic.
@@ -93,7 +93,7 @@ Return the full prompt.
 ```text
 Add follow-ups the assistant offers after its recommendation, one at a time, tailored to the user's answers:
 - how to adapt the method to their program;
-- what to check before starting: data, consent, fairness, staff capacity;
+- what to check before starting: data, consent, fairness (including an audit of any risk score: what its label measures and whether it is accurate for each group), staff capacity;
 - how to design a small pilot that is compared with the simpler alternative;
 - where to find tools, services or partners;
 - what to read and whom to contact;

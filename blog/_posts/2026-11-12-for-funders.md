@@ -30,15 +30,21 @@ AI4SG Finder now has a second way in. Instead of answering the interview, a fund
 6. **An evidence check** of every figure the proposal cites: verified, unverified, or overstated.
 7. **Suggested funding stages**: a test on past records, then a pilot, then scale, with the milestone that releases each.
 
-## Three use cases
+## Five use cases
 
-The project's worked cases include three funder reviews, one for each of the main verdicts.
+The project's worked cases include five funder reviews: one for each of the main verdicts, and two added later for proposals built on real projects.
 
 **A mismatch: home visits chosen by a risk score** ([Case 17](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/cases/17-funder-review-risk-score-visits.md)). This is the proposal above. The decision, which patients get a visit each week, is a repeated one where each patient's situation drifts: a restless-bandit problem ([Part 3]({{ site.baseurl }}/twelve-decisions/)). A risk score answers a different question. It finds the patients most likely to lapse, not the ones a visit will bring back. The memo also flags the success measure, "share of high-risk patients visited," which rewards following the list rather than better health, and marks the 40% figure as unverified. Its first funding stage is a small grant to replay last year's records under the risk list, a simple table and current practice.
 
 **A fit: delivery routing** ([Case 18](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/cases/18-funder-review-delivery-routing.md)). A food bank wants to plan its three trucks' weekly routes to 62 pantries with a free routing tool. The method matches the decision and the data exists. The memo's main caution is about evidence: the proposal cites the World Food Programme's 12% saving, which is real but comes from planning food baskets, sourcing and delivery together, so it isn't a forecast for truck routes. It doesn't suggest an outside evaluation, because miles driven measure the result directly.
 
 **No model needed: a screening chatbot** ([Case 19](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/cases/19-funder-review-screening-chatbot.md)). An emergency-rent fund wants a chatbot that helps applicants and scores applications for approval. It gets about 40 applications a month and can pay about 35. The memo finds the allocation decision hidden inside the chatbot, and points out that with supply so close to demand, a published eligibility rule does almost all the work. The bilingual help with the form may be worth funding; the scoring probably isn't.
+
+*Added 22 November 2026.* Two more cases follow the pattern of published projects.
+
+**A tool that allocates nothing: courtroom transcription** ([Case 20](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/cases/20-funder-review-court-transcription.md)). A legal-tech NGO wants to put speech recognition into 300 courtrooms and send litigants plain-language summaries of their orders, following the approach of [Adalat AI](https://adalat.ai) in India. The speech and summary models feed a record; they don't decide who gets anything, so the memo doesn't judge them or suggest others. It reviews the one allocation inside, which courtrooms go first, and finds no model is needed, since every courtroom is served within the grant. For the tools, it asks what the error rate is on the courts' own recordings in each language, who corrects mistakes and how long that takes, and what would show a benefit to litigants rather than pages transcribed.
+
+**A fit, with conditions: a "race-blind" screening score** ([Case 22](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/cases/22-funder-review-race-blind-risk-score.md)). An NGO wants a risk score to choose which of 30,000 uninsured adults are called first for 2,000 free colonoscopies, and says it removed race to make the score fair. The method fits. The fairness claim doesn't follow: in a colorectal cancer model, removing race made the model under-predict risk for Black participants, because a key predictor, family history, was recorded less reliably for them ([Zink, Obermeyer and Pierson, PNAS 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11348319/)). The memo asks for a fairness audit before any pilot: what the label measures, whether predicted rates match observed ones in each group, and what share of slots each group gets.
 
 ## What it won't do
 
@@ -54,7 +60,7 @@ The funding stages link to [Part 9]({{ site.baseurl }}/research-partners/). A pr
 
 ## How I checked it
 
-Before writing this post, I ran Case 17's proposal through the assistant on two different models, with no access to the expected answers. Both reached the right verdict, rejected the 40% figure, named the simpler option and stayed off the question of the NGO itself. One wrote its memo before asking the funder for their context, so I tightened the instructions, and on a second run it asked first.
+Before writing this post, I ran Case 17's proposal through the assistant on two different models, with no access to the expected answers. Both reached the right verdict, rejected the 40% figure, named the simpler option and stayed off the question of the NGO itself. One wrote its memo before asking the funder for their context, so I tightened the instructions, and on a second run it asked first. Cases 20 and 22 were checked the same way when they were added: both reached their verdicts, and where a case left out the funder's context or the numbers the verdict depends on, the assistant asked for them before writing.
 
 ## Try it
 

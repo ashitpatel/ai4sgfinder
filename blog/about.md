@@ -7,7 +7,7 @@ title: About
 
 More in the repository:
 
-- [Worked cases](https://github.com/ashitpatel/ai4sgfinder/tree/main/docs/cases): sixteen examples across health, conservation, disaster preparedness, food security and more.
+- [Worked cases](https://github.com/ashitpatel/ai4sgfinder/tree/main/docs/cases): sixteen interview examples across health, conservation, disaster preparedness, food security and more, five funder reviews, and cases built on real projects such as courtroom speech recognition and an ECG model for cardiac risk.
 - [Tutorials](https://github.com/ashitpatel/ai4sgfinder/tree/main/docs/tutorials): how each method works, with runnable code.
 - [Where it fits](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/landscape.md): how the project compares with related AI-for-good programs.
 - [Building from scratch](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/building-from-scratch.md): the prompts used to build it.
