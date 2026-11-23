@@ -2,6 +2,13 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
+## Unreleased
+
+- **Support before and after a session.** The assistant replies in the user's language; it won't ask for or work on records about named people, and asks for counts and fields instead, since comparisons on past records belong on the program's own computer. When a user doesn't know an answer, it assumes, marks the assumption to check and goes on. The playbook adds *Questions to settle before you start*, a list to work through with colleagues, which the assistant offers when key facts are missing.
+- **A session record** after the partner brief (Follow-up 6): the answers, recommendation, assumptions, open questions and next steps in about 200 words, to paste into a later conversation and pick up where it left off.
+- **NGOs can run the funder review on their own proposal** before sending it; the memo lists the questions a funder is likely to ask and what would answer each.
+- To fit the 8,000-character limit, the recommendation's first and fifth headings are described more briefly in the system prompt, and the note on tutorial figures is dropped (tutorials aren't attached to the assistant).
+
 ## 1.5.0 — 2026-11-22
 
 - **Shorter, plainer recommendations** ([UX review](docs/plans/ux-review.md)). Each recommendation opens with a three-line summary and the month's next steps, aims for about 1,200 words, and uses plain headings: *What kind of problem this is*, *What goes wrong without it*, *How it runs on the ground*, *Where it has been used*, *What worked and what was hard*, *The simpler option*. One question per turn, with no sub-questions; a later answer brings a restatement of only what changes. The build's heading check follows the new headings.

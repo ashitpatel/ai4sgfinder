@@ -2,11 +2,29 @@
 
 What to do after an approach has been chosen. The AI4SG Finder assistant uses this file for its six follow-ups and for the funder review at the end; people can also read it directly.
 
-**Reading this yourself?** Each follow-up starts with what it gives you: [1. Fit the model to your program](#follow-up-1-fit-the-model-to-your-program), [2. Readiness checks](#follow-up-2-readiness-checks) (including the [fairness audit for a risk score](#fairness-audit-for-a-risk-score)), [3. Pilot design](#follow-up-3-pilot-design), [4. Tools and partners](#follow-up-4-build-options--tools-and-partners), [5. Reading and people to contact](#follow-up-5-reading-and-people-to-contact), [6. A brief for a technical partner](#follow-up-6-one-page-brief-for-a-technical-partner). Funders: see [Funder review](#funder-review-checking-a-proposal). Paragraphs headed *For the assistant* or *Rules for the assistant* are instructions to the model.
+**Reading this yourself?** Each follow-up starts with what it gives you: [1. Fit the model to your program](#follow-up-1-fit-the-model-to-your-program), [2. Readiness checks](#follow-up-2-readiness-checks) (including the [fairness audit for a risk score](#fairness-audit-for-a-risk-score)), [3. Pilot design](#follow-up-3-pilot-design), [4. Tools and partners](#follow-up-4-build-options--tools-and-partners), [5. Reading and people to contact](#follow-up-5-reading-and-people-to-contact), [6. A brief for a technical partner](#follow-up-6-one-page-brief-for-a-technical-partner). Before a session: [questions to settle before you start](#questions-to-settle-before-you-start). Funders, or an NGO checking its own proposal: see [Funder review](#funder-review-checking-a-proposal). Paragraphs headed *For the assistant* or *Rules for the assistant* are instructions to the model.
 
 Tools, organizations and links were last checked on **2026-10-30**; a few, such as Fairlearn and OpenSAFELY, were added in November 2026. Services change: confirm that a tool or partner is still active before relying on it.
 
 **For the assistant.** Offer the follow-ups after the recommendation and deliver one per turn, on request. Fill every template from the user's own interview answers, quoting their numbers and wording. Where an answer is missing, say what you need instead of guessing. Recommend only tools, partners and readings listed here, or ones you are certain exist; anything else must be labeled *"(unverified — please confirm)"*.
+
+**When the user can't answer a question,** state a reasonable assumption, mark it *[to check]*, and carry on rather than stalling. If several key facts are missing, offer the *questions to settle before you start* below as a short list they can take to colleagues, and say the recommendation can be revisited once they have the answers.
+
+**Never ask for, or work on, records about named people.** If a user pastes names, phone numbers, IDs or case notes, don't repeat or analyse them; say briefly why (the chat sends them to an outside service), and ask instead for counts, the fields that exist and how often they are recorded. Comparisons on past records (the simpler option against the model, the fairness audit) run on the program's own computer, in a spreadsheet or with a partner under a data agreement, never inside the chat.
+
+### Questions to settle before you start
+
+The interview goes faster, and lands on the right class, when a program has these answers ready. They are worth settling with the people who run the work day to day, not only the person who will use the assistant.
+
+1. **The decision.** What is handed out or scheduled, to whom, how often, and who decides today? Write it as one sentence: "Each week we choose which 80 of 1,200 patients get a home visit."
+2. **The numbers.** How many people, sites or items are eligible, and how many can be served each round?
+3. **The records.** Which facts are recorded about each person or site, how often, on what (paper, Excel, an app), and for how many past rounds? Is the outcome you care about recorded, and when?
+4. **The current rule and its problems.** How the decision is made now, what goes wrong, and who complains.
+5. **The stakes.** What harm a wrong choice causes, and which groups must be treated fairly.
+6. **Who would run it.** Who would update a list or sheet each round, with what skills and time, and who maintains it after a partner leaves.
+7. **Who wants it.** Whether a funder, a board or a vendor is asking for AI, and what they expect.
+
+Answer what you can; "we don't know" is a useful answer, because it shows what the first month should find out.
 
 ---
 
@@ -412,6 +430,16 @@ Contact
   [Name, role, email.]
 ```
 
+**After the brief, offer a session record:** a short block the user can save and paste into a new conversation to pick up where they left off, or share with colleagues to check. Keep it under about 200 words, in one block that copies cleanly:
+
+- **Answers so far**, one line per filter and narrowing question, in the user's words.
+- **Recommendation:** the class, any layer, and the simpler option to beat.
+- **Assumptions** made where the user didn't know, each marked *[to check]*.
+- **Open questions** and who in the organization could answer them.
+- **Next steps** agreed for the month.
+
+When a user pastes a session record, confirm it in a sentence, ask only about what has changed, and restate only the parts of the recommendation that change.
+
 ---
 
 ## Funder review: checking a proposal
@@ -428,6 +456,7 @@ For a funder, by default a foundation program officer, reviewing an NGO's propos
 - **If the AI is the intervention** (a tutor, a coach for health workers, an adviser), review how it will be tested, not the model: does it support a worker or replace one, when does a person take over, and which outcome, against which comparison, will show it works ([taxonomy, Section 7](taxonomy.md#when-the-ai-is-the-intervention)). Use the verdicts below for the test plan: *Fits* when a randomized or A/B comparison on an outcome is planned; *Mismatch* when success is measured by usage. Any part that decides who gets help is reviewed as an allocation.
 - **If a score targets the people served** (fraud, overpayment, eligibility), say so in the memo's first line, and list the safeguards in the readiness check *Scoring the people you serve* as conditions for any funding stage.
 - **For an individual donor**, use simpler language and leave out the funding stages unless asked.
+- **For an NGO checking its own proposal** before sending it, run the same review without asking for the funder's context (use it if they know the funder's priorities). Title the memo for the NGO, and turn *Questions for the NGO* into the questions a funder is likely to ask, with what would answer each.
 
 **Steps**
 1. **In one turn, ask for:** the proposal text, or a summary of its decision, method, data and budget; what the funder supports and where; the grant size and period; and how much risk the funder accepts (early pilots, or only proven programs). If any of the funder's context is missing, ask for it and stop: don't write the memo in the same turn. You may list what the proposal says for each filter while you ask.

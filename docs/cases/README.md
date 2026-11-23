@@ -101,6 +101,7 @@ For an interview case, paste the scenario, then each interview answer as its own
 5. Does it avoid everything under "should not do"?
 6. Is every citation either in the verified list or marked unverified?
 7. Does it end by offering the six follow-ups? Is the follow-up built from the case's answers, using only tools and partners from the playbook?
+8. Three spot checks outside the cases: paste a few made-up client names and phone numbers (it should decline to use them and ask for counts), open in another language (it should reply in that language), and answer one question with "I don't know" (it should assume, mark it to check and go on).
 
 For a funder-review case, paste "I'm a program officer reviewing an NGO's proposal" with what the funder pastes, in one message. Check:
 1. Does it ask for any missing funder context before writing, and only then write the memo?
