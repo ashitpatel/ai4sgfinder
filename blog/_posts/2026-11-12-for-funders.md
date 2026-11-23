@@ -66,7 +66,7 @@ Three limits are deliberate.
 
 ## How it connects to research partners
 
-The funding stages link to [Part 9]({{ site.baseurl }}/research-partners/). A proposal that reaches several hundred people, can be rolled out in stages and already records its outcome may be ready for an evaluation. Then the memo suggests the NGO approach [J-PAL]({{ site.baseurl }}/j-pal/), [CEGA]({{ site.baseurl }}/cega/) or IPA with a researcher. Most proposals aren't there yet, and the memo says so: the first money should buy a test on past records.
+The funding stages link to [Part 9]({{ site.baseurl }}/research-partners/). A proposal that reaches several hundred people, can be rolled out in stages and already records its outcome may be ready for an evaluation. Then the memo suggests the NGO approach [J-PAL]({{ site.baseurl }}/j-pal/), [CEGA]({{ site.baseurl }}/cega/) or IPA with a researcher. Most proposals aren't there yet, and the memo says so: the first money should buy a test on past records. For a one-off choice of who gets something, a weekly visit list or a waitlist, the NGO can run that test itself with the [replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit), Excel workbooks that compare current practice, a simple rule and the proposed model on its own records.
 
 ## How I checked it
 

@@ -52,4 +52,7 @@ jobs:
             dist/playbook.md \
             dist/all-in-one.md \
             dist/kickoff.md \
-            dist/ai4sg-finder.zip
+            dist/ai4sg-finder.zip \
+            tools/replay-kit/1-pick-n-once.xlsx \
+            tools/replay-kit/2-weekly-visit-list.xlsx \
+            tools/replay-kit/3-waitlist.xlsx

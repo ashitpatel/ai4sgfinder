@@ -93,6 +93,7 @@ The questions can also show that you don't need AI at all. In another worked cas
 - **"I don't know" is a fine answer.** The assistant makes an assumption, marks it to check, and carries on.
 - **Write in your own language.** It replies in the language you use.
 - **Don't paste records about named people.** Describe the fields you keep and give counts instead; the assistant won't use names or phone numbers if you paste them, because the chat sends them to an outside service.
+- **Test the simple option on your records.** For a one-off choice, a weekly visit list or a waitlist, the [replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit) compares it with current practice and a model in Excel, on your own computer.
 - **Save where you got to.** In the full setup, after the partner brief, ask for a session record: a short summary to paste into a later conversation and pick up where you left off.
 
 ## Try it

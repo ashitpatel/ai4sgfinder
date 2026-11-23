@@ -10,7 +10,7 @@ The workbooks run on your own computer. Nothing is uploaded, and no names are ne
 | [2. Weekly visit list](2-weekly-visit-list.xlsx) | A choice made again each week about the same people: home visits, calls, tutoring | [1](../../prompt/knowledge/taxonomy.md#class-1-dynamic-state-evolution) | The expected extra people on track the next week from each rule's visits, and how visits split across groups |
 | [3. Waitlist](3-waitlist.xlsx) | People who arrive over time and wait for a fixed number of places each week | [10](../../prompt/knowledge/taxonomy.md#class-10-online-assignment--waitlists) | Weeks waited under two ordering rules you set and under current practice: for the urgent, the longest-waiting and each group |
 
-Each workbook opens on a **Read me** sheet with the steps. Yellow cells with blue text are yours to edit; grey cells are calculated. The sample records are made up and only show the format: replace them with yours.
+Download them from this folder or from the latest [release](https://github.com/ashitpatel/ai4sgfinder/releases/latest), which attaches all three. Each workbook opens on a **Read me** sheet with the steps. Yellow cells with blue text are yours to edit; grey cells are calculated. The sample records are made up and only show the format: replace them with yours.
 
 ## What a replay can and can't tell you
 

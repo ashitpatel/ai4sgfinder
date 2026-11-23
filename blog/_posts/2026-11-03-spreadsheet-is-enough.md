@@ -50,6 +50,8 @@ Every case names a simpler alternative, and the [tutorials](https://github.com/a
 
 The point isn't that spreadsheets always win or always lose. It's that the comparison should be made, on your own records, before anyone builds a model. Every recommendation from AI4SG Finder includes that comparison and what to check first.
 
+*Added 22 November 2026.* The tutorials make that comparison in Python, on made-up data. For three common decisions you can now make it in Excel, on your own records: the [replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit) has workbooks for a one-off choice of who gets something, a weekly visit list and a waitlist. Each compares your current practice, a simple rule and, if a partner built one, a model's scores, overall and by group. It runs on your own computer, needs no names, and says what a replay can't show. Its sample records make three points: a points rule came within one household of a model, a risk ranking did worse than random visits, and on a full waitlist every ordering gives the same average wait, so the question is who waits.
+
 ## When the answer is no model
 
 One case is there to test the opposite temptation. A volunteer-run food pantry is offered funding for "an AI tool to allocate food more fairly" ([case](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/cases/06-food-pantry-no-model.md)). Supply meets demand in 94% of weeks. The right answer is two written rules: a regular top-up order, and a clear order of priority for the rare short week. Its [tutorial](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/tutorials/06-no-model-food-pantry.md) shows how to measure how much there is to gain before deciding, and when to revisit the decision as demand grows.
