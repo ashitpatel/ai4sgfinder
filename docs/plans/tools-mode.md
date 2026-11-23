@@ -102,7 +102,7 @@ Claude Desktop extensions can't run hooks, so there the checks depend on the mod
 
 If 1 or 2 fail, fix before Phase 2. If 3 fails, the token case is weak and the package rests on the checks alone; reassess.
 
-**Baseline (Phase 0).** 24 of 25 cases reached their expected outcome; Case 15 put Class 3 first after skipping the narrowing question. Each turn read about 63,000–72,000 tokens; an interview case cost about US$1.17 at list prices and a funder review US$0.12. Details in [baseline.md](../../tests/cases/baseline.md). Case 15 is a direct test for the interview steps in code (Phase 4).
+**Baseline (Phase 0).** 24 of 25 cases reached their expected outcome; Case 15 put Class 3 first after skipping the narrowing question, since fixed in the prompt (3 of 3 reruns correct). Each turn read about 63,000–72,000 tokens; an interview case cost about US$0.32 at list prices and a funder review US$0.11. Details in [baseline.md](../../tests/cases/baseline.md). Case 15 is a direct test for the interview steps in code (Phase 4).
 
 ## 9. Phases
 

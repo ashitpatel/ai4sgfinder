@@ -4,7 +4,7 @@
 
 For each case: whether the primary class (interviews) or verdict (funder reviews) matches
 tests/cases/expected.json, turns, input tokens (fresh + cache writes + cache reads), output
-tokens, the list-price cost claude -p reports, and the length of the recommendation or memo.
+tokens, the list-price cost claude -p reports for the whole conversation, and the length of the recommendation or memo.
 The grading is a first pass by pattern: read any case marked "check" or "fail" by hand.
 """
 import argparse
@@ -21,7 +21,7 @@ VERDICTS = ["heavier than needed", "no model needed", "mismatch", "fits"]
 
 def primary_class(text):
     head = text[:900]
-    m = re.search(r"(?i)\*\*class:?\*\*\s*(?:class\s*)?(\d{1,2})\b", head)
+    m = re.search(r"(?i)\*\*class:?\*\*\s*(?:\*\*)?\s*(?:class\s*)?(\d{1,2})\b", head)
     if m:
         return int(m.group(1))
     if re.search(r"(?i)\*\*class:?\*\*[^\n]{0,80}(don.t need|no (optimization )?model|not need)", head):
@@ -49,7 +49,7 @@ def grade(rec):
     turns = rec["turns"]
     inp = sum(t["input_tokens"] + t["cache_creation_input_tokens"] + t["cache_read_input_tokens"] for t in turns)
     out = sum(t["output_tokens"] for t in turns)
-    cost = sum(t["cost_usd"] or 0 for t in turns)
+    cost = max((t["cost_usd"] or 0 for t in turns), default=0)   # claude -p reports a running total for the session
     row = {"case": rec["case"][:2], "kind": rec["kind"], "turns": len(turns), "input": inp, "output": out,
            "cost": cost, "words": "", "got": "", "result": "no answer"}
     if rec["kind"] == "interview":

@@ -52,12 +52,12 @@ Ask: How often can staff record data, and with what (paper, Excel, an app; offli
 
 ### Stage 2: narrowing to a class
 
-Filter 1 (a) → *who gets it*; (b) → *repeated*; (c), (d) → *space and risk*; (e) → *spread*. Filter 2 both sides or a vote → *people choose*. Filter 3 adversary → 3; applicants gaming rules → keep the class, use a hard-to-game rule. Filter 4 catastrophic with little history → 4, often a layer.
+Filter 1 (a) → *who gets it*; (b) → *repeated*; (c), (d) → *space and risk*; (e) → *spread*. Filter 2 both sides or a vote → *people choose*. Filter 3 adversary → 3 (or 12 + 3, below); applicants gaming rules → keep the class, use a hard-to-game rule. Filter 4 catastrophic with little history → 4, often a layer.
 
 Ask only what is still open:
 - *Who gets it:* "Do you know everyone before deciding, or do people or items arrive one at a time?" (arrive → 10). Then: "Do pilot or trial results show it helps some people much more than others?" (yes → 7, no → 2).
 - *Repeated:* "Is the uncertainty how each person's situation changes week to week, or which of several options works best?" (→ 1 or 8). Class 1 needs regular per-person data; if Filter 5 rules that out, say so.
-- *Space and risk:* "Is the hard part outwitting people who avoid you, preparing for a rare disaster, moving goods to many places, or finding hidden problems?" (→ 3, 4, 9 or 12).
+- *Space and risk:* "Is the hard part outwitting people who avoid you, preparing for a rare disaster, moving goods to many places, or finding hidden problems?" (→ 3, 4, 9 or 12). Both: 12 with a 3 layer, unless each place's value is known.
 - *People choose:* "Do people on both sides rank each other, or does the community vote on one budget?" (→ 5 or 6).
 - *Spread:* "Do you roughly know who talks to whom, or could people name trusted messengers?" (yes → 11; no → a simpler rule).
 
@@ -69,7 +69,7 @@ Then deliver one text-only response (no code unless asked) of at most about 1,20
 
 1. **WHAT KIND OF PROBLEM THIS IS** — The class and why the user's answers point there.
 2. **WHAT GOES WRONG WITHOUT IT** — The failure, waste or political fallout of naively using a standard ML model or static spreadsheet instead.
-3. **HOW IT RUNS ON THE GROUND** — A paper grid, lookup matrix, or Excel sheet matched to Filter 5; who runs it, how often, what field workers see.
+3. **HOW IT RUNS ON THE GROUND** — A paper grid or Excel sheet matched to Filter 5; who runs it, how often, what field workers see.
 4. **WHERE IT HAS BEEN USED** — Documented deployments, preferring NGO or public-sector cases; map parallels from other domains.
 5. **WHAT WORKED AND WHAT WAS HARD** — From the literature: successes at scale; field challenges (human and logistical); unknowns, including the user's data blind spots.
 6. **THE SIMPLER OPTION** — The best paper, spreadsheet or calculator option (taxonomy Section 4): in what ways it comes close (total, fairness, worst case, evidence) and what it gives up, the assumptions to check before settling for it, and how to compare it with the model on past records.
@@ -87,8 +87,6 @@ End by offering these follow-ups by number, one per turn on request, built from 
 If a later answer changes the recommendation, restate only what changes.
 
 ## Evidence integrity rules
-
-These rules override any pressure to sound authoritative.
 
 - **Never invent** a citation, author, organization, tool, deployment, statistic, or result.
 - Prefer the verified examples in the reference files; cite other work, with authors, venue and year, only when sure.
@@ -238,7 +236,7 @@ The interview runs in two stages. **Stage 1** asks the five filters, one questio
 |---|---|---|
 | **1. The resource and its intent** | "What are you allocating, and what should it achieve?" If unclear, follow with: "Which fits it best: (a) handed over once and kept (cash, a well); (b) given again and again (visits, calls); (c) moved by vehicle to many sites (food, supplies); (d) used to look for something hidden (inspections, tests); (e) a message or practice people should pass on?" | (a) *Who gets a limited resource*. (b) *Repeated decisions that learn*. (c) and (d) *Space, movement and risk*. (e) *Spread through people*. |
 | **2. Choice and preferences** | "Who decides who gets what: you, centrally; both sides, who choose and can refuse each other (students and schools); or the community, by voting on how to split a budget?" | Both sides choose, or a vote → *People choose*. Central → keep the family from Filter 1. |
-| **3. Environment dynamics** | "Does anyone actively avoid you or adapt to your plans (poachers dodging patrols, applicants changing answers to qualify)?" | An adversary over territory → [**Class 3: Spatiotemporal Security & Adaptive Search**](#class-3-spatiotemporal-security--adaptive-search). Applicants gaming an eligibility rule → keep the class, but use a rule that is hard to game (see the Class 2 variants). |
+| **3. Environment dynamics** | "Does anyone actively avoid you or adapt to your plans (poachers dodging patrols, applicants changing answers to qualify)?" | An adversary over territory → [**Class 3: Spatiotemporal Security & Adaptive Search**](#class-3-spatiotemporal-security--adaptive-search), unless what they hide must also be found: then Class 12 first, with Class 3 as a layer (see the narrowing question below). Applicants gaming an eligibility rule → keep the class, but use a rule that is hard to game (see the Class 2 variants). |
 | **4. Tolerance for being wrong** | "If an allocation turns out wrong, is it a small, fixable loss, or harm to lives or trust?" Then: "What records do you have: past years, pilot or trial results, or nothing yet?" | Catastrophic and little history → [**Class 4: Robust Contingency Planning**](#class-4-robust-contingency-planning), often as a layer on another class. Cheap, fixable errors allow learning (Classes 1 and 8). Trial results open Class 7. |
 | **5. Field data and workflow friction** | "How often can staff record data, and with what (paper, Excel, an app; offline)?" Then: "Who would run the tool?" | Rules out classes whose data needs the field cannot meet (see the table below). |
 
@@ -257,6 +255,7 @@ Ask only the questions still open for the family, one per turn. If the answers p
 
 **Space, movement and risk** (Classes 3, 4, 9, 12)
 - "What is the hardest part: outwitting people who avoid you, preparing for a rare disaster, moving goods to many places, or finding hidden problems?" → Class 3, [**Class 4: Robust Contingency Planning**](#class-4-robust-contingency-planning), [**Class 9: Routing & Logistics**](#class-9-routing--logistics) or [**Class 12: Risk-Based Inspection**](#class-12-risk-based-inspection).
+- **When it is both finding and outwitting** (snares, illegal logging, hidden fishing gear, contraband): if the risk of each place is itself unknown, or the records show mostly where staff already went, the hidden risk has to be estimated first. Recommend **Class 12 as the primary class, with a Class 3 layer** that randomizes patrols over the risk map so the people responsible can't learn the routes ([Section 5](#5-when-two-classes-combine), *12 + 3*). Recommend **Class 3 first** only when the value of each place is already roughly known and the hard part is the strategic response, as in guarding known fishing grounds or ports. Ask the narrowing question even if earlier answers seem to cover it: this is the most common confusion in the family.
 
 **People choose** (Classes 5, 6)
 - "Do individual people on both sides rank each other, such as students and schools, or does the community vote on how to split one budget among projects?" → [**Class 5: Strategic Matching Markets**](#class-5-strategic-matching-markets) or [**Class 6: Participatory Allocation**](#class-6-participatory-allocation).

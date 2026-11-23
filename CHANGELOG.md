@@ -6,8 +6,9 @@ Each release on GitHub attaches the ready-to-use files from `dist/` and, from 1.
 
 - **Tools mode proposed** ([plan](docs/plans/tools-mode.md)): a local package and MCP server alongside today's chat setup, from the same reference files.
 - **Case harness in the repo** ([tests/cases](tests/cases/README.md)): runs any or all of the 25 worked cases through Claude Code, logs tokens, cost and time per turn, and grades the class or verdict against `expected.json`.
-- **Chat-mode baseline** ([baseline.md](tests/cases/baseline.md)): 24 of 25 cases reached their expected outcome (Case 15 put the patrol game before the risk model); each turn read about 68,000 tokens, 98% of them from the cache; about US$1.17 an interview case and US$0.12 a funder review at list prices.
+- **Chat-mode baseline** ([baseline.md](tests/cases/baseline.md)): 24 of 25 cases reached their expected outcome (Case 15 put the patrol game before the risk model); each turn read about 68,000 tokens, 98% of them from the cache; about US$0.32 an interview case and US$0.11 a funder review at list prices.
 - The README's size for the all-in-one file is corrected to about 170,000 characters.
+- **Snares and patrols (Case 15):** when something hidden must be found and the people responsible adapt, the assistant now recommends Class 12 first with a Class 3 layer, unless each place's value is already known (then Class 3, as in Case 3). The rule is in the system prompt's Filter 3 mapping and space-and-risk narrowing, the kickoff and taxonomy Section 2, which also asks the narrowing question even when answers seem to cover it. Case 15 passed in 3 of 3 reruns, Case 3 in 2 of 2. To fit, the system prompt drops a redundant sentence and the kickoff drops "(verified)" from its evidence label.
 
 ## 1.11.0 — 2026-11-23
 

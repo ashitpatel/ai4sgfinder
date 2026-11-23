@@ -93,7 +93,7 @@ def ask(msg, sid, mode, model, cwd):
         "cache_creation_input_tokens": u.get("cache_creation_input_tokens", 0),
         "cache_read_input_tokens": u.get("cache_read_input_tokens", 0),
         "output_tokens": u.get("output_tokens", 0),
-        "cost_usd": d.get("total_cost_usd"),
+        "cost_usd": d.get("total_cost_usd"),   # a running total for the conversation so far
         "duration_ms": d.get("duration_ms"),
         "model": next(iter(d.get("modelUsage", {}) or {}), None),
     }
