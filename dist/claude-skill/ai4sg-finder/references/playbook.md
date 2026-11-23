@@ -187,6 +187,10 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 - **Scoring the people you serve.** If a score flags beneficiaries for fraud, overpayment or loss of eligibility, the program has a legal basis, a person reviews every flag before anything happens, flagged people can see why and appeal, the fairness audit is published, and the score has been compared with how caseworkers choose today ([taxonomy, Section 6](taxonomy.md#when-a-score-targets-the-people-you-serve)). If not, don't pilot it.
 - **Input layers.** If the program relies on speech recognition, document extraction, a screening classifier, a forecast, a ready-made map or a published prediction model, its error has been measured on the program's own data, by language or group, and there is a manual fallback ([taxonomy, Section 6](taxonomy.md#6-input-layers)).
 - **Human override.** Staff know when they may set the model's suggestion aside, and each override is recorded and reviewed.
+- **Advisory or binding.** Decide whether the output advises a person or decides on its own, and write it down. A person in the loop isn't a safeguard by default: in an experiment, people largely followed an AI's biased hiring recommendations unless the bias was severe (Wilson et al., 2025). Show staff the reason for each suggestion, and check how often they disagree.
+- **Threshold matched to capacity.** Where a score or alert sends people or cases to staff, set the threshold from how many staff can act on, not from the score alone, and track how many flags go unanswered.
+- **Review before use.** Someone outside the build team reviews the model's data, accuracy and ethics before it informs a decision, as in OCHA's peer review framework for humanitarian predictive models. For a public agency, publish the assessment, including what it couldn't check (the UK DWP's published fraud-model fairness assessment could analyse only one protected characteristic).
+- **Analyse where the data lives.** If records are too sensitive to share, prefer a partner who runs approved code inside the record holder's systems and takes out only aggregate results (OpenSAFELY in England) over copying the data.
 
 **Class-specific**
 - *[Class 1: Dynamic State Evolution](taxonomy.md#class-1-dynamic-state-evolution) (restless bandits):* At least several months of per-person history at the planned round length; states recorded the same way by all staff; agreement on a minimum-contact rule.
@@ -228,7 +232,7 @@ Recommend the smallest pilot that can show the approach works better than curren
 - **For combined classes, pilot the input layer first.** A forecast trigger, risk map or outcome prediction is tested before the decision that depends on it ([taxonomy, Section 5](taxonomy.md#5-when-two-classes-combine)).
 - **Pick one or two success measures** agreed before the pilot starts, plus one harm measure (who might be worse off).
 - **If the AI is the intervention** (a tutor, a coach, an adviser), measure an outcome, not usage: learning, health, income, not messages sent. Compare it with current practice, or with the same support without AI, and grade a sample of its answers against an expert's ([taxonomy, Section 6](taxonomy.md#when-the-ai-is-the-intervention)).
-- **If a model measures the outcome** (satellite images, phone data, image grading), check it against a direct measure on a sample first: a proxy can miss an effect a survey finds.
+- **If a model measures the outcome** (satellite images, phone data, image grading), check it against a direct measure on a sample first: a proxy can miss an effect a survey finds. Keep the direct measure on a random sample throughout, so the estimate stays valid ([taxonomy, Section 6](taxonomy.md#when-a-model-measures-the-outcome)).
 - **Fix the duration** up front and the conditions for stopping early.
 - **Keep it reversible.** The old process stays available.
 

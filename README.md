@@ -163,6 +163,7 @@ VERSION, CHANGELOG.md     release version and notes
 docs/cases/               sixteen worked cases (one per outcome, three combined), funder reviews and real-world patterns; also a manual test set
 docs/tutorials/           in-depth method walkthroughs (Cases 1–14), with runnable code
 docs/plans/               plans for larger changes, with the research behind them
+docs/scanning.md          how to repeat the scan for AI-for-good work the project doesn't cover
 docs/original-draft.md    the first draft, kept for provenance
 docs/building-from-scratch.md  prompts to build a similar project from scratch
 docs/landscape.md         how the project compares with related AI-for-good programs

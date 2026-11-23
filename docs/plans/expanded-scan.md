@@ -1,6 +1,6 @@
 # Expanded scan: AI/ML interventions the earlier scans missed
 
-Status: scan done 2026-11-22. Proposals 1–3 done the same day (taxonomy Section 6, playbook, Cases 24 and 25); proposals 4–7 not started.
+Status: scan done 2026-11-22, with a second round on unreached sources. All seven proposals done the same day (Sections 7 and 8 record the changes and tests).
 
 ## 1. Why the earlier scans missed four sources
 
@@ -169,3 +169,37 @@ Done 2026-11-22.
   - *Case 25, AI tutor:* reviewed the test plan, not the model; *Mismatch* on usage measures; a randomized pilot against clubs without the tutor; "double learning gains" marked overstated. One paraphrase said Khanmigo was "no better than" non-AI practice where the reference says "similar to".
   - *Case 20, court transcription:* still *No model needed* for the rollout, and now also flags the usage measure as a test-plan *Mismatch*, because the summaries reach litigants directly. The case now lists that as acceptable.
   - *Case 6, food pantry:* still no model.
+
+## 8. Second round: sources the first pass didn't reach
+
+Run 2026-11-22 with smaller sweeps (about 45 searches each), as the [recipe](../scanning.md) recommends.
+
+**Regions, funders and operators** (23 new items, mostly from search summaries; figures self-reported unless noted):
+- *Measurement:* Pratham and IIT Bombay's speech-based scoring of oral reading for ASER assessments; CSIRO and Kakadu's Traditional Owners classifying drone video to monitor land management; JICA's geospatial work to cut crop-cutting costs for index insurance in Ethiopia.
+- *Screening and perception:* MSF Foundation's Antibiogo, reading antibiotic-resistance plates with computer vision (CE-marked, used in more than ten countries).
+- *Forecasts:* Amref, USC and Microsoft forecasting acute malnutrition in Kenya six months ahead (retrospective); Catholic Relief Services and Microsoft forecasting food insecurity in Malawi.
+- *Geospatial:* satellite mapping of remote communities for Liberia's community health worker programme; SEEDS and Microsoft's roof-type maps for heat-risk outreach in Delhi and Nagpur.
+- *Allocation:* Clalit Health Services' ranked lists of patients for each GP in Israel; Educate Girls and IDinsight's model of where out-of-school girls are, used to choose villages; a JICA pilot ranking water pipes by leak probability in Thailand (Class 12).
+- *Governance:* Brazil's federal audit court cross-matching Bolsa Família records (no ML found); India's planned anomaly detection in ration distribution (unconfirmed).
+- *Other roles:* Mercy Corps' retrieval over past programme evidence for designing new ones; Karya's paid speech-data work as income.
+
+Two decisions were new enough to add to the taxonomy's table of [decisions near the twelve classes](../../prompt/knowledge/taxonomy.md#decisions-near-the-twelve-classes): which villages a program enters next (Class 2 with a fixed cost per site), and which current clients get extra outreach (Class 1 or 7, not a risk ranking alone). Nothing found needed a new class.
+
+**University news, second pass** (17 sources; about 245 stories screened, 30 relevant, 19 new; many news sites blocked automated fetches, so EurekAlert releases and project pages filled in):
+- *Inputs for placing resources:* in the 2026 Bundibugyo outbreak in the DRC, a spread model fed with anonymised phone mobility (INRB and INSP with Oxford, Imperial and Flowminder) predicted which health zones would report cases better than population size did, and informed where resources went. Global subnational human development estimates from satellite embeddings (Stanford, Caltech and UNDP; Nature Communications 2026) put more than half of people in a different within-country quintile than national averages implied. Urban air-temperature maps (UIUC and Columbia) showed that satellite surface-temperature maps overstate heat disparities.
+- *Allocation by risk score in hospitals:* a heart-failure readmission alert at Zuckerberg San Francisco General (UCSF), an algorithm selecting patients for a transitional pain service under a registered trial (UCSF), Unity Health's GEMINI network in Ontario. None has published outcome results yet.
+- *Audits:* RAND's AMHART scored how chatbots respond to simulated teenagers with mental-health needs, using a rubric clinicians validated and several language-model graders checked against human labels (Nature Mental Health, 2026). Columbia's automated check of 97 million references for fabricated citations.
+- *A warning about prediction:* across hundreds of life outcomes in the Future of Families study, complex models added little over simple baselines (Salganik and colleagues, arXiv 2026). This extends the 2020 Fragile Families Challenge and supports the taxonomy's insistence on a simpler alternative.
+- *The intervention itself:* United Way of Connecticut's AI assistant on the 211 helpline, with hand-off to a person.
+- *Public acceptance:* a representative Detroit survey found support for city uses of AI ranged widely by use case.
+
+Candidates for the next change, after verification: Salganik and colleagues on predictability as evidence for the simpler alternative (Section 4); the AMHART design as the way to grade an AI intervention's answers ([Section 6](../../prompt/knowledge/taxonomy.md#when-the-ai-is-the-intervention)); phone mobility as a geospatial input in emergencies.
+
+**Venues and catalogues, second pass** (about 80 items, classified mostly from titles; EAAMO 2024–25, COMPASS 2025, AfricaNLP 2025, NLP4PI 2025, Climate Change AI workshops, KDD 2024, CHI 2025, CSCW 2024, ITU Innovate for Impact 2025). Input layers dominated again, especially forecasts and maps at Climate Change AI and COMPASS. Allocation work with named partners clustered at EAAMO.
+- *New near-class decisions,* added to the taxonomy: school attendance zones drawn by multi-objective optimisation with weights from community surveys (Winston-Salem/Forsyth County Schools, EAAMO 2025) and with district iteration (San Francisco Unified); queue prioritisation of case backlogs (US immigration courts, EAAMO 2024; UNHCR's analysis of delays in refugee status determination).
+- *Media-monitoring triage:* India's National Centre for Disease Control and Wadhwani AI's Health Sentinel, screening news in 13 languages for outbreak signals since 2022; Insecurity Insight's news triage for aid-worker security, where a category's accuracy measured offline collapsed once live. The taxonomy's extraction checks now ask for continued sampling after launch.
+- *The human layer around a model:* advisor discretion in Georgia State's advising trial; supervisors' workload around Khushi Baby's ASHABot; Noora Health helpline workers' experience of an AI assistant.
+- *How rarely projects deploy:* a CSCW 2024 study found 2 of 14 research partnerships reached deployment; OECD's 2025 review of government AI uses found most still at the pilot stage.
+- *A warning candidate:* fraud scoring of NGOs themselves on India's NGO Darpan registry (proof of concept on synthetic data), the same pattern as scoring beneficiaries.
+
+Still not reached after two passes: the KDD 2025 Applied Data Science list, Practical ML for Low Resource Settings (pages returned 404), NeurIPS Datasets & Benchmarks 2024–25, ML4H 2025, FAccT and CSCW 2025 tables of contents, GPAI, UNESCO, the AI-for-SDGs databases and the Stanford AI Index.
