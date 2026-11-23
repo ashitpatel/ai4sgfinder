@@ -86,6 +86,15 @@ Then it offers follow-ups, one at a time: fitting the model to your program, rea
 
 The questions can also show that you don't need AI at all. In another worked case, a volunteer-run food pantry is offered funding for "an AI tool to allocate food more fairly" ([full case](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/cases/06-food-pantry-no-model.md)). Supply meets demand in 94% of weeks, and volunteers change often. The honest recommendation is two written rules: a regular top-up order, and a clear rule for who is served first in the rare short week. An AI tool would add cost and a dependency on one technical volunteer to solve a problem that comes up three weeks a year.
 
+## Before you start
+
+*Added 22 November 2026.* A session goes faster, and lands on the right class, if you settle a few facts with colleagues first: the decision in one sentence, how many people you can serve each round, what you record about them, and who would run a new rule. The playbook has [a list of seven questions to settle before you start](https://github.com/ashitpatel/ai4sgfinder/blob/main/prompt/knowledge/playbook.md#questions-to-settle-before-you-start), and the assistant offers it if you can't answer.
+
+- **"I don't know" is a fine answer.** The assistant makes an assumption, marks it to check, and carries on.
+- **Write in your own language.** It replies in the language you use.
+- **Don't paste records about named people.** Describe the fields you keep and give counts instead; the assistant won't use names or phone numbers if you paste them, because the chat sends them to an outside service.
+- **Save where you got to.** In the full setup, after the partner brief, ask for a session record: a short summary to paste into a later conversation and pick up where you left off.
+
 ## Try it
 
 AI4SG Finder is free and open source. Try it on a real decision in your program, with no setup: open it in [ChatGPT]({{ site.data.try_links.chatgpt }}), [Claude]({{ site.data.try_links.claude }}) or [Google AI Mode]({{ site.data.try_links.google_ai_mode }}). Each link starts a new chat with the finder's prompt already filled in. If it gets something wrong, I'd like to hear about it.

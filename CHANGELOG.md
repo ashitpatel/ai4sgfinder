@@ -2,11 +2,12 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
-## Unreleased
+## 1.6.0 — 2026-11-22
 
 - **Support before and after a session.** The assistant replies in the user's language; it won't ask for or work on records about named people, and asks for counts and fields instead, since comparisons on past records belong on the program's own computer. When a user doesn't know an answer, it assumes, marks the assumption to check and goes on. The playbook adds *Questions to settle before you start*, a list to work through with colleagues, which the assistant offers when key facts are missing.
 - **A session record** after the partner brief (Follow-up 6): the answers, recommendation, assumptions, open questions and next steps in about 200 words, to paste into a later conversation and pick up where it left off.
 - **NGOs can run the funder review on their own proposal** before sending it; the memo lists the questions a funder is likely to ask and what would answer each.
+- **Docs and blog** describe the new support: Part 2 gains *Before you start*, Part 10 says NGOs can review their own proposal, Part 6 notes that the assistant already replies in the user's language, and the README's summary covers the session record, self-review and privacy rule. The cases checklist adds three spot checks.
 - To fit the 8,000-character limit, the recommendation's first and fifth headings are described more briefly in the system prompt, and the note on tutorial figures is dropped (tutorials aren't attached to the assistant).
 
 ## 1.5.0 — 2026-11-22

@@ -32,6 +32,8 @@ AI4SG Finder now has a second way in. Instead of answering the interview, a fund
 
 Two kinds of proposal get special handling. When the AI *is* the program, such as a tutor or an adviser, the memo reviews how it will be tested rather than the model. When a score is aimed at the program's own beneficiaries, such as a fraud flag, the memo says so in its first line and sets safeguards as conditions for any funding.
 
+*Added 22 November 2026.* **NGOs can use it too.** An NGO can paste its own proposal before sending it and say it's checking its own work. It gets the same review, but section 4 becomes the questions a funder is likely to ask, with what would answer each. It's better to find a mismatch or an unverified figure before a program officer does.
+
 ## Seven use cases
 
 The project's worked cases include seven funder reviews: one for each of the main verdicts, and four added later, two built on real projects and two from a wider scan of the field.
