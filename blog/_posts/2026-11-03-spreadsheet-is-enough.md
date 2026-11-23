@@ -25,7 +25,7 @@ Each case is written so you can follow the reasoning, not just the answer:
 - **Why this method**, and why the closest alternatives were ruled out.
 - **What a good recommendation contains**, and the most likely wrong answers.
 - **The simpler alternative**: the best paper or spreadsheet rule, in what ways it comes close, and what to check before settling for it.
-- **What comes next**: tools and partners, readiness checks, pilot design and a brief for a technical partner.
+- **What comes next**: tools, partners and what it takes to run them, readiness checks, pilot design and a brief for a technical partner.
 
 ## The simpler alternative, measured
 
@@ -53,6 +53,8 @@ The point isn't that spreadsheets always win or always lose. It's that the compa
 *Added 22 November 2026.* The tutorials make that comparison in Python, on made-up data. For three common decisions you can now make it in Excel, on your own records: the [replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit) has workbooks for a one-off choice of who gets something, a weekly visit list and a waitlist. Each compares your current practice, a simple rule and, if a partner built one, a model's scores, overall and by group. It runs on your own computer, needs no names, and says what a replay can't show. AI4SG Finder names the workbook for your class when it gives the simpler option, and again in the readiness checks, pilot design and the partner brief; the kit's guide explains [how to use it](https://github.com/ashitpatel/ai4sgfinder/blob/main/tools/replay-kit/README.md#how-to-use-it), from the records you need to deciding on the result. Its sample records make three points: a points rule came within one household of a model, a risk ranking did worse than random visits, and on a full waitlist every ordering gives the same average wait, so the question is who waits.
 
 The comparison doesn't end at launch. A tool that beat the simple rule last year can drift as populations, hazards or recording change. A fourth workbook, a [monthly health check](https://github.com/ashitpatel/ai4sgfinder/blob/main/tools/replay-kit/README.md#after-launch-the-monthly-health-check), tracks a tool in use: whether staff follow its list, whether its picks still beat a small random share, whether its scores still match what happens, overall and by group. In its sample, a model goes stale when a new hazard appears; staff start overriding it, and the report reads those overrides as a sign the model needs updating, not as staff error.
+
+The replays show what a model gains; a fifth workbook, [cost of ownership](https://github.com/ashitpatel/ai4sgfinder/blob/main/tools/replay-kit/README.md#before-deciding-the-cost-of-ownership), adds up what it costs. It lists about twenty lines, from cleaning the data to maintenance and cover when a volunteer leaves, in money and staff hours, for the model and the simple rule, and gives the cost of each extra person the model reaches. A blank line counts as not yet found out, so a total with blanks is a floor. In its made-up sample, each extra patient a model reaches costs fifteen times what the program spends per patient today.
 
 ## When the answer is no model
 

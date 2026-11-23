@@ -2,12 +2,13 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/` and, from 1.7.0, the replay kit's workbooks. The version lives in [`VERSION`](VERSION).
 
-## Unreleased
+## 1.10.0 — 2026-11-23
 
 - **What it takes** (playbook, Follow-up 4, now *Build options: tools, partners, costs*): effort tiers by class, from a written rule to research code, with a rough shape of the work labelled as a guide, not a measurement; the cost lines to put a figure on (one-off, each round, each year, often missed); the roles a program must name, and which a volunteer can fill; the phases from the test on past records to running it; questions to ask a partner or vendor; and red flags. The assistant never states a cost, hours or a duration as fact, and points to people who ran similar programs instead. Runs of Cases 1 and 10 filled it from the cases' own answers.
 - **Budget check in the funder review:** the memo names cost lines the budget leaves out, such as running costs after launch, staff time and a maintenance owner, and asks how it was estimated, without judging the figures. Case 17's memo did this.
 - **Cost of ownership** ([tools/replay-kit](tools/replay-kit/README.md#before-deciding-the-cost-of-ownership)), a fifth workbook: money and staff hours for each cost line, for the simple rule and the model, totalled over several years with a contingency, and the cost of each extra person the model reaches; blank lines are counted as *not found out yet*. Checked in Excel against an independent recomputation. Releases attach it.
 - The kit's guide, README, docs index and cases checklist cover the new guidance. Excel lock files are ignored by git.
+- **Blog:** Part 2 describes *what it takes* in Follow-up 4, Part 4 the cost worksheet, Part 10 the memo's budget check, and Part 9's table and the About page are updated.
 
 ## 1.9.0 — 2026-11-22
 
