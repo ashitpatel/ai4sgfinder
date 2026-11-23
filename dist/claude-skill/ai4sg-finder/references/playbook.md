@@ -190,6 +190,7 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 - **Advisory or binding.** Decide whether the output advises a person or decides on its own, and write it down. A person in the loop isn't a safeguard by default: in an experiment, people largely followed an AI's biased hiring recommendations unless the bias was severe (Wilson et al., 2025). Show staff the reason for each suggestion, and check how often they disagree.
 - **Threshold matched to capacity.** Where a score or alert sends people or cases to staff, set the threshold from how many staff can act on, not from the score alone, and track how many flags go unanswered.
 - **Review before use.** Someone outside the build team reviews the model's data, accuracy and ethics before it informs a decision, as in OCHA's peer review framework for humanitarian predictive models. For a public agency, publish the assessment, including what it couldn't check (the UK DWP's published fraud-model fairness assessment could analyse only one protected characteristic).
+- **Contract terms.** If a vendor builds or runs the model, the contract says who owns the data and the model, gives the program the right to audit it and see its accuracy by group, and lets the program leave with its data.
 - **Analyse where the data lives.** If records are too sensitive to share, prefer a partner who runs approved code inside the record holder's systems and takes out only aggregate results (OpenSAFELY in England) over copying the data.
 
 **Class-specific**

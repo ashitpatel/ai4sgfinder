@@ -2,6 +2,12 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
+## Unreleased
+
+- **A third scan pass** reached funder grantee lists and venues the first two missed. Section 6's table of decisions near the twelve classes grows by eight rows: people already eligible under written rules (*no model needed*: a rules engine), surplus donations placed as they arrive, live dispatch of crisis responders, which polluters or contractors to inspect, a funder's own grant choices, audits of past human decisions, splitting a fixed national stock across facilities, and AI that drafts statements a divided group can endorse.
+- **Limits of prediction** in Section 4: in the Fragile Families Challenge, the best of 160 teams' predictions were only slightly better than a four-variable regression (Salganik et al., 2020), and a 2026 follow-up found the same across hundreds of outcomes.
+- Section 6 adds phone mobility data as a geospatial input in emergencies (Bengtsson et al., 2011; Ebengo et al., 2026), RAND's way of grading chatbot answers with experts' rubrics and checked automated graders (McBain et al., 2026), and cautions that effect estimates from non-randomized records depend on the estimator and that label sources can disagree. The readiness checks add *contract terms*.
+
 ## 1.4.0 — 2026-11-22
 
 - **Funder review.** A funder can paste an NGO's proposal instead of answering the interview. The assistant writes a seven-part review memo: the decision, whether the method fits (fits, heavier than needed, mismatch, or no model needed), the simpler option to beat, questions for the NGO, risks to people, an evidence check and suggested funding stages. It reviews the method, never the organization, and doesn't say whether to fund. The playbook's new last section holds the rules, verdict guide and template; the system prompt gains one line routing funders to it. Three new worked cases (17–19) cover a mismatch, a fit and a no-model verdict.

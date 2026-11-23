@@ -193,7 +193,7 @@ Two decisions were new enough to add to the taxonomy's table of [decisions near 
 - *The intervention itself:* United Way of Connecticut's AI assistant on the 211 helpline, with hand-off to a person.
 - *Public acceptance:* a representative Detroit survey found support for city uses of AI ranged widely by use case.
 
-Candidates for the next change, after verification: Salganik and colleagues on predictability as evidence for the simpler alternative (Section 4); the AMHART design as the way to grade an AI intervention's answers ([Section 6](../../prompt/knowledge/taxonomy.md#when-the-ai-is-the-intervention)); phone mobility as a geospatial input in emergencies.
+All three candidates were verified and added: Salganik and colleagues (2020, 2026) on the limits of prediction, in Section 4; RAND's AMHART design for grading an AI intervention's answers; phone mobility as a geospatial input in emergencies (Bengtsson et al., 2011; Ebengo et al., 2026, a Science paper rather than the preprint first assumed).
 
 **Venues and catalogues, second pass** (about 80 items, classified mostly from titles; EAAMO 2024–25, COMPASS 2025, AfricaNLP 2025, NLP4PI 2025, Climate Change AI workshops, KDD 2024, CHI 2025, CSCW 2024, ITU Innovate for Impact 2025). Input layers dominated again, especially forecasts and maps at Climate Change AI and COMPASS. Allocation work with named partners clustered at EAAMO.
 - *New near-class decisions,* added to the taxonomy: school attendance zones drawn by multi-objective optimisation with weights from community surveys (Winston-Salem/Forsyth County Schools, EAAMO 2025) and with district iteration (San Francisco Unified); queue prioritisation of case backlogs (US immigration courts, EAAMO 2024; UNHCR's analysis of delays in refugee status determination).
@@ -203,3 +203,23 @@ Candidates for the next change, after verification: Salganik and colleagues on p
 - *A warning candidate:* fraud scoring of NGOs themselves on India's NGO Darpan registry (proof of concept on synthetic data), the same pattern as scoring beneficiaries.
 
 Still not reached after two passes: the KDD 2025 Applied Data Science list, Practical ML for Low Resource Settings (pages returned 404), NeurIPS Datasets & Benchmarks 2024–25, ML4H 2025, FAccT and CSCW 2025 tables of contents, GPAI, UNESCO, the AI-for-SDGs databases and the Stanford AI Index.
+
+## 9. Third pass: funder grantee lists and remaining venues
+
+**Funders** (OpenAI People-First AI Fund, Global Innovation Fund, Wellcome Leap, IDRC's AI4PEP and AI4D, the McGovern Foundation in more depth, Schmidt Sciences AI2050). Most grants fund capacity (AI literacy, labs, data), input layers (screening by sound, early warning, digitising records) or AI as the intervention (helplines, navigators). Six decision types were new enough to add to the [near-class table](../../prompt/knowledge/taxonomy.md#decisions-near-the-twelve-classes), all mapped to existing classes or to *no model needed*:
+- finding people already eligible under written rules (Recidiviz's supervision and discharge module, benefits and fee-waiver tools): a rules engine, not a model;
+- placing surplus food or medicine as donations arrive (SIRUM and others): Class 10 or 9;
+- live dispatch of crisis responders (Trek Medics' Beacon, with Integral Care in Austin): Class 10, with an extraction layer reading calls;
+- choosing which polluters or financiers to hold to account: Class 12;
+- a funder's own choice of grants or investments (the Global Innovation Fund's impact-modelling assistant, Stanford Impact Labs' screening): Class 2 with an input layer;
+- auditing past human decisions, such as gender bias in court rulings (ICAAD, DataGénero): an audit with an extraction layer.
+
+These rest on grant lines and search summaries; none is yet a verified reference.
+
+**Venues and catalogues, third pass** (76 items with a named partner or real setting, from FAccT 2025, CSCW 2025, NeurIPS Datasets & Benchmarks 2024–25, KDD 2025, ML4H 2025, OECD OPSI and OECD.AI, a GPAI report and New America's Global South corpus). Most fall under classes already covered. Added:
+- *Two near-class decisions:* splitting a fixed national stock of essential medicines across facilities with a demand forecast (Sierra Leone's National Medical Supplies Agency, reported in Nature 2026; press release only, not verified), as Class 9 with a forecast layer; and AI that drafts and ranks statements a divided group can endorse (with the Alliance for Middle East Peace, FAccT 2025), as a deliberation aid near Class 6, not an allocation.
+- *Measurement:* estimators of a nonprofit's effect from non-randomized records disagreed (NeurIPS 2024); drone and satellite damage labels disagreed on about 29% of 15,814 buildings (FAccT 2025). Both now appear as cautions in Section 6.
+- *Governance:* city AI procurement as the point where control is decided (FAccT 2025); third-party certification. A *contract terms* readiness check now covers data ownership, the right to audit and exit.
+- *Field lessons already covered:* Thailand's diabetic-retinopathy screening, where many images were rejected in clinics and lab accuracy didn't carry over (screening classifier checks); a review of refugee-matching pilots (Class 10); LLM help for SNAP applicants adding new burdens (AI as the intervention).
+
+Still unreadable: ACM Digital Library tables of contents, OpenReview, the KDD 2025 February list, the CSCW 2025 programme, UNESCO's case compendium, and the AI-for-SDGs databases (one address now points elsewhere). After three passes, new items mostly add examples to existing patterns: the quarterly cadence in the [recipe](../scanning.md) should be enough from here.
