@@ -24,3 +24,4 @@ Everything here explains, tests or records the assistant. The assistant itself l
 | [Expanded scan](plans/expanded-scan.md) | 2026-11-22 | Done; most changes released in 1.4.0, the third pass in 1.5.0 |
 | [UX review](plans/ux-review.md) | 2026-11-22 | Done; released in 1.5.0 |
 | [Reference setups](plans/reference-setups.md) | 2026-11-23 | Done; released in 1.11.0 |
+| [Tools mode](plans/tools-mode.md) | 2026-11-23 | Proposed; Phase 0 (baseline) done |

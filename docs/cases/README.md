@@ -93,6 +93,8 @@ Together, the cases show each of the six follow-ups worked through at least once
 
 **To test a prompt change.** After editing anything under `prompt/`, rebuild, then run the cases the change could affect, and always Case 6. The interview cases (1–16, 21, 23) work with any setup; the funder-review cases and anything that relies on taxonomy [Sections 6](../../prompt/knowledge/taxonomy.md#6-input-layers) and [7](../../prompt/knowledge/taxonomy.md#7-beyond-the-twelve-classes) need the full assistant (`dist/all-in-one.md`, a Project, a Custom GPT or the skill), not the kickoff.
 
+The [case harness](../../tests/cases/README.md) runs any or all cases this way automatically through Claude Code, records tokens per turn and grades the class or verdict; the checks below still need reading.
+
 For an interview case, paste the scenario, then each interview answer as its own turn, then ask for the recommendation and the follow-up the case shows in full. Check:
 1. Does it reach the expected outcome, including the layer for Cases 14–16, the input layer for 21 and 23, and no extra layer elsewhere?
 2. Did it ask one question per turn, including the narrowing and second-decision questions?

@@ -2,6 +2,13 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/` and, from 1.7.0, the replay kit's workbooks. The version lives in [`VERSION`](VERSION).
 
+## Unreleased
+
+- **Tools mode proposed** ([plan](docs/plans/tools-mode.md)): a local package and MCP server alongside today's chat setup, from the same reference files.
+- **Case harness in the repo** ([tests/cases](tests/cases/README.md)): runs any or all of the 25 worked cases through Claude Code, logs tokens, cost and time per turn, and grades the class or verdict against `expected.json`.
+- **Chat-mode baseline** ([baseline.md](tests/cases/baseline.md)): 24 of 25 cases reached their expected outcome (Case 15 put the patrol game before the risk model); each turn read about 68,000 tokens, 98% of them from the cache; about US$1.17 an interview case and US$0.12 a funder review at list prices.
+- The README's size for the all-in-one file is corrected to about 170,000 characters.
+
 ## 1.11.0 — 2026-11-23
 
 - **Others' setups** (playbook, Follow-up 4, under *What it takes*): what twenty published deployments across eleven classes report about who built them, how long it took, what it cost and what happened later, from ARMMAN's weekly call list and Boston's school buses to Denver's school choice, Aarau's participatory budget and Flint's lead pipes. Every figure was checked against its source; three that failed were dropped. No setup publishes what its model cost to build, and the handover is the least documented step. The [record of the pass](docs/plans/reference-setups.md) lists what isn't published for each class and leads for a later pass.
