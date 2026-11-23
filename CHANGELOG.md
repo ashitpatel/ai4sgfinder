@@ -2,6 +2,10 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/` and, from 1.7.0, the replay kit's workbooks. The version lives in [`VERSION`](VERSION).
 
+## Unreleased
+
+- **Others' setups** (playbook, Follow-up 4, under *What it takes*): what twenty published deployments across eleven classes report about who built them, how long it took, what it cost and what happened later, from ARMMAN's weekly call list and Boston's school buses to Denver's school choice, Aarau's participatory budget and Flint's lead pipes. Every figure was checked against its source; three that failed were dropped. No setup publishes what its model cost to build, and the handover is the least documented step. The [record of the pass](docs/plans/reference-setups.md) lists what isn't published for each class and leads for a later pass.
+
 ## 1.10.0 — 2026-11-23
 
 - **What it takes** (playbook, Follow-up 4, now *Build options: tools, partners, costs*): effort tiers by class, from a written rule to research code, with a rough shape of the work labelled as a guide, not a measurement; the cost lines to put a figure on (one-off, each round, each year, often missed); the roles a program must name, and which a volunteer can fill; the phases from the test on past records to running it; questions to ask a partner or vendor; and red flags. The assistant never states a cost, hours or a duration as fact, and points to people who ran similar programs instead. Runs of Cases 1 and 10 filled it from the cases' own answers.
