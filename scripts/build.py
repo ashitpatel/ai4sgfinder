@@ -70,8 +70,9 @@ def check_kickoff(prompt: str, kickoff: str) -> None:
     """Fail if the kickoff is too long or has lost a filter or section of the full prompt."""
     if len(kickoff) > KICKOFF_LIMIT:
         sys.exit(f"error: kickoff is {len(kickoff)} characters; keep it under {KICKOFF_LIMIT}.")
-    headings = re.findall(r"\*\*(FILTER \d — [^*]+?|THE [A-Z &]+[A-Z])\*\*", prompt)
-    headings += re.findall(r"\*\*(OPERATIONAL REPORT CARD)\*\*", prompt)
+    headings = re.findall(r"\*\*(FILTER \d — [^*]+?)\*\*", prompt)
+    recommendation = prompt.split("## The final recommendation", 1)[1].split("\n## ", 1)[0]
+    headings += re.findall(r"^\d\. \*\*([A-Z][A-Z ,&'-]+[A-Z])\*\*", recommendation, re.M)
     missing = [h for h in headings if f"**{h}**" not in kickoff]
     follow_ups = prompt.split("## After the recommendation", 1)[1].split("\n## ", 1)[0]
     missing += [f for f in re.findall(r"^\d\. (.+)$", follow_ups, re.M) if f not in kickoff]

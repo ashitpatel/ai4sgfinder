@@ -71,7 +71,7 @@ That points to a **restless bandit**. Each week it scores every patient by how m
 
 ## What you get
 
-Every recommendation has the same six parts:
+Every recommendation opens with a short summary and the month's next steps, then has the same six parts:
 
 1. **The method**, and why your answers point there.
 2. **What goes wrong** with a naive model or a static spreadsheet instead.

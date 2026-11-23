@@ -55,14 +55,14 @@ Across Cases 1–16, every filter, every narrowing question and the second-decis
 
 Cases 1–13 each have an [in-depth tutorial](../tutorials/) that explains the method step by step, assuming only basic statistics, and measures the simpler alternative against it on illustrative data. Case 14 has its own tutorial on choosing a forecast trigger; Cases 15 and 16 point to the two tutorials that teach their layers.
 
-Cases 20–25 follow the problem pattern of published real-world work: [Adalat AI](https://adalat.ai)'s courtroom speech recognition (20), an ECG deep-learning model for sudden cardiac death (21), research on race in clinical risk scores (22), the Local Law Observatory's database of local ordinances (23), government fraud scoring of benefit recipients (24) and randomized trials of AI tutors (25). The organizations in them are still fictional. They test the edges of the taxonomy: a tool that allocates nothing, a prediction model the program uses rather than builds, a fairness audit, a score aimed at the program's own beneficiaries, and an AI that is itself the intervention. [Taxonomy Section 6](../../prompt/knowledge/taxonomy.md#6-input-layers) holds the rules they test, and the [plans](../plans/) record how they were added. Case 21 reuses the Class 12 tutorial and Case 23 the Class 2 tutorial.
+Cases 20–25 follow the problem pattern of published real-world work: [Adalat AI](https://adalat.ai)'s courtroom speech recognition (20), an ECG deep-learning model for sudden cardiac death (21), research on race in clinical risk scores (22), the Local Law Observatory's database of local ordinances (23), government fraud scoring of benefit recipients (24) and randomized trials of AI tutors (25). The organizations in them are still fictional. They test the edges of the taxonomy: a tool that allocates nothing, a prediction model the program uses rather than builds, a fairness audit, a score aimed at the program's own beneficiaries, and an AI that is itself the intervention. Taxonomy [Sections 6](../../prompt/knowledge/taxonomy.md#6-input-layers) and [7](../../prompt/knowledge/taxonomy.md#7-beyond-the-twelve-classes) hold the rules they test, and the [plans](../plans/) record how they were added. Case 21 reuses the Class 12 tutorial and Case 23 the Class 2 tutorial.
 
 ## Each interview case contains
 
 - **Scenario**: the organization and its constraint, in a few sentences.
 - **Interview answers**: a realistic answer to each of the five filters, the narrowing question for its family and the second-decision question, written in the user's voice.
 - **Why Class N: Name**: the selected class by number and name, how the answers map through the [two-stage decision tree](../../prompt/knowledge/taxonomy.md#2-the-ngo-decision-tree), and which classes are ruled out and why, each named alongside its number.
-- **What a good recommendation contains**: the key points under each of the six required headings, including **6. Simpler alternative**: the best paper or spreadsheet option, in what ways it comes close, and what to check before settling for it. Combined cases cover a simpler option for each layer.
+- **What a good recommendation contains**: the key points under each of the six required headings, named in the cases by short labels (1. Class, 2. Counterfactual warning, 3. Field pathway, 4. Evidence, 5. Report card, 6. Simpler alternative) that map in order to the assistant's headings (*What kind of problem this is*, *What goes wrong without it*, *How it runs on the ground*, *Where it has been used*, *What worked and what was hard*, *The simpler option*), including **6. Simpler alternative**: the best paper or spreadsheet option, in what ways it comes close, and what to check before settling for it. Combined cases cover a simpler option for each layer.
 - **What the assistant should not do**: the most likely wrong answers.
 - **After the recommendation**: how the assistant's follow-ups from the [implementation playbook](../../prompt/knowledge/playbook.md) help the user narrow down tools and partners, adapt the approach to their program, check readiness and plan a pilot. Each case works through one or two follow-ups in full, built from its own interview answers, and summarizes the rest.
 
@@ -91,19 +91,20 @@ Together, the cases show each of the six follow-ups worked through at least once
 
 **To demo the assistant.** Start a chat on any platform, then paste the case's interview answers one at a time as the assistant asks each question.
 
-**To test a prompt change.** After editing anything under `prompt/`, rebuild, then run the cases the change could affect, and always Case 6. The interview cases (1–16, 21, 23) work with any setup; the funder-review cases and anything that relies on [taxonomy Section 6](../../prompt/knowledge/taxonomy.md#6-input-layers) need the full assistant (`dist/all-in-one.md`, a Project, a Custom GPT or the skill), not the kickoff.
+**To test a prompt change.** After editing anything under `prompt/`, rebuild, then run the cases the change could affect, and always Case 6. The interview cases (1–16, 21, 23) work with any setup; the funder-review cases and anything that relies on taxonomy [Sections 6](../../prompt/knowledge/taxonomy.md#6-input-layers) and [7](../../prompt/knowledge/taxonomy.md#7-beyond-the-twelve-classes) need the full assistant (`dist/all-in-one.md`, a Project, a Custom GPT or the skill), not the kickoff.
 
 For an interview case, paste the scenario, then each interview answer as its own turn, then ask for the recommendation and the follow-up the case shows in full. Check:
 1. Does it reach the expected outcome, including the layer for Cases 14–16, the input layer for 21 and 23, and no extra layer elsewhere?
 2. Did it ask one question per turn, including the narrowing and second-decision questions?
-3. Does each of the six headings cover the points listed? Does the simpler alternative say in what ways it is close and what to check?
-4. Does it avoid everything under "should not do"?
-5. Is every citation either in the verified list or marked unverified?
-6. Does it end by offering the six follow-ups? Is the follow-up built from the case's answers, using only tools and partners from the playbook?
+3. Does it open with a short summary and next steps, stay near 1,200 words, and cover the points listed under each of the six headings? Does the simpler option say in what ways it is close and what to check?
+4. If you add a fact after the recommendation, does it restate only what changes?
+5. Does it avoid everything under "should not do"?
+6. Is every citation either in the verified list or marked unverified?
+7. Does it end by offering the six follow-ups? Is the follow-up built from the case's answers, using only tools and partners from the playbook?
 
 For a funder-review case, paste "I'm a program officer reviewing an NGO's proposal" with what the funder pastes, in one message. Check:
 1. Does it ask for any missing funder context before writing, and only then write the memo?
-2. Does the memo have the seven headings, a verdict from the four, and no advice on whether to fund?
+2. Does the memo have the seven headings, as plain text rather than a code block and around 800 words, a verdict from the four, and no advice on whether to fund?
 3. For a tool that feeds a decision, does it ask the three input-layer questions without judging the model? For a score aimed at beneficiaries, does the first line say so? For an AI that is the intervention, does it review the test plan?
 4. Is every figure the proposal cites marked verified, unverified or overstated?
 

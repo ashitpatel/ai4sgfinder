@@ -5,7 +5,7 @@ title: About
 
 [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder) is a free, open-source prompt for ChatGPT, Claude, Gemini and other assistants. It interviews an NGO or public agency about a resource it allocates, such as home visits, patrols, wells or placements, and recommends one of twelve classes of method, or no model at all. A funder can paste an NGO's proposal instead and get a review memo ([Part 10]({{ site.baseurl }}/for-funders/)).
 
-Try it now in [ChatGPT]({{ site.data.try_links.chatgpt }}), [Claude]({{ site.data.try_links.claude }}) or [Google AI Mode]({{ site.data.try_links.google_ai_mode }}) (the interview only), or set up the [full version](https://github.com/ashitpatel/ai4sgfinder#quick-start).
+Try it now in [ChatGPT]({{ site.data.try_links.chatgpt }}), [Claude]({{ site.data.try_links.claude }}) or [Google AI Mode]({{ site.data.try_links.google_ai_mode }}) (the interview, and a short version of the funder review), or set up the [full version](https://github.com/ashitpatel/ai4sgfinder#quick-start).
 
 More in the repository:
 

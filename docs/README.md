@@ -21,4 +21,4 @@ Everything here explains, tests or records the assistant. The assistant itself l
 |---|---|---|
 | [Input layers and a fairness audit](plans/input-layers-and-fairness-audit.md) | 2026-11-22 | Done; released in 1.4.0 |
 | [Expanded scan](plans/expanded-scan.md) | 2026-11-22 | Done; most changes released in 1.4.0, the third pass in the next release |
-| [UX review](plans/ux-review.md) | 2026-11-22 | Documentation fixes done; prompt changes proposed |
+| [UX review](plans/ux-review.md) | 2026-11-22 | Done; in the next release |

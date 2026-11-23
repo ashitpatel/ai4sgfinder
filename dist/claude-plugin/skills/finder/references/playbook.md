@@ -2,7 +2,9 @@
 
 What to do after an approach has been chosen. The AI4SG Finder assistant uses this file for its six follow-ups and for the funder review at the end; people can also read it directly.
 
-Tools, organizations and links were last checked on **2026-10-30**. Services change: confirm that a tool or partner is still active before relying on it.
+**Reading this yourself?** Each follow-up starts with what it gives you: [1. Fit the model to your program](#follow-up-1-fit-the-model-to-your-program), [2. Readiness checks](#follow-up-2-readiness-checks) (including the [fairness audit for a risk score](#fairness-audit-for-a-risk-score)), [3. Pilot design](#follow-up-3-pilot-design), [4. Tools and partners](#follow-up-4-build-options--tools-and-partners), [5. Reading and people to contact](#follow-up-5-reading-and-people-to-contact), [6. A brief for a technical partner](#follow-up-6-one-page-brief-for-a-technical-partner). Funders: see [Funder review](#funder-review-checking-a-proposal). Paragraphs headed *For the assistant* or *Rules for the assistant* are instructions to the model.
+
+Tools, organizations and links were last checked on **2026-10-30**; a few, such as Fairlearn and OpenSAFELY, were added in November 2026. Services change: confirm that a tool or partner is still active before relying on it.
 
 **For the assistant.** Offer the follow-ups after the recommendation and deliver one per turn, on request. Fill every template from the user's own interview answers, quoting their numbers and wording. Where an answer is missing, say what you need instead of guessing. Recommend only tools, partners and readings listed here, or ones you are certain exist; anything else must be labeled *"(unverified — please confirm)"*.
 
@@ -184,7 +186,7 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 - **Simpler option tested.** The best simple option for the class ([taxonomy, Section 4](taxonomy.md#4-simpler-alternatives-for-each-class)) has been replayed on past records alongside the model, and the gap is worth the model's full cost: building it, the data pipeline, staff time each cycle and maintenance.
 - **Community voice.** Affected people or their representatives have seen and can question the approach.
 - **Bias in risk scores.** If any step uses a predicted score, run the [fairness audit for a risk score](#fairness-audit-for-a-risk-score) below. A health algorithm that predicted costs instead of illness under-referred Black patients (Obermeyer et al., Science 2019).
-- **Scoring the people you serve.** If a score flags beneficiaries for fraud, overpayment or loss of eligibility, the program has a legal basis, a person reviews every flag before anything happens, flagged people can see why and appeal, the fairness audit is published, and the score has been compared with how caseworkers choose today ([taxonomy, Section 6](taxonomy.md#when-a-score-targets-the-people-you-serve)). If not, don't pilot it.
+- **Scoring the people you serve.** If a score flags beneficiaries for fraud, overpayment or loss of eligibility, the program has a legal basis, a person reviews every flag before anything happens, flagged people can see why and appeal, the fairness audit is published, and the score has been compared with how caseworkers choose today ([taxonomy, Section 7](taxonomy.md#when-a-score-targets-the-people-you-serve)). If not, don't pilot it.
 - **Input layers.** If the program relies on speech recognition, document extraction, a screening classifier, a forecast, a ready-made map or a published prediction model, its error has been measured on the program's own data, by language or group, and there is a manual fallback ([taxonomy, Section 6](taxonomy.md#6-input-layers)).
 - **Human override.** Staff know when they may set the model's suggestion aside, and each override is recorded and reviewed.
 - **Advisory or binding.** Decide whether the output advises a person or decides on its own, and write it down. A person in the loop isn't a safeguard by default: in an experiment, people largely followed an AI's biased hiring recommendations unless the bias was severe (Wilson et al., 2025). Show staff the reason for each suggestion, and check how often they disagree.
@@ -232,8 +234,8 @@ Recommend the smallest pilot that can show the approach works better than curren
 - **Compare against current practice**, not against nothing, and where possible also against the best simple option for the class ([taxonomy, Section 4](taxonomy.md#4-simpler-alternatives-for-each-class)). A model that can't beat a good spreadsheet rule in the pilot shouldn't be scaled.
 - **For combined classes, pilot the input layer first.** A forecast trigger, risk map or outcome prediction is tested before the decision that depends on it ([taxonomy, Section 5](taxonomy.md#5-when-two-classes-combine)).
 - **Pick one or two success measures** agreed before the pilot starts, plus one harm measure (who might be worse off).
-- **If the AI is the intervention** (a tutor, a coach, an adviser), measure an outcome, not usage: learning, health, income, not messages sent. Compare it with current practice, or with the same support without AI, and grade a sample of its answers against an expert's ([taxonomy, Section 6](taxonomy.md#when-the-ai-is-the-intervention)).
-- **If a model measures the outcome** (satellite images, phone data, image grading), check it against a direct measure on a sample first: a proxy can miss an effect a survey finds. Keep the direct measure on a random sample throughout, so the estimate stays valid ([taxonomy, Section 6](taxonomy.md#when-a-model-measures-the-outcome)).
+- **If the AI is the intervention** (a tutor, a coach, an adviser), measure an outcome, not usage: learning, health, income, not messages sent. Compare it with current practice, or with the same support without AI, and grade a sample of its answers against an expert's ([taxonomy, Section 7](taxonomy.md#when-the-ai-is-the-intervention)).
+- **If a model measures the outcome** (satellite images, phone data, image grading), check it against a direct measure on a sample first: a proxy can miss an effect a survey finds. Keep the direct measure on a random sample throughout, so the estimate stays valid ([taxonomy, Section 7](taxonomy.md#when-a-model-measures-the-outcome)).
 - **Fix the duration** up front and the conditions for stopping early.
 - **Keep it reversible.** The old process stays available.
 
@@ -423,7 +425,7 @@ For a funder, by default a foundation program officer, reviewing an NGO's propos
 - **Check the proposal's evidence** under the evidence integrity rules: compare each cited deployment or figure with the verified references in the taxonomy, and say whether it is a field deployment, a pilot, a simulation or a proposal.
 - **If nothing is allocated** (a chatbot that only answers questions, a dashboard), say this review doesn't apply, and point out any allocation decision hidden inside the proposal.
 - **If the proposal is an input layer** (speech recognition, document extraction, a screening classifier, a forecast, a ready-made map, a prediction model: [taxonomy, Section 6](taxonomy.md#6-input-layers)), don't classify or judge the model itself, and don't suggest a different one. Review the decision it feeds, if any, as usual, and ask three questions in the memo either way: what is its error rate on the program's own data, by language or group; who corrects its errors, and how long that takes compared with the manual process; and what decision will its output feed, and who makes it.
-- **If the AI is the intervention** (a tutor, a coach for health workers, an adviser), review how it will be tested, not the model: does it support a worker or replace one, when does a person take over, and which outcome, against which comparison, will show it works ([taxonomy, Section 6](taxonomy.md#when-the-ai-is-the-intervention)). Use the verdicts below for the test plan: *Fits* when a randomized or A/B comparison on an outcome is planned; *Mismatch* when success is measured by usage. Any part that decides who gets help is reviewed as an allocation.
+- **If the AI is the intervention** (a tutor, a coach for health workers, an adviser), review how it will be tested, not the model: does it support a worker or replace one, when does a person take over, and which outcome, against which comparison, will show it works ([taxonomy, Section 7](taxonomy.md#when-the-ai-is-the-intervention)). Use the verdicts below for the test plan: *Fits* when a randomized or A/B comparison on an outcome is planned; *Mismatch* when success is measured by usage. Any part that decides who gets help is reviewed as an allocation.
 - **If a score targets the people served** (fraud, overpayment, eligibility), say so in the memo's first line, and list the safeguards in the readiness check *Scoring the people you serve* as conditions for any funding stage.
 - **For an individual donor**, use simpler language and leave out the funding stages unless asked.
 
@@ -446,41 +448,14 @@ For a funder, by default a foundation program officer, reviewing an NGO's propos
 2. **Pilot** ([Follow-up 3](#follow-up-3-pilot-design)): against current practice, with one or two success measures and a harm measure agreed in advance, a fixed duration, and the old process kept available.
 3. **Scale**: with a named maintenance owner and a written fallback rule. Suggest an evaluation only if the program passes the three-part test in [Follow-up 4](#follow-up-4-build-options--tools-and-partners); evaluation funding from J-PAL, CEGA or IPA goes through their researchers, so the NGO approaches them with a researcher.
 
-```
-PROPOSAL REVIEW — [NGO name]: [proposal title]
-For [funder]. Based only on the proposal and the funder's answers; it reviews
-the proposed method, not the organization.
+**The memo.** Write it as ordinary text with short headings, not in a code block, so it pastes cleanly into an email or document. Keep the whole reply under about 800 words: one to three sentences under each heading, questions and risks as one-line bullets, and the filter reading before it (step 2) as five short lines. Use these seven headings in order:
 
-1. The decision
-  [One line: what is allocated, to whom, how often.]
+**Proposal review — [NGO name]: [proposal title].** *For [funder]. Based only on the proposal and the funder's answers; it reviews the proposed method, not the organization.*
 
-2. Method fit
-  Verdict: [Fits / Heavier than needed / Mismatch / No model needed]
-  [The class the decision falls in, the method proposed, and why they do or
-   don't match, in two or three sentences.]
-
-3. The simpler option to beat
-  [The best paper or spreadsheet rule for the class. Does the proposal plan to
-   compare against it on past records, counting the model's full cost?]
-
-4. Questions for the NGO
-  [Up to five, most important first: missing filter answers, then the readiness
-   checks (Follow-up 2) most at risk, e.g. who maintains it after the builder
-   leaves.]
-
-5. Risks to people
-  [Only those that apply: fairness across groups, consent and privacy,
-   surveillance, biased risk scores, withdrawing help from people scored
-   "low benefit". If a score ranks people, ask for the fairness audit
-   (Follow-up 2): what the label measures, calibration by group, share of
-   slots by group.]
-
-6. Evidence check
-  [Each deployment or figure the proposal cites: verified, unverified, or
-   overstated (e.g. a simulation described as a deployment, or accuracy
-   measured on a published benchmark presented as accuracy on the
-   program's own data).]
-
-7. Suggested funding stages
-  [The stages above, with the milestone that releases each one.]
-```
+1. **The decision.** One line: what is allocated, to whom, how often.
+2. **Method fit.** *Verdict: Fits / Heavier than needed / Mismatch / No model needed.* The class the decision falls in, the method proposed, and why they do or don't match, in two or three sentences.
+3. **The simpler option to beat.** The best paper or spreadsheet rule for the class. Does the proposal plan to compare against it on past records, counting the model's full cost?
+4. **Questions for the NGO.** Up to five, most important first: missing filter answers, then the readiness checks (Follow-up 2) most at risk, such as who maintains it after the builder leaves.
+5. **Risks to people.** Only those that apply: fairness across groups, consent and privacy, surveillance, biased risk scores, withdrawing help from people scored "low benefit". If a score ranks people, ask for the fairness audit (Follow-up 2): what the label measures, calibration by group, share of slots by group.
+6. **Evidence check.** Each deployment or figure the proposal cites: verified, unverified, or overstated (for example a simulation described as a deployment, or accuracy on a published benchmark presented as accuracy on the program's own data).
+7. **Suggested funding stages.** The stages above, with the milestone that releases each one.

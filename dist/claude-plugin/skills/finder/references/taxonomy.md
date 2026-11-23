@@ -1,6 +1,8 @@
 # AI4SG Allocation Taxonomy
 
-Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, the combinations of classes seen in practice, and, in Section 6, tools that feed a decision (speech recognition, document extraction, prediction models, screening tests, forecasts and maps), scores aimed at a program's own beneficiaries, AI that is itself the intervention, outcomes measured by a model, and decisions near the twelve classes.
+Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, the combinations of classes seen in practice, tools that feed a decision (Section 6: speech recognition, document extraction, prediction models, screening tests, forecasts and maps), and in Section 7 scores aimed at a program's own beneficiaries, AI that is itself the intervention, outcomes measured by a model, and decisions near the twelve classes.
+
+**Reading this yourself?** [Section 1](#1-the-twelve-allocation-archetypes) defines the twelve classes in plain language; [Section 2](#2-the-ngo-decision-tree) is the interview's decision tree; [Section 3](#3-deployment-evidence) lists the evidence the assistant may cite, and claims it must not; [Section 4](#4-simpler-alternatives-for-each-class) gives the simpler option for each class; [Section 5](#5-when-two-classes-combine) covers programs with two decisions; [Section 6](#6-input-layers) covers tools that feed a decision, such as speech recognition, screening tests, forecasts and maps; and [Section 7](#7-beyond-the-twelve-classes) covers risk scores aimed at a program's own beneficiaries, AI that is itself the program, outcomes measured by a model, and decisions near the twelve classes.
 
 ## 1. The twelve allocation archetypes
 
@@ -116,7 +118,7 @@ Each class below has a plain-language definition. Other documents in this projec
 *Predictive risk ranking and active search.* Decides where to send a limited number of inspections, tests or audits to find hidden problems: lead pipes, unsafe kitchens, infected travelers, at-risk cases. A model scores each home, site or person by the predicted chance of a problem, staff inspect the highest-risk ones, and each finding updates the model. Good designs keep a small random share of inspections, so the model can learn about places it would otherwise never check.
 - **Answers:** "We can inspect only 200 of 10,000 homes this year; which ones?"
 - **Use when:** the problem is hidden until someone looks, inspections are limited, and records of past inspections and their findings exist.
-- **Avoid when:** the target adapts to avoid inspection (see Class 3), the goal is to deliver help rather than to find problems (see Class 2), or past inspections were so selective that the model would only repeat earlier choices. Take special care when the people scored are the program's own beneficiaries, as in fraud or eligibility checks: a flag is an accusation, and this is where government risk models have most often failed ([Section 6](#when-a-score-targets-the-people-you-serve)).
+- **Avoid when:** the target adapts to avoid inspection (see Class 3), the goal is to deliver help rather than to find problems (see Class 2), or past inspections were so selective that the model would only repeat earlier choices. Take special care when the people scored are the program's own beneficiaries, as in fraud or eligibility checks: a flag is an accusation, and this is where government risk models have most often failed ([Section 7](#when-a-score-targets-the-people-you-serve)).
 
 ## 2. The NGO decision tree
 
@@ -272,7 +274,7 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 - Nethil, K., Mishra, V., Anandan, K., Manohar, K. (2025). *Scalable Offline ASR for Command-Style Dictation in Courtrooms.* Interspeech. — Adalat AI's courtroom speech recognition: fine-tuned Whisper models with voice-activity detection, run offline on one GPU per site. Reports speed, not effects on hearings.
 - Peskoff, D., Barrow, J., Vu, C., Davenport, D. (2026). *Freeing the Law with LOCUS: A Local Ordinance Corpus for the United States.* arXiv 2606.19334. — About 7 million pages of local codes read with a vision-language OCR model, split into sections, labelled by language models and distilled into a small classifier; released as LOCUS-v1 with a hand-audited subset. An extraction layer at national scale.
 
-**Model-measured outcomes and decisions near the classes** (used in [Section 6](#when-a-model-measures-the-outcome))
+**Model-measured outcomes and decisions near the classes** (used in [Section 7](#when-a-model-measures-the-outcome))
 - Huang, L. Y., Hsiang, S., Gonzalez-Navarro, M. (2021). *Using Satellite Imagery and Deep Learning to Evaluate the Impact of Anti-Poverty Programs.* NBER Working Paper 29105; arXiv 2104.11772. — Housing quality from daytime satellite images estimated the effect of GiveDirectly's Kenya cash transfers (328 treatment and 325 control villages) consistently with the field survey.
 - Barriga-Cabanillas, O., Blumenstock, J. E., Lybbert, T. J., Putman, D. S. (2025). *Probing the limits of mobile phone metadata for poverty prediction and impact evaluation.* Journal of Development Economics. — In Haiti, a cash program's effect was significant in surveys but not in phone-record estimates, which predict spending much less accurately than wealth.
 - Angelopoulos, A. N., Bates, S., Fannjiang, C., Jordan, M. I., Zrnic, T. (2023). *Prediction-powered inference.* Science. — Valid confidence intervals from a small directly measured sample plus many model predictions.
@@ -281,7 +283,7 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 - Ozodiegwu, I. D., Ambrose, M., Galatas, B., et al. (2023). *Application of mathematical modelling to inform national malaria intervention planning in Nigeria.* Malaria Journal. — Nigeria's malaria program used the EMOD transmission model to choose its 2021–2025 intervention mix across 774 local government areas.
 - Guerrero, O. A., Castañeda, G. (2020). *Policy priority inference: A computational framework to analyze the allocation of resources for the sustainable development goals.* Data & Policy. — An agent-based model linking budget allocations to development indicators, applied with the UNDP office for Mexico's federal government.
 
-**Limits of prediction, grading AI answers, and mobility data** (used in Sections [4](#4-simpler-alternatives-for-each-class) and [6](#6-input-layers))
+**Limits of prediction, grading AI answers, and mobility data** (used in Sections [4](#4-simpler-alternatives-for-each-class), [6](#6-input-layers) and [7](#7-beyond-the-twelve-classes))
 - Salganik, M. J., Lundberg, I., Kindel, A. T., et al. (2020). *Measuring the predictability of life outcomes with a scientific mass collaboration.* PNAS. — In the Fragile Families Challenge, 160 teams' best predictions of six outcomes were only slightly better than a four-variable benchmark regression.
 - Cantrell, E. M., Anchuri, P., Ren, H., Salganik, M. J. (2026). *Machine Learning Models Trained on a Longitudinal Survey Dataset Poorly Predict Hundreds of Life Outcomes.* arXiv 2610.17115. — Most outcomes weren't very predictable, and complex models typically showed little skill over a simple procedure. A preprint.
 - McBain, R. K., Cantor, J. H., Hollister, B., et al. (2026). *Development, Validation and AI Chatbot Evaluation of the Adolescent Mental Health AI Response Tool.* Nature Mental Health. — RAND's clinician-informed rubric, scored by three language models checked against human labels; chatbots covered more criteria for anxiety than depression, and for moderate than severe cases.
@@ -294,14 +296,14 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 - Department for Work and Pensions (2025). *Fairness assessment including statistical analysis of the Universal Credit advances machine learning model, 1 April 2024 to 31 March 2025.* UK government. — A published fairness assessment of a deployed fraud model; it could analyse only age among protected characteristics, and non-UK nationals were referred at 2.27 times the rate of UK nationals.
 - Williamson, E. J., Walker, A. J., Bhaskaran, K., et al. (2020). *Factors associated with COVID-19-related death using OpenSAFELY.* Nature. — Analysis code runs inside the health-record vendors' data centres and only checked, aggregate results leave: one way to analyse sensitive records without sharing them.
 
-**Scoring the people a program serves** (cautionary; used in [Section 6](#when-a-score-targets-the-people-you-serve))
+**Scoring the people a program serves** (cautionary; used in [Section 7](#when-a-score-targets-the-people-you-serve))
 - Rechtbank Den Haag (2020). *NJCM et al. v. the State of the Netherlands* (SyRI). ECLI:NL:RBDHA:2020:1878 (English). — The legislation for SyRI, a welfare-fraud risk system linking government data, breached Article 8 of the European Convention on Human Rights; the state did not appeal.
 - Royal Commission into the Robodebt Scheme (2023). *Report.* Australia. — Debts raised by averaging annual income were not lawful under the Social Security Act; the Federal Court had found the same in 2019.
 - Guo, E., Geiger, G., Braun, J.-C. (2025). *Inside Amsterdam's high-stakes experiment to create fair welfare AI.* MIT Technology Review, with Lighthouse Reports and Trouw. — Bias tests and reweighting removed a nationality disparity before deployment; in the 2023 live pilot the model flagged women and Dutch nationals more often, and the city stopped it.
 - Elzayn, H., Smith, E., Hertz, T., Guage, C., Ramesh, A., Fisher, R., Ho, D. E., Goldin, J. (2025). *Measuring and Mitigating Racial Disparities in Tax Audits.* Quarterly Journal of Economics. — Race-blind audit selection audited Black taxpayers 2.9–4.7 times as often, driven by prioritising overclaims of refundable credits.
 - Muralidharan, K., Niehaus, P., Sukhtankar, S. (2025). *Identity Verification Standards in Welfare Programs: Experimental Evidence from India.* Review of Economics and Statistics. — Biometric authentication for food rations in Jharkhand, randomized across 132 sub-districts, didn't reduce leakage and reduced benefits for some genuine beneficiaries.
 
-**When the AI is the intervention** (used in [Section 6](#when-the-ai-is-the-intervention))
+**When the AI is the intervention** (used in [Section 7](#when-the-ai-is-the-intervention))
 - De Simone, M. E., Tiberti, F. H., Barron Rodriguez, M. R., et al. (2025). *From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria.* World Bank Policy Research Working Paper 11125. — Six-week randomized trial of GPT-4 tutoring (Microsoft Copilot) in Edo State: 0.23 standard deviations in English, 0.31 on the combined test.
 - Oreopoulos, P., Low, N. (2026). *One Click Away: AI Tutoring with Khanmigo in a Two-Year School Experiment.* NBER Working Paper 35620. — Cluster randomized trial in 18 middle schools in Tennessee: about 0.06–0.08 standard deviations a year, similar to Khan Academy practice without AI.
 - Wang, R. E., Ribeiro, A. T., Robinson, C. D., Loeb, S., Demszky, D. (2024). *Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise.* arXiv 2410.03017. — Randomized trial with 900 tutors and 1,800 students: real-time AI suggestions to human tutors raised mastery by 4 percentage points, 9 for students of lower-rated tutors.
@@ -422,6 +424,10 @@ Rules for input layers:
 - **Name the decision first.** "Build a transcription system" or "build a database" is a means; ask what will be decided with its output, and by whom.
 - **Pilot the layer first,** with its error measured, before the allocation that depends on it.
 - **Don't choose the model.** Point to the providers' model cards and evaluation reports; the assistant's evidence base covers allocation methods, not speech, vision or language models.
+
+## 7. Beyond the twelve classes
+
+Some requests aren't an allocation the twelve classes cover, or need a warning that applies whatever the class. This section covers four of them: scores aimed at the people a program serves, AI that is itself the intervention, outcomes measured by a model, and decisions that look new but belong to an existing class.
 
 ### When a score targets the people you serve
 

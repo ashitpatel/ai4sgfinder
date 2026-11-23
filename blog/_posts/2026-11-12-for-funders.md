@@ -72,7 +72,7 @@ Before writing this post, I ran Case 17's proposal through the assistant on two 
 
 ## Try it
 
-The funder review needs the full assistant with its playbook: the Custom GPT, the Claude skill or plugin, or the [all-in-one file](https://github.com/ashitpatel/ai4sgfinder/blob/main/dist/all-in-one.md) pasted as instructions ([setup](https://github.com/ashitpatel/ai4sgfinder#quick-start)). The one-click chat links carry only the interview, so they won't run it. Paste a proposal, say you're a funder reviewing it, and answer its three questions about your foundation.
+The funder review needs the full assistant with its playbook: the Custom GPT, the Claude skill or plugin, or the [all-in-one file](https://github.com/ashitpatel/ai4sgfinder/blob/main/dist/all-in-one.md) pasted as instructions ([setup](https://github.com/ashitpatel/ai4sgfinder#quick-start)). The one-click chat links carry the interview and, since November 2026, only a short version of the memo without the playbook's checks. Paste a proposal, say you're a funder reviewing it, and answer its three questions about your foundation.
 
 If you're a funder and try it on a real proposal, I'd like to know what the memo missed. Tell me through an [issue on GitHub](https://github.com/ashitpatel/ai4sgfinder/issues).
 

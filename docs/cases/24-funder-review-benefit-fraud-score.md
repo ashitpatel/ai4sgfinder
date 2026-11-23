@@ -7,7 +7,7 @@
 | **Expected verdict** | The memo's first line says the score targets the program's own beneficiaries. **Automatic payment pauses fail the safeguards required before any funding stage.** For the referral step, *Heavier than needed* (about 36 confirmed cases is too few for the model) or *Mismatch* are both defensible |
 | **Most likely confusion** | Treating it as ordinary [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) because investigators are limited |
 | **Playbook section** | [Funder review](../../prompt/knowledge/playbook.md#funder-review-checking-a-proposal); readiness check *Scoring the people you serve* |
-| **Real-world pattern** | Government welfare-fraud models: SyRI, Robodebt, Amsterdam's Smart Check, US tax-audit selection ([taxonomy, Section 6](../../prompt/knowledge/taxonomy.md#when-a-score-targets-the-people-you-serve)) |
+| **Real-world pattern** | Government welfare-fraud models: SyRI, Robodebt, Amsterdam's Smart Check, US tax-audit selection ([taxonomy, Section 7](../../prompt/knowledge/taxonomy.md#when-a-score-targets-the-people-you-serve)) |
 
 ## Scenario
 

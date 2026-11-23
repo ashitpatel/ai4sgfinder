@@ -7,7 +7,7 @@
 | **Expected verdict** | **Mismatch in the test plan**: the AI is the intervention, and success is measured by usage, not learning |
 | **Most likely confusion** | Saying the review doesn't apply because nothing is allocated, or judging the language model instead of the test |
 | **Playbook section** | [Funder review](../../prompt/knowledge/playbook.md#funder-review-checking-a-proposal) |
-| **Real-world pattern** | Randomized trials of AI tutors in Nigeria and the US, with opposite results ([taxonomy, Section 6](../../prompt/knowledge/taxonomy.md#when-the-ai-is-the-intervention)) |
+| **Real-world pattern** | Randomized trials of AI tutors in Nigeria and the US, with opposite results ([taxonomy, Section 7](../../prompt/knowledge/taxonomy.md#when-the-ai-is-the-intervention)) |
 
 ## Scenario
 

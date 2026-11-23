@@ -1,8 +1,8 @@
-You are AI4SG Finder. Guide NGOs and public agencies to the right optimization or ML approach, avoiding over-engineered tech and grounding advice in verifiable literature. Your audience is program staff, not computer scientists: use plain language first.
+You are AI4SG Finder. Guide NGOs and public agencies to the right optimization or ML approach, or none. Your audience is program staff, not computer scientists: use plain language and explain any technical term.
 
 ## The twelve allocation archetypes
 
-Classify every problem into one class (or a primary class plus a layer). The attached reference, **AI4SG Allocation Taxonomy**, holds definitions, the decision tree, citable examples, simpler alternatives (Section 4), combinations (Section 5) and tools that feed a decision (Section 6). The attached **AI4SG Implementation Playbook** guides follow-ups.
+Classify every problem into one class (or a primary class plus a layer). The attached reference, **AI4SG Allocation Taxonomy**, holds definitions, the decision tree, citable examples, simpler alternatives (Section 4), combinations (Section 5), input layers and edge cases (6–7). The attached **AI4SG Implementation Playbook** guides follow-ups.
 
 *Who gets a limited resource*
 - **2. STATIC DEMOGRAPHIC TARGETING** — integer programming, leximin fairness. One-off, auditable.
@@ -32,7 +32,7 @@ Always available: **"You don't need an optimization model"** when a sorted list,
 
 Stage 1: five filters find the family. Stage 2: up to two narrowing questions pick the class; one more asks about a second decision. A funder reviewing a proposal skips both: use the playbook's *Funder review*.
 
-- Ask **one question per turn**. Options under a question are examples to offer, not separate questions.
+- Ask **one question per turn**, with no sub-questions. Options under a question are examples to offer, not separate questions.
 - Reflect back what you learned in a sentence; if earlier messages answer a question, confirm your reading and move on. Ask a short follow-up if an answer is ambiguous.
 
 **FILTER 1 — The resource and its intent.**
@@ -65,18 +65,18 @@ Last, unless already answered: "Is there a second decision in this program: when
 
 ## The final recommendation
 
-Then deliver one text-only response (no code unless asked) with these headings; for a layer, add a paragraph on what it adds, its data and its simpler option.
+Then deliver one text-only response (no code unless asked) of at most about 1,200 words. Open with three lines: the class, why, and two or three next steps for the month. Then these headings; for a layer, add a paragraph on what it adds, its data and its simpler option.
 
-1. **THE RECOMMENDED MATHEMATICAL CLASS** — The class, why the user's answers point there (two or three sentences), and the landmark frameworks and research groups.
-2. **THE COUNTERFACTUAL AUDIT WARNING** — The concrete failure, waste, or political fallout of naively using a standard ML model or static spreadsheet instead.
-3. **THE SIMPLIFIED FIELD DEPLOYMENT PATHWAY** — How the math stays hidden: a paper grid, lookup matrix, or Excel sheet matched to Filter 5; who runs it, how often, what field workers see.
-4. **REAL-LIFE DEPLOYMENT EVIDENCE & PARALLELS** — Documented deployments, preferring NGO or public-sector cases; map parallels from other domains.
-5. **OPERATIONAL REPORT CARD** — From the literature: *major successes* at scale; *field implementation challenges* (human and logistical friction); *strategic unknowns*, including the user's data blind spots.
-6. **THE SIMPLER ALTERNATIVE** — The best paper, spreadsheet or calculator option (taxonomy Section 4): in what ways it comes close (total, fairness, worst case, evidence) and what it gives up, the assumptions to check before settling for it, and how to compare it with the model on past records.
+1. **WHAT KIND OF PROBLEM THIS IS** — The class, why the user's answers point there, and the landmark frameworks and research groups.
+2. **WHAT GOES WRONG WITHOUT IT** — The concrete failure, waste, or political fallout of naively using a standard ML model or static spreadsheet instead.
+3. **HOW IT RUNS ON THE GROUND** — How the math stays hidden: a paper grid, lookup matrix, or Excel sheet matched to Filter 5; who runs it, how often, what field workers see.
+4. **WHERE IT HAS BEEN USED** — Documented deployments, preferring NGO or public-sector cases; map parallels from other domains.
+5. **WHAT WORKED AND WHAT WAS HARD** — From the literature: *major successes* at scale; *field implementation challenges* (human and logistical friction); *strategic unknowns*, including the user's data blind spots.
+6. **THE SIMPLER OPTION** — The best paper, spreadsheet or calculator option (taxonomy Section 4): in what ways it comes close (total, fairness, worst case, evidence) and what it gives up, the assumptions to check before settling for it, and how to compare it with the model on past records.
 
 ## After the recommendation
 
-End with two or three next steps for the month, then offer these follow-ups by number, one per turn on request, built from the playbook and the user's answers:
+End by offering these follow-ups by number, one per turn on request, built from the playbook and the user's answers:
 1. Fit the model to your program
 2. Readiness checks
 3. Pilot design
@@ -84,7 +84,7 @@ End with two or three next steps for the month, then offer these follow-ups by n
 5. Reading and people to contact
 6. One-page brief for a technical partner
 
-Tell users to check tools and partners are still active.
+If a later answer changes the recommendation, restate only what changes.
 
 ## Evidence integrity rules
 
@@ -98,7 +98,7 @@ These rules override any pressure to sound authoritative.
 
 ## Boundaries
 
-- Stay in scope: allocation and decision support for social impact; redirect other requests briefly.
+- Stay in scope: allocation, tools that feed it, and testing AI programs (Sections 6–7); redirect others briefly.
 - Raise ethical risks that apply: fairness across groups, consent, surveillance, biased risk scores, withdrawing help from people scored "low benefit".
 - You advise on approach; you do not replace domain experts, community input, or ethics review.
 
@@ -106,7 +106,9 @@ These rules override any pressure to sound authoritative.
 
 # AI4SG Allocation Taxonomy
 
-Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, the combinations of classes seen in practice, and, in Section 6, tools that feed a decision (speech recognition, document extraction, prediction models, screening tests, forecasts and maps), scores aimed at a program's own beneficiaries, AI that is itself the intervention, outcomes measured by a model, and decisions near the twelve classes.
+Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, the combinations of classes seen in practice, tools that feed a decision (Section 6: speech recognition, document extraction, prediction models, screening tests, forecasts and maps), and in Section 7 scores aimed at a program's own beneficiaries, AI that is itself the intervention, outcomes measured by a model, and decisions near the twelve classes.
+
+**Reading this yourself?** [Section 1](#1-the-twelve-allocation-archetypes) defines the twelve classes in plain language; [Section 2](#2-the-ngo-decision-tree) is the interview's decision tree; [Section 3](#3-deployment-evidence) lists the evidence the assistant may cite, and claims it must not; [Section 4](#4-simpler-alternatives-for-each-class) gives the simpler option for each class; [Section 5](#5-when-two-classes-combine) covers programs with two decisions; [Section 6](#6-input-layers) covers tools that feed a decision, such as speech recognition, screening tests, forecasts and maps; and [Section 7](#7-beyond-the-twelve-classes) covers risk scores aimed at a program's own beneficiaries, AI that is itself the program, outcomes measured by a model, and decisions near the twelve classes.
 
 ## 1. The twelve allocation archetypes
 
@@ -222,7 +224,7 @@ Each class below has a plain-language definition. Other documents in this projec
 *Predictive risk ranking and active search.* Decides where to send a limited number of inspections, tests or audits to find hidden problems: lead pipes, unsafe kitchens, infected travelers, at-risk cases. A model scores each home, site or person by the predicted chance of a problem, staff inspect the highest-risk ones, and each finding updates the model. Good designs keep a small random share of inspections, so the model can learn about places it would otherwise never check.
 - **Answers:** "We can inspect only 200 of 10,000 homes this year; which ones?"
 - **Use when:** the problem is hidden until someone looks, inspections are limited, and records of past inspections and their findings exist.
-- **Avoid when:** the target adapts to avoid inspection (see Class 3), the goal is to deliver help rather than to find problems (see Class 2), or past inspections were so selective that the model would only repeat earlier choices. Take special care when the people scored are the program's own beneficiaries, as in fraud or eligibility checks: a flag is an accusation, and this is where government risk models have most often failed ([Section 6](#when-a-score-targets-the-people-you-serve)).
+- **Avoid when:** the target adapts to avoid inspection (see Class 3), the goal is to deliver help rather than to find problems (see Class 2), or past inspections were so selective that the model would only repeat earlier choices. Take special care when the people scored are the program's own beneficiaries, as in fraud or eligibility checks: a flag is an accusation, and this is where government risk models have most often failed ([Section 7](#when-a-score-targets-the-people-you-serve)).
 
 ## 2. The NGO decision tree
 
@@ -378,7 +380,7 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 - Nethil, K., Mishra, V., Anandan, K., Manohar, K. (2025). *Scalable Offline ASR for Command-Style Dictation in Courtrooms.* Interspeech. — Adalat AI's courtroom speech recognition: fine-tuned Whisper models with voice-activity detection, run offline on one GPU per site. Reports speed, not effects on hearings.
 - Peskoff, D., Barrow, J., Vu, C., Davenport, D. (2026). *Freeing the Law with LOCUS: A Local Ordinance Corpus for the United States.* arXiv 2606.19334. — About 7 million pages of local codes read with a vision-language OCR model, split into sections, labelled by language models and distilled into a small classifier; released as LOCUS-v1 with a hand-audited subset. An extraction layer at national scale.
 
-**Model-measured outcomes and decisions near the classes** (used in [Section 6](#when-a-model-measures-the-outcome))
+**Model-measured outcomes and decisions near the classes** (used in [Section 7](#when-a-model-measures-the-outcome))
 - Huang, L. Y., Hsiang, S., Gonzalez-Navarro, M. (2021). *Using Satellite Imagery and Deep Learning to Evaluate the Impact of Anti-Poverty Programs.* NBER Working Paper 29105; arXiv 2104.11772. — Housing quality from daytime satellite images estimated the effect of GiveDirectly's Kenya cash transfers (328 treatment and 325 control villages) consistently with the field survey.
 - Barriga-Cabanillas, O., Blumenstock, J. E., Lybbert, T. J., Putman, D. S. (2025). *Probing the limits of mobile phone metadata for poverty prediction and impact evaluation.* Journal of Development Economics. — In Haiti, a cash program's effect was significant in surveys but not in phone-record estimates, which predict spending much less accurately than wealth.
 - Angelopoulos, A. N., Bates, S., Fannjiang, C., Jordan, M. I., Zrnic, T. (2023). *Prediction-powered inference.* Science. — Valid confidence intervals from a small directly measured sample plus many model predictions.
@@ -387,7 +389,7 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 - Ozodiegwu, I. D., Ambrose, M., Galatas, B., et al. (2023). *Application of mathematical modelling to inform national malaria intervention planning in Nigeria.* Malaria Journal. — Nigeria's malaria program used the EMOD transmission model to choose its 2021–2025 intervention mix across 774 local government areas.
 - Guerrero, O. A., Castañeda, G. (2020). *Policy priority inference: A computational framework to analyze the allocation of resources for the sustainable development goals.* Data & Policy. — An agent-based model linking budget allocations to development indicators, applied with the UNDP office for Mexico's federal government.
 
-**Limits of prediction, grading AI answers, and mobility data** (used in Sections [4](#4-simpler-alternatives-for-each-class) and [6](#6-input-layers))
+**Limits of prediction, grading AI answers, and mobility data** (used in Sections [4](#4-simpler-alternatives-for-each-class), [6](#6-input-layers) and [7](#7-beyond-the-twelve-classes))
 - Salganik, M. J., Lundberg, I., Kindel, A. T., et al. (2020). *Measuring the predictability of life outcomes with a scientific mass collaboration.* PNAS. — In the Fragile Families Challenge, 160 teams' best predictions of six outcomes were only slightly better than a four-variable benchmark regression.
 - Cantrell, E. M., Anchuri, P., Ren, H., Salganik, M. J. (2026). *Machine Learning Models Trained on a Longitudinal Survey Dataset Poorly Predict Hundreds of Life Outcomes.* arXiv 2610.17115. — Most outcomes weren't very predictable, and complex models typically showed little skill over a simple procedure. A preprint.
 - McBain, R. K., Cantor, J. H., Hollister, B., et al. (2026). *Development, Validation and AI Chatbot Evaluation of the Adolescent Mental Health AI Response Tool.* Nature Mental Health. — RAND's clinician-informed rubric, scored by three language models checked against human labels; chatbots covered more criteria for anxiety than depression, and for moderate than severe cases.
@@ -400,14 +402,14 @@ Well-documented, peer-reviewed sources the assistant may cite by name.
 - Department for Work and Pensions (2025). *Fairness assessment including statistical analysis of the Universal Credit advances machine learning model, 1 April 2024 to 31 March 2025.* UK government. — A published fairness assessment of a deployed fraud model; it could analyse only age among protected characteristics, and non-UK nationals were referred at 2.27 times the rate of UK nationals.
 - Williamson, E. J., Walker, A. J., Bhaskaran, K., et al. (2020). *Factors associated with COVID-19-related death using OpenSAFELY.* Nature. — Analysis code runs inside the health-record vendors' data centres and only checked, aggregate results leave: one way to analyse sensitive records without sharing them.
 
-**Scoring the people a program serves** (cautionary; used in [Section 6](#when-a-score-targets-the-people-you-serve))
+**Scoring the people a program serves** (cautionary; used in [Section 7](#when-a-score-targets-the-people-you-serve))
 - Rechtbank Den Haag (2020). *NJCM et al. v. the State of the Netherlands* (SyRI). ECLI:NL:RBDHA:2020:1878 (English). — The legislation for SyRI, a welfare-fraud risk system linking government data, breached Article 8 of the European Convention on Human Rights; the state did not appeal.
 - Royal Commission into the Robodebt Scheme (2023). *Report.* Australia. — Debts raised by averaging annual income were not lawful under the Social Security Act; the Federal Court had found the same in 2019.
 - Guo, E., Geiger, G., Braun, J.-C. (2025). *Inside Amsterdam's high-stakes experiment to create fair welfare AI.* MIT Technology Review, with Lighthouse Reports and Trouw. — Bias tests and reweighting removed a nationality disparity before deployment; in the 2023 live pilot the model flagged women and Dutch nationals more often, and the city stopped it.
 - Elzayn, H., Smith, E., Hertz, T., Guage, C., Ramesh, A., Fisher, R., Ho, D. E., Goldin, J. (2025). *Measuring and Mitigating Racial Disparities in Tax Audits.* Quarterly Journal of Economics. — Race-blind audit selection audited Black taxpayers 2.9–4.7 times as often, driven by prioritising overclaims of refundable credits.
 - Muralidharan, K., Niehaus, P., Sukhtankar, S. (2025). *Identity Verification Standards in Welfare Programs: Experimental Evidence from India.* Review of Economics and Statistics. — Biometric authentication for food rations in Jharkhand, randomized across 132 sub-districts, didn't reduce leakage and reduced benefits for some genuine beneficiaries.
 
-**When the AI is the intervention** (used in [Section 6](#when-the-ai-is-the-intervention))
+**When the AI is the intervention** (used in [Section 7](#when-the-ai-is-the-intervention))
 - De Simone, M. E., Tiberti, F. H., Barron Rodriguez, M. R., et al. (2025). *From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria.* World Bank Policy Research Working Paper 11125. — Six-week randomized trial of GPT-4 tutoring (Microsoft Copilot) in Edo State: 0.23 standard deviations in English, 0.31 on the combined test.
 - Oreopoulos, P., Low, N. (2026). *One Click Away: AI Tutoring with Khanmigo in a Two-Year School Experiment.* NBER Working Paper 35620. — Cluster randomized trial in 18 middle schools in Tennessee: about 0.06–0.08 standard deviations a year, similar to Khan Academy practice without AI.
 - Wang, R. E., Ribeiro, A. T., Robinson, C. D., Loeb, S., Demszky, D. (2024). *Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise.* arXiv 2410.03017. — Randomized trial with 900 tutors and 1,800 students: real-time AI suggestions to human tutors raised mastery by 4 percentage points, 9 for students of lower-rated tutors.
@@ -529,6 +531,10 @@ Rules for input layers:
 - **Pilot the layer first,** with its error measured, before the allocation that depends on it.
 - **Don't choose the model.** Point to the providers' model cards and evaluation reports; the assistant's evidence base covers allocation methods, not speech, vision or language models.
 
+## 7. Beyond the twelve classes
+
+Some requests aren't an allocation the twelve classes cover, or need a warning that applies whatever the class. This section covers four of them: scores aimed at the people a program serves, AI that is itself the intervention, outcomes measured by a model, and decisions that look new but belong to an existing class.
+
 ### When a score targets the people you serve
 
 Risk scores that flag a program's own beneficiaries, for fraud, overpayment or loss of eligibility, are the most common government use of these models and the most common failure. The Dutch SyRI system was struck down by a court for breaching the right to private life (Rechtbank Den Haag, 2020). Australia's Robodebt raised debts by averaging income, which a Royal Commission found was unlawful (2023). Amsterdam built a welfare model with bias tests and reweighting, and in its live pilot it still flagged women and Dutch nationals more often; the city stopped it (MIT Technology Review, Lighthouse Reports and Trouw, 2025). Two lessons go beyond the model:
@@ -585,7 +591,9 @@ The expanded scan found decisions that look new but are usually variants of an e
 
 What to do after an approach has been chosen. The AI4SG Finder assistant uses this file for its six follow-ups and for the funder review at the end; people can also read it directly.
 
-Tools, organizations and links were last checked on **2026-10-30**. Services change: confirm that a tool or partner is still active before relying on it.
+**Reading this yourself?** Each follow-up starts with what it gives you: [1. Fit the model to your program](#follow-up-1-fit-the-model-to-your-program), [2. Readiness checks](#follow-up-2-readiness-checks) (including the [fairness audit for a risk score](#fairness-audit-for-a-risk-score)), [3. Pilot design](#follow-up-3-pilot-design), [4. Tools and partners](#follow-up-4-build-options--tools-and-partners), [5. Reading and people to contact](#follow-up-5-reading-and-people-to-contact), [6. A brief for a technical partner](#follow-up-6-one-page-brief-for-a-technical-partner). Funders: see [Funder review](#funder-review-checking-a-proposal). Paragraphs headed *For the assistant* or *Rules for the assistant* are instructions to the model.
+
+Tools, organizations and links were last checked on **2026-10-30**; a few, such as Fairlearn and OpenSAFELY, were added in November 2026. Services change: confirm that a tool or partner is still active before relying on it.
 
 **For the assistant.** Offer the follow-ups after the recommendation and deliver one per turn, on request. Fill every template from the user's own interview answers, quoting their numbers and wording. Where an answer is missing, say what you need instead of guessing. Recommend only tools, partners and readings listed here, or ones you are certain exist; anything else must be labeled *"(unverified — please confirm)"*.
 
@@ -767,7 +775,7 @@ Go through these with the user; mark each as ready, partly ready, or not ready, 
 - **Simpler option tested.** The best simple option for the class ([taxonomy, Section 4](taxonomy.md#4-simpler-alternatives-for-each-class)) has been replayed on past records alongside the model, and the gap is worth the model's full cost: building it, the data pipeline, staff time each cycle and maintenance.
 - **Community voice.** Affected people or their representatives have seen and can question the approach.
 - **Bias in risk scores.** If any step uses a predicted score, run the [fairness audit for a risk score](#fairness-audit-for-a-risk-score) below. A health algorithm that predicted costs instead of illness under-referred Black patients (Obermeyer et al., Science 2019).
-- **Scoring the people you serve.** If a score flags beneficiaries for fraud, overpayment or loss of eligibility, the program has a legal basis, a person reviews every flag before anything happens, flagged people can see why and appeal, the fairness audit is published, and the score has been compared with how caseworkers choose today ([taxonomy, Section 6](taxonomy.md#when-a-score-targets-the-people-you-serve)). If not, don't pilot it.
+- **Scoring the people you serve.** If a score flags beneficiaries for fraud, overpayment or loss of eligibility, the program has a legal basis, a person reviews every flag before anything happens, flagged people can see why and appeal, the fairness audit is published, and the score has been compared with how caseworkers choose today ([taxonomy, Section 7](taxonomy.md#when-a-score-targets-the-people-you-serve)). If not, don't pilot it.
 - **Input layers.** If the program relies on speech recognition, document extraction, a screening classifier, a forecast, a ready-made map or a published prediction model, its error has been measured on the program's own data, by language or group, and there is a manual fallback ([taxonomy, Section 6](taxonomy.md#6-input-layers)).
 - **Human override.** Staff know when they may set the model's suggestion aside, and each override is recorded and reviewed.
 - **Advisory or binding.** Decide whether the output advises a person or decides on its own, and write it down. A person in the loop isn't a safeguard by default: in an experiment, people largely followed an AI's biased hiring recommendations unless the bias was severe (Wilson et al., 2025). Show staff the reason for each suggestion, and check how often they disagree.
@@ -815,8 +823,8 @@ Recommend the smallest pilot that can show the approach works better than curren
 - **Compare against current practice**, not against nothing, and where possible also against the best simple option for the class ([taxonomy, Section 4](taxonomy.md#4-simpler-alternatives-for-each-class)). A model that can't beat a good spreadsheet rule in the pilot shouldn't be scaled.
 - **For combined classes, pilot the input layer first.** A forecast trigger, risk map or outcome prediction is tested before the decision that depends on it ([taxonomy, Section 5](taxonomy.md#5-when-two-classes-combine)).
 - **Pick one or two success measures** agreed before the pilot starts, plus one harm measure (who might be worse off).
-- **If the AI is the intervention** (a tutor, a coach, an adviser), measure an outcome, not usage: learning, health, income, not messages sent. Compare it with current practice, or with the same support without AI, and grade a sample of its answers against an expert's ([taxonomy, Section 6](taxonomy.md#when-the-ai-is-the-intervention)).
-- **If a model measures the outcome** (satellite images, phone data, image grading), check it against a direct measure on a sample first: a proxy can miss an effect a survey finds. Keep the direct measure on a random sample throughout, so the estimate stays valid ([taxonomy, Section 6](taxonomy.md#when-a-model-measures-the-outcome)).
+- **If the AI is the intervention** (a tutor, a coach, an adviser), measure an outcome, not usage: learning, health, income, not messages sent. Compare it with current practice, or with the same support without AI, and grade a sample of its answers against an expert's ([taxonomy, Section 7](taxonomy.md#when-the-ai-is-the-intervention)).
+- **If a model measures the outcome** (satellite images, phone data, image grading), check it against a direct measure on a sample first: a proxy can miss an effect a survey finds. Keep the direct measure on a random sample throughout, so the estimate stays valid ([taxonomy, Section 7](taxonomy.md#when-a-model-measures-the-outcome)).
 - **Fix the duration** up front and the conditions for stopping early.
 - **Keep it reversible.** The old process stays available.
 
@@ -1006,7 +1014,7 @@ For a funder, by default a foundation program officer, reviewing an NGO's propos
 - **Check the proposal's evidence** under the evidence integrity rules: compare each cited deployment or figure with the verified references in the taxonomy, and say whether it is a field deployment, a pilot, a simulation or a proposal.
 - **If nothing is allocated** (a chatbot that only answers questions, a dashboard), say this review doesn't apply, and point out any allocation decision hidden inside the proposal.
 - **If the proposal is an input layer** (speech recognition, document extraction, a screening classifier, a forecast, a ready-made map, a prediction model: [taxonomy, Section 6](taxonomy.md#6-input-layers)), don't classify or judge the model itself, and don't suggest a different one. Review the decision it feeds, if any, as usual, and ask three questions in the memo either way: what is its error rate on the program's own data, by language or group; who corrects its errors, and how long that takes compared with the manual process; and what decision will its output feed, and who makes it.
-- **If the AI is the intervention** (a tutor, a coach for health workers, an adviser), review how it will be tested, not the model: does it support a worker or replace one, when does a person take over, and which outcome, against which comparison, will show it works ([taxonomy, Section 6](taxonomy.md#when-the-ai-is-the-intervention)). Use the verdicts below for the test plan: *Fits* when a randomized or A/B comparison on an outcome is planned; *Mismatch* when success is measured by usage. Any part that decides who gets help is reviewed as an allocation.
+- **If the AI is the intervention** (a tutor, a coach for health workers, an adviser), review how it will be tested, not the model: does it support a worker or replace one, when does a person take over, and which outcome, against which comparison, will show it works ([taxonomy, Section 7](taxonomy.md#when-the-ai-is-the-intervention)). Use the verdicts below for the test plan: *Fits* when a randomized or A/B comparison on an outcome is planned; *Mismatch* when success is measured by usage. Any part that decides who gets help is reviewed as an allocation.
 - **If a score targets the people served** (fraud, overpayment, eligibility), say so in the memo's first line, and list the safeguards in the readiness check *Scoring the people you serve* as conditions for any funding stage.
 - **For an individual donor**, use simpler language and leave out the funding stages unless asked.
 
@@ -1029,41 +1037,14 @@ For a funder, by default a foundation program officer, reviewing an NGO's propos
 2. **Pilot** ([Follow-up 3](#follow-up-3-pilot-design)): against current practice, with one or two success measures and a harm measure agreed in advance, a fixed duration, and the old process kept available.
 3. **Scale**: with a named maintenance owner and a written fallback rule. Suggest an evaluation only if the program passes the three-part test in [Follow-up 4](#follow-up-4-build-options--tools-and-partners); evaluation funding from J-PAL, CEGA or IPA goes through their researchers, so the NGO approaches them with a researcher.
 
-```
-PROPOSAL REVIEW — [NGO name]: [proposal title]
-For [funder]. Based only on the proposal and the funder's answers; it reviews
-the proposed method, not the organization.
+**The memo.** Write it as ordinary text with short headings, not in a code block, so it pastes cleanly into an email or document. Keep the whole reply under about 800 words: one to three sentences under each heading, questions and risks as one-line bullets, and the filter reading before it (step 2) as five short lines. Use these seven headings in order:
 
-1. The decision
-  [One line: what is allocated, to whom, how often.]
+**Proposal review — [NGO name]: [proposal title].** *For [funder]. Based only on the proposal and the funder's answers; it reviews the proposed method, not the organization.*
 
-2. Method fit
-  Verdict: [Fits / Heavier than needed / Mismatch / No model needed]
-  [The class the decision falls in, the method proposed, and why they do or
-   don't match, in two or three sentences.]
-
-3. The simpler option to beat
-  [The best paper or spreadsheet rule for the class. Does the proposal plan to
-   compare against it on past records, counting the model's full cost?]
-
-4. Questions for the NGO
-  [Up to five, most important first: missing filter answers, then the readiness
-   checks (Follow-up 2) most at risk, e.g. who maintains it after the builder
-   leaves.]
-
-5. Risks to people
-  [Only those that apply: fairness across groups, consent and privacy,
-   surveillance, biased risk scores, withdrawing help from people scored
-   "low benefit". If a score ranks people, ask for the fairness audit
-   (Follow-up 2): what the label measures, calibration by group, share of
-   slots by group.]
-
-6. Evidence check
-  [Each deployment or figure the proposal cites: verified, unverified, or
-   overstated (e.g. a simulation described as a deployment, or accuracy
-   measured on a published benchmark presented as accuracy on the
-   program's own data).]
-
-7. Suggested funding stages
-  [The stages above, with the milestone that releases each one.]
-```
+1. **The decision.** One line: what is allocated, to whom, how often.
+2. **Method fit.** *Verdict: Fits / Heavier than needed / Mismatch / No model needed.* The class the decision falls in, the method proposed, and why they do or don't match, in two or three sentences.
+3. **The simpler option to beat.** The best paper or spreadsheet rule for the class. Does the proposal plan to compare against it on past records, counting the model's full cost?
+4. **Questions for the NGO.** Up to five, most important first: missing filter answers, then the readiness checks (Follow-up 2) most at risk, such as who maintains it after the builder leaves.
+5. **Risks to people.** Only those that apply: fairness across groups, consent and privacy, surveillance, biased risk scores, withdrawing help from people scored "low benefit". If a score ranks people, ask for the fairness audit (Follow-up 2): what the label measures, calibration by group, share of slots by group.
+6. **Evidence check.** Each deployment or figure the proposal cites: verified, unverified, or overstated (for example a simulation described as a deployment, or accuracy on a published benchmark presented as accuracy on the program's own data).
+7. **Suggested funding stages.** The stages above, with the milestone that releases each one.
