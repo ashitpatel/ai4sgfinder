@@ -2,7 +2,7 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
-## Unreleased
+## 1.4.0 — 2026-11-22
 
 - **Funder review.** A funder can paste an NGO's proposal instead of answering the interview. The assistant writes a seven-part review memo: the decision, whether the method fits (fits, heavier than needed, mismatch, or no model needed), the simpler option to beat, questions for the NGO, risks to people, an evidence check and suggested funding stages. It reviews the method, never the organization, and doesn't say whether to fund. The playbook's new last section holds the rules, verdict guide and template; the system prompt gains one line routing funders to it. Three new worked cases (17–19) cover a mismatch, a fit and a no-model verdict.
 - The partner brief (Follow-up 6) now covers the program itself, where it works, its timeline and resources, and splits where a partner can help into build and evaluation.
