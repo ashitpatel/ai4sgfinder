@@ -7,7 +7,7 @@ Everything here explains, tests or records the assistant. The assistant itself l
 | Document | For | What it is |
 |---|---|---|
 | [Worked cases](cases/README.md) | Anyone learning the method; contributors testing a change | 25 cases: interviews, tools that feed a decision, and funder reviews, each with what a good answer contains. Also the test set |
-| [Replay kit](../tools/replay-kit/README.md) | NGO staff with Excel; partners | Three workbooks that test a simple rule against current practice and a model on a program's own past records |
+| [Replay kit](../tools/replay-kit/README.md) | NGO staff with Excel; partners | Three workbooks that test a simple rule against current practice and a model on a program's own past records, and a monthly health check for a tool in use |
 | [Tutorials](tutorials/README.md) | Readers with basic statistics | How each method works, step by step, with runnable code |
 | [Where it fits](landscape.md) | Funders, partners | How the project compares with fourteen AI-for-good organizations |
 | [Scanning the field](scanning.md) | Maintainers | The quarterly recipe for finding AI-for-good work the project doesn't cover |

@@ -598,11 +598,336 @@ def waitlist(path):
     wb.save(path)
 
 
+# ---------------------------------------------------------------------------
+# 4. Monthly health check, after launch
+# ---------------------------------------------------------------------------
+
+def health_check(path, report_month=11):
+    import datetime as dt
+    from openpyxl.formatting.rule import CellIsRule
+    rng = random.Random(3)
+    MAXROWS = 20000
+    last = MAXROWS + 1
+    NM = 12
+    months = [dt.date(2026, m, 1) for m in range(1, 13)]
+    groups = ["North", "Central", "South"]
+    wb = Workbook()
+    readme(wb, "Health check: is the tool still working? (monthly)", [
+        "For a program already using a model, a score or a ranked list to choose whom to serve: inspections, outreach, visits, referrals. Each month, paste in the month's records and read one page: whether staff follow the list, whether its picks still do better than a random share, whether its scores still match what happens, and how each group fares. It pairs the playbook's fairness audit with a check that the tool is still worth using.",
+        "## What you need",
+        "One row per person, home or site considered each month, up to 20,000 rows in all: the month, an ID, a group, whether the tool picked them, whether they were served, whether they were served as part of a random share, the tool's score if it gives one, the outcome once known, and whether a simple rule would have picked them.",
+        "The random share is the key column. Each month, serve a small number (one in ten, say) chosen at random from those the tool did not pick, and mark them 1. Without it, nobody can tell whether the tool's picks do better than chance, or what it misses.",
+        "Use \"outcome\" for what the program looks for: a hazard found, a need confirmed, a missed appointment prevented. Leave it blank until it is known.",
+        "## Steps",
+        "1. On Settings, check the thresholds, list the months (the first day of each month) and the groups.",
+        "2. Each month, add that month's rows to Data, columns A to I.",
+        "3. On Settings, set the month to report: the latest month whose outcomes are mostly in.",
+        "4. Read Report. Anything marked Check needs a conversation, not an automatic change. Monthly shows each measure month by month.",
+        "## Reading the checks",
+        "Hit rates and calibration pool the last three months (fewer at the start), because a month's random share is small, and they are left blank until there are enough outcomes to judge. A score is calibrated when, among people given a 30% chance, about 30% turn out to have the outcome; the check compares the average score of those served with the share who had the outcome. A group gap compares a group's share of those served with its share of those considered: a gap can be right when need differs, but it should be a decision, not a drift.",
+        "A report like this one can go to a funder or a board as it is. It describes the tool, not the staff: overrides are information about where the tool is wrong or unworkable.",
+    ] + COMMON_END[2:])
+
+    st = wb.create_sheet("Settings")
+    st.column_dimensions["A"].width = 50
+    st.column_dimensions["B"].width = 14
+    st.column_dimensions["C"].width = 70
+    st["A1"] = "Settings"
+    st["A1"].font = TITLE
+    setting(st, 3, "Month to report", months[report_month - 1], "The latest month whose outcomes are mostly in. Must be one of the months listed below.", "mmm yyyy")
+    st.cell(row=5, column=1, value="Thresholds: a value past these is marked Check").font = H2
+    TH = {}
+    for i, (key, label, val, fmt, note) in enumerate([
+        ("follow", "Share of the tool's picks served, at least", 0.80, PCT, "Lower means staff often skip the list. Ask why."),
+        ("over", "Share of those served who were overrides, at most", 0.20, PCT, "Served though the tool didn't pick them and not in the random share."),
+        ("rand", "Random share of those served, at least", 0.05, PCT, "Too small a random share means the hit-rate check can't be read."),
+        ("lead", "Tool's hit rate above the random share's, at least (points)", 0.05, PCT, "Over the last three months."),
+        ("cal", "Gap between average score and outcome rate, at most (points)", 0.05, PCT, "Over the last three months, overall and for each group."),
+        ("gap", "Gap between a group's share served and share considered, at most (points)", 0.10, PCT, ""),
+        ("rec", "Share of those served with an outcome recorded, at least", 0.80, PCT, "If this month's outcomes are still coming in, report an earlier month."),
+        ("chg", "Change in records from the month before, at most", 0.25, PCT, "A sudden change often means a recording problem."),
+        ("ovl", "Overlap with the simple rule that suggests checking the tool's cost", 0.90, PCT, "If a simple rule picks almost the same people, is the tool worth its cost?"),
+        ("minn", "Outcomes needed before a hit rate or calibration is judged", 30, "0", "Over the last three months: for the random share, and for each group's calibration."),
+    ]):
+        r = 6 + i
+        setting(st, r, label, val, note, fmt)
+        TH[key] = f"Settings!$B${r}"
+    st.cell(row=17, column=1, value="Months (first day of each month)").font = H2
+    for i in range(NM):
+        c = st.cell(row=18 + i, column=1, value=months[i])
+        c.font, c.fill, c.number_format = INPUT, FILL_INPUT, "mmm yyyy"
+    st.cell(row=31, column=1, value="Groups (up to six)").font = H2
+    for i in range(6):
+        c = st.cell(row=32 + i, column=1, value=groups[i] if i < len(groups) else None)
+        c.font, c.fill = INPUT, FILL_INPUT
+    st.cell(row=32, column=3, value="Type each group name exactly as it appears in Data column C.").font = F
+
+    d = wb.create_sheet("Data")
+    head(d, 1, ["Month", "ID", "Group", "Picked by the tool (1/0)", "Served (1/0)", "Random share (1/0)",
+                "Score (0-1)", "Outcome (1/0)", "Simple rule would pick (1/0)"])
+    for i, w in enumerate([11, 10, 10, 11, 9, 10, 9, 10, 12]):
+        d.column_dimensions[col(i + 1)].width = w
+    d.freeze_panes = "A2"
+    d["A1"].comment = Comment("The first day of the month, e.g. 1 March 2026. One row per person, home or site considered that month.", "AI4SG Finder")
+    d["F1"].comment = Comment("1 if served as part of a random share chosen from those the tool did NOT pick; else 0 or blank.", "AI4SG Finder")
+    d["G1"].comment = Comment("Optional: the tool's predicted chance of the outcome, between 0 and 1.", "AI4SG Finder")
+    d["H1"].comment = Comment("1 if the outcome happened (hazard found, need confirmed), 0 if not. Blank until known; usually known only for those served.", "AI4SG Finder")
+    d["I1"].comment = Comment("Optional: 1 if a simple rule (e.g. oldest homes first) would have picked them.", "AI4SG Finder")
+
+    # sample: a home-inspection program, 400 homes considered a month, 50 picked, 12 random checks.
+    # From August a new hazard source, mostly in the South, appears that the model never saw.
+    # From October staff who know about it set aside about a third of the list for South homes.
+    homes = []
+    for h in range(1200):
+        g = groups[0] if h < 480 else groups[1] if h < 900 else groups[2]
+        age = rng.random()
+        newsrc = 1 if (g == "South" and rng.random() < 0.5) or rng.random() < 0.1 else 0
+        homes.append((f"H{h + 1:04d}", g, age, newsrc))
+    r = 2
+    for mi, m in enumerate(months):
+        pool = rng.sample(homes, 400)
+        rows_ = []
+        for hid, g, age, newsrc in pool:
+            base = 0.04 + 0.5 * age ** 2 + (0.06 if g == "North" else 0)
+            p = base + (0.30 * newsrc if mi >= 7 else 0)
+            score = min(0.95, max(0.01, base + rng.gauss(0, 0.04)))
+            rows_.append([m, hid, g, score, p, age, newsrc])
+        order = sorted(range(400), key=lambda i: -rows_[i][3])
+        picked = set(order[:50])
+        simple = set(sorted(range(400), key=lambda i: -rows_[i][5])[:50])
+        served = set()
+        for i in picked:
+            skip = 0.33 if mi >= 9 else 0.04
+            if rng.random() >= skip:
+                served.add(i)
+        others = [i for i in range(400) if i not in picked]
+        rand = set(rng.sample(others, 12))
+        rest = [i for i in others if i not in rand]
+        if mi >= 9:   # staff pick South homes they know have the new hazard source
+            local = [i for i in rest if rows_[i][2] == "South" and rows_[i][6] == 1]
+            rng.shuffle(local)
+            rest = local + [i for i in rest if i not in set(local)]
+            over = set(rest[:50 - len(served)])
+        else:
+            over = set(rng.sample(rest, 50 - len(served)))
+        served |= rand | over
+        for i, (m_, hid, g, score, p, age, _src) in enumerate(rows_):
+            known = 0.95 if mi < 11 else 0.55
+            out = (1 if rng.random() < p else 0) if (i in served and rng.random() < known) else None
+            vals = [m_, hid, g, 1 if i in picked else 0, 1 if i in served else 0, 1 if i in rand else 0,
+                    round(score, 3), out, 1 if i in simple else 0]
+            for j, v in enumerate(vals):
+                c = d.cell(row=r, column=j + 1, value=v)
+                c.font, c.fill = INPUT, FILL_INPUT
+                if j == 0:
+                    c.number_format = "mmm yyyy"
+            r += 1
+
+    R = lambda c_: f"Data!${c_}$2:${c_}${last}"
+    A, C_, D_, E, F_, G_, H, I_ = (R(x) for x in "ACDEFGHI")
+
+    mo = wb.create_sheet("Monthly")
+    mo.column_dimensions["A"].width = 52
+    mo["A1"] = "Month by month"
+    mo["A1"].font = TITLE
+    mo.cell(row=3, column=1, value="Month").font = BOLD
+    for k in range(NM):
+        c = mo.cell(row=3, column=2 + k, value=f'=IF(Settings!$A${18 + k}="","",Settings!$A${18 + k})')
+        c.font, c.fill, c.number_format = BOLD, FILL_HEAD, "mmm yyyy"
+        mo.column_dimensions[col(2 + k)].width = 10
+    mo.cell(row=3, column=1).fill = FILL_HEAD
+    ROW = {}
+    spec = [
+        ("h", "Records"),
+        ("cons", "Considered", lambda m: f"COUNTIFS({A},{m})", "0"),
+        ("picked", "Picked by the tool", lambda m: f"COUNTIFS({A},{m},{D_},1)", "0"),
+        ("served", "Served", lambda m: f"COUNTIFS({A},{m},{E},1)", "0"),
+        ("chg", "Change in records from the month before", None, PCT),
+        ("scoremiss", "Considered with no score", lambda m: f'IF(COUNTIFS({A},{m},{G_},"<>")=0,"",1-COUNTIFS({A},{m},{G_},"<>")/MAX(1,COUNTIFS({A},{m})))', PCT),
+        ("h", "Following the list"),
+        ("pserved", "Tool's picks served", lambda m: f"COUNTIFS({A},{m},{D_},1,{E},1)", "0"),
+        ("follow", "Share of the tool's picks served", "rate:pserved/picked", PCT),
+        ("over_n", "Overrides (served, not picked, not random)", lambda m: f'COUNTIFS({A},{m},{E},1,{D_},0,{F_},"<>1")', "0"),
+        ("over", "Overrides as a share of those served", "rate:over_n/served", PCT),
+        ("rand_n", "Served in the random share", lambda m: f"COUNTIFS({A},{m},{E},1,{F_},1)", "0"),
+        ("rand", "Random share of those served", "rate:rand_n/served", PCT),
+        ("h", "Results"),
+        ("known", "Served with an outcome recorded", lambda m: f'COUNTIFS({A},{m},{E},1,{H},"<>")', "0"),
+        ("rec", "Share of those served with an outcome recorded", "rate:known/served", PCT),
+        ("tk", "Tool's picks with an outcome", lambda m: f'COUNTIFS({A},{m},{D_},1,{E},1,{H},"<>")', "0"),
+        ("th", "Tool's picks with the outcome (hits)", lambda m: f"COUNTIFS({A},{m},{D_},1,{E},1,{H},1)", "0"),
+        ("thit", "Hit rate: tool's picks", "rate:th/tk", PCT),
+        ("rk", "Random share with an outcome", lambda m: f'COUNTIFS({A},{m},{F_},1,{E},1,{H},"<>")', "0"),
+        ("rh", "Random share with the outcome (hits)", lambda m: f"COUNTIFS({A},{m},{F_},1,{E},1,{H},1)", "0"),
+        ("rhit", "Hit rate: random share", "rate:rh/rk", PCT),
+        ("h", "Calibration (served, with a score and an outcome)"),
+        ("cn", "Records", lambda m: f'COUNTIFS({A},{m},{E},1,{H},"<>",{G_},"<>")', "0"),
+        ("cs", "Sum of scores", lambda m: f'SUMIFS({G_},{A},{m},{E},1,{H},"<>",{G_},"<>")', NUM2),
+        ("ch", "Outcomes", lambda m: f'COUNTIFS({A},{m},{E},1,{H},1,{G_},"<>")', "0"),
+        ("cscore", "Average score", "rate:cs/cn", PCT),
+        ("cobs", "Outcome rate", "rate:ch/cn", PCT),
+        ("h", "Simple rule"),
+        ("both", "Tool's picks the simple rule would also pick", lambda m: f'IF(COUNT({I_})=0,"",COUNTIFS({A},{m},{D_},1,{I_},1))', "0"),
+        ("ovl", "Overlap with the simple rule", "rate:both/picked", PCT),
+    ]
+    r = 4
+    for item in spec:
+        if item[0] == "h":
+            r += 1
+            mo.cell(row=r, column=1, value=item[1]).font = H2
+            r += 1
+            continue
+        key, label, fn, fmt = item
+        ROW[key] = r
+        mo.cell(row=r, column=1, value=label).font = F
+        r += 1
+    for item in spec:
+        if item[0] == "h":
+            continue
+        key, label, fn, fmt = item
+        rr = ROW[key]
+        for k in range(NM):
+            m = f"{col(2 + k)}$3"
+            cc = col(2 + k)
+            if key == "chg":
+                v = '=""' if k == 0 else f'=IF(OR({m}="",{col(1 + k)}{ROW["cons"]}="",{col(1 + k)}{ROW["cons"]}=0),"",{cc}{ROW["cons"]}/{col(1 + k)}{ROW["cons"]}-1)'
+            elif isinstance(fn, str):
+                a, b = fn[5:].split("/")
+                v = f'=IF(OR({m}="",{cc}{ROW[b]}="",{cc}{ROW[b]}=0),"",{cc}{ROW[a]}/{cc}{ROW[b]})'
+            else:
+                v = f'=IF({m}="","",{fn(m)})'
+            c = mo.cell(row=rr, column=2 + k, value=v if v else None)
+            c.number_format, c.fill = fmt, FILL_CALC
+    # groups
+    r += 1
+    mo.cell(row=r, column=1, value="By group").font = H2
+    r += 1
+    GROW = []
+    for gi in range(6):
+        g = f"Settings!$A${32 + gi}"
+        base = r
+        labels = ["share of those considered", "share of those served", "gap (served minus considered)",
+                  "calibration records", "sum of scores", "outcomes"]
+        for j, lab in enumerate(labels):
+            mo.cell(row=base + j, column=1, value=f'=IF({g}="","",{g}&": {lab}")').font = F
+        for k in range(NM):
+            m = f"{col(2 + k)}$3"
+            cc = col(2 + k)
+            fs = [
+                f'=IF(OR({m}="",{g}="",{cc}${ROW["cons"]}=0),"",COUNTIFS({A},{m},{C_},{g})/{cc}${ROW["cons"]})',
+                f'=IF(OR({m}="",{g}="",{cc}${ROW["served"]}=0),"",COUNTIFS({A},{m},{C_},{g},{E},1)/{cc}${ROW["served"]})',
+                f'=IF(OR({cc}{base}="",{cc}{base + 1}=""),"",{cc}{base + 1}-{cc}{base})',
+                f'=IF(OR({m}="",{g}=""),"",COUNTIFS({A},{m},{C_},{g},{E},1,{H},"<>",{G_},"<>"))',
+                f'=IF(OR({m}="",{g}=""),"",SUMIFS({G_},{A},{m},{C_},{g},{E},1,{H},"<>",{G_},"<>"))',
+                f'=IF(OR({m}="",{g}=""),"",COUNTIFS({A},{m},{C_},{g},{E},1,{H},1,{G_},"<>"))',
+            ]
+            for j, v in enumerate(fs):
+                c = mo.cell(row=base + j, column=2 + k, value=v)
+                c.fill = FILL_CALC
+                c.number_format = PCT if j < 3 else (NUM2 if j == 4 else "0")
+        GROW.append(base)
+        r = base + 7
+    mo.freeze_panes = "B4"
+
+    # ---- Report
+    rp = wb.create_sheet("Report")
+    rp.column_dimensions["A"].width = 44
+    rp.column_dimensions["B"].width = 14
+    rp.column_dimensions["C"].width = 12
+    rp.column_dimensions["D"].width = 15
+    rp.column_dimensions["E"].width = 70
+    rp["A1"] = "Health check"
+    rp["A1"].font = TITLE
+    rp["A2"] = "Month reported"
+    rp["A2"].font = BOLD
+    rp["B2"] = "=Settings!$B$3"
+    rp["B2"].number_format = "mmm yyyy"
+    rp["C2"] = '=IFERROR(MATCH(Settings!$B$3,Monthly!$B$3:$M$3,0),"")'
+    rp["C2"].number_format = "0"
+    rp["D2"] = '=IF(C2="","The month to report isn\'t in the months list on Settings.","")'
+    K = "$C$2"
+
+    def cur(key):
+        return f"INDEX(Monthly!$B${ROW[key]}:$M${ROW[key]},{K})"
+
+    def pool(key):
+        rr = ROW[key]
+        return f"SUM(INDEX(Monthly!$B${rr}:$M${rr},MAX(1,{K}-2)):INDEX(Monthly!$B${rr}:$M${rr},{K}))"
+
+    head(rp, 4, ["Check", "Value", "Threshold", "Status", "What to do if it says Check"])
+    checks = [
+        ("Records considered this month", f'={cur("cons")}', None, '=""', "", "0"),
+        ("Change from the month before", f'={cur("chg")}', TH["chg"], f'=IF(B6="","",IF(ABS(B6)>C6,"Check","OK"))',
+         "Find out whether the program changed or the recording did before reading anything else.", PCT),
+        ("Share of the tool's picks served", f'={cur("follow")}', TH["follow"], f'=IF(B7="","",IF(B7<C7,"Check","OK"))',
+         "Ask staff which picks they skip and why: unreachable, unsafe, already served, or a list that looks wrong.", PCT),
+        ("Overrides as a share of those served", f'={cur("over")}', TH["over"], f'=IF(B8="","",IF(B8>C8,"Check","OK"))',
+         "Review a sample of overrides. Many overrides in one area or for one reason point to a gap in the tool.", PCT),
+        ("Random share of those served", f'={cur("rand")}', TH["rand"], f'=IF(B9="","",IF(B9<C9,"Check","OK"))',
+         "Restore the random share: without it the hit-rate check below can't be trusted.", PCT),
+        ("Outcomes recorded for those served", f'={cur("rec")}', TH["rec"], f'=IF(B10="","",IF(B10<C10,"Check","OK"))',
+         "If results are still coming in, report an earlier month. Otherwise fix the recording first.", PCT),
+        ("Hit rate, tool's picks (up to 3 months)", f'=IF({pool("tk")}=0,"",{pool("th")}/{pool("tk")})', None, '=""', "", PCT),
+        ("Hit rate, random share (up to 3 months)", f'=IF({pool("rk")}=0,"",{pool("rh")}/{pool("rk")})', None, '=""', "", PCT),
+        ("Tool's lead over the random share", '=IF(OR(B11="",B12=""),"",B11-B12)', TH["lead"],
+         f'=IF({K}="","",IFERROR(IF({pool("rk")}<{TH["minn"]},"Too few to tell",IF(B13="","",IF(B13<C13,"Check","OK"))),""))',
+         "The tool's picks no longer find much more than chance. Ask a partner to recheck the model on recent records; meanwhile compare with the simple rule.", PCT),
+        ("Average score minus outcome rate (up to 3 months)", f'=IF({pool("cn")}<{TH["minn"]},"",({pool("cs")}-{pool("ch")})/{pool("cn")})', TH["cal"],
+         f'=IF(B14="","",IF(ABS(B14)>C14,"Check","OK"))',
+         "Positive: the score expects more than happens; negative: less. Either way the model needs recalibrating on recent records.", PCT),
+        ("Largest group gap this month (points)", "=IF(COUNT(D23:D28)=0,\"\",MAX(MAX(D23:D28),-MIN(D23:D28)))", TH["gap"],
+         f'=IF(B15="","",IF(B15>C15,"Check","OK"))',
+         "See the table below. Decide whether the difference is justified by need; if not, set a minimum per group.", PCT),
+        ("Largest group calibration gap (up to 3 months)", "=IF(COUNT(E23:E28)=0,\"\",MAX(MAX(E23:E28),-MIN(E23:E28)))", TH["cal"],
+         f'=IF(B16="","",IF(B16>C16,"Check","OK"))',
+         "A score that under-predicts for one group sends it fewer slots: step 2 of the playbook's fairness audit.", PCT),
+        ("Overlap with the simple rule", f'={cur("ovl")}', TH["ovl"], f'=IF(B17="","",IF(B17>=C17,"Note","OK"))',
+         "The simple rule picks almost the same. Weigh what the tool costs each month against what it adds.", PCT),
+        ("Considered with no score", f'={cur("scoremiss")}', None, '=""', "", PCT),
+    ]
+    for i, (label, val, th, status, todo, fmt) in enumerate(checks):
+        r = 5 + i
+        rp.cell(row=r, column=1, value=label).font = F
+        rp.cell(row=r, column=2, value=f'=IF({K}="","",IFERROR({val[1:]},""))').number_format = fmt
+        if th:
+            c = rp.cell(row=r, column=3, value=f"={th}")
+            c.number_format = "0" if th == TH["minn"] else PCT
+        rp.cell(row=r, column=4, value=status).font = BOLD
+        c = rp.cell(row=r, column=5, value=todo)
+        c.font, c.alignment = F, WRAP
+    rp.conditional_formatting.add("D5:D18", CellIsRule(operator="equal", formula=['"Check"'],
+                                  fill=PatternFill("solid", fgColor="F8CBAD")))
+    rp.conditional_formatting.add("D5:D18", CellIsRule(operator="equal", formula=['"OK"'],
+                                  fill=PatternFill("solid", fgColor="C6EFCE")))
+    rp.cell(row=19, column=1, value="Random-share outcomes, last 3 months").font = F
+    rp.cell(row=19, column=2, value=f'=IF({K}="","",{pool("rk")})').number_format = "0"
+
+    head(rp, 22, ["Group", "Share considered", "Share served", "Gap (points)", "Score minus outcome rate (3 months; blank if too few)"])
+    for gi in range(6):
+        r = 23 + gi
+        b = GROW[gi]
+        rp.cell(row=r, column=1, value=f'=IF(Settings!$A${32 + gi}="","",Settings!$A${32 + gi})')
+        for j, cc in enumerate("BCD"):
+            rp[f"{cc}{r}"] = f'=IF(OR($A{r}="",{K}=""),"",IFERROR(INDEX(Monthly!$B${b + j}:$M${b + j},{K}),""))'
+            rp[f"{cc}{r}"].number_format = PCT
+        pn = lambda rr: f"SUM(INDEX(Monthly!$B${rr}:$M${rr},MAX(1,{K}-2)):INDEX(Monthly!$B${rr}:$M${rr},{K}))"
+        rp[f"E{r}"] = f'=IF(OR($A{r}="",{K}=""),"",IF({pn(b + 3)}<{TH["minn"]},"",({pn(b + 4)}-{pn(b + 5)})/{pn(b + 3)}))'
+        rp[f"E{r}"].number_format = PCT
+    rp.cell(row=30, column=1, value="Check means look and talk, not change the tool automatically. Keep each month's report: the trend is the point.").font = F
+    rp.freeze_panes = "A5"
+    wb.move_sheet("Report", offset=-(len(wb.sheetnames) - 2))
+    for ws in wb.worksheets:
+        font_all(ws)
+    wb.calculation.fullCalcOnLoad = True
+    wb.save(path)
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     pick_n(OUT / "1-pick-n-once.xlsx")
     weekly_visits(OUT / "2-weekly-visit-list.xlsx")
     waitlist(OUT / "3-waitlist.xlsx")
+    health_check(OUT / "4-monthly-health-check.xlsx")
     for p in sorted(OUT.glob("*.xlsx")):
         print(f"wrote {p.relative_to(ROOT)} ({p.stat().st_size // 1024} KB)")
 
