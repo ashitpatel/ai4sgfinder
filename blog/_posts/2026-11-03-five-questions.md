@@ -80,7 +80,7 @@ Every recommendation opens with three lines: the method, why, and two or three n
 5. **What worked and what was hard,** from the published evidence: successes, field challenges and unknowns.
 6. **The simpler option:** the best paper or spreadsheet rule, how close it comes, and what to check before settling for it.
 
-Then it offers follow-ups, one at a time: fitting the model to your program, readiness checks, pilot design, tools and partners with [what it takes](https://github.com/ashitpatel/ai4sgfinder/blob/main/prompt/knowledge/playbook.md#what-it-takes-effort-costs-roles-and-timeline) to set up and run (the work, the cost lines, the roles and the questions to ask, without guessed figures), reading and people to contact, and a one-page brief for a technical partner.
+Then it offers follow-ups, one at a time: fitting the model to your program, readiness checks, pilot design, tools and partners with [what it takes](https://github.com/ashitpatel/ai4sgfinder/blob/main/prompt/knowledge/playbook.md#what-it-takes-effort-costs-roles-and-timeline) to set up and run (the work, the cost lines, the roles and the questions to ask, without guessed figures, plus what published setups like yours report), reading and people to contact, and a one-page brief for a technical partner.
 
 ## Sometimes the answer is no model
 

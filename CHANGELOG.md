@@ -2,9 +2,10 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/` and, from 1.7.0, the replay kit's workbooks. The version lives in [`VERSION`](VERSION).
 
-## Unreleased
+## 1.11.0 — 2026-11-23
 
 - **Others' setups** (playbook, Follow-up 4, under *What it takes*): what twenty published deployments across eleven classes report about who built them, how long it took, what it cost and what happened later, from ARMMAN's weekly call list and Boston's school buses to Denver's school choice, Aarau's participatory budget and Flint's lead pipes. Every figure was checked against its source; three that failed were dropped. No setup publishes what its model cost to build, and the handover is the least documented step. The [record of the pass](docs/plans/reference-setups.md) lists what isn't published for each class and leads for a later pass.
+- **Blog:** Part 4 describes what published setups report, including Denver, Aarau and Flint; Parts 2 and 10 point to them.
 
 ## 1.10.0 — 2026-11-23
 
