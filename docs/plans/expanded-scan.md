@@ -1,6 +1,6 @@
 # Expanded scan: AI/ML interventions the earlier scans missed
 
-Status: done 2026-11-22. A first scan, then second and third passes on sources it didn't reach (Sections 8–9); all seven proposals were carried out the same day. Proposals 1–7 shipped in release 1.4.0; the third pass is in the next release.
+Status: done 2026-11-22. A first scan, then second and third passes on sources it didn't reach (Sections 8–9); all seven proposals were carried out the same day. Proposals 1–7 shipped in release 1.4.0; the third pass is in 1.5.0.
 
 ## 1. Why the earlier scans missed four sources
 
