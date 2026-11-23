@@ -12,7 +12,7 @@ More in the repository:
 - [Worked cases](https://github.com/ashitpatel/ai4sgfinder/tree/main/docs/cases): 25 cases. Sixteen interview examples across health, conservation, disaster preparedness, food security and more; seven funder reviews, including a benefit-fraud score and an AI tutor; and two cases where a tool feeds the decision, such as an ECG model for cardiac risk.
 - [Scanning the field](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/scanning.md): how the project looks for AI-for-good work it doesn't yet cover, and the [latest scan](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/plans/expanded-scan.md).
 - [Tutorials](https://github.com/ashitpatel/ai4sgfinder/tree/main/docs/tutorials): how each method works, with runnable code.
-- [Replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit): Excel workbooks that test a simple rule against current practice and a model on your own past records.
+- [Replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit): Excel workbooks that test a simple rule against current practice and a model on your own past records, and a monthly health check for a tool in use.
 - [Where it fits](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/landscape.md): how the project compares with related AI-for-good programs.
 - [Building from scratch](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/building-from-scratch.md): the prompts used to build it.
 

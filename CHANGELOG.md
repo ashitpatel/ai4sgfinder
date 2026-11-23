@@ -1,10 +1,11 @@
 # Changelog
 
-Each release on GitHub attaches the ready-to-use files from `dist/` and, from 1.7.0, the replay kit's three workbooks. The version lives in [`VERSION`](VERSION).
+Each release on GitHub attaches the ready-to-use files from `dist/` and, from 1.7.0, the replay kit's workbooks. The version lives in [`VERSION`](VERSION).
 
-## Unreleased
+## 1.8.0 — 2026-11-22
 
 - **Monthly health check** ([tools/replay-kit](tools/replay-kit/README.md#after-launch-the-monthly-health-check)), a fourth workbook for a tool already in use. From each month's records it reports, with a status for each: change in records, whether staff follow the list, overrides, the random share, outcomes recorded, the tool's hit rate against the random share and calibration (pooled over up to three months, left blank until there are enough outcomes), calibration and share served by group, and overlap with a simple rule. Thresholds are settings. The sample shows staff overriding a stale model toward a hazard it never saw. Checked in Excel against an independent recomputation, including the first month. The fairness audit's recheck step and the *Human override* readiness check point to it, and releases attach it.
+- **Docs and blog:** Parts 2, 4 and 10 and the About page describe the health check; the kit guide, README and docs index list it.
 
 ## 1.7.0 — 2026-11-22
 
