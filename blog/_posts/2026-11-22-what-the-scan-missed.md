@@ -5,7 +5,7 @@ layout: post
 series: finder
 ---
 
-*Part 11 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 11 of 11 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 AI4SG Finder helps a program choose a method for an allocation decision: who gets a visit, a well, a patrol or a place. Its twelve classes came from a careful reading of one research community. This post is about what that reading missed, how a wider scan of the field found more, and what changed as a result.
 

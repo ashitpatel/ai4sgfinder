@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-03 00:01:00 +0000
 ---
 
-*Part 2 of 10 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 2 of 11 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 Three in four nonprofits don't yet have an AI strategy ([TechSoup, 2025](https://blog.techsoup.org/posts/what-ai-means-for-nonprofits-in-2025-insights-from-the-ai-benchmark-report)). Most conversations about one start from a tool: should we use ChatGPT, build a chatbot, buy an AI product? A more useful starting point is a plainer question: **which decision are we trying to improve?**
 
@@ -71,14 +71,14 @@ That points to a **restless bandit**. Each week it scores every patient by how m
 
 ## What you get
 
-Every recommendation opens with a short summary and the month's next steps, then has the same six parts:
+Every recommendation opens with three lines: the method, why, and two or three next steps for the month. Then, in about 1,200 words, it has the same six parts:
 
-1. **The method**, and why your answers point there.
-2. **What goes wrong** with a naive model or a static spreadsheet instead.
-3. **How it runs in the field**, on paper or in Excel: who runs it, how often, and what field workers see.
-4. **Real deployments**, preferring NGO and public-sector cases, mapped to your program.
-5. **A report card** from the published evidence: successes, field challenges and unknowns.
-6. **The simpler alternative**: the best paper or spreadsheet option, how close it comes, and what to check before settling for it.
+1. **What kind of problem this is:** the method, and why your answers point there.
+2. **What goes wrong without it:** what fails with a naive model or a static spreadsheet instead.
+3. **How it runs on the ground,** on paper or in Excel: who runs it, how often, and what field workers see.
+4. **Where it has been used:** real deployments, preferring NGO and public-sector cases, mapped to your program.
+5. **What worked and what was hard,** from the published evidence: successes, field challenges and unknowns.
+6. **The simpler option:** the best paper or spreadsheet rule, how close it comes, and what to check before settling for it.
 
 Then it offers follow-ups, one at a time: fitting the model to your program, readiness checks, pilot design, tools and partners, reading and people to contact, and a one-page brief for a technical partner.
 

@@ -2,14 +2,15 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/`. The version lives in [`VERSION`](VERSION).
 
-## Unreleased
+## 1.5.0 — 2026-11-22
 
 - **Shorter, plainer recommendations** ([UX review](docs/plans/ux-review.md)). Each recommendation opens with a three-line summary and the month's next steps, aims for about 1,200 words, and uses plain headings: *What kind of problem this is*, *What goes wrong without it*, *How it runs on the ground*, *Where it has been used*, *What worked and what was hard*, *The simpler option*. One question per turn, with no sub-questions; a later answer brings a restatement of only what changes. The build's heading check follows the new headings.
 - **A short funder path in the kickoff,** so the one-click links can give a brief memo; the full review still needs the playbook. The kickoff's class list drops method jargon to make room.
 - **The funder memo** is plain text with headings, not a code block, aiming at about 800 words in all.
 - **Taxonomy Section 7, *Beyond the twelve classes*,** now holds the parts on beneficiary scores, AI as the intervention, model-measured outcomes and near-class decisions; Section 6 keeps the input layers. Both reference files open with a contents list for people reading them directly.
+- **Blog Part 11,** [*What the first scan missed, and what it changed*](https://ashitpatel.github.io/ai4sgfinder/what-the-scan-missed/), on the wider scan and what it added; the other posts now count eleven parts and describe the new recommendation and memo format.
 - **Docs and blog reviewed:** the README is reordered for readers first, with a table of ways to use it and a funder section; the cases index is regrouped; a docs index and the UX review are added; the skill description lists all twelve methods.
-- **A third scan pass** reached funder grantee lists and venues the first two missed. Section 6's table of decisions near the twelve classes grows by eight rows: people already eligible under written rules (*no model needed*: a rules engine), surplus donations placed as they arrive, live dispatch of crisis responders, which polluters or contractors to inspect, a funder's own grant choices, audits of past human decisions, splitting a fixed national stock across facilities, and AI that drafts statements a divided group can endorse.
+- **A third scan pass** reached funder grantee lists and venues the first two missed. The table of decisions near the twelve classes (now in Section 7) grows by eight rows: people already eligible under written rules (*no model needed*: a rules engine), surplus donations placed as they arrive, live dispatch of crisis responders, which polluters or contractors to inspect, a funder's own grant choices, audits of past human decisions, splitting a fixed national stock across facilities, and AI that drafts statements a divided group can endorse.
 - **Limits of prediction** in Section 4: in the Fragile Families Challenge, the best of 160 teams' predictions were only slightly better than a four-variable regression (Salganik et al., 2020), and a 2026 follow-up found the same across hundreds of outcomes.
 - Section 6 adds phone mobility data as a geospatial input in emergencies (Bengtsson et al., 2011; Ebengo et al., 2026), RAND's way of grading chatbot answers with experts' rubrics and checked automated graders (McBain et al., 2026), and cautions that effect estimates from non-randomized records depend on the estimator and that label sources can disagree. The readiness checks add *contract terms*.
 

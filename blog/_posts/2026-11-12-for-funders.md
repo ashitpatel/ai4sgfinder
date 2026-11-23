@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-12 00:03:00 +0000
 ---
 
-*Part 10 of 10 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 10 of 11 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 The series so far has been written for the people who run programs. This post is for the people who fund them.
 
@@ -20,7 +20,7 @@ They aren't alone. In a March 2025 study of 38 large philanthropies by Project E
 
 ## What the funder review does
 
-AI4SG Finder now has a second way in. Instead of answering the interview, a funder pastes a proposal and says they're reviewing it. The assistant first asks for the funder's own context: what they fund and where, the grant size and period, and how much risk they accept. Then it writes a one-page memo with seven parts:
+AI4SG Finder now has a second way in. Instead of answering the interview, a funder pastes a proposal and says they're reviewing it. The assistant first asks for the funder's own context: what they fund and where, the grant size and period, and how much risk they accept. Then it writes a short memo, about 800 words of plain text that paste cleanly into an email, with seven parts:
 
 1. **The decision**, in one line: what is allocated, to whom, how often.
 2. **Method fit**, with one of four verdicts: *fits*, *heavier than needed*, *mismatch*, or *no model needed*.

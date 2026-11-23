@@ -1,6 +1,6 @@
 # UX review
 
-Status: 2026-11-22. Documentation fixes and the prompt changes in Section 3 done; results in Section 4.
+Status: 2026-11-22. Documentation fixes and the prompt changes in Section 3 done, released in 1.5.0; results in Section 4.
 
 A review of the experience for three kinds of user, from first contact to a useful result: NGO program staff, foundation program officers reviewing proposals, and technical partners and contributors. It drew on the README, the blog, the prompts and reference files, and 17 transcripts of the assistant from the test runs recorded in the other plans.
 

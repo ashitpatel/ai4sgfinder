@@ -6,7 +6,7 @@ series: finder
 date: 2026-11-12 00:02:00 +0000
 ---
 
-*Part 9 of 10 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
+*Part 9 of 11 in a series on [AI4SG Finder](https://github.com/ashitpatel/ai4sgfinder).*
 
 The last two posts described [J-PAL]({{ site.baseurl }}/j-pal/) and [CEGA]({{ site.baseurl }}/cega/). This one is practical: how a program can use AI4SG Finder to work with them, or with a similar research group, at the right moment.
 
