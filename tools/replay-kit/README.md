@@ -13,6 +13,37 @@ The workbooks run on your own computer. Nothing is uploaded, and no names are ne
 
 Download them from this folder or from the latest [release](https://github.com/ashitpatel/ai4sgfinder/releases/latest). Each workbook opens on a **Read me** sheet with the steps. Yellow cells with blue text are yours to edit; grey cells are calculated. The sample records are made up and only show the format: replace them with yours.
 
+## How to use it
+
+**1. Pick the workbook.** AI4SG Finder names it when your recommendation's class has one: *Pick N once* for Classes 2 and 12, *Weekly visit list* for Class 1, *Waitlist* for Class 10. You can also choose by the decision in the table above. For other classes there is no workbook yet; the playbook's [pilot design](../../prompt/knowledge/playbook.md#follow-up-3-pilot-design) says how to make the comparison with a partner.
+
+**2. Check you have the records.** Each workbook needs one row per person, site or applicant, with an ID rather than a name:
+
+| Workbook | Columns you fill in | The one that matters most |
+|---|---|---|
+| 1. Pick N once | Group; up to three facts you could rank by; whether current practice chose them; a model's score (optional); the outcome learned later | The later outcome, for everyone on the list or a random sample of it |
+| 2. Weekly visit list | Week; ID; group; on track this week; visited; on track next week; a risk score (optional) | Whether they were on track the *next* week, recorded the same way every week |
+| 3. Waitlist | ID; group; arrival week; priority points; the week actually served | Arrival and service weeks for everyone, including those still waiting |
+| 4. Monthly health check | Month; ID; group; picked by the tool; served; in the random share; score; outcome; simple-rule pick (optional) | The random share: a few served each month from those the tool didn't pick |
+
+If the key column is missing, start recording it now; the replay can run next year.
+
+**3. Run it.** Open the workbook. Set the numbers on *Settings* (slots, visits or places per round, any minimum per group, the simple rule's points or weights). Replace the sample rows on *Data* with yours, in the yellow columns only. Read *Results* (or *Report* for the health check). It takes an hour or two once the records are in one table.
+
+**4. Decide.** Read the results overall and by group:
+- **The simple rule comes within a few percent of the model:** use the simple rule. Write it down for staff and recheck it yearly.
+- **The model is clearly better and the gap is worth its full cost** (building it, keeping the data flowing, staff time, maintenance): pilot it against current practice, as the playbook's pilot design describes.
+- **Neither beats current practice:** keep it, and look again at what the decision is trying to achieve.
+- **One rule leaves a group behind:** set a minimum for that group and run it again.
+
+**5. Share the result.** Put the figures, not the records, in the partner brief (AI4SG Finder's Follow-up 6 asks for them), in a proposal, or in a report to a funder: the funder review's first funding stage is exactly this test. You can also paste the summary figures into a conversation with AI4SG Finder and ask what they mean.
+
+**After launch,** use the monthly health check each month (see below).
+
+## What AI4SG Finder does with the kit
+
+The assistant points to the workbook for your class, by name and link, where it tells you to test on past records: in the recommendation's *simpler option*, the readiness check *Simpler option tested*, pilot design, the partner brief and a funder's review memo. Pilot design also asks for a random share and the monthly health check after launch. It never asks for your records in the chat; if you share a workbook's summary figures, it interprets them. The one-click links don't carry the playbook, so they won't mention the kit unless you ask.
+
 ## What a replay can and can't tell you
 
 A replay shows what each rule would have chosen from the same records and compares those choices. It can't show what would have happened to people under a rule nobody used, because those outcomes were never recorded. Each workbook is built around what *can* be measured honestly:

@@ -593,7 +593,7 @@ The expanded scan found decisions that look new but are usually variants of an e
 
 What to do after an approach has been chosen. The AI4SG Finder assistant uses this file for its six follow-ups and for the funder review at the end; people can also read it directly.
 
-**Reading this yourself?** Each follow-up starts with what it gives you: [1. Fit the model to your program](#follow-up-1-fit-the-model-to-your-program), [2. Readiness checks](#follow-up-2-readiness-checks) (including the [fairness audit for a risk score](#fairness-audit-for-a-risk-score)), [3. Pilot design](#follow-up-3-pilot-design), [4. Tools and partners](#follow-up-4-build-options--tools-and-partners), [5. Reading and people to contact](#follow-up-5-reading-and-people-to-contact), [6. A brief for a technical partner](#follow-up-6-one-page-brief-for-a-technical-partner). Before a session: [questions to settle before you start](#questions-to-settle-before-you-start). Funders, or an NGO checking its own proposal: see [Funder review](#funder-review-checking-a-proposal). Paragraphs headed *For the assistant* or *Rules for the assistant* are instructions to the model.
+**Reading this yourself?** Each follow-up starts with what it gives you: [1. Fit the model to your program](#follow-up-1-fit-the-model-to-your-program), [2. Readiness checks](#follow-up-2-readiness-checks) (including the [fairness audit for a risk score](#fairness-audit-for-a-risk-score)), [3. Pilot design](#follow-up-3-pilot-design), [4. Tools and partners](#follow-up-4-build-options--tools-and-partners), [5. Reading and people to contact](#follow-up-5-reading-and-people-to-contact), [6. A brief for a technical partner](#follow-up-6-one-page-brief-for-a-technical-partner). Before a session: [questions to settle before you start](#questions-to-settle-before-you-start). Testing a simple rule on your own records: [the replay kit](#the-replay-kit-testing-the-simple-option-on-the-programs-own-records). Funders, or an NGO checking its own proposal: see [Funder review](#funder-review-checking-a-proposal). Paragraphs headed *For the assistant* or *Rules for the assistant* are instructions to the model.
 
 Tools, organizations and links were last checked on **2026-10-30**; a few, such as Fairlearn and OpenSAFELY, were added in November 2026. Services change: confirm that a tool or partner is still active before relying on it.
 
@@ -602,6 +602,19 @@ Tools, organizations and links were last checked on **2026-10-30**; a few, such 
 **When the user can't answer a question,** state a reasonable assumption, mark it *[to check]*, and carry on rather than stalling. If several key facts are missing, offer the *questions to settle before you start* below as a short list they can take to colleagues, and say the recommendation can be revisited once they have the answers.
 
 **Never ask for, or work on, records about named people.** If a user pastes names, phone numbers, IDs or case notes, don't repeat or analyse them; say briefly why (the chat sends them to an outside service), and ask instead for counts, the fields that exist and how often they are recorded. Comparisons on past records (the simpler option against the model, the fairness audit) run on the program's own computer, in a spreadsheet or with a partner under a data agreement, never inside the chat. For three common decisions, a one-off choice of who gets something, a weekly visit list and a waitlist, point users to the [replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit): Excel workbooks that do the comparison on their own computer.
+
+### The replay kit: testing the simple option on the program's own records
+
+The [replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit) is four free Excel workbooks a program runs on its own computer. Point to the one that matches the class, by name and link, wherever these instructions say to test on past records: in the recommendation's *Simpler option*, the readiness check *Simpler option tested*, pilot design, the partner brief and the funder memo's funding stages. Never ask for the records in the chat; if the user later shares the summary figures from a workbook, interpret them.
+
+| Class | Workbook | What the program needs |
+|---|---|---|
+| 2 Static Demographic Targeting, 12 Risk-Based Inspection, and one-off choices in 7 | *1. Pick N once* | One row per person or site considered, with an outcome learned later for everyone or a random sample of them |
+| 1 Dynamic State Evolution | *2. Weekly visit list* | One row per person per week: whether they were on track, visited, and on track the next week |
+| 10 Online Assignment & Waitlists, when people wait for a fixed number of places | *3. Waitlist* | One row per applicant: arrival week, priority points, the week actually served |
+| Any class whose tool ranks people or places, once it is in use | *4. Monthly health check* | Each month's records, including a random share served from those the tool didn't pick |
+
+For other classes there is no workbook: the comparison is done with a partner ([Follow-up 3](#follow-up-3-pilot-design) lists how for each class). The one-click links don't carry this file, so users of those links won't hear of the kit unless they ask.
 
 ### Questions to settle before you start
 
@@ -845,6 +858,8 @@ Recommend the smallest pilot that can show the approach works better than curren
 - **Pick one or two success measures** agreed before the pilot starts, plus one harm measure (who might be worse off).
 - **If the AI is the intervention** (a tutor, a coach, an adviser), measure an outcome, not usage: learning, health, income, not messages sent. Compare it with current practice, or with the same support without AI, and grade a sample of its answers against an expert's ([taxonomy, Section 7](taxonomy.md#when-the-ai-is-the-intervention)).
 - **If a model measures the outcome** (satellite images, phone data, image grading), check it against a direct measure on a sample first: a proxy can miss an effect a survey finds. Keep the direct measure on a random sample throughout, so the estimate stays valid ([taxonomy, Section 7](taxonomy.md#when-a-model-measures-the-outcome)).
+- **Replay first.** Before the pilot, run the simple option, current practice and the model on last year's records: with the [replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit) for Classes 1, 2, 10 and 12 (see *The replay kit* above), or with a partner for the others.
+- **Plan the check after launch.** Keep a random share of slots chosen from those the tool doesn't pick, record overrides, and review the kit's monthly health check each month, so drift and unfairness show up early.
 - **Fix the duration** up front and the conditions for stopping early.
 - **Keep it reversible.** The old process stays available.
 
@@ -982,7 +997,9 @@ Recommended approach
 
 Simpler option to beat
   [The best paper or spreadsheet rule, and the assumptions it rests on. Any build
-   must beat it on last year's records before the pilot.]
+   must beat it on last year's records before the pilot. If the program has run
+   the replay kit's workbook for its class, give the result; if not, say which
+   workbook to run first.]
 
 Data we have
   [Fields, how often recorded, how many records, format, known gaps.]
@@ -1064,9 +1081,9 @@ For a funder, by default a foundation program officer, reviewing an NGO's propos
 | **No model needed** | Supply roughly meets demand, few decisions are made, or a written rule captures most of the value | An AI system to decide pantry quantities when every household already gets served |
 
 **Funding stages.** Suggest stages that release money as the evidence comes in, matched to the funder's risk appetite; if they fund only proven programs, say which stage the proposal has reached.
-1. **Test on past records** (small grant, weeks): replay last year's decisions under the proposed model and under the simpler option, counting the model's full cost. For one-off decisions (Classes 2 and 4), compare plans instead. Release the next stage only if the gap is worth that cost.
+1. **Test on past records** (small grant, weeks): replay last year's decisions under the proposed model and under the simpler option, counting the model's full cost. For one-off decisions (Classes 2 and 4), compare plans instead. Release the next stage only if the gap is worth that cost. For Classes 1, 2, 10 and 12, the NGO can run this test itself, before any build money, with the [replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit) workbook for the class; say which.
 2. **Pilot** ([Follow-up 3](#follow-up-3-pilot-design)): against current practice, with one or two success measures and a harm measure agreed in advance, a fixed duration, and the old process kept available.
-3. **Scale**: with a named maintenance owner and a written fallback rule. Suggest an evaluation only if the program passes the three-part test in [Follow-up 4](#follow-up-4-build-options--tools-and-partners); evaluation funding from J-PAL, CEGA or IPA goes through their researchers, so the NGO approaches them with a researcher.
+3. **Scale**: with a named maintenance owner, a written fallback rule, and the replay kit's monthly health check (or the same measures) reported at each review: whether staff follow the tool, whether it beats a random share, and how each group fares. Suggest an evaluation only if the program passes the three-part test in [Follow-up 4](#follow-up-4-build-options--tools-and-partners); evaluation funding from J-PAL, CEGA or IPA goes through their researchers, so the NGO approaches them with a researcher.
 
 **The memo.** Write it as ordinary text with short headings, not in a code block, so it pastes cleanly into an email or document. Keep the whole reply under about 800 words: one to three sentences under each heading, questions and risks as one-line bullets, and the filter reading before it (step 2) as five short lines. Use these seven headings in order:
 

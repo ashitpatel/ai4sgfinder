@@ -31,7 +31,7 @@ Every tutorial follows the same arc, so once you've read one the others are easy
 4. **From data to estimates:** the statistics: estimates, margins of error, and what to do when data are thin.
 5. **The decision engine:** the method itself, with a small example you can check by hand.
 6. **Scaling up:** the full-size problem and its real-world limits.
-7. **Code and simulation:** a runnable program and what its results mean, ending with **the simpler alternative**: the best paper or spreadsheet rule, measured against the method on the same data, in what ways it comes close, and what to check before settling for it.
+7. **Code and simulation:** a runnable program and what its results mean, ending with **the simpler alternative**: the best paper or spreadsheet rule, measured against the method on the same data, in what ways it comes close, and what to check before settling for it. To make the same comparison on your own records in Excel, without code, use the [replay kit](../../tools/replay-kit/README.md): it covers the decisions in Tutorials 1 (weekly visits), 2 and 13 (a one-off choice of N) and the waitlists of Class 10.
 8. **Summary:** each part of the method, its core formula and what it does in practice.
 
 ## Running the code

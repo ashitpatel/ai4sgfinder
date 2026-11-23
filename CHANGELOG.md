@@ -2,6 +2,11 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/` and, from 1.7.0, the replay kit's workbooks. The version lives in [`VERSION`](VERSION).
 
+## Unreleased
+
+- **What the assistant does with the replay kit.** The playbook gains *The replay kit*, a table of which workbook goes with which class and what each needs, and names the workbook where it tells users to test on past records: pilot design (*Replay first*, and a random share with the monthly health check after launch), the partner brief's *Simpler option to beat*, and the funder memo's first and scale stages. It never asks for records in the chat. Runs of Cases 1, 13 and 17 named the right workbook in the recommendation, the follow-ups and the funding stages; the cases checklist now checks this.
+- **How to use the kit:** the kit guide adds the records each workbook needs, the steps, how to decide from the results and where to share them, and what AI4SG Finder does with the kit. The README and tutorials index link to it.
+
 ## 1.8.0 — 2026-11-22
 
 - **Monthly health check** ([tools/replay-kit](tools/replay-kit/README.md#after-launch-the-monthly-health-check)), a fourth workbook for a tool already in use. From each month's records it reports, with a status for each: change in records, whether staff follow the list, overrides, the random share, outcomes recorded, the tool's hit rate against the random share and calibration (pooled over up to three months, left blank until there are enough outcomes), calibration and share served by group, and overlap with a simple rule. Thresholds are settings. The sample shows staff overriding a stale model toward a hazard it never saw. Checked in Excel against an independent recomputation, including the first month. The fairness audit's recheck step and the *Human override* readiness check point to it, and releases attach it.
