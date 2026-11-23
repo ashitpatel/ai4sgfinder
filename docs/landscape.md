@@ -12,7 +12,7 @@ Many organizations help NGOs and governments use AI for social good. They evalua
 
 Optimization, the family of methods for allocating something scarce, is also nearly absent: a handful of projects name it, and no guidance or catalogue treats it as a category.
 
-AI4SG Finder covers the step before building, funding or evaluating: it helps one program work out what kind of decision it faces and which family of methods fits, including when no model is needed. It complements these organizations rather than competing with them.
+AI4SG Finder covers the step before building, funding or evaluating: it helps one program work out what kind of decision it faces and which family of methods fits, including when no model is needed. For funders, its [funder review](../prompt/knowledge/playbook.md#funder-review-checking-a-proposal) checks whether a proposal's method fits the decision; the closest counterparts below are Fast Forward's AI Proposal Assessment and Google.org's AI Readiness Playbook for Funders, which ask whether AI is the right intervention but don't compare method families. It complements these organizations rather than competing with them.
 
 ## How the organizations were chosen
 

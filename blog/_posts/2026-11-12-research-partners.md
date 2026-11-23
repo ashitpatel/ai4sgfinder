@@ -33,7 +33,7 @@ After the recommendation, AI4SG Finder offers six follow-ups. Several line up wi
 | Follow-up | What it covers | Upstream resources to use with it |
 |---|---|---|
 | 1. Fit the model to your program | How the method works for your case | J-PAL's [evaluations database](https://www.povertyactionlab.org/evaluations) and [Policy Insights](https://www.povertyactionlab.org/policy-insights): has a similar rule been tested? |
-| 2. Readiness checks | Data, consent and privacy, fairness, do-no-harm | CEGA's [Data Privacy Lab](https://cega.berkeley.edu/collection/data-privacy-lab/); J-PAL's [IDEA handbook](https://www.povertyactionlab.org/initiative/idea-handbook) on administrative data; CEGA's [brief on explaining AI targeting](https://cega.berkeley.edu/document/improving-the-transparency-and-explainability-of-ai-in-the-targeting-of-aid/) |
+| 2. Readiness checks | Data, consent and privacy, fairness (including an audit of any risk score), do-no-harm, contract terms | CEGA's [Data Privacy Lab](https://cega.berkeley.edu/collection/data-privacy-lab/); J-PAL's [IDEA handbook](https://www.povertyactionlab.org/initiative/idea-handbook) on administrative data; CEGA's [brief on explaining AI targeting](https://cega.berkeley.edu/document/improving-the-transparency-and-explainability-of-ai-in-the-targeting-of-aid/) |
 | 3. Pilot design | The smallest test that shows the approach beats current practice | J-PAL's [research resources](https://www.povertyactionlab.org/research-resources) on randomization and sample size; CEGA's [toolkits](https://cega.berkeley.edu/our-resources/data/), including a cost reporting table |
 | 4. Build options | Tools and partners | J-PAL's [AI Evidence Playbook](https://www.povertyactionlab.org/ai-evidence-playbook), especially its section on targeting |
 
@@ -77,7 +77,7 @@ A few expectations to set:
 
 ## Where this leaves the series
 
-The first six posts were about choosing a method. These three are about what comes before and after: learning from what others have already tested, and, once a program is ready, finding out whether the method actually helped. The [last post]({{ site.baseurl }}/for-funders/) turns to the people on the other side of the proposal: funders.
+The first six posts were about choosing a method. These three are about what comes before and after: learning from what others have already tested, and, once a program is ready, finding out whether the method actually helped. The [next post]({{ site.baseurl }}/for-funders/) turns to the people on the other side of the proposal: funders.
 
 If you take a brief from AI4SG Finder to a research partner, I'd like to hear how it went, including what was missing. Tell me through an [issue on GitHub](https://github.com/ashitpatel/ai4sgfinder/issues).
 

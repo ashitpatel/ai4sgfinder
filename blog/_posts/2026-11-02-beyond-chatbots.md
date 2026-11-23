@@ -25,7 +25,7 @@ A different kind of AI works on those decisions directly. It predicts, optimizes
 
 None of these are language models. They come from operations research, economics and machine learning, and they get far less attention than chatbots.
 
-Some tools sit between the two kinds. Speech recognition that transcribes court hearings in Indian languages, or OCR and language models that turn millions of pages of scanned local laws into a table, don't decide who gets anything. But they often feed a decision that does. The finder treats them that way: it names the decision, classifies that, and asks how well the tool works on the program's own data before anything relies on it.
+Some tools sit between the two kinds. Speech recognition that transcribes court hearings in Indian languages, or OCR and language models that turn millions of pages of scanned local laws into a table, don't decide who gets anything. But they often feed a decision that does. The full version of the finder treats them that way: it names the decision, classifies that, and asks how well the tool works on the program's own data before anything relies on it.
 
 ## Where this started
 

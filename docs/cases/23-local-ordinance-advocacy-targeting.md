@@ -76,3 +76,29 @@ A (fictional) state tenant-rights coalition has six organizers and two staff att
 - Recommend a classification or allocation "class" for the OCR and labelling steps.
 - Accept language-model labels without a hand-checked sample and a measured error rate.
 - Recommend effect-based targeting from 20 non-randomized campaigns.
+
+## After the recommendation
+
+This case shows **Follow-up 2** in full; the others are summarized.
+
+### Follow-up 2: Readiness checks
+
+| Check | Status | What to fix before the pilot |
+|---|---|---|
+| Decision owner | Ready: the coalition's January planning meeting | Write down who signs off the 12 choices |
+| Data for the plan | Partly: renter counts and eviction filings exist; protections by city don't | Build the cities × protections table first |
+| Input layer measured on your own data | **Not yet** | Hand-code 50 sections per protection, and score the language model's labels against them, separately for scanned and digital codes |
+| Fallback when the layer fails | Partly | Any entry marked "unclear" goes to a volunteer to read; keep the section text and link with every label |
+| Simpler option tested | Not yet | Compare the plan from the table with a plan from the 60 largest cities hand-coded |
+| Fairness | Partly | Agree the regional floor with member groups before the table exists |
+| Contract terms | Not applicable unless a vendor runs the pipeline | If one does, the coalition keeps the table and the code |
+| Licence of any dataset used | Unknown | LOCUS-v1 is non-commercial: confirm the coalition's use fits |
+| Community voice | Ready: member groups choose with the coalition | Share how the table was built, and its error rate |
+
+### The other follow-ups, in brief
+
+- **1. Fit the model:** units are city-and-protection pairs; the budget is 12 campaigns; a regional floor; renters lacking each protection as the objective.
+- **3. Pilot design:** check the table against the 30 codes the volunteer already read before using it for one January plan.
+- **4. Build options:** an open OCR model and a small classifier run by the volunteer, or an existing dataset if it covers the state; a spreadsheet for the plan.
+- **5. Reading:** the LOCUS paper (arXiv 2606.19334) for the pipeline; the Class 2 references for the plan.
+- **6. Brief:** one page for a law-school clinic or data volunteer to build and check the table.

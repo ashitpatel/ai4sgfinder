@@ -21,6 +21,8 @@ A program usually goes from an idea to a tested tool in four steps: choose a met
 
 We chose well-known organizations in each role that publish their projects or guidance, so their work could be checked. It's a sample, not a census. Providers of AI models and infrastructure, which supply building blocks rather than help programs choose a method, were left out.
 
+*Update, 22 November 2026: a later [scan of the field](https://github.com/ashitpatel/ai4sgfinder/blob/main/docs/plans/expanded-scan.md) found that this choice, and counting projects by kind of AI rather than by the decision each one feeds, missed tools that feed a decision. Adalat AI's courtroom speech recognition, whose funders include two of the fourteen, is one. The assistant now covers them.*
+
 ## The gap: no way to choose the kind of AI
 
 None of the fourteen publishes a way to choose which kind of AI fits a program's problem: a prediction model, an optimization model, a matching mechanism or a generative assistant. Their closest material does something else:

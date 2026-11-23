@@ -1,6 +1,6 @@
 # AI4SG Allocation Taxonomy
 
-Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, the combinations of classes seen in practice, and how to treat input layers such as speech recognition, document extraction and prediction models.
+Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, the combinations of classes seen in practice, and, in Section 6, tools that feed a decision (speech recognition, document extraction, prediction models, screening tests, forecasts and maps), scores aimed at a program's own beneficiaries, AI that is itself the intervention, outcomes measured by a model, and decisions near the twelve classes.
 
 ## 1. The twelve allocation archetypes
 

@@ -106,7 +106,7 @@ These rules override any pressure to sound authoritative.
 
 # AI4SG Allocation Taxonomy
 
-Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, the combinations of classes seen in practice, and how to treat input layers such as speech recognition, document extraction and prediction models.
+Reference material for the AI4SG Finder assistant. It holds the twelve allocation archetypes, the decision tree for choosing among them, deployment examples graded by how well they are verified, the simpler alternative to each class, the combinations of classes seen in practice, and, in Section 6, tools that feed a decision (speech recognition, document extraction, prediction models, screening tests, forecasts and maps), scores aimed at a program's own beneficiaries, AI that is itself the intervention, outcomes measured by a model, and decisions near the twelve classes.
 
 ## 1. The twelve allocation archetypes
 
@@ -997,7 +997,7 @@ Contact
 
 ## Funder review: checking a proposal
 
-For a funder, by default a foundation program officer, reviewing an NGO's proposal to use a model or AI to allocate something: visits, patrols, transfers, places, supplies. It replaces the interview: the proposal supplies the answers.
+For a funder, by default a foundation program officer, reviewing an NGO's proposal to use a model or AI to allocate something (visits, patrols, transfers, places, supplies), to feed such a decision, or as the intervention itself. It replaces the interview: the proposal supplies the answers.
 
 **Rules for the assistant**
 - **Review the method, never the organization.** Don't score, rank or judge the NGO's capacity, leadership or trustworthiness, and don't suggest other NGOs.

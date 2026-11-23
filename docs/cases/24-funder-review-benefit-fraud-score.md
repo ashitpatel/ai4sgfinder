@@ -4,7 +4,7 @@
 |---|---|
 | **Domain** | Social protection |
 | **Who is using the assistant** | A foundation program officer reviewing a proposal |
-| **Expected verdict** | The memo's first line says the score targets the program's own beneficiaries. **Automatic payment pauses can't be funded as designed.** For the referral step, *Heavier than needed* (about 36 confirmed cases is too few for the model) or *Mismatch* are both defensible |
+| **Expected verdict** | The memo's first line says the score targets the program's own beneficiaries. **Automatic payment pauses fail the safeguards required before any funding stage.** For the referral step, *Heavier than needed* (about 36 confirmed cases is too few for the model) or *Mismatch* are both defensible |
 | **Most likely confusion** | Treating it as ordinary [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) because investigators are limited |
 | **Playbook section** | [Funder review](../../prompt/knowledge/playbook.md#funder-review-checking-a-proposal); readiness check *Scoring the people you serve* |
 | **Real-world pattern** | Government welfare-fraud models: SyRI, Robodebt, Amsterdam's Smart Check, US tax-audit selection ([taxonomy, Section 6](../../prompt/knowledge/taxonomy.md#when-a-score-targets-the-people-you-serve)) |
@@ -36,7 +36,7 @@ What the county may actually need is to know why overpayments happen. If most co
 ## What a good memo contains
 
 1. **The decision:** which of about 6,000 recipient households have payments paused or are investigated each month. *The score targets the program's own beneficiaries.*
-2. **Method fit:** a risk ranking for limited investigations is Class 12 in form, so the referral step is *Heavier than needed* (about 36 confirmed cases can't support a 40-field model, and a random-sample audit with caseworker referrals is likely as good) or a *Mismatch* (the labels record who was investigated, not who committed fraud). Either way, the automatic pause is an adverse action on a prediction, not an inspection, and can't be funded as designed.
+2. **Method fit:** a risk ranking for limited investigations is Class 12 in form, so the referral step is *Heavier than needed* (about 36 confirmed cases can't support a 40-field model, and a random-sample audit with caseworker referrals is likely as good) or a *Mismatch* (the labels record who was investigated, not who committed fraud). Either way, the automatic pause is an adverse action on a prediction, not an inspection, and fails the safeguards the playbook requires before any funding stage.
 3. **The simpler option to beat:** a random sample of cases for review each month (which also measures how much fraud and error there really is), plus the caseworkers' current referrals. Any model must beat that, with a person reviewing every flag.
 4. **Questions for the NGO:**
    - What share of past overpayments came from fraud, and what share from agency or applicant error?

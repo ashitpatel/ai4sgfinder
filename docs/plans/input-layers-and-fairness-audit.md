@@ -1,6 +1,6 @@
 # Plan: cover input layers and fairness audits
 
-Status: steps 1–4 done 2026-11-22. The version bump is left for a release commit.
+Status: steps 1–4 done 2026-11-22; released in 1.4.0.
 
 This plan comes from a review of four real projects against ai4sgfinder: [Adalat AI](https://adalat.ai), and three UC Berkeley projects reported by Berkeley News in 2026 ([sudden cardiac death from ECGs](https://news.berkeley.edu/2026/06/24/with-ai-researchers-discover-new-way-to-detect-sudden-cardiac-death-risk/), [Emma Pierson's work on bias](https://news.berkeley.edu/2026/01/20/ai-has-a-bias-problem-can-we-build-something-smarter/), [a database of local laws](https://news.berkeley.edu/2026/10/02/to-decipher-local-laws-researchers-used-ai-to-build-a-database-of-millions-of-them/)). Cases [20](../cases/20-funder-review-court-transcription.md)–[23](../cases/23-local-ordinance-advocacy-targeting.md) are built on their problem patterns.
 

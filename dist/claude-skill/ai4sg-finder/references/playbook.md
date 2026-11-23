@@ -414,7 +414,7 @@ Contact
 
 ## Funder review: checking a proposal
 
-For a funder, by default a foundation program officer, reviewing an NGO's proposal to use a model or AI to allocate something: visits, patrols, transfers, places, supplies. It replaces the interview: the proposal supplies the answers.
+For a funder, by default a foundation program officer, reviewing an NGO's proposal to use a model or AI to allocate something (visits, patrols, transfers, places, supplies), to feed such a decision, or as the intervention itself. It replaces the interview: the proposal supplies the answers.
 
 **Rules for the assistant**
 - **Review the method, never the organization.** Don't score, rank or judge the NGO's capacity, leadership or trustworthiness, and don't suggest other NGOs.

@@ -48,7 +48,7 @@ Most programs recognize one or two of their own decisions in the list. Some reco
 
 ## Predicting need is only one of these
 
-Many programs reach for a risk or poverty score whatever the decision. A score like that is the right tool for some jobs, such as deciding who is eligible or where to inspect first. But it tells you who is poor or at risk, not whom a visit will help, where a poacher will go next, or how to split a budget the community voted on. Using it for those decisions can send help to people who would have done fine anyway.
+Many programs reach for a risk or poverty score whatever the decision. A score like that is the right tool for some jobs, such as estimating who is poorest when income can't be observed, or where to inspect first. (When written rules decide who is eligible, no model is needed; and aimed at a program's own beneficiaries to flag fraud, scores have the worst record of all: [why](https://github.com/ashitpatel/ai4sgfinder/blob/main/prompt/knowledge/taxonomy.md#when-a-score-targets-the-people-you-serve).) But it tells you who is poor or at risk, not whom a visit will help, where a poacher will go next, or how to split a budget the community voted on. Using it for those decisions can send help to people who would have done fine anyway.
 
 Two more outcomes matter as much as the twelve:
 

@@ -7,8 +7,11 @@ abstract: >-
   An AI assistant that helps NGOs and public agencies choose the right
   AI-for-social-good allocation method (restless bandits, welfare
   optimization, security games, robust optimization, matching markets,
-  participatory budgeting, effect-based targeting, or adaptive experiments)
-  for a field problem, packaged for Claude, ChatGPT and Gemini.
+  participatory budgeting, effect-based targeting, adaptive experiments,
+  vehicle routing, online assignment, network seeding or risk-based
+  inspection) for a field problem, or to see that no model is needed. It
+  also reviews funders' AI proposals and checks tools that feed a decision.
+  Packaged for Claude, ChatGPT and Gemini.
 authors:
   - family-names: "Patel"
     given-names: "Ashit"

@@ -41,4 +41,4 @@ Use the same brief for each sweep and change only the sources. The brief states 
 
 | Date | Write-up | Items | New patterns | Changes |
 |---|---|---|---|---|
-| 2026-11-22 | [expanded-scan.md](plans/expanded-scan.md) | About 170 in the first round; about 120 more in a second round on sources the first didn't reach | 10, plus near-class decisions (zones, backlogs, timing, where to expand) | Section 6: input layers, warnings, model-measured outcomes, near-class decisions; governance readiness checks; Cases 24–25 |
+| 2026-11-22 | [expanded-scan.md](plans/expanded-scan.md) | About 170 in the first round; about 120 in a second; about 76 venue items and six funders' grantee lists in a third | 10, plus near-class decisions (zones, backlogs, timing, where to expand, rules engines, dispatch, stock allocation) | Section 6: input layers, warnings, model-measured outcomes, near-class decisions; Section 4: limits of prediction; governance and contract readiness checks; Cases 24–25 |

@@ -99,6 +99,8 @@ Add follow-ups the assistant offers after its recommendation, one at a time, tai
 - what to read and whom to contact;
 - a short brief they can hand to a technical partner.
 
+Also add a funder mode: when a funder pastes an NGO's proposal instead of answering the interview, the assistant asks for the funder's context, then writes a short memo on whether the proposed method fits the decision, the simpler option it should beat, questions for the NGO, risks to people, an evidence check and funding stages. It reviews the method, never the organization, and never says whether to fund.
+
 For each class, gather what these follow-ups draw on: tools, services, partners, reading and contacts. Check that every tool and organization exists and is active, and include links. Tell users to recheck them before relying on them.
 
 Return the full updated system prompt, and the per-class material as a separate follow-up guide.
@@ -125,7 +127,7 @@ Below are a system prompt, a reference document and a follow-up guide from a des
 **Prompt 6: Worked examples**
 
 ```text
-Create worked examples, called cases, across different impact domains and intervention types. Together they should cover every class, the common combinations of classes and at least one program that needs no model, and every interview question should be the deciding one in at least one case. First show me the planned list, with each case's domain, intervention type, expected class and deciding question, and wait for my go-ahead.
+Create worked examples, called cases, across different impact domains and intervention types. Together they should cover every class, the common combinations of classes, at least one program that needs no model, and funder reviews that reach each verdict, and every interview question should be the deciding one in at least one case. First show me the planned list, with each case's domain, intervention type, expected class and deciding question, and wait for my go-ahead.
 
 Each case has:
 - an illustrative scenario with a fictional organization;

@@ -1,6 +1,6 @@
 # Expanded scan: AI/ML interventions the earlier scans missed
 
-Status: scan done 2026-11-22, with a second round on unreached sources. All seven proposals done the same day (Sections 7 and 8 record the changes and tests).
+Status: done 2026-11-22. A first scan, then second and third passes on sources it didn't reach (Sections 8–9); all seven proposals were carried out the same day. Proposals 1–7 shipped in release 1.4.0; the third pass is in the next release.
 
 ## 1. Why the earlier scans missed four sources
 
@@ -151,12 +151,7 @@ Every proposal needs its references verified first: most rows above come from se
 - *Operators:* MSF, Mercy Corps, Save the Children, BRAC, Pratham, Last Mile Health, IPA, UNDP Accelerator Labs.
 - *News:* Princeton, Yale, Columbia, UCSF, Broad, Santa Fe Institute, RAND, Toronto, Imperial, ETH, IISc; Stanford Report and Michigan research news blocked automated fetches.
 
-**Recipe for the next scan**
-- Run the sweeps over several turns, two or three at a time, so the search budget isn't shared seven ways.
-- For news, fetch listing pages directly (MIT News topic pages, washington.edu/news by month, Berkeley CDSS, cam.ac.uk/stories, actu.epfl.ch, allenai.org/blog, urban.org, J-PAL Project AI Evidence, Stanford RegLab and HAI); they gave about three times the yield per call of search. Use EurekAlert or RSS where a site blocks fetches.
-- Mine funders' grantee lists for the decision each project feeds, not only the kind of AI.
-- Classify every item by role (a)–(f), and keep the counts, so the next scan can see whether the mix is shifting.
-- Cadence: quarterly. The news sweep's yield (about 20 new items in 280 stories) is worth repeating, mostly for input layers and governance.
+**Recipe for the next scan:** see [docs/scanning.md](../scanning.md), which grew out of this section.
 
 ## 7. Proposals 1–3: what was done and tested
 

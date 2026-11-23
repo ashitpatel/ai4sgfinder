@@ -32,10 +32,13 @@ SKILL_DESCRIPTION = (
     "Diagnose an NGO or public-sector resource-allocation problem and recommend the "
     "appropriate AI-for-social-good approach (restless bandits, welfare ILP, security "
     "games, distributionally robust optimization, matching markets, participatory "
-    "budgeting, effect-based targeting, or adaptive experiments). Use when someone "
-    "wants help choosing an algorithm or ML method for allocating aid, staff time, "
-    "patrols, supplies, seats, or a community budget, or when a funder wants to "
-    "review an NGO proposal that uses a model or AI to allocate them."
+    "budgeting, effect-based targeting, adaptive experiments, vehicle routing, online "
+    "assignment, network seeding or risk-based inspection), or say that no model is "
+    "needed. Use when someone wants help choosing an algorithm or ML method for "
+    "allocating aid, staff time, patrols, supplies, seats, inspections or a community "
+    "budget; when a tool such as speech recognition, document extraction or a risk "
+    "score is meant to feed such a decision; or when a funder wants to review an NGO "
+    "proposal that uses a model or AI, including an AI tutor or adviser."
 )
 
 # The Claude Code plugin names its skill "finder", so it runs as /ai4sg-finder:finder.
@@ -174,8 +177,11 @@ abstract: >-
   An AI assistant that helps NGOs and public agencies choose the right
   AI-for-social-good allocation method (restless bandits, welfare
   optimization, security games, robust optimization, matching markets,
-  participatory budgeting, effect-based targeting, or adaptive experiments)
-  for a field problem, packaged for Claude, ChatGPT and Gemini.
+  participatory budgeting, effect-based targeting, adaptive experiments,
+  vehicle routing, online assignment, network seeding or risk-based
+  inspection) for a field problem, or to see that no model is needed. It
+  also reviews funders' AI proposals and checks tools that feed a decision.
+  Packaged for Claude, ChatGPT and Gemini.
 authors:
   - family-names: "{family}"
     given-names: "{given}"

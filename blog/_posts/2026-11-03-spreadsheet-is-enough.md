@@ -14,6 +14,8 @@ That's what AI4SG Finder's [16 worked cases](https://github.com/ashitpatel/ai4sg
 
 The organizations in the cases are fictional, so the details can be complete. The research they cite is real.
 
+*Update, 22 November 2026: the folder now holds 25 cases. The nine added later are funder reviews ([Part 10]({{ site.baseurl }}/for-funders/)) and cases where a tool feeds the decision, such as a published ECG model or laws extracted from scanned documents.*
+
 ## What a case contains
 
 Each case is written so you can follow the reasoning, not just the answer:

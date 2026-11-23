@@ -1,6 +1,6 @@
 # Tutorials
 
-In-depth walkthroughs of the method behind each [worked case](../cases/). Each one assumes basic statistics (proportions, expected values, confidence intervals) and no knowledge of machine learning or optimization. Every term is explained when it first appears.
+In-depth walkthroughs of the method behind worked Cases 1–14 ([cases](../cases/README.md)); later cases reuse them. Each one assumes basic statistics (proportions, expected values, confidence intervals) and no knowledge of machine learning or optimization. Every term is explained when it first appears.
 
 | Tutorial | Approach | Case it builds on |
 |---|---|---|
@@ -19,7 +19,7 @@ In-depth walkthroughs of the method behind each [worked case](../cases/). Each o
 | [13. Risk-based inspection: where to dig for lead pipes](13-risk-based-inspection-lead-pipes.md) | [Class 12: Risk-Based Inspection](../../prompt/knowledge/taxonomy.md#class-12-risk-based-inspection) | [Lead-pipe search](../cases/13-lead-pipe-inspection.md) |
 | [14. Anticipatory action: when the cash goes out before a flood](14-anticipatory-cash-flood-trigger.md) | [Class 4](../../prompt/knowledge/taxonomy.md#class-4-robust-contingency-planning) trigger with a [Class 2](../../prompt/knowledge/taxonomy.md#class-2-static-demographic-targeting) list | [Cash before a flood](../cases/14-anticipatory-cash-floods.md) |
 
-Of the three combined cases, [cash before a flood](../cases/14-anticipatory-cash-floods.md) has its own tutorial (14), because its main decision, when to act on a forecast, is taught nowhere else. The other two use two existing tutorials each: [snare search](../cases/15-snare-search-patrols.md) (tutorials 13 and 3) and [job-search support](../cases/16-job-support-adaptive-targeting.md) (tutorials 9 and 8). [Tutorial 6](06-no-model-food-pantry.md) is about the simple rule throughout.
+Of the three combined cases, [cash before a flood](../cases/14-anticipatory-cash-floods.md) has its own tutorial (14), because its main decision, when to act on a forecast, is taught nowhere else. The other two use two existing tutorials each: [snare search](../cases/15-snare-search-patrols.md) (tutorials 13 and 3) and [job-search support](../cases/16-job-support-adaptive-targeting.md) (tutorials 9 and 8). [Tutorial 6](06-no-model-food-pantry.md) is about the simple rule throughout. Two later cases reuse a tutorial too: [ECG cardiac referral](../cases/21-ecg-screening-cardiac-referral.md) (tutorial 13) and [local-law campaigns](../cases/23-local-ordinance-advocacy-targeting.md) (tutorial 2). The funder-review cases have no tutorials.
 
 ## How each tutorial is organized
 
