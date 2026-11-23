@@ -2,6 +2,13 @@
 
 Each release on GitHub attaches the ready-to-use files from `dist/` and, from 1.7.0, the replay kit's workbooks. The version lives in [`VERSION`](VERSION).
 
+## Unreleased
+
+- **What it takes** (playbook, Follow-up 4, now *Build options: tools, partners, costs*): effort tiers by class, from a written rule to research code, with a rough shape of the work labelled as a guide, not a measurement; the cost lines to put a figure on (one-off, each round, each year, often missed); the roles a program must name, and which a volunteer can fill; the phases from the test on past records to running it; questions to ask a partner or vendor; and red flags. The assistant never states a cost, hours or a duration as fact, and points to people who ran similar programs instead. Runs of Cases 1 and 10 filled it from the cases' own answers.
+- **Budget check in the funder review:** the memo names cost lines the budget leaves out, such as running costs after launch, staff time and a maintenance owner, and asks how it was estimated, without judging the figures. Case 17's memo did this.
+- **Cost of ownership** ([tools/replay-kit](tools/replay-kit/README.md#before-deciding-the-cost-of-ownership)), a fifth workbook: money and staff hours for each cost line, for the simple rule and the model, totalled over several years with a contingency, and the cost of each extra person the model reaches; blank lines are counted as *not found out yet*. Checked in Excel against an independent recomputation. Releases attach it.
+- The kit's guide, README, docs index and cases checklist cover the new guidance. Excel lock files are ignored by git.
+
 ## 1.9.0 — 2026-11-22
 
 - **What the assistant does with the replay kit.** The playbook gains *The replay kit*, a table of which workbook goes with which class and what each needs, and names the workbook where it tells users to test on past records: pilot design (*Replay first*, and a random share with the monthly health check after launch), the partner brief's *Simpler option to beat*, and the funder memo's first and scale stages. It never asks for records in the chat. Runs of Cases 1, 13 and 17 named the right workbook in the recommendation, the follow-ups and the funding stages; the cases checklist now checks this.

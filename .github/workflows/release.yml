@@ -56,4 +56,5 @@ jobs:
             tools/replay-kit/1-pick-n-once.xlsx \
             tools/replay-kit/2-weekly-visit-list.xlsx \
             tools/replay-kit/3-waitlist.xlsx \
-            tools/replay-kit/4-monthly-health-check.xlsx
+            tools/replay-kit/4-monthly-health-check.xlsx \
+            tools/replay-kit/5-cost-of-ownership.xlsx

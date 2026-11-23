@@ -85,7 +85,7 @@ End by offering these follow-ups by number, one per turn on request, built from 
 1. Fit the model to your program
 2. Readiness checks
 3. Pilot design
-4. Build options: tools and partners
+4. Build options: tools, partners, costs
 5. Reading and people to contact
 6. One-page brief for a technical partner
 

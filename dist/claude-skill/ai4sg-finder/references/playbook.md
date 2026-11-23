@@ -2,7 +2,7 @@
 
 What to do after an approach has been chosen. The AI4SG Finder assistant uses this file for its six follow-ups and for the funder review at the end; people can also read it directly.
 
-**Reading this yourself?** Each follow-up starts with what it gives you: [1. Fit the model to your program](#follow-up-1-fit-the-model-to-your-program), [2. Readiness checks](#follow-up-2-readiness-checks) (including the [fairness audit for a risk score](#fairness-audit-for-a-risk-score)), [3. Pilot design](#follow-up-3-pilot-design), [4. Tools and partners](#follow-up-4-build-options--tools-and-partners), [5. Reading and people to contact](#follow-up-5-reading-and-people-to-contact), [6. A brief for a technical partner](#follow-up-6-one-page-brief-for-a-technical-partner). Before a session: [questions to settle before you start](#questions-to-settle-before-you-start). Testing a simple rule on your own records: [the replay kit](#the-replay-kit-testing-the-simple-option-on-the-programs-own-records). Funders, or an NGO checking its own proposal: see [Funder review](#funder-review-checking-a-proposal). Paragraphs headed *For the assistant* or *Rules for the assistant* are instructions to the model.
+**Reading this yourself?** Each follow-up starts with what it gives you: [1. Fit the model to your program](#follow-up-1-fit-the-model-to-your-program), [2. Readiness checks](#follow-up-2-readiness-checks) (including the [fairness audit for a risk score](#fairness-audit-for-a-risk-score)), [3. Pilot design](#follow-up-3-pilot-design), [4. Tools and partners](#follow-up-4-build-options--tools-and-partners) (including [what it takes](#what-it-takes-effort-costs-roles-and-timeline): effort, costs, roles and timeline), [5. Reading and people to contact](#follow-up-5-reading-and-people-to-contact), [6. A brief for a technical partner](#follow-up-6-one-page-brief-for-a-technical-partner). Before a session: [questions to settle before you start](#questions-to-settle-before-you-start). Testing a simple rule on your own records: [the replay kit](#the-replay-kit-testing-the-simple-option-on-the-programs-own-records). Funders, or an NGO checking its own proposal: see [Funder review](#funder-review-checking-a-proposal). Paragraphs headed *For the assistant* or *Rules for the assistant* are instructions to the model.
 
 Tools, organizations and links were last checked on **2026-10-30**; a few, such as Fairlearn and OpenSAFELY, were added in November 2026. Services change: confirm that a tool or partner is still active before relying on it.
 
@@ -334,6 +334,55 @@ CEGA, J-PAL and IPA evaluate programs; they don't build tools. Suggest them only
 
 The brief from Follow-up 6 is the right document to send to any of these.
 
+### What it takes: effort, costs, roles and timeline
+
+**For the assistant.** Include this in Follow-up 4, filled from the user's answers: their class, data, staff and Filter 5. It is a list of what to find out, not an estimate. **Never give a cost, a number of hours or a duration as a fact**: costs vary by country, the state of the data and whether a partner is paid. Quote a figure only from the reference files, with its source; otherwise say who could tell them (the partners above, or the people in Follow-up 5 who ran a similar program). Offer the cost worksheet in the [replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit) (*5. Cost of ownership*) to add up the answers.
+
+**The shape of the work, by tier.** The tier follows from the class's tools (table above). Durations are a rough guide from that maturity, not measured; a partner's own estimate replaces them.
+
+| Tier | Classes | Who builds it | Rough shape | What keeps it running |
+|---|---|---|---|---|
+| A. A written rule or spreadsheet | No model; the simpler option for any class | Program staff | Days to write and test on past records | The person who updates the sheet each round |
+| B. A mature free tool | 2, 4, 5, 6, 7, 9, 12 | An analyst, a volunteer or a university project | Weeks to a few months, most of it on the data | Someone who can rerun it, fix the data feed, and recheck it yearly |
+| C. Short scripts, careful design | 8, 10, 11 | A data scientist with the program's M&E lead | Weeks to build; the design and its safeguards take longer | Someone who understands the design, since the code alone won't show when it goes wrong |
+| D. Research code | 1, 3 | A technical partner with research experience | Several months, adapted from published code | A partner or in-house specialist for as long as it runs |
+
+**What it costs: the lines to put a figure on.** For each, ask who will pay, in money or in staff time, for the model and for the simple option:
+- **One-off:** gathering, cleaning and linking the data; the build; the test on past records ([replay kit](https://github.com/ashitpatel/ai4sgfinder/tree/main/tools/replay-kit)); connecting it to the forms or systems staff use; training staff; consent and legal review; explaining it to the community; the fairness audit, if it ranks people.
+- **Every round:** entering the data; running it and checking the output; staff time to act on it.
+- **Every year:** hosting or software, if any; maintenance and fixes when data formats change; recalibrating on new records; the monthly health check and the yearly fairness recheck.
+- **Often missed:** the contingency when a volunteer or partner leaves; running the old process alongside during the pilot; the time of managers who must approve and explain it.
+
+**Who is needed.** Check each role has a named person:
+
+| Role | Does | Can a volunteer or partner do it? |
+|---|---|---|
+| Data owner | Keeps the records complete and consistent each round | No: it has to sit inside the program |
+| Operator | Runs the sheet or tool each round and passes on the list | Rarely: it is a weekly job |
+| Builder | Builds and tests the model | Yes, for Tiers B to D |
+| Maintainer | Fixes it when data or rules change, and recalibrates | Only with a written commitment for a set period |
+| Reviewer | Reads the health check, approves overrides, answers complaints | No: a manager accountable for the program |
+
+**Phases, and what ends each one.** Funders can release money phase by phase ([Funder review](#funder-review-checking-a-proposal)):
+1. **Test on past records:** the replay kit or a partner's replay. Ends with a decision: simple rule, model, or neither.
+2. **Build:** only if the model's gap is worth its full cost. Ends when it runs on last round's data and staff can read its output.
+3. **Pilot** ([Follow-up 3](#follow-up-3-pilot-design)): ends at the agreed date, with the success and harm measures.
+4. **Scale:** ends when the old process is retired, with a written fallback rule.
+5. **Run:** the monthly health check, a yearly recheck, and a date to decide whether to keep it.
+
+**Questions to ask a partner or vendor**
+- What will it cost each year to run after you leave, and who will do that work?
+- How long do you expect the build to take, and what would make it longer?
+- What do you need from our staff, and for how many hours a week?
+- What happens when our data format or the rules change?
+- Will we get the code, the data and the documentation, and can someone else maintain it?
+- What did a similar project of yours take, and can we speak to that organization?
+- The *Contract terms* check in Follow-up 2 covers ownership, audit and leaving.
+
+**Red flags.** A budget with no recurring costs after launch; one named volunteer as builder and maintainer; Tier D research code with no partner committed beyond the build; no money for the test on past records or for staff time; a timeline with no pilot.
+
+**Others' setups.** Point to documented deployments of the class in the taxonomy and to the people and groups in Follow-up 5, and suggest asking them what their setup took: team, time and running cost. Few publish these figures; don't fill the gap with guesses.
+
 ---
 
 ## Follow-up 5: Reading and people to contact
@@ -472,6 +521,7 @@ For a funder, by default a foundation program officer, reviewing an NGO's propos
 - **If the proposal is an input layer** (speech recognition, document extraction, a screening classifier, a forecast, a ready-made map, a prediction model: [taxonomy, Section 6](taxonomy.md#6-input-layers)), don't classify or judge the model itself, and don't suggest a different one. Review the decision it feeds, if any, as usual, and ask three questions in the memo either way: what is its error rate on the program's own data, by language or group; who corrects its errors, and how long that takes compared with the manual process; and what decision will its output feed, and who makes it.
 - **If the AI is the intervention** (a tutor, a coach for health workers, an adviser), review how it will be tested, not the model: does it support a worker or replace one, when does a person take over, and which outcome, against which comparison, will show it works ([taxonomy, Section 7](taxonomy.md#when-the-ai-is-the-intervention)). Use the verdicts below for the test plan: *Fits* when a randomized or A/B comparison on an outcome is planned; *Mismatch* when success is measured by usage. Any part that decides who gets help is reviewed as an allocation.
 - **If a score targets the people served** (fraud, overpayment, eligibility), say so in the memo's first line, and list the safeguards in the readiness check *Scoring the people you serve* as conditions for any funding stage.
+- **Check the budget against *What it takes*** ([Follow-up 4](#what-it-takes-effort-costs-roles-and-timeline)). Under *Suggested funding stages*, name any line the budget leaves out, especially running costs after launch, a maintenance owner and staff time; ask about them in *Questions for the NGO*. Don't judge whether a figure is too high or low; ask how it was estimated.
 - **For an individual donor**, use simpler language and leave out the funding stages unless asked.
 - **For an NGO checking its own proposal** before sending it, run the same review without asking for the funder's context (use it if they know the funder's priorities). Title the memo for the NGO, and turn *Questions for the NGO* into the questions a funder is likely to ask, with what would answer each.
 

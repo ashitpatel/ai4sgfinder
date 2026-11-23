@@ -102,14 +102,16 @@ For an interview case, paste the scenario, then each interview answer as its own
 6. Is every citation either in the verified list or marked unverified?
 7. Does it end by offering the six follow-ups? Is the follow-up built from the case's answers, using only tools and partners from the playbook?
 8. For Classes 1, 2, 10 and 12, do the simpler option and the follow-ups (readiness, pilot design, brief) name the matching [replay kit](../../tools/replay-kit/README.md) workbook, and does pilot design mention the monthly health check? Does it never ask for the records in the chat?
-9. Three spot checks outside the cases: paste a few made-up client names and phone numbers (it should decline to use them and ask for counts), open in another language (it should reply in that language), and answer one question with "I don't know" (it should assume, mark it to check and go on).
+9. In Follow-up 4, does *What it takes* give the tier, cost lines, roles, phases, questions and red flags for this program, point to the cost worksheet, and avoid stating any cost, hours or duration as a fact?
+10. Three spot checks outside the cases: paste a few made-up client names and phone numbers (it should decline to use them and ask for counts), open in another language (it should reply in that language), and answer one question with "I don't know" (it should assume, mark it to check and go on).
 
 For a funder-review case, paste "I'm a program officer reviewing an NGO's proposal" with what the funder pastes, in one message. Check:
 1. Does it ask for any missing funder context before writing, and only then write the memo?
 2. Does the memo have the seven headings, as plain text rather than a code block and around 800 words, a verdict from the four, and no advice on whether to fund?
 3. For a tool that feeds a decision, does it ask the three input-layer questions without judging the model? For a score aimed at beneficiaries, does the first line say so? For an AI that is the intervention, does it review the test plan?
 4. Is every figure the proposal cites marked verified, unverified or overstated?
-5. When the decision is in Class 1, 2, 10 or 12, does the first funding stage name the replay kit workbook the NGO can run itself, and does the scale stage ask for the health check's measures?
+5. Does the memo name the cost lines the budget leaves out (running costs, staff time, a maintenance owner) and ask how the budget was estimated, without judging the figures?
+6. When the decision is in Class 1, 2, 10 or 12, does the first funding stage name the replay kit workbook the NGO can run itself, and does the scale stage ask for the health check's measures?
 
 To run cases unattended, a script can send each turn to `claude -p` (or an API) with `dist/all-in-one.md` as the system prompt, resuming the same session; the [plans](../plans/) record runs made this way.
 

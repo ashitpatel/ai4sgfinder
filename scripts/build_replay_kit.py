@@ -15,6 +15,7 @@ from pathlib import Path
 from openpyxl import Workbook
 from openpyxl.comments import Comment
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+from openpyxl.formatting.rule import CellIsRule
 from openpyxl.utils import get_column_letter as col
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -922,13 +923,159 @@ def health_check(path, report_month=11):
     wb.save(path)
 
 
+# ---------------------------------------------------------------------------
+# 5. Cost of ownership: the model against the simple rule
+# ---------------------------------------------------------------------------
+
+def cost_of_ownership(path):
+    wb = Workbook()
+    readme(wb, "Cost of ownership: what the model costs against the simple rule", [
+        "The replay workbooks show how many more people a model reaches than a simple rule. This one adds up what each costs to set up and run, so you can see the cost of each extra person reached, and what you still need to find out.",
+        "It is a checklist as much as a calculator. Every line is something that costs money or staff time; a blank line is something you haven't found out yet, and the Summary counts them. Type 0 when a line truly costs nothing.",
+        "## Steps",
+        "1. On Settings, enter your currency, the cost of an hour of staff time, the number of years to compare, how many rounds (weeks, months) a year the decision is made, and a contingency.",
+        "2. On Costs, for each line, enter money and staff hours for the simple rule and for the model. The \"How to find it\" column says whom to ask. Partners' quotes go in money; your own staff's time goes in hours. Volunteer time is worth recording as hours too: it ends.",
+        "3. On Settings, enter how many more people a year the model reaches than the simple rule, from the replay kit or a partner's test, and your current cost per person served.",
+        "4. Read Summary: total cost of each over the period, the model's extra cost, the cost of each extra person it reaches, and how many lines are still blank.",
+        "## Reading it",
+        "If each extra person the model reaches costs many times what the program spends per person today, the simple rule is likely the better use of the money, unless those extra people are the ones who matter most. If the model's lines are mostly blank, the honest answer is that its cost isn't known yet: find out before deciding.",
+        "No figure here comes from AI4SG Finder. Ask the partners and programs listed in the playbook's Follow-up 4 and 5 what their setups took.",
+    ] + COMMON_END[2:])
+
+    st = wb.create_sheet("Settings")
+    st.column_dimensions["A"].width = 52
+    st.column_dimensions["B"].width = 14
+    st.column_dimensions["C"].width = 70
+    st["A1"] = "Settings"
+    st["A1"].font = TITLE
+    setting(st, 3, "Currency", "USD", "Shown in the Summary headings.")
+    setting(st, 4, "Cost of one hour of staff time", 15, "Salary and overheads divided by working hours. Use one average figure.", "#,##0.00")
+    setting(st, 5, "Years to compare", 3, "Three is usual: long enough for running costs to show.")
+    setting(st, 6, "Rounds a year", 52, "How often the decision is made: 52 for weekly, 12 for monthly, 1 for once a year.")
+    setting(st, 7, "Contingency", 0.15, "Added to both totals for what goes wrong.", PCT)
+    st.cell(row=9, column=1, value="What the model adds").font = H2
+    setting(st, 10, "Extra people reached a year: model over simple rule", 15, "From the replay kit (Results) or a partner's test on past records. Leave blank if unknown.", "#,##0")
+    setting(st, 11, "Extra people reached a year: simple rule over current practice", 60, "Optional, for comparison.", "#,##0")
+    setting(st, 12, "Current cost per person served a year", 120, "What the program spends now for each person it serves. Optional.", "#,##0")
+
+    c = wb.create_sheet("Costs")
+    head(c, 1, ["Group", "Line", "When", "How to find it", "Simple rule: money", "Simple rule: staff hours",
+                "Model: money", "Model: staff hours", "Simple rule: total", "Model: total",
+                "Simple rule: costed?", "Model: costed?"])
+    for i, w in enumerate([13, 40, 10, 52, 12, 12, 12, 12, 13, 13, 13, 13]):
+        c.column_dimensions[col(i + 1)].width = w
+    c.freeze_panes = "C2"
+    c["E1"].comment = Comment("Money for each time the line occurs: once, each round or each year (see When).", "AI4SG Finder")
+    c["F1"].comment = Comment("Staff hours for each time the line occurs. Blank = not found out yet; 0 = costs nothing.", "AI4SG Finder")
+    lines = [
+        ("One-off", "Gather, clean and link the data", "One-off", "Ask the builder how many days the data will take; count your own staff's hours pulling records", "", 40, 5000, 120),
+        ("One-off", "Build the rule or model", "One-off", "A partner's written quote; for a volunteer, their estimate of hours", "", 16, 25000, 80),
+        ("One-off", "Test on past records", "One-off", "The replay kit takes staff a day or two; a partner's replay is part of their quote", "", 16, 2000, 16),
+        ("One-off", "Connect it to the forms or systems staff use", "One-off", "Whoever maintains your forms, app or database", 0, 0, 3000, 24),
+        ("One-off", "Train staff", "One-off", "Number of staff x hours of training, plus the trainer", "", 8, "", 16),
+        ("One-off", "Consent and legal review", "One-off", "Your data-protection lead or legal adviser", "", 8, 1000, 16),
+        ("One-off", "Explain it to the community", "One-off", "Meetings or materials planned with community representatives", "", 8, "", ""),
+        ("One-off", "Fairness audit, if it ranks people", "One-off", "Playbook Follow-up 2: a partner or an analyst with group-level data", 0, 0, 1500, 16),
+        ("One-off", "Run the old process alongside during the pilot", "One-off", "Staff time to keep the old list going for the pilot's length", 0, 0, "", 80),
+        ("Each round", "Enter the data", "Per round", "Time a round's data entry now; ask whether the model needs more fields", "", 2, "", 2),
+        ("Each round", "Run it and check the output", "Per round", "Time a dry run; ask the builder", "", 0.5, "", 0.25),
+        ("Each round", "Act on the list (extra time compared with today)", "Per round", "Field supervisors: does the new list mean more travel or longer visits?", 0, 0, 0, 0),
+        ("Each year", "Hosting or software", "Per year", "The builder; free tools often need paid hosting", 0, 0, 1200, 0),
+        ("Each year", "Maintenance and fixes", "Per year", "A partner's support quote, or a named person's hours", "", 8, 8000, 8),
+        ("Each year", "Recalibrate on new records", "Per year", "The builder: how often, and how long each time", "", 8, "", 40),
+        ("Each year", "Monthly health check and yearly fairness recheck", "Per year", "The replay kit's health check takes an hour or two a month", "", 24, "", 24),
+        ("Often missed", "Cover when a volunteer or partner leaves", "Per year", "What it would cost to hire someone to take it over", 0, 0, "", ""),
+        ("Often missed", "Managers' time to approve and explain it", "Per year", "Hours a year for reviews, complaints, board and funder questions", "", 12, "", 24),
+    ]
+    first = 2
+    for i, (grp, line, when, how, sm, sh, mm, mh) in enumerate(lines):
+        r = first + i
+        for j, v in enumerate([grp, line, when, how]):
+            cc = c.cell(row=r, column=j + 1, value=v)
+            cc.font, cc.alignment = F, WRAP
+        for j, v in enumerate([sm, sh, mm, mh]):
+            cc = c.cell(row=r, column=5 + j, value=None if v == "" else v)
+            cc.font, cc.fill = INPUT, FILL_INPUT
+            cc.number_format = "#,##0.##"
+        mult = f'IF(C{r}="One-off",1,IF(C{r}="Per year",Settings!$B$5,Settings!$B$5*Settings!$B$6))'
+        for j, (m_, h_) in enumerate((("E", "F"), ("G", "H"))):
+            cc = c.cell(row=r, column=9 + j, value=f"=(N({m_}{r})+N({h_}{r})*Settings!$B$4)*{mult}")
+            cc.fill, cc.font, cc.number_format = FILL_CALC, F, "#,##0"
+            cc = c.cell(row=r, column=11 + j, value=f'=IF(AND({m_}{r}="",{h_}{r}=""),"Find out","Yes")')
+            cc.fill, cc.font = FILL_CALC, F
+    lastr = first + len(lines) - 1
+    n = len(lines)
+    c.cell(row=lastr + 2, column=2, value="Add lines above this row if you need them, copying the grey formulas.").font = F
+    c.conditional_formatting.add(f"K{first}:L{lastr}", CellIsRule(operator="equal", formula=['"Find out"'],
+                                 fill=PatternFill("solid", fgColor="F8CBAD")))
+
+    sm = wb.create_sheet("Summary")
+    sm.column_dimensions["A"].width = 56
+    sm.column_dimensions["B"].width = 16
+    sm.column_dimensions["C"].width = 16
+    sm["A1"] = "Summary"
+    sm["A1"].font = TITLE
+    sm["A2"] = '="Over "&Settings!$B$5&" years, in "&Settings!$B$3&". The sample figures are made up."'
+    sm["A2"].font = F
+    head(sm, 4, ["", "Simple rule", "Model"])
+    I_, J_ = f"Costs!$I${first}:$I${lastr}", f"Costs!$J${first}:$J${lastr}"
+    oneoff = lambda rng_: f'SUMIFS({rng_},Costs!$C${first}:$C${lastr},"One-off")'
+    rows = [
+        ("Set-up (one-off)", oneoff(I_), oneoff(J_), "#,##0"),
+        ("Running, over the whole period", f"SUM({I_})-B5", f"SUM({J_})-C5", "#,##0"),
+        ("Contingency", "(B5+B6)*Settings!$B$7", "(C5+C6)*Settings!$B$7", "#,##0"),
+        ("Total cost", "B5+B6+B7", "C5+C6+C7", "#,##0"),
+        ("Running cost a year", "B6/Settings!$B$5", "C6/Settings!$B$5", "#,##0"),
+        ("Of the total, staff time (hours)", None, None, "#,##0"),
+        ("Lines still to find out", f'COUNTIF(Costs!$K${first}:$K${lastr},"Find out")', f'COUNTIF(Costs!$L${first}:$L${lastr},"Find out")', "0"),
+    ]
+    for i, (label, fb, fc, fmt) in enumerate(rows):
+        r = 5 + i
+        sm.cell(row=r, column=1, value=label).font = BOLD if label == "Total cost" else F
+        if label.startswith("Of the total"):
+            mult = lambda rr: f'IF(Costs!$C{rr}="One-off",1,IF(Costs!$C{rr}="Per year",Settings!$B$5,Settings!$B$5*Settings!$B$6))'
+            fb = "+".join(f"N(Costs!$F{rr})*{mult(rr)}" for rr in range(first, lastr + 1))
+            fc = "+".join(f"N(Costs!$H{rr})*{mult(rr)}" for rr in range(first, lastr + 1))
+        for cc_, fx in (("B", fb), ("C", fc)):
+            cell = sm[f"{cc_}{r}"]
+            cell.value, cell.number_format, cell.fill = f"={fx}", fmt, FILL_CALC
+    head(sm, 13, ["What the model's extra cost buys", "", ""])
+    out = [
+        ("Model's extra cost over the simple rule", "=C8-B8", "#,##0"),
+        ("Extra people reached over the period", '=IF(Settings!$B$10="","",Settings!$B$10*Settings!$B$5)', "#,##0"),
+        ("Cost of each extra person the model reaches", '=IF(OR(B15="",B15<=0),"",B14/B15)', "#,##0"),
+        ("Current cost per person served a year", '=IF(Settings!$B$12="","",Settings!$B$12)', "#,##0"),
+        ("Each extra person costs this many times the current cost per person", '=IF(OR(B16="",B17="",B17=0),"",B16/B17)', "0.0"),
+        ("For comparison: cost of each extra person the simple rule reaches over current practice", '=IF(OR(Settings!$B$11="",Settings!$B$11<=0),"",B8/(Settings!$B$11*Settings!$B$5))', "#,##0"),
+    ]
+    for i, (label, fx, fmt) in enumerate(out):
+        r = 14 + i
+        cc = sm.cell(row=r, column=1, value=label)
+        cc.font, cc.alignment = F, WRAP
+        cell = sm.cell(row=r, column=2, value=fx)
+        cell.number_format, cell.fill = fmt, FILL_CALC
+    sm["A21"] = ('=IF(C11>0,"The model still has "&C11&" line(s) to find out: its total is a floor, not an estimate.",'
+                 '"Every line has a figure. Recheck them with the partner before deciding.")')
+    sm["A21"].font, sm["A21"].alignment = BOLD, WRAP
+    sm["A22"] = "The last comparison counts the simple rule's whole cost against what it gains over today; leave it blank if you don't know that gain."
+    sm["A22"].font, sm["A22"].alignment = F, WRAP
+    sm.row_dimensions[21].height = 30
+    sm.row_dimensions[22].height = 30
+    wb.move_sheet("Summary", offset=-(len(wb.sheetnames) - 2))
+    for ws in wb.worksheets:
+        font_all(ws)
+    wb.calculation.fullCalcOnLoad = True
+    wb.save(path)
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     pick_n(OUT / "1-pick-n-once.xlsx")
     weekly_visits(OUT / "2-weekly-visit-list.xlsx")
     waitlist(OUT / "3-waitlist.xlsx")
     health_check(OUT / "4-monthly-health-check.xlsx")
-    for p in sorted(OUT.glob("*.xlsx")):
+    cost_of_ownership(OUT / "5-cost-of-ownership.xlsx")
+    for p in sorted(q for q in OUT.glob("*.xlsx") if not q.name.startswith("~$")):
         print(f"wrote {p.relative_to(ROOT)} ({p.stat().st_size // 1024} KB)")
 
 
